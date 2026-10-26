@@ -1,4 +1,5 @@
 import { bingoUrl, climbUrl, dataUrl, monthUrl, repoRoot } from "./paths.js";
+import { normalizeWordTerms } from "./word-list.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -53,13 +54,14 @@ function renderMonth(month, wordsPreview) {
       <a class="btn btn-primary" href="${escapeHtml(month.wordMasterLearnUrl)}">Word Master — Learn</a>
     </div>`;
 
-  if (month.quizletSetId) {
+  if (wordsPreview?.source) {
     learnStepBody += `
-      <p class="hint" style="margin-top:0.65rem">Quizlet set <strong>${escapeHtml(month.quizletSetId)}</strong> (${escapeHtml(month.quizletTitle || "")}) → Word Master pack coming.</p>`;
+      <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)} · Word Master pack coming.</p>`;
   }
 
-  if (wordsPreview?.terms?.length) {
-    const rows = wordsPreview.terms
+  const previewTerms = normalizeWordTerms(wordsPreview);
+  if (previewTerms.length) {
+    const rows = previewTerms
       .map(
         (t) =>
           `<tr><td>${escapeHtml(t.term)}</td><td>${escapeHtml(t.definition)}</td></tr>`

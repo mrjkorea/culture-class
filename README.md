@@ -11,7 +11,7 @@ MRJ ENGLISH **Culture Class** course hub (GitHub Pages).
 | `index.html` | Home — 12 month cards (from `data/months.json`) |
 | `months/NN-name/index.html` | Monthly step stack (9 steps) |
 | `data/months.json` | Themes, CP Doc URLs, Mountain Climb unit ids |
-| `data/aug-words.json` | August vocabulary preview (8/24 Quizlet terms) |
+| `data/aug-words.json` | August vocabulary — **24 terms** from the **KHwords Quizizz bank** (Quizlet export was blocked by captcha) |
 | `bingo/teacher.html` | Teacher call list (v0 offline) |
 | `bingo/student.html` | Student local bingo card |
 | `assets/css/site.css` | Shared classroom UI |
@@ -30,7 +30,7 @@ Each month follows the same stack:
 8. **Bingo** — teacher + student pages (`?month=NN`)
 9. **Notes** — static blurb per month
 
-**August pilot** includes words preview table, full CP Doc link, and bingo pool from `aug-words.json`.
+**August pilot** includes the full 24-term words preview, CP Doc link, and bingo pool (`?month=08`) from `data/aug-words.json` (KHwords / Wayground, not Quizlet).
 
 ## Mountain Climb unit ids
 

@@ -1,4 +1,5 @@
 import { dataUrl, repoRoot } from "./paths.js";
+import { normalizeWordTerms } from "./word-list.js";
 
 const DEFAULT_POOL = [
   "culture",
@@ -22,7 +23,8 @@ export async function loadWordPool(monthId) {
     const wRes = await fetch(dataUrl(month.wordsPreviewFile));
     if (wRes.ok) {
       const words = await wRes.json();
-      if (words.terms?.length) return words.terms;
+      const terms = normalizeWordTerms(words);
+      if (terms.length) return terms;
     }
   }
 
