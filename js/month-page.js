@@ -55,8 +55,12 @@ function renderMonth(month, wordsPreview) {
     </div>`;
 
   if (wordsPreview?.source) {
+    const wmStatus =
+      month.wordMasterLearnUrl === "#"
+        ? " · Word Master pack coming."
+        : " · Open Word Master (Learn / Match) below.";
     learnStepBody += `
-      <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)} · Word Master pack coming.</p>`;
+      <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)}${wmStatus}</p>`;
   }
 
   const previewTerms = normalizeWordTerms(wordsPreview);
@@ -79,11 +83,15 @@ function renderMonth(month, wordsPreview) {
     learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until Word Master pack exists.</p>`;
   }
 
+  const matchHint =
+    month.wordMasterMatchUrl === "#"
+      ? "Memory match / pairing game — wired when the month pack is published."
+      : "Memory match / pairing game in Word Master (same pack as Learn).";
   const matchStepBody = `
     <div class="step-actions">
       <a class="btn btn-primary" href="${escapeHtml(month.wordMasterMatchUrl)}">Word Master — Match</a>
     </div>
-    <p class="hint">Memory match / pairing game — wired when the month pack is published.</p>`;
+    <p class="hint">${matchHint}</p>`;
 
   const featureTitle = month.featureTitle || "Feature show";
   const featureDetail = month.featureDetail || month.featureLabel;

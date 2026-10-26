@@ -30,7 +30,7 @@ Each month follows the same stack:
 8. **Bingo** — teacher + student pages (`?month=NN`)
 9. **Notes** — static blurb per month
 
-**August pilot** includes the full 24-term words preview, CP Doc link, and bingo pool (`?month=08`) from `data/aug-words.json` (KHwords / Wayground, not Quizlet).
+**August pilot** includes the full 24-term words preview, CP Doc link, bingo pool (`?month=08`), and live Word Master pack `culture_m08` (Learn/Match deep link in `data/months.json`).
 
 ## Mountain Climb unit ids
 
