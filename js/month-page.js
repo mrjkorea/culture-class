@@ -1,0 +1,199 @@
+import { bingoUrl, climbUrl, dataUrl, monthUrl, repoRoot } from "./paths.js";
+
+const MONTH_ID = window.CULTURE_MONTH_ID;
+
+async function loadMonths() {
+  const res = await fetch(dataUrl("months.json"));
+  if (!res.ok) throw new Error("Could not load months.json");
+  return res.json();
+}
+
+async function loadWordsPreview(filename) {
+  const res = await fetch(dataUrl(filename));
+  if (!res.ok) return null;
+  return res.json();
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function stepBlock(num, title, desc, bodyHtml) {
+  return `
+    <article class="step" id="step-${num}">
+      <div class="step-header">
+        <div class="step-num">${num}</div>
+        <div>
+          <h3 class="step-title">${title}</h3>
+          <p class="step-desc">${desc}</p>
+        </div>
+      </div>
+      <div class="step-body">${bodyHtml}</div>
+    </article>`;
+}
+
+function renderMonth(month, wordsPreview) {
+  const root = repoRoot();
+  const climbWords = climbUrl(month.unitId);
+  const climbShow = climbUrl(month.showUnitId);
+  const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
+  const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
+
+  const pilotBadge =
+    month.id === "08"
+      ? '<span class="pilot">Pilot month — words preview &amp; full CP link</span>'
+      : "";
+
+  let learnStepBody = `
+    <div class="step-actions">
+      <a class="btn btn-primary" href="${escapeHtml(month.wordMasterLearnUrl)}">Word Master — Learn</a>
+    </div>`;
+
+  if (month.quizletSetId) {
+    learnStepBody += `
+      <p class="hint" style="margin-top:0.65rem">Quizlet set <strong>${escapeHtml(month.quizletSetId)}</strong> (${escapeHtml(month.quizletTitle || "")}) → Word Master pack coming.</p>`;
+  }
+
+  if (wordsPreview?.terms?.length) {
+    const rows = wordsPreview.terms
+      .map(
+        (t) =>
+          `<tr><td>${escapeHtml(t.term)}</td><td>${escapeHtml(t.definition)}</td></tr>`
+      )
+      .join("");
+    learnStepBody += `
+      <div class="words-preview">
+        <p class="hint">${escapeHtml(wordsPreview.note || "")}</p>
+        <table>
+          <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  } else if (month.wordMasterLearnUrl === "#") {
+    learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until Word Master pack exists.</p>`;
+  }
+
+  const matchStepBody = `
+    <div class="step-actions">
+      <a class="btn btn-primary" href="${escapeHtml(month.wordMasterMatchUrl)}">Word Master — Match</a>
+    </div>
+    <p class="hint">Memory match / pairing game — wired when the month pack is published.</p>`;
+
+  const featureTitle = month.featureTitle || "Feature show";
+  const featureDetail = month.featureDetail || month.featureLabel;
+
+  const steps = [
+    stepBlock(
+      1,
+      "MRJ Daily",
+      "Class introduction video",
+      `<div class="placeholder-box"><strong>Video coming soon</strong> — MRJ Daily for ${escapeHtml(month.name)} will be added here. Your teacher may play the lesson video in class meanwhile.</div>`
+    ),
+    stepBlock(
+      2,
+      "Words — Learn",
+      "Flashcards (Word Master)",
+      learnStepBody
+    ),
+    stepBlock(
+      3,
+      "Words — Match",
+      "Matching game (Word Master)",
+      matchStepBody
+    ),
+    stepBlock(
+      4,
+      "Words quiz — Mountain Climb",
+      "Solo / class quiz on month vocabulary",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(climbWords)}" target="_blank" rel="noopener">Open Mountain Climb</a>
+      </div>
+      <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code> (quiz data may be added on the climb server later).</p>`
+    ),
+    stepBlock(
+      5,
+      "PRO COMP — CP TEST",
+      "Pronunciation &amp; comprehension sentences (Google Doc)",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(month.cpDocUrl)}" target="_blank" rel="noopener">Open CP TEST Doc</a>
+      </div>
+      <p class="hint">Printable EN sentences with Korean gloss and grade bands — same shape as conversation-day CP practice.</p>`
+    ),
+    stepBlock(
+      6,
+      featureTitle,
+      month.featureLabel,
+      `<div class="placeholder-box">
+        <strong>${escapeHtml(month.featureLabel)}</strong><br>
+        ${escapeHtml(featureDetail)}
+        ${month.id === "08" ? "<br><br><em>Hosted video file coming soon.</em>" : ""}
+      </div>`
+    ),
+    stepBlock(
+      7,
+      "Feature quiz — Mountain Climb",
+      "Questions about the feature video",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(climbShow)}" target="_blank" rel="noopener">Open feature quiz</a>
+      </div>
+      <p class="hint">Unit: <code>${escapeHtml(month.showUnitId)}</code></p>`
+    ),
+    stepBlock(
+      8,
+      "Bingo",
+      "Teacher calls words; students mark cards (v0 offline)",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(bingoTeacher)}">Teacher — call list</a>
+        <a class="btn btn-secondary" href="${escapeHtml(bingoStudent)}">Student — bingo card</a>
+      </div>
+      <p class="hint">v0: no login or Firebase yet — teacher projects the call list; students use local cards on their devices.</p>`
+    ),
+    stepBlock(
+      9,
+      "Notes",
+      "Month overview",
+      `<div class="notes-block">${escapeHtml(month.notes)}</div>`
+    ),
+  ];
+
+  document.getElementById("app").innerHTML = `
+    <div class="wrap">
+      <a class="back-link" href="${root}/">← All months</a>
+      <header class="site-header month-hero">
+        <h2>${escapeHtml(month.name)}</h2>
+        <div class="theme-tag">${escapeHtml(month.theme)}</div>
+        ${pilotBadge}
+      </header>
+      <section class="steps" aria-label="Lesson steps">
+        ${steps.join("")}
+      </section>
+      <footer class="site-footer">Culture Class · MRJ ENGLISH · No sign-in required (v1)</footer>
+    </div>`;
+
+  document.title = `Culture Class — ${month.name}: ${month.theme}`;
+}
+
+async function init() {
+  const data = await loadMonths();
+  const month = data.months.find((m) => m.id === MONTH_ID);
+  if (!month) {
+    document.getElementById("app").innerHTML =
+      '<div class="wrap"><p class="placeholder-box">Month not found.</p></div>';
+    return;
+  }
+  let wordsPreview = null;
+  if (month.wordsPreviewFile) {
+    wordsPreview = await loadWordsPreview(month.wordsPreviewFile);
+  }
+  renderMonth(month, wordsPreview);
+}
+
+init().catch((err) => {
+  console.error(err);
+  document.getElementById("app").innerHTML =
+    '<div class="wrap"><p class="placeholder-box">Failed to load this month. Try again after deployment.</p></div>';
+});

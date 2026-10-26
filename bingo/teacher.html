@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Culture Class Bingo — Teacher</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <div class="wrap" id="app">
+    <p class="hint">Loading…</p>
+  </div>
+  <script type="module">
+    import {
+      backToMonthLink,
+      getMonthIdFromQuery,
+      loadMonthsMeta,
+      loadWordPool,
+      shuffle,
+    } from "../js/bingo.js";
+    import { repoRoot } from "../js/paths.js";
+
+    const monthId = getMonthIdFromQuery();
+    const meta = await loadMonthsMeta();
+    const month = meta?.months?.find((m) => m.id === monthId);
+    const pool = await loadWordPool(monthId);
+    const terms = pool.map((t) => t.term);
+    let called = new Set();
+
+    const app = document.getElementById("app");
+    const back = backToMonthLink(monthId, meta);
+
+    const displayOrder = shuffle(terms);
+
+    function render() {
+      const chips = displayOrder
+        .map((word) => {
+          const isCalled = called.has(word);
+          return `<button type="button" class="word-chip${isCalled ? " called" : ""}" data-word="${word.replace(/"/g, "&quot;")}">${word}</button>`;
+        })
+        .join("");
+
+      app.innerHTML = `
+        <a class="back-link" href="${back}">← Back to month</a>
+        <header class="site-header">
+          <h1>Bingo — Teacher</h1>
+          <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Month ${monthId}</p>
+        </header>
+        <p class="hint">Tap a word when you call it. Project this page for the class. Students use <a href="student.html?month=${monthId}">student cards</a>.</p>
+        <div class="bingo-toolbar">
+          <button type="button" class="btn btn-secondary" id="btn-reset">Reset called</button>
+          <button type="button" class="btn btn-primary" id="btn-random">Call random</button>
+        </div>
+        <div class="word-pool" id="pool">${chips}</div>
+        <p class="hint">Called: <strong id="called-count">${called.size}</strong> / ${terms.length}</p>
+        <footer class="site-footer">Bingo v0 — offline · Firebase sync later</footer>`;
+
+      document.getElementById("pool").addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-word]");
+        if (!btn) return;
+        const w = btn.getAttribute("data-word");
+        if (called.has(w)) called.delete(w);
+        else called.add(w);
+        render();
+      });
+
+      document.getElementById("btn-reset").addEventListener("click", () => {
+        called = new Set();
+        render();
+      });
+
+      document.getElementById("btn-random").addEventListener("click", () => {
+        const remaining = terms.filter((t) => !called.has(t));
+        if (!remaining.length) return;
+        const pick = remaining[Math.floor(Math.random() * remaining.length)];
+        called.add(pick);
+        render();
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Culture Class Bingo — Student</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <div class="wrap" id="app">
+    <p class="hint">Loading…</p>
+  </div>
+  <script type="module">
+    import {
+      backToMonthLink,
+      getMonthIdFromQuery,
+      loadMonthsMeta,
+      loadWordPool,
+      shuffle,
+    } from "../js/bingo.js";
+
+    const monthId = getMonthIdFromQuery();
+    const meta = await loadMonthsMeta();
+    const month = meta?.months?.find((m) => m.id === monthId);
+    const pool = await loadWordPool(monthId);
+    const terms = pool.map((t) => t.term);
+
+    function buildCard(words) {
+      const size = words.length >= 8 ? 16 : 9;
+      const need = size - 1;
+      const bag = [];
+      while (bag.length < need) {
+        bag.push(...shuffle(words));
+      }
+      const cells = bag.slice(0, need);
+      const grid = [];
+      const cols = size === 16 ? 4 : 3;
+      let i = 0;
+      for (let r = 0; r < cols; r++) {
+        for (let c = 0; c < cols; c++) {
+          const center = size === 16 && r === 1 && c === 1;
+          const center9 = size === 9 && r === 1 && c === 1;
+          if (center || center9) {
+            grid.push({ text: "FREE", free: true, marked: true });
+          } else {
+            grid.push({ text: cells[i++], free: false, marked: false });
+          }
+        }
+      }
+      return { grid, cols };
+    }
+
+    let card = buildCard(terms);
+
+    function render() {
+      const back = backToMonthLink(monthId, meta);
+      const cells = card.grid
+        .map((cell, idx) => {
+          const cls = ["bingo-cell", cell.free ? "free" : "", cell.marked ? "marked" : ""]
+            .filter(Boolean)
+            .join(" ");
+          return `<div class="${cls}" data-idx="${idx}" role="button" tabindex="0">${cell.text}</div>`;
+        })
+        .join("");
+
+      document.getElementById("app").innerHTML = `
+        <a class="back-link" href="${back}">← Back to month</a>
+        <header class="site-header">
+          <h1>Bingo — Student</h1>
+          <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Month ${monthId}</p>
+        </header>
+        <p class="hint">Tap words when your teacher calls them. Mark <strong>FREE</strong> automatically. <a href="teacher.html?month=${monthId}">Teacher call list</a></p>
+        <div class="bingo-toolbar" style="justify-content:center">
+          <button type="button" class="btn btn-primary" id="btn-new">New card</button>
+        </div>
+        <div class="bingo-grid" style="grid-template-columns: repeat(${card.cols}, 1fr)">${cells}</div>
+        <footer class="site-footer">Bingo v0 — local card only</footer>`;
+
+      document.querySelector(".bingo-grid").addEventListener("click", (e) => {
+        const cell = e.target.closest("[data-idx]");
+        if (!cell) return;
+        const idx = Number(cell.getAttribute("data-idx"));
+        const item = card.grid[idx];
+        if (item.free) return;
+        item.marked = !item.marked;
+        render();
+      });
+
+      document.getElementById("btn-new").addEventListener("click", () => {
+        card = buildCard(terms);
+        render();
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
