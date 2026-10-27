@@ -9,8 +9,8 @@
       "en": "New Year",
       "ko": "새해",
       "audio": "data/audio/jan-words/new-year.mp3",
-      "pic": "assets/words/jan/new_year.jpg",
-      "image": "assets/words/jan/new_year.jpg",
+      "pic": "assets/words/jan/new-year.jpg",
+      "image": "assets/words/jan/new-year.jpg",
       "term": "New Year",
       "definition": "새해"
     },
@@ -79,8 +79,8 @@
       "en": "party hat",
       "ko": "파티 모자",
       "audio": "data/audio/jan-words/party-hat.mp3",
-      "pic": "assets/words/jan/party_hat.jpg",
-      "image": "assets/words/jan/party_hat.jpg",
+      "pic": "assets/words/jan/party-hat.jpg",
+      "image": "assets/words/jan/party-hat.jpg",
       "term": "party hat",
       "definition": "파티 모자"
     },
@@ -119,8 +119,8 @@
       "en": "January",
       "ko": "1월",
       "audio": "data/audio/jan-words/january.mp3",
-      "pic": "assets/words/jan/clock.jpg",
-      "image": "assets/words/jan/clock.jpg",
+      "pic": "assets/words/jan/january.jpg",
+      "image": "assets/words/jan/january.jpg",
       "term": "January",
       "definition": "1월"
     },
@@ -139,8 +139,8 @@
       "en": "tradition",
       "ko": "전통",
       "audio": "data/audio/jan-words/tradition.mp3",
-      "pic": "assets/words/jan/wish.jpg",
-      "image": "assets/words/jan/wish.jpg",
+      "pic": "assets/words/jan/tradition.jpg",
+      "image": "assets/words/jan/tradition.jpg",
       "term": "tradition",
       "definition": "전통"
     },
@@ -149,8 +149,8 @@
       "en": "parade",
       "ko": "퍼레이드",
       "audio": "data/audio/jan-words/parade.mp3",
-      "pic": "assets/words/jan/ball_drop.jpg",
-      "image": "assets/words/jan/ball_drop.jpg",
+      "pic": "assets/words/jan/parade.jpg",
+      "image": "assets/words/jan/parade.jpg",
       "term": "parade",
       "definition": "퍼레이드"
     },
@@ -159,8 +159,8 @@
       "en": "sparkler",
       "ko": "불꽃 막대",
       "audio": "data/audio/jan-words/sparkler.mp3",
-      "pic": "assets/words/jan/grapes.jpg",
-      "image": "assets/words/jan/grapes.jpg",
+      "pic": "assets/words/jan/sparkler.jpg",
+      "image": "assets/words/jan/sparkler.jpg",
       "term": "sparkler",
       "definition": "불꽃 막대"
     }
