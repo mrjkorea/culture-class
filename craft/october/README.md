@@ -10,7 +10,7 @@ The October month page links here (`months/10-october/`).
 
 | Era | In-game look | Between stages / end |
 |-----|----------------|----------------------|
-| **V4** | **three.js WebGL** low-poly meshes (patch field, cut + knife, wash; other stages mix SVG props + optional `scenes3d` backdrops) — same approach as [ski-jump](https://github.com/mrjkorea/ski-jump) | **Photoreal stills** (`assets/transitions/t01…t10.jpg`) ~3s + countdown overlay; after the run, **10 clips** (`assets/transitions/video/t01…t10.mp4`) |
+| **V5** | **three.js WebGL** low-poly meshes (patch field, cut + knife, wash; other stages mix SVG props + optional `scenes3d` backdrops) — same approach as [ski-jump](https://github.com/mrjkorea/ski-jump) | After each stage: **one** Grok clip (`assets/transitions/video/t01…t10.mp4`, still as poster); after stage 10: **ghost** (`assets/ghost/ghost_pop.mp4` + Fish `happy_halloween.mp3`) |
 
 **Engine stack (Games bot):** three.js **0.162.0** vendored in `vendor/` (WebGL1-friendly); procedural meshes only (`js/pumpkin-mesh.js` — Box/Capsule like [ski-jump skier.js](https://github.com/mrjkorea/ski-jump)); no AI meshes / no hero GLB. Kenney CC0 GLBs are OK for future set dressing only. Fish MP3 voice — no TTS. Quality/DPR: `js/three-runtime.js`.
 

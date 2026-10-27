@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "faces": "faces.json",
   "frank": {
     "closed": "frank/frank_talk_closed.jpg",
@@ -51,7 +51,12 @@
     "kid_leo_tot": "audio/kids/leo_tot.mp3",
     "kid_little_boy_tot": "audio/kids/little_boy_tot.mp3",
     "kid_little_girl_tot": "audio/kids/little_girl_tot.mp3",
-    "kid_teen_boy_tot": "audio/kids/teen_boy_tot.mp3"
+    "kid_teen_boy_tot": "audio/kids/teen_boy_tot.mp3",
+    "ghost_happy_halloween": "audio/ghost/happy_halloween.mp3"
+  },
+  "ghost": {
+    "video": "ghost/ghost_pop.mp4",
+    "still": "ghost/ghost_still.jpg"
   },
   "transitionVideos": {
     "t01_enter_patch": "transitions/video/t01_enter_patch.mp4",
