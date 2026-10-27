@@ -7,7 +7,6 @@ import {
   monthPageUrl,
   repoRoot,
   wordsLearnUrl,
-  wordsMatchUrl,
   wordsMeetUrl,
   wordsMemoryUrl,
 } from "./paths.js";
@@ -238,10 +237,9 @@ function renderHalloweenMonth(month) {
   const wordsBody = `
     <div class="step-actions word-master-row">
       <a class="btn btn-primary" href="${escapeHtml(wordsMeetUrl(month.id))}">Meet the words</a>
-      <a class="btn btn-primary" href="${escapeHtml(wordsMatchUrl(month.id))}">Match</a>
       <a class="btn btn-primary" href="${escapeHtml(wordsLearnUrl(month.id))}">Learn</a>
     </div>
-    <p class="hint">31 Halloween words · Fish Jay TTS · emoji art cards. Do Meet → Match → Learn in any order — all open.</p>`;
+    <p class="hint">16 Halloween words · Pirate Fish TTS · picture cards (no text in art). Meet → Learn, then Memory.</p>`;
 
   const steps = [
     stepBlock(
@@ -264,7 +262,7 @@ function renderHalloweenMonth(month) {
     stepBlock(
       3,
       "Words",
-      "Meet → Match → Learn (Word Master order)",
+      "Meet → Learn (Word Master order)",
       wordsBody,
       "step-words"
     ),

@@ -6,7 +6,7 @@ import {
 } from "./words-data.js";
 import { playWordAudio } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
-import { repoRoot, wordsMatchUrl } from "./paths.js";
+import { repoRoot, wordsLearnUrl } from "./paths.js";
 
 const app = document.getElementById("app");
 let terms = [];
@@ -86,12 +86,12 @@ function onNext() {
 
 function finish() {
   if (month) setStepDone(month.id, "meet");
-  const next = month ? wordsMatchUrl(month.id) : "#";
+  const next = month ? wordsLearnUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete halloween-panel">
       <p class="words-complete-lead">You met all <strong>${terms.length}</strong> Halloween words!</p>
       <div class="step-actions">
-        <a class="btn btn-glow" href="${escapeHtml(next)}">Next: Match →</a>
+        <a class="btn btn-glow" href="${escapeHtml(next)}">Next: Learn →</a>
         <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
       </div>
     </div>`);

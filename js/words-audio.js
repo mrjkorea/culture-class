@@ -13,7 +13,7 @@ function resolveSrc(path) {
   return dataUrl(clean);
 }
 
-/** Play English word audio for a term (oct-words mp3 or pack audio field). */
+/** Play English word audio (oct-words Fish TTS mp3 only — no browser TTS). */
 export function playWordAudio(term, explicitPath) {
   const src = explicitPath
     ? resolveSrc(explicitPath)
@@ -27,23 +27,8 @@ export function playWordAudio(term, explicitPath) {
   current = audio;
   return new Promise((resolve) => {
     audio.onended = () => resolve();
-    audio.onerror = () => {
-      if ("speechSynthesis" in window) {
-        const u = new SpeechSynthesisUtterance(term);
-        u.lang = "en-US";
-        u.rate = 0.9;
-        speechSynthesis.speak(u);
-      }
-      resolve();
-    };
-    audio.play().catch(() => {
-      if ("speechSynthesis" in window) {
-        const u = new SpeechSynthesisUtterance(term);
-        u.lang = "en-US";
-        speechSynthesis.speak(u);
-      }
-      resolve();
-    });
+    audio.onerror = () => resolve();
+    audio.play().catch(() => resolve());
   });
 }
 

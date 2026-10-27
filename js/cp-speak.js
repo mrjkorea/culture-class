@@ -197,22 +197,15 @@ function playAudio() {
   const item = pack.items[index];
   const src = audioSrc(item);
   if (!src) {
-    if ("speechSynthesis" in window) {
-      const u = new SpeechSynthesisUtterance(item.english);
-      u.lang = "en-US";
-      speechSynthesis.speak(u);
-    }
     heard = true;
-    el("micStatus").textContent = "Now tap Speak and say the sentence in English.";
+    el("micStatus").textContent = "Audio missing for this sentence — contact your teacher.";
     syncMicButton();
     return;
   }
   audio.pause();
   audio.src = src;
   audio.play().catch(() => {
-    const u = new SpeechSynthesisUtterance(item.english);
-    u.lang = "en-US";
-    speechSynthesis.speak(u);
+    el("micStatus").textContent = "Could not play audio — try again.";
   });
   heard = true;
   el("micStatus").textContent = "Now tap Speak and say the sentence in English.";
