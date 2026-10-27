@@ -7,8 +7,16 @@ export function repoRoot() {
   if (path.endsWith("/bingo/teacher.html") || path.endsWith("/bingo/student.html")) {
     return path.replace(/\/bingo\/[^/]+$/, "");
   }
-  if (path.endsWith("/words/learn.html") || path.endsWith("/words/memory.html")) {
+  if (
+    path.endsWith("/words/learn.html") ||
+    path.endsWith("/words/memory.html") ||
+    path.endsWith("/words/meet.html") ||
+    path.endsWith("/words/match.html")
+  ) {
     return path.replace(/\/words\/[^/]+$/, "");
+  }
+  if (path.endsWith("/climb/climb.html")) {
+    return path.replace(/\/climb\/[^/]+$/, "");
   }
   if (path.endsWith("/cp/speak.html")) {
     return path.replace(/\/cp\/[^/]+$/, "");
@@ -32,6 +40,14 @@ export function bingoUrl(which) {
   return `${repoRoot()}/bingo/${which}.html`;
 }
 
+export function wordsMeetUrl(monthId) {
+  return `${repoRoot()}/words/meet.html?month=${encodeURIComponent(monthId)}`;
+}
+
+export function wordsMatchUrl(monthId) {
+  return `${repoRoot()}/words/match.html?month=${encodeURIComponent(monthId)}`;
+}
+
 export function wordsLearnUrl(monthId) {
   return `${repoRoot()}/words/learn.html?month=${encodeURIComponent(monthId)}`;
 }
@@ -48,8 +64,6 @@ export function monthPageUrl(slug) {
   return monthUrl(slug);
 }
 
-export const CLIMB_BASE = "https://mrjkorea.github.io/day2-words/day3/climb.html";
-
 export function climbUrl(unitId) {
-  return `${CLIMB_BASE}?unit=${encodeURIComponent(unitId)}`;
+  return `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}&test=1`;
 }

@@ -1,0 +1,38 @@
+{
+  "monthId": "10",
+  "title": "October Halloween CP",
+  "format": "day4-speak",
+  "passPercent": 80,
+  "items": [
+    {
+      "korean": "할로윈은 2,000년 전에 시작됐어요.",
+      "english": "Halloween began 2,000 years ago.",
+      "audio": "audio/oct-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "호박은 유령을 겁주기 위해 조각해요.",
+      "english": "Pumpkins are carved to scare ghosts.",
+      "audio": "audio/oct-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "할로윈은 11월 1일 전날이에요.",
+      "english": "Halloween is the day before November 1st.",
+      "audio": "audio/oct-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "사람들은 유령에게 숨기 위해 의상을 입어요.",
+      "english": "People wear costumes to hide from ghosts.",
+      "audio": "audio/oct-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "검은 고양이는 할로윈의 상징이에요.",
+      "english": "Black cats are a Halloween symbol.",
+      "audio": "audio/oct-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

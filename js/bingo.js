@@ -12,6 +12,14 @@ const DEFAULT_POOL = [
   "review",
 ];
 
+export function wordImageForTerm(term, pool) {
+  const row = pool.find((t) => t.term === term);
+  if (!row?.image) return "";
+  const img = row.image;
+  if (/^https?:\/\//i.test(img)) return img;
+  return `${repoRoot()}/${String(img).replace(/^\/+/, "")}`;
+}
+
 export async function loadWordPool(monthId) {
   const res = await fetch(dataUrl("months.json"));
   if (!res.ok) return DEFAULT_POOL.map((w) => ({ term: w, definition: "" }));
@@ -24,7 +32,7 @@ export async function loadWordPool(monthId) {
     if (wRes.ok) {
       const words = await wRes.json();
       const terms = normalizeWordTerms(words);
-      if (terms.length) return terms;
+      if (terms.length) return terms.map((t) => ({ ...t }));
     }
   }
 
@@ -49,7 +57,7 @@ export function backToMonthLink(monthId, data) {
   const root = repoRoot();
   const month = data?.months?.find((m) => m.id === monthId);
   const slug = month?.slug || "08-august";
-  return `${root}/months/${slug}/#step-8`;
+  return `${root}/months/${slug}/`;
 }
 
 export async function loadMonthsMeta() {

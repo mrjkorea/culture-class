@@ -175,6 +175,8 @@
       "unitId": "culture_m10",
       "showUnitId": "culture_m10_show",
       "cpDocUrl": "https://docs.google.com/document/d/17vSv9DrpUVql8BSBHjJod0fW7GwiZL9ZEd-41vD85b8/edit",
+      "cpPackFile": "cp/culture_m10_cp.json",
+      "wordsPreviewFile": "oct-words.json",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
       "introYoutube": [

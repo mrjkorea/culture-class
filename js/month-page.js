@@ -3,6 +3,7 @@ import { isLearnDone, monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
+import { renderOctoberHalloweenMonth } from "./month-page-halloween.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -242,6 +243,10 @@ async function init() {
   let wordsPreview = null;
   if (month.wordsPreviewFile) {
     wordsPreview = await loadWordsPreview(month.wordsPreviewFile);
+  }
+  if (month.id === "10") {
+    renderOctoberHalloweenMonth(month);
+    return;
   }
   renderMonth(month, wordsPreview);
 }

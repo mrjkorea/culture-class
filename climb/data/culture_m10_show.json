@@ -1,0 +1,90 @@
+{
+  "id": "culture_m10_show",
+  "kind": "culture",
+  "title": "Culture · October · Daily Quiz",
+  "passPercent": 60,
+  "units": [
+    "culture_m10_show"
+  ],
+  "coach": {
+    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "right": [
+      "right1.mp3",
+      "right2.mp3"
+    ],
+    "wrong": [
+      "wrong1.mp3",
+      "wrong2.mp3"
+    ],
+    "top": [
+      "top1.mp3"
+    ],
+    "retry": [
+      "retry1.mp3"
+    ]
+  },
+  "questions": [
+    {
+      "type": "hear",
+      "prompt": "Listen. Which sentence do you hear?",
+      "audio": "../data/audio/oct-cp/01.mp3",
+      "choices": [
+        "Halloween began 2,000 years ago.",
+        "Black cats are a Halloween symbol.",
+        "People wear costumes to hide from ghosts.",
+        "Pumpkins are carved to scare ghosts."
+      ],
+      "answer": "Halloween began 2,000 years ago."
+    },
+    {
+      "type": "hear",
+      "audio": "../data/audio/oct-cp/02.mp3",
+      "choices": [
+        "Pumpkins are carved to scare ghosts.",
+        "Halloween is the day before November 1st.",
+        "Halloween began 2,000 years ago.",
+        "Black cats are a Halloween symbol."
+      ],
+      "answer": "Pumpkins are carved to scare ghosts."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "호박은 유령을 겁주기 위해 조각해요."
+      },
+      "choices": [
+        "Pumpkins are carved to scare ghosts.",
+        "People wear costumes to hide from ghosts.",
+        "Black cats are a Halloween symbol.",
+        "Halloween began 2,000 years ago."
+      ],
+      "answer": "Pumpkins are carved to scare ghosts."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "검은 고양이는 할로윈의 상징이에요."
+      },
+      "choices": [
+        "Black cats are a Halloween symbol.",
+        "Halloween is the day before November 1st.",
+        "Pumpkins are carved to scare ghosts.",
+        "People wear costumes to hide from ghosts."
+      ],
+      "answer": "Black cats are a Halloween symbol."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 유령에게 숨기 위해 의상을 입어요."
+      },
+      "choices": [
+        "People wear costumes to hide from ghosts.",
+        "Halloween began 2,000 years ago.",
+        "Pumpkins are carved to scare ghosts.",
+        "Black cats are a Halloween symbol."
+      ],
+      "answer": "People wear costumes to hide from ghosts."
+    }
+  ]
+}

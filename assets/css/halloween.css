@@ -1,0 +1,450 @@
+/* October Halloween theme — map, words, bingo, climb overlay */
+body.halloween-theme {
+  background: radial-gradient(ellipse at 50% 0%, #3d1066 0%, #12031f 55%, #05020a 100%);
+  color: #fff8f0;
+}
+
+.halloween-theme .site-footer,
+.halloween-theme .hint {
+  color: rgba(255, 230, 200, 0.75);
+}
+
+.halloween-map-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 2.5rem;
+}
+
+.map-back {
+  color: rgba(255, 220, 180, 0.85);
+}
+
+.map-title h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 900;
+  text-shadow: 0 0 24px rgba(255, 140, 0, 0.45);
+}
+
+.map-title p {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 1.05rem;
+  color: #ffd43b;
+}
+
+.map-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 280px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(80, 0, 120, 0.25);
+  overflow: hidden;
+}
+
+.map-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-decoration: none;
+  color: #fff;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.15s;
+}
+
+.map-node:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.map-node-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(44px, 11vw, 58px);
+  height: clamp(44px, 11vw, 58px);
+  border-radius: 50%;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  background: linear-gradient(145deg, #ff922b, #e8590c);
+  border: 3px solid #ffe066;
+  box-shadow: 0 0 18px rgba(255, 146, 43, 0.65);
+}
+
+.map-node.current .map-node-emoji {
+  animation: map-glow 1.4s ease-in-out infinite;
+  border-color: #fff;
+}
+
+.map-node.done .map-node-emoji {
+  background: linear-gradient(145deg, #51cf66, #2b8a3e);
+}
+
+.map-node-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px #000;
+}
+
+.map-node-check {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #51cf66;
+  color: #052010;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+@keyframes map-glow {
+  50% {
+    box-shadow: 0 0 28px rgba(255, 212, 59, 0.95);
+  }
+}
+
+.map-next-banner {
+  display: block;
+  text-align: center;
+  margin: 1rem auto 0;
+  max-width: 420px;
+  text-decoration: none;
+}
+
+.map-video-panel {
+  margin-top: 1.25rem;
+}
+
+.halloween-panel {
+  background: rgba(45, 10, 80, 0.72);
+  border: 2px solid rgba(255, 180, 80, 0.35);
+  border-radius: 18px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.halloween-hero h2 {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 900;
+}
+
+.halloween-hero p {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 220, 180, 0.85);
+}
+
+.btn-glow,
+.btn-glow-secondary {
+  border: none;
+  border-radius: 14px;
+  padding: 0.7rem 1.2rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.08s;
+}
+
+.btn-glow {
+  background: linear-gradient(180deg, #ffa94d, #e8590c);
+  color: #2b0a00;
+}
+
+.btn-glow-secondary {
+  background: linear-gradient(180deg, #b197fc, #7048e8);
+  color: #fff;
+}
+
+.btn-glow:active,
+.btn-glow-secondary:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.meet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 3px solid #ffd43b;
+  border-radius: 22px;
+  background: rgba(20, 5, 40, 0.85);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.meet-pic,
+.match-pic {
+  width: min(240px, 70vw);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.meet-en {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-top: 0.65rem;
+}
+
+.meet-ko {
+  color: #ffd43b;
+  font-size: 1.05rem;
+}
+
+.meet-hear-hint {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.meet-progress {
+  text-align: center;
+  font-weight: 700;
+}
+
+.meet-check {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.match-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.match-choice.ok {
+  outline: 3px solid #51cf66;
+}
+
+.match-choice.bad {
+  outline: 3px solid #ff6b6b;
+}
+
+.match-feedback {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Memory */
+.memory-halloween .memory-grid {
+  max-width: min(520px, 96vw);
+  gap: 0.55rem;
+}
+
+.memory-halloween .memory-card {
+  border-radius: 14px;
+  border: 3px solid #7048e8;
+  background: url("../memory/card-back-pumpkin.jpg") center/cover no-repeat;
+  min-height: 88px;
+}
+
+.memory-halloween .memory-card.memory-flipped,
+.memory-halloween .memory-card.memory-matched {
+  background: linear-gradient(145deg, #2b0a4a, #12031f);
+  border-color: #ffd43b;
+}
+
+.memory-halloween .memory-card.memory-pic-card .memory-card-inner {
+  opacity: 1;
+  padding: 0.25rem;
+}
+
+.memory-halloween .memory-card.memory-pic-card:not(.memory-flipped):not(.memory-matched)::after {
+  content: none;
+}
+
+.memory-halloween .memory-card:not(.memory-flipped):not(.memory-matched) .memory-card-inner {
+  opacity: 0;
+}
+
+.memory-pic-inner {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.memory-timer {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffd43b;
+}
+
+.memory-lb {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.memory-lb ol {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+}
+
+/* Bingo */
+.bingo-halloween .bingo-grid {
+  max-width: min(640px, 98vw);
+  gap: 0.5rem;
+}
+
+.bingo-halloween .bingo-cell {
+  min-height: clamp(72px, 18vw, 110px);
+  font-size: 0.72rem;
+  padding: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  background: linear-gradient(160deg, #2b0a4a, #1a0533);
+  border: 2px solid #b197fc;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.bingo-halloween .bingo-cell img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.bingo-halloween .bingo-cell.marked {
+  background: linear-gradient(160deg, #2b8a3e, #51cf66);
+  border-color: #ffe066;
+}
+
+.bingo-halloween .bingo-cell.free {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #ffd43b;
+}
+
+/* CP pronounce skin on culture-class */
+body.cp-pronounce {
+  background: #efe8da;
+  color: #1c1915;
+  padding: 16px;
+}
+
+.cp-pronounce .top {
+  max-width: 920px;
+  margin: 0 auto 1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 0 0 26px 26px;
+  color: #fff;
+  background: linear-gradient(135deg, #2fb866, #138042);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.cp-pronounce .brand {
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.cp-pronounce .voice-toggle {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.65rem;
+}
+
+.cp-pronounce .voice-btn {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cp-pronounce .voice-btn.on {
+  background: #fff;
+  color: #138042;
+}
+
+.cp-pronounce .sheet-row {
+  background: #fff;
+  border: 2px solid #e4dccb;
+  border-radius: 24px;
+  padding: 1rem;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 5px 0 #e4dccb;
+}
+
+.cp-pronounce .ko-line {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+}
+
+.cp-pronounce .hear,
+.cp-pronounce .mic {
+  border: none;
+  border-radius: 18px;
+  padding: 0.85rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+}
+
+.cp-pronounce .hear {
+  background: linear-gradient(180deg, #ffc107, #e0a800);
+  color: #3a2a00;
+}
+
+.cp-pronounce .mic {
+  background: linear-gradient(180deg, #2fb866, #138042);
+  color: #fff;
+}
+
+.cp-pronounce .mic.live {
+  background: linear-gradient(180deg, #ff6b5c, #c72e2a);
+}
+
+.cp-pronounce .result.pass .big-score {
+  color: #146c43;
+}
+
+.cp-pronounce .result.fail .big-score {
+  color: #a32018;
+}

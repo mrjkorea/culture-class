@@ -1,0 +1,271 @@
+{
+  "id": "culture_m10",
+  "kind": "culture",
+  "title": "Culture · October · Halloween Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m10"
+  ],
+  "wordAudio": "../data/audio/oct-words/",
+  "picDir": "../assets/words/oct/",
+  "coach": {
+    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "right": [
+      "right1.mp3",
+      "right2.mp3",
+      "right3.mp3"
+    ],
+    "wrong": [
+      "wrong1.mp3",
+      "wrong2.mp3"
+    ],
+    "top": [
+      "top1.mp3"
+    ],
+    "retry": [
+      "retry1.mp3"
+    ]
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "할로윈"
+      },
+      "choices": [
+        "witch",
+        "skeleton",
+        "vampire",
+        "Halloween"
+      ],
+      "answer": "Halloween"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "의상 / 코스튬"
+      },
+      "choices": [
+        "skeleton",
+        "costume",
+        "candy",
+        "Halloween"
+      ],
+      "answer": "costume"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "호박"
+      },
+      "choices": [
+        "Halloween",
+        "pumpkin",
+        "zombie",
+        "jack-o'-lantern"
+      ],
+      "answer": "pumpkin"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "호박등"
+      },
+      "choices": [
+        "jack-o'-lantern",
+        "ghost",
+        "bat",
+        "Halloween"
+      ],
+      "answer": "jack-o'-lantern"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "유령"
+      },
+      "choices": [
+        "candy",
+        "werewolf",
+        "zombie",
+        "ghost"
+      ],
+      "answer": "ghost"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "마녀"
+      },
+      "choices": [
+        "witch",
+        "spooky",
+        "ghost",
+        "candy"
+      ],
+      "answer": "witch"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "좀비"
+      },
+      "choices": [
+        "costume",
+        "witch",
+        "zombie",
+        "spooky"
+      ],
+      "answer": "zombie"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "늑대인간"
+      },
+      "choices": [
+        "vampire",
+        "black cat",
+        "werewolf",
+        "skeleton"
+      ],
+      "answer": "werewolf"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "박쥐"
+      },
+      "choices": [
+        "bat",
+        "zombie",
+        "spider",
+        "jack-o'-lantern"
+      ],
+      "answer": "bat"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "거미"
+      },
+      "choices": [
+        "candy",
+        "witch",
+        "werewolf",
+        "spider"
+      ],
+      "answer": "spider"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "검은 고양이"
+      },
+      "choices": [
+        "vampire",
+        "scary",
+        "black cat",
+        "skeleton"
+      ],
+      "answer": "black cat"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "해골"
+      },
+      "choices": [
+        "vampire",
+        "werewolf",
+        "skeleton",
+        "scary"
+      ],
+      "answer": "skeleton"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "사탕"
+      },
+      "choices": [
+        "vampire",
+        "zombie",
+        "candy",
+        "bat"
+      ],
+      "answer": "candy"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "무서운"
+      },
+      "choices": [
+        "scary",
+        "black cat",
+        "skeleton",
+        "Halloween"
+      ],
+      "answer": "scary"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "으스스한"
+      },
+      "choices": [
+        "spooky",
+        "bat",
+        "costume",
+        "ghost"
+      ],
+      "answer": "spooky"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "뱀파이어"
+      },
+      "choices": [
+        "skeleton",
+        "Halloween",
+        "vampire",
+        "werewolf"
+      ],
+      "answer": "vampire"
+    }
+  ]
+}

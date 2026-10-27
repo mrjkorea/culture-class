@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-book="green">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Culture Class — CP Speak</title>
-  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/src/styles.css">
+  <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/preview-assets/mrj-theme.css">
+  <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/preview-assets/pronounce-preview.css">
+  <link rel="stylesheet" href="../assets/css/halloween.css">
   <script src="https://mrjkorea.github.io/pronounce/vendor/ort/ort.wasm.min.js"></script>
 </head>
-<body>
-  <div id="app"><div class="wrap"><p class="hint">Loading…</p></div></div>
+<body class="cp-pronounce">
+  <header class="top">
+    <div class="top-row">
+      <a class="brand" id="cpBrand" href="../months/10-october/">CP Speak · Halloween</a>
+    </div>
+    <div class="voice-toggle" role="group" aria-label="Voice">
+      <button type="button" class="voice-btn on" data-voice="ray" aria-pressed="true">👨‍🏫 Coach Ray</button>
+      <button type="button" class="voice-btn" data-voice="harper" aria-pressed="false">👩‍🏫 Miss Harper</button>
+    </div>
+    <p id="modelLabel" class="model-label">Loading the sound checker…</p>
+    <div class="track" id="modelTrack" aria-hidden="true"><div id="modelFill"></div></div>
+  </header>
+  <main id="app"><p class="hint">Loading…</p></main>
   <script src="../js/cp-speak.js" type="module"></script>
 </body>
 </html>

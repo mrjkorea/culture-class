@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mountain Climb Quiz</title>
+<link rel="stylesheet" href="wb.css">
+<link rel="stylesheet" href="../assets/css/halloween.css">
+<style>
+#app2{max-width:980px;margin:auto;padding:10px;display:flex;gap:12px;flex-wrap:wrap}
+#mt{flex:1 1 300px;position:relative;min-height:200px}
+#mt svg{width:100%;height:100%;max-height:520px;display:block}
+#vid{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;object-fit:cover;background:#bfe7ff;display:none;z-index:50}
+#card{flex:1 1 360px;background:#fff;border-radius:22px;padding:16px;box-shadow:0 6px 0 #8bb;text-align:center}
+.ch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.pic{background:#f1f9ff;padding:6px}.pic img{width:100%;max-width:150px;aspect-ratio:1;object-fit:contain}
+.big img{width:170px;height:170px;object-fit:contain}
+.sent{font-size:26px;margin:10px}.blank{display:inline-block;min-width:70px;border-bottom:4px solid #e8590c;color:#e8590c}
+.pct.fail{color:#e8590c}
+@media(orientation:landscape){#vid{object-fit:contain;background:linear-gradient(#bfe7ff,#8ce99a)}}
+#climber{transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+@media(max-width:700px){#mt svg{height:34vh}#mt{min-height:34vh}.pic img{max-width:110px}.big img{width:120px;height:120px}#app2{padding:6px}}
+</style></head><body>
+<div id="app2">
+ <div id="mt"><svg viewBox="0 0 300 400" aria-label="mountain">
+  <circle cx="250" cy="50" r="28" fill="#ffe066"/>
+  <polygon points="10,395 150,20 290,395" fill="#8ce99a"/>
+  <polygon points="150,20 195,140 170,125 150,145 128,122 107,140" fill="#fff"/>
+  <polygon points="150,20 290,395 220,395" fill="#69db7c" opacity=".6"/>
+  <g id="steps"></g>
+  <g transform="translate(150,20)"><line x1="0" y1="0" x2="0" y2="-18" stroke="#333" stroke-width="2"/><polygon points="0,-18 18,-12 0,-6" fill="#fa5252"/></g>
+  <g id="climber"><circle r="14" fill="#fff" stroke="#e8590c" stroke-width="3"/><text y="7" text-anchor="middle" font-size="20">🧗</text></g>
+ </svg><video id="vid" muted playsinline preload="auto"></video></div>
+ <div id="card"></div>
+</div>
+<script src="wb.js?v=20261027-teacher-chip"></script>
+<script>
+let D,i=0,right=0,pos=0,locked=false,N=0;const card=document.getElementById('card'),vid=document.getElementById('vid');
+const sh=WB.sh,word=w=>{const x=WB.w(w);const src=x&&x.audio?x.audio:(D.wordAudio?D.wordAudio+w.split(' ')[0]+'.mp3':'');return src?WB.play(src):Promise.resolve()},line=f=>{if(!f)return Promise.resolve();return WB.play(String(f).includes('/')?f:D.lineAudio+f)};
+const pic=w=>{if(String(w).includes("/"))return `<img src="${w}" alt="">`;const x=WB.w(w);return x&&x.pic?`<img src="${x.pic}" alt="">`:x&&!x.pic?`<div class="kcard">${x.ko||""}</div>`:D.picDir?`<img src="${D.picDir}${w}.webp" alt="${w}">`:`<div class="kcard">${w}</div>`};
+function spot(p){const t=p/N,y=380-t*350,x=150+Math.sin(t*9)*(70*(1-t));return[x,y]}
+function move(){const[x,y]=spot(pos);document.getElementById('climber').setAttribute('transform',`translate(${x},${y})`)}
+function drawSteps(){let s='';for(let k=0;k<=N;k++){const[x,y]=spot(k);s+=`<circle cx="${x}" cy="${y}" r="4" fill="#5c940d"/>`}document.getElementById('steps').innerHTML=s}
+// Play a climber clip over the trail map, then go back to the map. Resolves when done (or after a safety timeout).
+function clip(k){return new Promise(res=>{const v=D.video&&D.video[k];if(!v){res();return}let done=false;const fin=()=>{if(done)return;done=true;vid.style.display='none';vid.pause();res()};
+ vid.src=v;vid.style.display='block';document.querySelector('.nextlvl')&&(document.querySelector('.nextlvl').style.zIndex=60);vid.currentTime=0;vid.onended=fin;vid.onerror=fin;vid.play().catch(fin);setTimeout(fin,6000)})}
+function head(){return `<h1>${D.title}</h1><div>Question ${i+1} / ${N} · ⭐ ${right}</div><div class="bar"><i style="width:${i/N*100}%"></i></div>`}
+const choiceBtns=(q,lab)=>`<div class="ch">`+sh(q.choices).map(c=>`<button ${lab?'class="pic"':''} data-a="${c}">${lab?pic(c):c}</button>`).join('')+`</div>`;
+// Question types. Each renders into the card and wires answers to check(ok, button).
+// To add review questions for the other workbook steps, add a renderer here and use its name as "type" in the unit JSON.
+const TYPES={
+ listen:{html:q=>`<button class="snd" id="play">🔊 Listen</button>`+choiceBtns(q,true),start:q=>setTimeout(()=>word(q.answer),300)},
+ spell:{html:q=>`<div class="big">${pic(q.pic)}</div>`+choiceBtns(q)},
+ fill:{html:q=>(q.pic?`<div class="big">${pic(q.pic)}</div>`:'')+(q.audio?`<button class="snd" id="play">🔊</button>`:'')+`<div class="sent">${q.sentence.map(w=>w==='___'?'<span class="blank">?</span>':w).join(' ').replace(' .','.').replace(' ?','?')}</div>`+choiceBtns(q)},
+ order:{html:q=>(q.pic?`<div class="big">${pic(q.pic)}</div>`:'')+(q.audio?`<button class="snd" id="play">🔊</button>`:'')+`<div class="slots" id="slots"></div><div class="tiles" id="tiles">`+sh(q.answer.map((w,k)=>[w,k])).map(([w,k])=>`<button data-t="${k}">${w}</button>`).join('')+`</div>`,
+  start:q=>{const built=[];card.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{if(locked)return;const s=document.getElementById('slots');
+   if(b.parentNode.id==='tiles'){s.appendChild(b);built.push(b.textContent)}else{document.getElementById('tiles').appendChild(b);built.splice(built.indexOf(b.textContent),1)}
+   if(built.length===q.answer.length)check(built.join(' ')===q.answer.join(' '),null)})}},
+ // hear: play a full expression line, choose the matching sentence (A/B/C).
+ hear:{html:q=>`<button class="snd" id="play">🔊 Listen</button>`+choiceBtns(q),start:q=>setTimeout(()=>line(q.audio),300)},
+ dialogue:{html:q=>{const qa=q.q&&q.q.audio;const aud=q.audio||qa;return (q.pic?`<div class="big"><img src="${q.pic}" alt=""></div>`:'')+(aud?`<button class="snd" id="play">🔊</button>`:'')+`<div class="sent">💬 ${q.q.text}</div>`+choiceBtns(q)},
+  start:q=>{const a=q.q&&q.q.audio;if(a){q.audio=a;setTimeout(()=>line(a),300)}}}
+};
+const PROMPTS={listen:'Listen and choose the right picture.',spell:'Look at the picture. Choose the right spelling.',fill:'Fill in the missing word.',order:'Put the words in order.',dialogue:'Choose the best answer.',hear:'Listen. Which sentence do you hear?'};
+const PROMPT=q=>{const t=q&&q.prompt;return (typeof t==='string'&&t.trim()&&t!=='undefined')?t:(PROMPTS[q&&q.type]||'Choose the right answer.')};
+const HOME=()=>D.kind==='culture'?'../months/10-october/':D.kind==='review'?(D.id&&/_review_u\d+$/.test(D.id)?'review.html':'units.html'):WB.link('index.html');
+const KINDLBL=()=>D.kind==='culture'?'Culture':D.kind==='review'?'Review':'Day 3';
+function show(){locked=false;const q=D.questions[i],T=TYPES[q.type];if(!T){i++;return i<N?show():end()}
+ card.innerHTML=head()+`<div class="p">${PROMPT(q)}</div>`+T.html(q)+`<div id="fb"></div>`;
+ const pl=document.getElementById('play');if(pl)pl.onclick=()=>q.audio?line(q.audio):word(q.answer);
+ card.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>check(b.dataset.a===q.answer,b));T.start&&T.start(q)}
+async function check(ok,btn){if(locked)return;locked=true;const q=D.questions[i],fb=document.getElementById('fb');
+ if(ok){right++;WB.tick('climb',right,N);btn&&btn.classList.add('ok');fb.innerHTML='🎉 Great job! Climb up!';fb.style.color='#2f9e44';WB.cheer('right')}
+ else{btn&&btn.classList.add('no');const ans=Array.isArray(q.answer)?q.answer.join(' '):q.answer;
+  card.querySelectorAll('[data-a]').forEach(b=>{if(b.dataset.a===q.answer)b.classList.add('ok')});
+  fb.innerHTML='😮 Oops, slip! Right answer: <u>'+ans+'</u>';fb.style.color='#c92a2a';WB.cheer('wrong')}
+ await clip(ok?'up':'slip');pos=ok?Math.min(N,pos+1):Math.max(0,pos-0.5);move();
+ setTimeout(next,ok?500:1400)}
+function next(){i++;if(i<N)show();else end()}
+function markCultureStep(){try{if(D&&D.kind==='culture'){const step=D.id==='culture_m10_show'?'quiz':'climb';localStorage.setItem('culture-class-step-done-10-'+step,'1')}}catch(e){}}
+async function end(){const p=Math.round(right/N*100),ps=p>=D.passPercent;WB.save('climb',p,right,N);document.querySelector('.nextlvl')?.remove();
+ if(ps)markCultureStep();
+ const nextLbl=D.id==='culture_m10_show'?'Next: Meet the words →':D.id==='culture_m10'?'Next: CP Speak →':'Continue';
+ const nextHref=D.id==='culture_m10_show'?'../words/meet.html?month=10':D.id==='culture_m10'?'../cp/speak.html?month=10':HOME();
+ card.innerHTML=`<h1>${D.title}</h1><p class="pct ${ps?'':'fail'}">${p}%</p><div style="font-size:28px">${right} / ${N} right</div>
+ <div class="p" style="font-size:24px">${p===100?'🌟 GOLD STAR! '+KINDLBL()+' passed!':ps?'🏔️ PASS! You reached the top! '+KINDLBL()+' passed!':'Not yet — you need '+D.passPercent+'%. Try again!'}</div>
+ <button id="again">🔁 Play again</button> <button onclick="location.href=HOME()">🏠 Map</button>${ps?` <button class="ok" onclick="location.href='${nextHref}'">${nextLbl}</button>`:''}`;
+ document.getElementById('again').onclick=start;WB.cheer(ps?'top':'retry');if(ps){pos=N;move();await clip('top')}}
+function start(){i=0;right=0;pos=0;WB._nl=null;move();show()}
+WB.load().then(d=>{D=d;WB.voiceBtn();N=d.questions.length;drawSteps();
+ if(D.kind!=='review'&&D.kind!=='culture'&&!WB.unlocked('climb')){card.innerHTML=`<h1>🔒 Locked</h1><p class="p">Finish step 8 first.</p><button onclick="location.href=WB.link('index.html')">🏠 Steps</button>`;return}
+ if(WB.test)WB.skipBtn(()=>{if(!locked&&i<N)check(true,null)});start()}).catch(e=>card.innerHTML='<h1>Oops</h1><p>'+e.message+'</p>');
+</script>
+</body></html>
