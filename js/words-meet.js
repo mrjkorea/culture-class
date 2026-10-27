@@ -7,6 +7,8 @@ import {
 import { playWordAudio } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { repoRoot, wordsLearnUrl } from "./paths.js";
+import { applyMonthUiTheme } from "./month-ui-theme.js";
+import { ensureThemeStylesheet } from "./month-styles.js";
 
 const app = document.getElementById("app");
 let terms = [];
@@ -19,14 +21,14 @@ function renderShell(body) {
     ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← ${escapeHtml(month.name)} map</a>`
     : "";
   app.innerHTML = `
-    <div class="wrap words-flow halloween-flow">
+    <div class="wrap words-flow themed-words-flow">
       ${back}
-      <header class="halloween-hero">
+      <header class="themed-words-hero">
         <h2>${month ? escapeHtml(month.name) + " — Meet the Words" : "Meet"}</h2>
         <p>Tap the picture to hear English. Check each word when you know it.</p>
       </header>
       ${body}
-      <footer class="site-footer">Culture Class · Halloween · No sign-in</footer>
+      <footer class="site-footer">Culture Class · No sign-in</footer>
     </div>`;
 }
 
@@ -88,8 +90,8 @@ function finish() {
   if (month) setStepDone(month.id, "meet");
   const next = month ? wordsLearnUrl(month.id) : "#";
   renderShell(`
-    <div class="words-complete halloween-panel">
-      <p class="words-complete-lead">You met all <strong>${terms.length}</strong> Halloween words!</p>
+    <div class="words-complete themed-panel">
+      <p class="words-complete-lead">You met all <strong>${terms.length}</strong> words!</p>
       <div class="step-actions">
         <a class="btn btn-glow" href="${escapeHtml(next)}">Next: Learn →</a>
         <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
@@ -100,18 +102,19 @@ function finish() {
 async function init() {
   const monthId = getMonthIdFromQuery();
   if (!monthId) {
-    renderShell(`<p class="placeholder-box">Open from the October map (?month=10).</p>`);
+    renderShell(`<p class="placeholder-box">Open from your month map (?month=01).</p>`);
     return;
   }
   const loaded = await loadWordsPackForMonth(monthId);
   month = loaded.month;
   terms = loaded.terms;
   if (!month?.wordsPreviewFile || !terms.length) {
-    renderShell(`<p class="placeholder-box">October words are not ready yet.</p>`);
+    renderShell(`<p class="placeholder-box">Words are not ready for this month yet.</p>`);
     return;
   }
   document.title = `Culture Class — ${month.name} Meet`;
-  document.body.classList.add("halloween-theme");
+  applyMonthUiTheme(month);
+  ensureThemeStylesheet(month);
   index = 0;
   renderCard();
 }

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff6bb5"/>
+      <stop offset="100%" stop-color="#ffd56a"/>
+    </linearGradient>
+    <radialGradient id="pump" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffe7a3"/>
+      <stop offset="48%" stop-color="#ff8c1a"/>
+      <stop offset="100%" stop-color="#ef5608"/>
+    </radialGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <circle cx="820" cy="86" r="48" fill="#ffe98a"/>
+  <circle cx="120" cy="70" r="2" fill="#fff"/><circle cx="180" cy="110" r="1.5" fill="#fff"/>
+  <circle cx="300" cy="54" r="1.8" fill="#fff"/><circle cx="460" cy="80" r="1.4" fill="#fff"/>
+  <ellipse cx="480" cy="560" rx="620" ry="150" fill="#7ed957"/>
+  <g transform="translate(180 340) scale(1)">
+    
+    <rect x="-24" y="-4" width="48" height="54" rx="16" fill="#7c4dff"/>
+    <circle cx="0" cy="-24" r="20" fill="#ffd7b5"/>
+    <circle cx="-7" cy="-28" r="2.4" fill="#3a1458"/><circle cx="7" cy="-28" r="2.4" fill="#3a1458"/>
+    <path d="M-7 -18 q7 7 14 0" fill="none" stroke="#3a1458" stroke-width="2"/>
+    <polygon points="0,-86 26,-36 -26,-36" fill="#2a1240"/><rect x="-30" y="-40" width="60" height="8" fill="#2a1240"/>
+  </g>
+     <g transform="translate(340 350) scale(1)">
+    
+    <rect x="-24" y="-4" width="48" height="54" rx="16" fill="#f4f7ff"/>
+    <circle cx="0" cy="-24" r="20" fill="#ffd7b5"/>
+    <circle cx="-7" cy="-28" r="2.4" fill="#3a1458"/><circle cx="7" cy="-28" r="2.4" fill="#3a1458"/>
+    <path d="M-7 -18 q7 7 14 0" fill="none" stroke="#3a1458" stroke-width="2"/>
+    <path d="M-30 -20 q30 -60 60 0 v40 l-10 -8 -10 8 -10 -8 -10 8 -10 -8 -10 8z" fill="#f7fbff"/>
+  </g>
+     <g transform="translate(520 345) scale(1)">
+    <path d="M-34 -8 q34 -16 68 0 l-8 54 h-52z" fill="#6a1238"/>
+    <rect x="-24" y="-4" width="48" height="54" rx="16" fill="#ff4d8d"/>
+    <circle cx="0" cy="-24" r="20" fill="#ffd7b5"/>
+    <circle cx="-7" cy="-28" r="2.4" fill="#3a1458"/><circle cx="7" cy="-28" r="2.4" fill="#3a1458"/>
+    <path d="M-7 -18 q7 7 14 0" fill="none" stroke="#3a1458" stroke-width="2"/>
+    
+  </g>
+     <g transform="translate(700 350) scale(1)">
+    
+    <rect x="-24" y="-4" width="48" height="54" rx="16" fill="#ff8a1e"/>
+    <circle cx="0" cy="-24" r="20" fill="#ffd7b5"/>
+    <circle cx="-7" cy="-28" r="2.4" fill="#3a1458"/><circle cx="7" cy="-28" r="2.4" fill="#3a1458"/>
+    <path d="M-7 -18 q7 7 14 0" fill="none" stroke="#3a1458" stroke-width="2"/>
+    <rect x="-14" y="-78" width="28" height="14" rx="6" fill="#46c24d"/>
+  </g>
+     <ellipse cx="480" cy="430" rx="70" ry="16" fill="rgba(80,20,60,.12)"/>
+     <path d="M400 400 h160 l-18 40 a60 18 0 0 1 -124 0z" fill="#7c4dff"/>
+     <ellipse cx="480" cy="398" rx="80" ry="18" fill="#ff4d8d"/>
+     <circle cx="450" cy="396" r="8" fill="#ffe56a"/>
+     <circle cx="480" cy="390" r="8" fill="#7dff6b"/>
+     <circle cx="510" cy="396" r="8" fill="#8ec5ff"/>
+</svg>

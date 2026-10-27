@@ -9,9 +9,10 @@ import {
 import { playWordAudio, resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { climbUrl, repoRoot } from "./paths.js";
+import { applyMonthUiTheme, memoryLbKey } from "./month-ui-theme.js";
 
 const PAIRS_PER_ROUND = 6;
-const LB_KEY = "culture-class-memory-lb-10";
+let LB_KEY = "culture-class-memory-lb-10";
 const app = document.getElementById("app");
 
 let terms = [];
@@ -46,11 +47,11 @@ function renderShell(title, bodyHtml) {
     ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← Map</a>`
     : "";
   app.innerHTML = `
-    <div class="wrap words-flow halloween-flow memory-halloween">
+    <div class="wrap words-flow themed-words-flow memory-themed">
       ${back}
-      <header class="halloween-hero">
+      <header class="themed-words-hero">
         <h2>${escapeHtml(title)}</h2>
-        <p>Match pictures with Korean — hear the English word when you flip.</p>
+        <p>Pair pictures with Korean — hear English when you flip a picture.</p>
       </header>
       <p class="memory-timer" id="timer">0:00</p>
       ${bodyHtml}
@@ -100,7 +101,7 @@ function lbHtml() {
   const rows = list
     .map((r, i) => `<li>${i + 1}. ${escapeHtml(r.name)} — ${r.sec}s</li>`)
     .join("");
-  return `<div class="memory-lb halloween-panel"><strong>Fastest on this device</strong><ol>${rows}</ol></div>`;
+  return `<div class="memory-lb themed-panel"><strong>Fastest on this device</strong><ol>${rows}</ol></div>`;
 }
 
 function termForPair(key) {
@@ -219,7 +220,7 @@ function renderAllDone() {
   renderShell(
     `${month.name} — Memory complete`,
     `
-    <div class="words-complete halloween-panel">
+    <div class="words-complete themed-panel">
       <p class="words-complete-lead">You matched all <strong>${terms.length}</strong> words in <strong>${sec}s</strong>!</p>
       <div class="step-actions">
         <a class="btn btn-glow" href="${escapeHtml(climb)}">Next: Mountain Climb →</a>
@@ -233,7 +234,7 @@ function renderAllDone() {
 async function init() {
   const monthId = getMonthIdFromQuery();
   if (!monthId) {
-    renderShell("Memory", `<p class="placeholder-box">Open from the October map.</p>`);
+    renderShell("Memory", `<p class="placeholder-box">Open Memory from your month map.</p>`);
     return;
   }
   const loaded = await loadWordsPackForMonth(monthId);
@@ -244,7 +245,8 @@ async function init() {
     return;
   }
   document.title = `Culture Class — ${month.name} Memory`;
-  document.body.classList.add("halloween-theme");
+  applyMonthUiTheme(month);
+  LB_KEY = memoryLbKey(month.id);
   loadSfx();
   rounds = splitIntoRounds(terms, PAIRS_PER_ROUND);
   roundIndex = 0;

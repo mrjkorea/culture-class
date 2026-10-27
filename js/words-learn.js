@@ -11,6 +11,8 @@ import { playWordAudio } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { repoRoot } from "./paths.js";
 import * as Algo from "./word-factory-algo.js";
+import { applyMonthUiTheme } from "./month-ui-theme.js";
+import { ensureThemeStylesheet } from "./month-styles.js";
 
 const WINS_KEY_PREFIX = "culture-class-factory-wins-";
 const app = document.getElementById("app");
@@ -55,9 +57,9 @@ function renderShell(body) {
     ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← Map</a>`
     : "";
   app.innerHTML = `
-    <div class="wrap words-flow halloween-flow learn-factory">
+    <div class="wrap words-flow themed-words-flow learn-factory">
       ${back}
-      <header class="halloween-hero">
+      <header class="themed-words-hero">
         <h2>${month ? escapeHtml(month.name) + " — Learn" : "Learn"}</h2>
         <p>Word Master factory — listen, meaning, spelling, then write.</p>
       </header>
@@ -87,13 +89,13 @@ function renderLearn(doSpeak) {
   const t = learn.cur;
 
   let body = `
-    <div class="learn-hud halloween-panel">
+    <div class="learn-hud themed-panel">
       <span class="learn-mode-badge">Part ${learn.mode}</span>
       <strong>${escapeHtml(meta.ko)}</strong>
       <span class="hint">${escapeHtml(meta.hint)}</span>
       <p class="learn-prog">${pct}% factory · ${rem} words left in part · streak ${streak}/${Algo.NEED}</p>
     </div>
-    <div class="learn-card halloween-panel" id="learn-card">
+    <div class="learn-card themed-panel" id="learn-card">
       ${picHtml(t)}
       <div id="learn-prompt"></div>
       <div id="learn-input"></div>
@@ -281,7 +283,7 @@ function finishLearn() {
   }
   const memoryHref = month ? wordsMemoryUrl(month.id) : "#";
   renderShell(`
-    <div class="words-complete halloween-panel">
+    <div class="words-complete themed-panel">
       <p class="words-complete-lead">Factory complete — all <strong>${terms.length}</strong> words practiced.</p>
       <div class="step-actions">
         <a class="btn btn-glow" href="${escapeHtml(memoryHref)}">Next: Memory →</a>
@@ -304,7 +306,8 @@ async function init() {
     return;
   }
   document.title = `Culture Class — ${month.name} Learn`;
-  document.body.classList.add("halloween-theme");
+  applyMonthUiTheme(month);
+  ensureThemeStylesheet(month);
   winsState = loadWins(month.id);
   const mode = Algo.startMode(terms, winsState);
   if (!mode) {

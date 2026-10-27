@@ -1,0 +1,168 @@
+{
+  "id": "culture_m01",
+  "title": "January · New Year's vocabulary",
+  "source": "Culture Class January word pack",
+  "note": "Meet → Learn → Memory. Coach Ray Fish TTS mp3.",
+  "words": [
+    {
+      "id": "jan_01",
+      "en": "New Year",
+      "ko": "새해",
+      "audio": "audio/jan-words/new-year.mp3",
+      "pic": "assets/words/jan/new-year.jpg",
+      "image": "assets/words/jan/new-year.jpg",
+      "term": "New Year",
+      "definition": "새해"
+    },
+    {
+      "id": "jan_02",
+      "en": "resolution",
+      "ko": "새해 결심",
+      "audio": "audio/jan-words/resolution.mp3",
+      "pic": "assets/words/jan/resolution.jpg",
+      "image": "assets/words/jan/resolution.jpg",
+      "term": "resolution",
+      "definition": "새해 결심"
+    },
+    {
+      "id": "jan_03",
+      "en": "countdown",
+      "ko": "카운트다운",
+      "audio": "audio/jan-words/countdown.mp3",
+      "pic": "assets/words/jan/countdown.jpg",
+      "image": "assets/words/jan/countdown.jpg",
+      "term": "countdown",
+      "definition": "카운트다운"
+    },
+    {
+      "id": "jan_04",
+      "en": "midnight",
+      "ko": "자정",
+      "audio": "audio/jan-words/midnight.mp3",
+      "pic": "assets/words/jan/midnight.jpg",
+      "image": "assets/words/jan/midnight.jpg",
+      "term": "midnight",
+      "definition": "자정"
+    },
+    {
+      "id": "jan_05",
+      "en": "fireworks",
+      "ko": "불꽃놀이",
+      "audio": "audio/jan-words/fireworks.mp3",
+      "pic": "assets/words/jan/fireworks.jpg",
+      "image": "assets/words/jan/fireworks.jpg",
+      "term": "fireworks",
+      "definition": "불꽃놀이"
+    },
+    {
+      "id": "jan_06",
+      "en": "balloon",
+      "ko": "풍선",
+      "audio": "audio/jan-words/balloon.mp3",
+      "pic": "assets/words/jan/balloon.jpg",
+      "image": "assets/words/jan/balloon.jpg",
+      "term": "balloon",
+      "definition": "풍선"
+    },
+    {
+      "id": "jan_07",
+      "en": "confetti",
+      "ko": "색종이",
+      "audio": "audio/jan-words/confetti.mp3",
+      "pic": "assets/words/jan/confetti.jpg",
+      "image": "assets/words/jan/confetti.jpg",
+      "term": "confetti",
+      "definition": "색종이"
+    },
+    {
+      "id": "jan_08",
+      "en": "party hat",
+      "ko": "파티 모자",
+      "audio": "audio/jan-words/party-hat.mp3",
+      "pic": "assets/words/jan/party-hat.jpg",
+      "image": "assets/words/jan/party-hat.jpg",
+      "term": "party hat",
+      "definition": "파티 모자"
+    },
+    {
+      "id": "jan_09",
+      "en": "noisemaker",
+      "ko": "요란한 장난감",
+      "audio": "audio/jan-words/noisemaker.mp3",
+      "pic": "assets/words/jan/noisemaker.jpg",
+      "image": "assets/words/jan/noisemaker.jpg",
+      "term": "noisemaker",
+      "definition": "요란한 장난감"
+    },
+    {
+      "id": "jan_10",
+      "en": "toast",
+      "ko": "건배",
+      "audio": "audio/jan-words/toast.mp3",
+      "pic": "assets/words/jan/toast.jpg",
+      "image": "assets/words/jan/toast.jpg",
+      "term": "toast",
+      "definition": "건배"
+    },
+    {
+      "id": "jan_11",
+      "en": "calendar",
+      "ko": "달력",
+      "audio": "audio/jan-words/calendar.mp3",
+      "pic": "assets/words/jan/calendar.jpg",
+      "image": "assets/words/jan/calendar.jpg",
+      "term": "calendar",
+      "definition": "달력"
+    },
+    {
+      "id": "jan_12",
+      "en": "January",
+      "ko": "1월",
+      "audio": "audio/jan-words/january.mp3",
+      "pic": "assets/words/jan/january.jpg",
+      "image": "assets/words/jan/january.jpg",
+      "term": "January",
+      "definition": "1월"
+    },
+    {
+      "id": "jan_13",
+      "en": "celebrate",
+      "ko": "축하하다",
+      "audio": "audio/jan-words/celebrate.mp3",
+      "pic": "assets/words/jan/celebrate.jpg",
+      "image": "assets/words/jan/celebrate.jpg",
+      "term": "celebrate",
+      "definition": "축하하다"
+    },
+    {
+      "id": "jan_14",
+      "en": "tradition",
+      "ko": "전통",
+      "audio": "audio/jan-words/tradition.mp3",
+      "pic": "assets/words/jan/tradition.jpg",
+      "image": "assets/words/jan/tradition.jpg",
+      "term": "tradition",
+      "definition": "전통"
+    },
+    {
+      "id": "jan_15",
+      "en": "parade",
+      "ko": "퍼레이드",
+      "audio": "audio/jan-words/parade.mp3",
+      "pic": "assets/words/jan/parade.jpg",
+      "image": "assets/words/jan/parade.jpg",
+      "term": "parade",
+      "definition": "퍼레이드"
+    },
+    {
+      "id": "jan_16",
+      "en": "sparkler",
+      "ko": "불꽃 막대",
+      "audio": "audio/jan-words/sparkler.mp3",
+      "pic": "assets/words/jan/sparkler.jpg",
+      "image": "assets/words/jan/sparkler.jpg",
+      "term": "sparkler",
+      "definition": "불꽃 막대"
+    }
+  ]
+}
