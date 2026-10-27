@@ -1,5 +1,5 @@
 /**
- * Culture Class CP speak — Day 4 / Pronounce flow (Korean cue → Hear English → Speak → score).
+ * Culture Class CP speak — Decodables-style board (all sentences + word bands).
  */
 import {
   bootShared,
@@ -26,10 +26,18 @@ let checkerReady = false;
 let checkerError = "";
 let grading = false;
 let audio = new Audio();
-let passPct = 80;
+let passPct = 60;
+/** @type {Record<number, { scorePct: number, pass: boolean, words: object[], doorFail?: boolean }>} */
+let rowResults = {};
+
+const THRESHOLDS = { green: 75, yellow: 50 };
 
 function el(id) {
   return document.getElementById(id);
+}
+
+function bandFor(pct) {
+  return pct >= THRESHOLDS.green ? "green" : pct >= THRESHOLDS.yellow ? "yellow" : "red";
 }
 
 function setCheckerProgress(frac, text) {
@@ -43,16 +51,77 @@ function renderEmpty(message) {
   app.innerHTML = `<p class="placeholder-box">${escapeHtml(message)}</p>`;
 }
 
+function englishWordsColored(item, result) {
+  const doorFail = result?.doorFail;
+  const rawWords = doorFail ? [] : result?.words || [];
+  if (!rawWords.length) {
+    return escapeHtml(item.english);
+  }
+  const byWord = new Map();
+  for (const w of rawWords) {
+    const key = String(w.word || "").toLowerCase();
+    const pct = Math.round(Number(w.scorePct ?? w.score * 100) || 0);
+    byWord.set(key, w.band || bandFor(pct));
+  }
+  const tokens = item.english.split(/(\s+)/);
+  return tokens
+    .map((tok) => {
+      if (!tok.trim()) return tok;
+      const clean = tok.replace(/[^\w'-]/g, "").toLowerCase();
+      const band = byWord.get(clean);
+      if (!band) return escapeHtml(tok);
+      return `<span class="cp-word cp-word-${band}">${escapeHtml(tok)}</span>`;
+    })
+    .join("");
+}
+
+function renderBoard() {
+  const rows = pack.items
+    .map((item, i) => {
+      const res = rowResults[i];
+      const status = res
+        ? res.doorFail
+          ? "fail"
+          : res.pass
+            ? "pass"
+            : "fail"
+        : i === index
+          ? "active"
+          : "";
+      const scoreLine = res && !res.doorFail
+        ? `<span class="cp-row-score">${res.pass ? "✓" : "·"} ${res.scorePct}%</span>`
+        : "";
+      const enHtml = res
+        ? `<p class="cp-row-en">${englishWordsColored(item, res)}</p>`
+        : `<p class="cp-row-en cp-row-en-muted">${escapeHtml(item.english)}</p>`;
+      return `
+        <article class="cp-row ${status}" data-i="${i}">
+          <div class="cp-row-head">
+            <span class="cp-row-num">${i + 1}</span>
+            ${scoreLine}
+          </div>
+          <p class="cp-row-ko">${escapeHtml(item.korean)}</p>
+          ${enHtml}
+        </article>`;
+    })
+    .join("");
+
+  return `<div class="cp-board" aria-label="All CP sentences">${rows}</div>`;
+}
+
 function renderDone() {
   if (month) setStepDone(month.id, "cp");
   const total = pack.items.length;
   const craft = month?.craftPath ? `../${month.craftPath}` : monthPageUrl(month.slug);
   app.innerHTML = `
-    <div class="sheet-row">
+    <div class="sheet-row cp-done">
       <h1>All done!</h1>
       <p>You finished all <strong>${total}</strong> CP sentences.</p>
-      <p><a class="hear" href="${escapeHtml(craft)}">Next: Craft →</a>
-      <a class="hear" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a></p>
+      ${renderBoard()}
+      <p class="cp-actions-row">
+        <a class="hear" href="${escapeHtml(craft)}">Next: Craft →</a>
+        <a class="hear" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
+      </p>
     </div>`;
 }
 
@@ -62,9 +131,11 @@ function renderPractice() {
   const pic = item.image
     ? `<img class="row-pic" src="${escapeHtml(resolveSrc(item.image))}" alt="">`
     : "";
+
   app.innerHTML = `
-    <div class="sheet-row">
-      <p class="hint">${index + 1} / ${total} · pass at ${passPct}%</p>
+    ${renderBoard()}
+    <div class="sheet-row cp-active-panel">
+      <p class="hint">Sentence ${index + 1} / ${total} · pass at ${passPct}% (word colors like Decodables)</p>
       <p class="ko-line">${escapeHtml(item.korean)}</p>
       ${pic}
       <p class="en-line" id="englishReveal" hidden>${escapeHtml(item.english)}</p>
@@ -76,12 +147,25 @@ function renderPractice() {
       <div class="result" id="resultBox" hidden>
         <p class="big-score" id="resultScore"></p>
         <p class="hint" id="resultDetail"></p>
+        <p class="cp-graded-line" id="gradedLine"></p>
       </div>
-      <div style="display:flex;gap:.5rem;justify-content:space-between;margin-top:.75rem">
+      <div class="cp-nav-row">
         <button type="button" class="hear" id="btnSkip">Skip</button>
         <button type="button" class="hear" id="btnNext" hidden>Next</button>
       </div>
     </div>`;
+
+  app.querySelectorAll(".cp-row").forEach((row) => {
+    row.addEventListener("click", () => {
+      const i = Number(row.dataset.i);
+      if (Number.isFinite(i) && i !== index) {
+        index = i;
+        passedCurrent = false;
+        heard = false;
+        updateItemView();
+      }
+    });
+  });
 
   el("btnHear").addEventListener("click", () => playAudio());
   el("btnSpeak").addEventListener("click", () => toggleMic());
@@ -160,13 +244,35 @@ async function gradeBlob(blob, item) {
   return { out: bestOut, target: bestTarget };
 }
 
-function showGradeResult(result, target) {
-  const doorFail = result.doorFail || result.acousticFail;
-  const score = result.scorePct ?? Math.round((result.score || 0) * 100);
-  const pass = !!result.pass;
+function normalizePageResult(result) {
+  const doorFail = !!(result && result.doorFail);
+  const rawWords = doorFail ? [] : result?.words || [];
+  const words = rawWords.map((w) => {
+    const pct = Number(w.scorePct ?? (w.score != null ? w.score * 100 : 0)) || 0;
+    return {
+      word: w.word,
+      scorePct: pct,
+      band: w.band || bandFor(pct),
+    };
+  });
+  const scorePct = doorFail ? 0 : Math.round(Number(result?.scorePct) || 0);
+  const pass = !doorFail && (result?.pass ?? scorePct >= passPct);
+  return { words, scorePct, pass, doorFail };
+}
+
+function showGradeResult(result, target, itemIndex) {
+  const page = normalizePageResult(result);
+  rowResults[itemIndex] = page;
+  const doorFail = page.doorFail;
+  const score = page.scorePct;
+  const pass = page.pass;
   const box = el("resultBox");
   box.hidden = false;
   box.className = "result " + (pass ? "pass" : "fail");
+  const graded = el("gradedLine");
+  if (graded) {
+    graded.innerHTML = englishWordsColored(pack.items[itemIndex], page);
+  }
   if (doorFail) {
     el("resultScore").textContent = "Try again";
     el("resultDetail").textContent = DOOR_FAIL_TEXT;
@@ -183,6 +289,8 @@ function showGradeResult(result, target) {
     : doorFail
       ? DOOR_FAIL_TEXT
       : `Under ${passPct}% — Hear English, then Speak again.`;
+  const board = app.querySelector(".cp-board");
+  if (board) board.outerHTML = renderBoard();
   if (pass) {
     passedCurrent = true;
     el("btnNext").hidden = false;
@@ -190,7 +298,7 @@ function showGradeResult(result, target) {
     const idxAtPass = index;
     setTimeout(() => {
       if (passedCurrent && index === idxAtPass) nextItem();
-    }, 1400);
+    }, 1600);
   }
 }
 
@@ -224,7 +332,7 @@ async function toggleMic() {
       try {
         const { out, target } = await gradeBlob(blob, item);
         const result = out.result || out;
-        if (index === itemIndex) showGradeResult(result, target);
+        if (index === itemIndex) showGradeResult(result, target, itemIndex);
       } catch (err) {
         console.error(err);
         if (index === itemIndex) el("micStatus").textContent = "Checking failed — try again.";
@@ -286,14 +394,16 @@ async function init() {
     renderEmpty("Could not load CP sentences.");
     return;
   }
-  passPct = pack.passPercent || 80;
+  passPct = pack.passPercent ?? 60;
   document.title = `Culture Class — ${month.name} CP Speak`;
   const brand = el("cpBrand");
   if (brand) {
     brand.textContent = `${month.name} · CP Speak`;
     brand.href = monthPageUrl(month.slug);
   }
+  document.body.classList.add("halloween-theme");
   index = 0;
+  rowResults = {};
   renderPractice();
   void bootChecker();
 }

@@ -2,6 +2,7 @@ import {
   bingoUrl,
   climbUrl,
   cpSpeakUrl,
+  dailyQuizUrl,
   monthPageUrl,
   repoRoot,
   wordsLearnUrl,
@@ -32,7 +33,7 @@ function stepHref(month, step) {
     case "video":
       return `${monthPageUrl(month.slug)}#video`;
     case "quiz":
-      return `${root}/climb/climb.html?unit=culture_m10_show&test=1`;
+      return dailyQuizUrl(month.id);
     case "meet":
       return wordsMeetUrl(month.id);
     case "match":
@@ -107,7 +108,7 @@ export function renderOctoberHalloweenMonth(month) {
       </header>
       <div class="map-canvas" style="background-image:url('${mapBg}')">
         <svg class="map-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M8,88 C22,78 30,72 38,80 C48,70 52,58 54,52 C58,44 56,30 48,20 C42,14 36,10 32,12" fill="none" stroke="rgba(255,220,120,0.55)" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M10,92 C18,84 24,80 22,78 C28,74 34,86 38,88 C46,82 52,76 55,72 C62,66 68,60 72,58 C78,52 84,48 88,44 C86,36 82,30 78,26 C70,20 62,16 58,14 C50,12 42,10 36,10 C28,12 20,16 14,22" fill="none" stroke="rgba(255,220,120,0.55)" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         ${nodes}
       </div>
@@ -124,8 +125,7 @@ export function renderOctoberHalloweenMonth(month) {
 
   document.getElementById("btnVideoDone")?.addEventListener("click", () => {
     setStepDone(month.id, "video");
-    const quiz = OCTOBER_STEPS.find((s) => s.id === "quiz");
-    if (quiz) window.location.href = stepHref(month, quiz);
+    window.location.href = dailyQuizUrl(month.id);
   });
 
   void initFeatureYoutubePlayers(document.getElementById("app"));

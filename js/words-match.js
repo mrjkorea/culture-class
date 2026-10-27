@@ -12,8 +12,9 @@ import { repoRoot, wordsLearnUrl } from "./paths.js";
 const app = document.getElementById("app");
 let terms = [];
 let month = null;
-let index = 0;
-let right = 0;
+
+/** @type {{ tiles: object[], picked: number[], matched: Record<string, boolean>, pairs: number, need: number, started: number, timer: number|null }} */
+let matchGame = null;
 
 function renderShell(body) {
   const back = month
@@ -24,68 +25,108 @@ function renderShell(body) {
       ${back}
       <header class="halloween-hero">
         <h2>${month ? escapeHtml(month.name) + " — Match" : "Match"}</h2>
-        <p>Pick the English word that matches the picture.</p>
+        <p>Tap two cards — match each picture with its English word.</p>
       </header>
       ${body}
       <footer class="site-footer">Culture Class · Halloween</footer>
     </div>`;
 }
 
-function choicesFor(term) {
-  const others = terms.filter((t) => t.term !== term.term).map((t) => t.term);
-  const opts = shuffle(others).slice(0, 3);
-  opts.push(term.term);
-  return shuffle(opts);
+function updateMatchHud() {
+  const el = document.getElementById("match-hud");
+  if (!el || !matchGame) return;
+  const s = Math.floor((Date.now() - matchGame.started) / 1000);
+  const mm = Math.floor(s / 60);
+  const ss = String(s % 60).padStart(2, "0");
+  el.textContent = `Pairs ${matchGame.pairs} / ${matchGame.need} · ${mm}:${ss}`;
 }
 
-function renderQuestion() {
-  const term = terms[index];
-  const choices = choicesFor(term);
-  const imgSrc = term.image ? `${repoRoot()}/${term.image.replace(/^\/+/, "")}` : "";
-  const pic = term.image
-    ? `<img class="match-pic" src="${escapeHtml(imgSrc)}" alt="">`
-    : `<div class="match-pic match-pic-fallback">${escapeHtml(term.term)}</div>`;
-
-  renderShell(`
-    <p class="meet-progress">Question ${index + 1} / ${terms.length} · ⭐ ${right}</p>
-    <div class="match-stage">${pic}</div>
-    <p class="hint match-ko">${escapeHtml(term.definition)}</p>
-    <div class="match-choices" id="choices">
-      ${choices
-        .map(
-          (c) =>
-            `<button type="button" class="btn btn-glow-secondary match-choice" data-a="${escapeHtml(c)}">${escapeHtml(c)}</button>`
-        )
-        .join("")}
-    </div>
-    <p class="match-feedback" id="feedback" hidden></p>
-    <button type="button" class="btn btn-glow" id="btnNext" hidden>Next</button>`);
-
-  document.querySelector(".match-pic")?.addEventListener("click", () => {
-    void playWordAudio(term.term, term.audio);
+function drawMatch() {
+  const grid = document.getElementById("match-grid");
+  if (!grid || !matchGame) return;
+  grid.innerHTML = "";
+  matchGame.tiles.forEach((t, idx) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = `match-tile match-tile-${t.side}`;
+    if (matchGame.matched[t.pair]) b.classList.add("matched");
+    if (matchGame.picked.includes(idx)) b.classList.add("picked");
+    if (t.side === "pic" && t.img) {
+      b.innerHTML = `<img src="${escapeHtml(t.img)}" alt="" class="match-tile-pic">`;
+    } else {
+      b.textContent = t.text;
+    }
+    b.addEventListener("click", () => onMatchTap(idx));
+    grid.appendChild(b);
   });
-  void playWordAudio(term.term, term.audio);
+}
 
-  document.getElementById("choices").addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-a]");
-    if (!btn || btn.disabled) return;
-    const ok = btn.dataset.a === term.term;
-    document.querySelectorAll(".match-choice").forEach((b) => {
-      b.disabled = true;
-      if (b.dataset.a === term.term) b.classList.add("ok");
-      if (b === btn && !ok) b.classList.add("bad");
+function onMatchTap(idx) {
+  if (!matchGame) return;
+  const t = matchGame.tiles[idx];
+  if (matchGame.matched[t.pair]) return;
+  if (matchGame.picked.includes(idx)) return;
+  if (matchGame.picked.length >= 2) return;
+  const term = terms.find((w) => w.id === t.pair || w.term === t.pairKey);
+  if (term && t.side === "pic") void playWordAudio(term.term, term.audio);
+  matchGame.picked.push(idx);
+  drawMatch();
+  if (matchGame.picked.length < 2) return;
+
+  const a = matchGame.tiles[matchGame.picked[0]];
+  const b = matchGame.tiles[matchGame.picked[1]];
+  const ok = a.pair === b.pair && a.side !== b.side;
+  if (ok) {
+    matchGame.matched[a.pair] = true;
+    matchGame.pairs += 1;
+    matchGame.picked = [];
+    drawMatch();
+    updateMatchHud();
+    if (matchGame.pairs >= matchGame.need) {
+      if (matchGame.timer) clearInterval(matchGame.timer);
+      finish();
+    }
+  } else {
+    setTimeout(() => {
+      matchGame.picked = [];
+      drawMatch();
+    }, 420);
+  }
+}
+
+function startMatch() {
+  const tiles = [];
+  for (const w of terms) {
+    const img = w.image ? `${repoRoot()}/${String(w.image).replace(/^\/+/, "")}` : "";
+    tiles.push({
+      pair: w.id,
+      pairKey: w.term,
+      side: "pic",
+      text: w.term,
+      img,
     });
-    const fb = document.getElementById("feedback");
-    fb.hidden = false;
-    fb.textContent = ok ? "🎉 Correct!" : `Try to remember: ${term.term}`;
-    if (ok) right += 1;
-    document.getElementById("btnNext").hidden = false;
-  });
-  document.getElementById("btnNext").addEventListener("click", () => {
-    index += 1;
-    if (index >= terms.length) finish();
-    else renderQuestion();
-  });
+    tiles.push({
+      pair: w.id,
+      pairKey: w.term,
+      side: "en",
+      text: w.term,
+      img: "",
+    });
+  }
+  matchGame = {
+    tiles: shuffle(tiles),
+    picked: [],
+    matched: {},
+    pairs: 0,
+    need: terms.length,
+    started: Date.now(),
+    timer: setInterval(updateMatchHud, 250),
+  };
+  renderShell(`
+    <p class="match-hud" id="match-hud">Pairs 0 / ${terms.length} · 0:00</p>
+    <div class="match-grid" id="match-grid"></div>`);
+  drawMatch();
+  updateMatchHud();
 }
 
 function finish() {
@@ -93,7 +134,7 @@ function finish() {
   const next = month ? wordsLearnUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete halloween-panel">
-      <p class="words-complete-lead">Match complete — <strong>${right}</strong> / ${terms.length} correct.</p>
+      <p class="words-complete-lead">🎉 You matched all <strong>${terms.length}</strong> words!</p>
       <div class="step-actions">
         <a class="btn btn-glow" href="${escapeHtml(next)}">Next: Learn →</a>
         <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
@@ -109,16 +150,14 @@ async function init() {
   }
   const loaded = await loadWordsPackForMonth(monthId);
   month = loaded.month;
-  terms = shuffle(loaded.terms);
+  terms = loaded.terms;
   if (!month?.wordsPreviewFile || !terms.length) {
     renderShell(`<p class="placeholder-box">Words not ready.</p>`);
     return;
   }
   document.title = `Culture Class — ${month.name} Match`;
   document.body.classList.add("halloween-theme");
-  index = 0;
-  right = 0;
-  renderQuestion();
+  startMatch();
 }
 
 init().catch(console.error);
