@@ -6,10 +6,22 @@ let current = null;
 function resolveSrc(path) {
   if (!path) return "";
   if (/^https?:\/\//i.test(path)) return path;
-  const clean = String(path).replace(/^\/+/, "");
-  if (clean.startsWith("data/")) return `${repoRoot()}/${clean}`;
-  if (clean.startsWith("assets/")) return `${repoRoot()}/${clean}`;
-  if (clean.startsWith("audio/")) return dataUrl(clean.replace(/^data\//, ""));
+  let clean = String(path).replace(/^\/+/, "");
+  while (clean.startsWith("data/data/")) {
+    clean = clean.slice("data/".length);
+  }
+  if (clean.startsWith("data/audio/")) {
+    return `${repoRoot()}/${clean}`;
+  }
+  if (clean.startsWith("data/")) {
+    return `${repoRoot()}/${clean}`;
+  }
+  if (clean.startsWith("assets/")) {
+    return `${repoRoot()}/${clean}`;
+  }
+  if (clean.startsWith("audio/")) {
+    return `${repoRoot()}/data/${clean}`;
+  }
   return dataUrl(clean);
 }
 
@@ -17,7 +29,7 @@ function resolveSrc(path) {
 export function playWordAudio(term, explicitPath) {
   const src = explicitPath
     ? resolveSrc(explicitPath)
-    : resolveSrc(`audio/oct-words/${wordSlug(term)}.mp3`);
+    : resolveSrc(`data/audio/oct-words/${wordSlug(term)}.mp3`);
   if (!src) return Promise.resolve();
   if (current) {
     current.pause();

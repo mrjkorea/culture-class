@@ -1,4 +1,4 @@
-import { dataUrl } from "./paths.js";
+import { dataUrl, repoRoot } from "./paths.js";
 
 let sharedAudio = null;
 
@@ -6,8 +6,20 @@ export function resolveWordAudioUrl(entry) {
   if (!entry?.audio) return null;
   const a = String(entry.audio);
   if (a.startsWith("http://") || a.startsWith("https://")) return a;
-  const rel = a.replace(/^data\//, "");
-  return dataUrl(rel);
+  let clean = a.replace(/^\/+/, "");
+  while (clean.startsWith("data/data/")) {
+    clean = clean.slice("data/".length);
+  }
+  if (clean.startsWith("data/audio/")) {
+    return `${repoRoot()}/${clean}`;
+  }
+  if (clean.startsWith("audio/")) {
+    return `${repoRoot()}/data/${clean}`;
+  }
+  if (clean.startsWith("data/")) {
+    return `${repoRoot()}/${clean}`;
+  }
+  return dataUrl(clean);
 }
 
 /** Play word audio loudly; resolves when playback ends or fails. */
