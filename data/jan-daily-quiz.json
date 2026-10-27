@@ -1,0 +1,151 @@
+{
+  "id": "culture_m01_daily_quiz",
+  "monthId": "01",
+  "title": "New Year's Day — after Daily video",
+  "source": "January culture intro",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What holiday is January's theme?",
+      "ko": "1월의 주제는 어떤 날인가요?",
+      "choices": [
+        {
+          "en": "New Year's Day",
+          "ko": "새해 첫날",
+          "correct": true
+        },
+        {
+          "en": "Halloween",
+          "ko": "할로윈"
+        },
+        {
+          "en": "Canada Day",
+          "ko": "캐나다의 날"
+        },
+        {
+          "en": "Earth Day",
+          "ko": "지구의 날"
+        }
+      ],
+      "explain": {
+        "en": "January celebrates New Year's Day.",
+        "ko": "1월은 새해를 주제로 합니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "People often write a ___ for the new year.",
+      "ko": "사람들은 새해에 ___을(를) 씁니다.",
+      "choices": [
+        {
+          "en": "resolution",
+          "ko": "새해 결심",
+          "correct": true
+        },
+        {
+          "en": "pumpkin",
+          "ko": "호박"
+        },
+        {
+          "en": "costume",
+          "ko": "의상"
+        },
+        {
+          "en": "turkey",
+          "ko": "칠면조"
+        }
+      ],
+      "explain": {
+        "en": "A New Year's resolution is a goal for the year.",
+        "ko": "새해 결심은 올해의 목표입니다."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "At midnight, many people shout…",
+      "ko": "자정에 많은 사람들이 외칩니다…",
+      "choices": [
+        {
+          "en": "Happy New Year!",
+          "ko": "새해 복 많이 받으세요!",
+          "correct": true
+        },
+        {
+          "en": "Trick or treat!",
+          "ko": "장난이나 치킨!"
+        },
+        {
+          "en": "Merry Christmas!",
+          "ko": "메리 크리스마스!"
+        },
+        {
+          "en": "Happy Easter!",
+          "ko": "해피 이스터!"
+        }
+      ],
+      "explain": {
+        "en": "Happy New Year is the classic midnight cheer.",
+        "ko": "새해 복 많이 받으세요!가 대표적인 자정 인사입니다."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Colorful paper that falls at parties is called…",
+      "ko": "파티에서 떨어지는 색종이를 뭐라고 하나요?",
+      "choices": [
+        {
+          "en": "confetti",
+          "ko": "색종이",
+          "correct": true
+        },
+        {
+          "en": "snow",
+          "ko": "눈"
+        },
+        {
+          "en": "maple syrup",
+          "ko": "메이플 시럽"
+        },
+        {
+          "en": "clover",
+          "ko": "클로버"
+        }
+      ],
+      "explain": {
+        "en": "Confetti is tossed to celebrate.",
+        "ko": "색종이는 축하할 때 뿌립니다."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "A ___ counts down the seconds to midnight.",
+      "ko": "___은(는) 자정까지 초를 세어 줍니다.",
+      "choices": [
+        {
+          "en": "countdown",
+          "ko": "카운트다운",
+          "correct": true
+        },
+        {
+          "en": "calendar",
+          "ko": "달력"
+        },
+        {
+          "en": "parade",
+          "ko": "퍼레이드"
+        },
+        {
+          "en": "tradition",
+          "ko": "전통"
+        }
+      ],
+      "explain": {
+        "en": "A countdown goes 10, 9, 8… to midnight.",
+        "ko": "카운트다운은 10, 9, 8… 자정까지 셉니다."
+      }
+    }
+  ]
+}

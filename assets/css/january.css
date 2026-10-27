@@ -1,0 +1,62 @@
+/* January / New Year themed month — map + words flow */
+@import url("./month-theme-shell.css");
+
+body.theme-newyear {
+  background: radial-gradient(ellipse at 50% 0%, #1a3a6e 0%, #0a1628 50%, #040810 100%);
+  color: #f5f9ff;
+}
+
+.theme-newyear .site-footer,
+.theme-newyear .hint {
+  color: rgba(220, 235, 255, 0.78);
+}
+
+.theme-newyear .map-title h1 {
+  text-shadow: 0 0 24px rgba(255, 215, 0, 0.45);
+}
+
+.theme-newyear .map-title p {
+  color: #ffe066;
+}
+
+.theme-newyear .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(30, 80, 160, 0.2);
+}
+
+.theme-newyear .map-node-emoji {
+  background: linear-gradient(145deg, #ffd43b, #f59f00);
+  border-color: #fff3bf;
+  box-shadow: 0 0 18px rgba(255, 212, 59, 0.55);
+}
+
+.theme-newyear .map-back {
+  color: rgba(200, 230, 255, 0.9);
+}
+
+.theme-newyear .themed-panel {
+  background: rgba(15, 40, 80, 0.72);
+  border-color: rgba(255, 215, 100, 0.35);
+}
+
+.theme-newyear .btn-glow {
+  background: linear-gradient(180deg, #ffd43b, #f08c00);
+  color: #1a1a2e;
+}
+
+.theme-newyear .memory-card.memory-ko-card {
+  background: linear-gradient(145deg, #1e4a8a, #0d2848);
+  border-color: rgba(255, 215, 100, 0.45);
+}
+
+.theme-newyear .memory-card.memory-pic-card {
+  border-color: rgba(255, 215, 100, 0.5);
+}
+
+.theme-newyear .memory-card.memory-pic-card::after {
+  background: radial-gradient(circle at 30% 30%, #ffd43b 0%, #1a3a6e 45%, #0a1020 100%);
+}
+
+.theme-newyear .halloween-hero h2,
+.theme-newyear .words-flow h2 {
+  color: #ffe066;
+}

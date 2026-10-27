@@ -1,0 +1,58 @@
+{
+  "id": "culture_m01_show",
+  "kind": "culture",
+  "title": "Culture · January · Daily video quiz",
+  "passPercent": 60,
+  "units": [
+    "culture_m01_show"
+  ],
+  "coach": {
+    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "right": [
+      "right1.mp3",
+      "right2.mp3"
+    ],
+    "wrong": [
+      "wrong1.mp3",
+      "wrong2.mp3"
+    ],
+    "top": [
+      "top1.mp3"
+    ],
+    "retry": [
+      "retry1.mp3"
+    ]
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "After the video:",
+      "q": {
+        "text": "January's theme is…"
+      },
+      "choices": [
+        "New Year's Day",
+        "Halloween",
+        "Christmas",
+        "Easter"
+      ],
+      "answer": "New Year's Day"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "After the video:",
+      "q": {
+        "text": "People shout at midnight:"
+      },
+      "choices": [
+        "Happy New Year!",
+        "Trick or treat!",
+        "Happy birthday!",
+        "Good night!"
+      ],
+      "answer": "Happy New Year!"
+    }
+  ]
+}

@@ -63,7 +63,12 @@ export function monthPageUrl(slug) {
 }
 
 export const CLIMB_BASE = "https://mrjkorea.github.io/day2-words/day3/climb.html";
-const LOCAL_CLIMB_UNITS = new Set(["culture_m10", "culture_m10_show"]);
+const LOCAL_CLIMB_UNITS = new Set([
+  "culture_m01",
+  "culture_m01_show",
+  "culture_m10",
+  "culture_m10_show",
+]);
 
 export function climbUrl(unitId) {
   if (LOCAL_CLIMB_UNITS.has(unitId)) {

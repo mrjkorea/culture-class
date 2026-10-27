@@ -1,0 +1,38 @@
+/* Shared adventure-map layout for non-October themed months (Feb–Dec shell). */
+body[class*="theme-"]:not(.halloween-theme):not(.theme-newyear) {
+  background: radial-gradient(ellipse at 50% 0%, #2a2a4a 0%, #12121f 55%, #080810 100%);
+  color: #f8f8ff;
+}
+
+[class*="theme-"] .map-title h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 900;
+}
+
+[class*="theme-"] .map-title p {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 1.05rem;
+}
+
+[class*="theme-"] .map-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: min(72vh, 520px);
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+[class*="theme-"] .map-node-emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(44px, 11vw, 58px);
+  height: clamp(44px, 11vw, 58px);
+  border-radius: 50%;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  border: 3px solid rgba(255, 255, 255, 0.65);
+}

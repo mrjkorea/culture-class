@@ -11,13 +11,26 @@
       "showUnitId": "culture_m01_show",
       "cpDocUrl": "https://docs.google.com/document/d/1zERDaLaI50F-UOPseBi0dt-Cr1B98zWyVNCxPI6Wl-8/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "JK7bdzzyZww", "title": "New Year's Traditions (9:53)" }
+        {
+          "id": "JK7bdzzyZww",
+          "title": "New Year's Traditions (9:53)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — Bean / Simpsons / Tom & Jerry / Snowman or month clip as directed by your teacher.",
-      "notes": "Welcome the new year with customs, resolutions, and culture around New Year's Day. Practice theme vocabulary, comprehension, and class games."
+      "featureLabel": "Play the New Year craft",
+      "featureDetail": "Ten interactive stages with Coach Ray narration, stage movies, and a local fastest-time board.",
+      "notes": "Welcome the new year with customs, resolutions, and culture around New Year's Day. Practice theme vocabulary, comprehension, and class games.",
+      "monthLayout": "newyear",
+      "wordsPreviewFile": "jan-words.json",
+      "dailyQuizFile": "jan-daily-quiz.json",
+      "cpPackFile": "cp/culture_m01_cp.json",
+      "craftPath": "craft/january/",
+      "craftTitle": "New Year's Party Craft",
+      "craftButton": "Play New Year's Craft",
+      "craftBlurb": "Balloons, countdown, confetti, and a resolution — fastest time on this device.",
+      "featureTitle": "New Year's Party Craft",
+      "craftEmoji": "🎉",
+      "hideNotes": true
     },
     {
       "id": "02",
@@ -28,13 +41,23 @@
       "showUnitId": "culture_m02_show",
       "cpDocUrl": "https://docs.google.com/document/d/1v0N6ffLAcJGUpJXe0KQBIhGqBhhBGTyoNhrjy5KtWjA/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "Hs5onZK0t7M", "title": "Valentine's Day culture intro (6:01)" }
+        {
+          "id": "Hs5onZK0t7M",
+          "title": "Valentine's Day culture intro (6:01)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Explore Valentine's Day traditions, vocabulary, and how the holiday is celebrated in English-speaking cultures."
+      "featureLabel": "Play the Valentine's Day craft",
+      "featureDetail": "Ten stages — card to candy hearts (coming soon).",
+      "notes": "Explore Valentine's Day traditions, vocabulary, and how the holiday is celebrated in English-speaking cultures.",
+      "monthLayout": "valentine",
+      "craftPath": "craft/february/",
+      "craftTitle": "Valentine Craft",
+      "craftButton": "Play Valentine Craft",
+      "craftBlurb": "Ten stages — card to candy hearts (coming soon).",
+      "wordsPackPlanned": "feb-words.json",
+      "dailyQuizPlanned": "feb-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m02_cp.json"
     },
     {
       "id": "03",
@@ -45,13 +68,23 @@
       "showUnitId": "culture_m03_show",
       "cpDocUrl": "https://docs.google.com/document/d/1SK_LGn8PJd9ILZEgca0aOMcdzgnXbS1M2FQZiJm5-oA/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "6XO41l7T6qU", "title": "St. Patrick's Day culture intro" }
+        {
+          "id": "6XO41l7T6qU",
+          "title": "St. Patrick's Day culture intro"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Learn about St. Patrick's Day, Irish culture connections, and March theme words through flashcards, quizzes, and bingo."
+      "featureLabel": "Play the St. Patrick's Day craft",
+      "featureDetail": "Irish luck, jig, and Wheaten terrier stages (coming soon).",
+      "notes": "Learn about St. Patrick's Day, Irish culture connections, and March theme words through flashcards, quizzes, and bingo.",
+      "monthLayout": "stpatricks",
+      "craftPath": "craft/march/",
+      "craftTitle": "St. Patrick's Craft",
+      "craftButton": "Play March Craft",
+      "craftBlurb": "Irish luck, jig, and Wheaten terrier stages (coming soon).",
+      "wordsPackPlanned": "mar-words.json",
+      "dailyQuizPlanned": "mar-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m03_cp.json"
     },
     {
       "id": "04",
@@ -62,13 +95,23 @@
       "showUnitId": "culture_m04_show",
       "cpDocUrl": "https://docs.google.com/document/d/1CaNZ6_Y9-pLWzTGNLb5w0CsnSPOFTjw_VTKgG77jmyA/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "9aSud3EUe54", "title": "Easter Revealed" }
+        {
+          "id": "9aSud3EUe54",
+          "title": "Easter Revealed"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Study Easter traditions and spring culture themes. Work through vocabulary, comprehension (PRO COMP), and Mountain Climb quizzes."
+      "featureLabel": "Play the Easter craft",
+      "featureDetail": "Egg hunt, decorate, and roll (coming soon).",
+      "notes": "Study Easter traditions and spring culture themes. Work through vocabulary, comprehension (PRO COMP), and Mountain Climb quizzes.",
+      "monthLayout": "easter",
+      "craftPath": "craft/april/",
+      "craftTitle": "Easter Craft",
+      "craftButton": "Play Easter Craft",
+      "craftBlurb": "Egg hunt, decorate, and roll (coming soon).",
+      "wordsPackPlanned": "apr-words.json",
+      "dailyQuizPlanned": "apr-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m04_cp.json"
     },
     {
       "id": "05",
@@ -79,13 +122,23 @@
       "showUnitId": "culture_m05_show",
       "cpDocUrl": "https://docs.google.com/document/d/1ejMK3OaExVuONDZkppywSe9aCEAgzbh_L4vdc2eFWR0/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "krh4hu-hGPc", "title": "Buddha — Journey to Enlightenment (8:40)" }
+        {
+          "id": "krh4hu-hGPc",
+          "title": "Buddha — Journey to Enlightenment (8:40)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "This unit introduces Buddhist culture and related vocabulary with the standard Culture Class step stack."
+      "featureLabel": "Play the Buddhism craft",
+      "featureDetail": "Calm path to enlightenment (coming soon).",
+      "notes": "This unit introduces Buddhist culture and related vocabulary with the standard Culture Class step stack.",
+      "monthLayout": "buddhism",
+      "craftPath": "craft/may/",
+      "craftTitle": "Buddhism Path Craft",
+      "craftButton": "Play May Craft",
+      "craftBlurb": "Calm path to enlightenment (coming soon).",
+      "wordsPackPlanned": "may-words.json",
+      "dailyQuizPlanned": "may-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m05_cp.json"
     },
     {
       "id": "06",
@@ -96,13 +149,23 @@
       "showUnitId": "culture_m06_show",
       "cpDocUrl": "https://docs.google.com/document/d/1Bv1cE5fvhLQEajYtokFnWmttDuOUAJGua30aR0egLRE/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "ijKvMMoplsA", "title": "Remembrance Day culture intro (REMEMBRANCECC)" }
+        {
+          "id": "ijKvMMoplsA",
+          "title": "Remembrance Day culture intro (REMEMBRANCECC)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "June focuses on Remembrance Day (as listed in the course outline). Practice pronunciation with the CP TEST doc and review with bingo."
+      "featureLabel": "Play the Remembrance Day craft",
+      "featureDetail": "Poppies and moment of silence (coming soon).",
+      "notes": "June focuses on Remembrance Day (as listed in the course outline). Practice pronunciation with the CP TEST doc and review with bingo.",
+      "monthLayout": "remembrance",
+      "craftPath": "craft/june/",
+      "craftTitle": "Remembrance Craft",
+      "craftButton": "Play June Craft",
+      "craftBlurb": "Poppies and moment of silence (coming soon).",
+      "wordsPackPlanned": "jun-words.json",
+      "dailyQuizPlanned": "jun-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m06_cp.json"
     },
     {
       "id": "07",
@@ -113,13 +176,23 @@
       "showUnitId": "culture_m07_show",
       "cpDocUrl": "https://docs.google.com/document/d/1tAwV_5cgOIZv_BjXUJeNM--BGlevLWYpbrsOmIYQYco/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "bzZUUL34cKg", "title": "Exploring Canada — Part 1 (4:34)" }
+        {
+          "id": "bzZUUL34cKg",
+          "title": "Exploring Canada — Part 1 (4:34)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Celebrate Canada Day with theme vocabulary, comprehension practice, and quizzes. CP TEST uses the July Google Doc."
+      "featureLabel": "Play the Canada Day craft",
+      "featureDetail": "Syrup, ice fishing, hockey (coming soon).",
+      "notes": "Celebrate Canada Day with theme vocabulary, comprehension practice, and quizzes. CP TEST uses the July Google Doc.",
+      "monthLayout": "canada",
+      "craftPath": "craft/july/",
+      "craftTitle": "Canada Day Craft",
+      "craftButton": "Play July Craft",
+      "craftBlurb": "Syrup, ice fishing, hockey (coming soon).",
+      "wordsPackPlanned": "jul-words.json",
+      "dailyQuizPlanned": "jul-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m07_cp.json"
     },
     {
       "id": "08",
@@ -131,7 +204,6 @@
       "cpDocUrl": "https://docs.google.com/document/d/1IpHw5NeUjRo6RaRNbj6khLVr4dyowaUq9m0qeDA87EU/edit",
       "cpPackFile": "cp/culture_m08_cp.json",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "wordsPreviewFile": "aug-words.json",
       "introYoutube": [
         {
@@ -146,9 +218,17 @@
       ],
       "featureYoutubeId": "6qsTgptIhlw",
       "featureTitle": "Why Is Korea Divided in Two?",
-      "featureLabel": "Watch in class",
-      "featureDetail": "Why Is Korea Divided in Two? — A Kid Explains History (~5 min). Tap Green subtitles for English captions.",
-      "notes": "Students learn about Korean History Day: what it is, why it matters, and how people celebrate or remember it. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review."
+      "featureLabel": "Play the Korean History Day craft",
+      "featureDetail": "Respectful history stages (coming soon).",
+      "notes": "Students learn about Korean History Day: what it is, why it matters, and how people celebrate or remember it. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review.",
+      "monthLayout": "koreanhistory",
+      "craftPath": "craft/august/",
+      "craftTitle": "Korean History Craft",
+      "craftButton": "Play August Craft",
+      "craftBlurb": "Respectful history stages (coming soon).",
+      "wordsPackPlanned": "aug-words.json",
+      "dailyQuizPlanned": "aug-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m08_cp.json"
     },
     {
       "id": "09",
@@ -159,13 +239,23 @@
       "showUnitId": "culture_m09_show",
       "cpDocUrl": "https://docs.google.com/document/d/1Jd7UhoCLSym9CJN8yoWLuvIz9AlPrHnXa2OH6nmoy00/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "Jx5Pxlc85G8", "title": "Saving Our Planet — Earth Day (15:48)" }
+        {
+          "id": "Jx5Pxlc85G8",
+          "title": "Saving Our Planet — Earth Day (15:48)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Earth Day themes: environment, stewardship, and related vocabulary. Follow the Culture Class steps from MRJ Daily through bingo."
+      "featureLabel": "Play the Earth Day craft",
+      "featureDetail": "River cleanup to planet high-five (coming soon).",
+      "notes": "Earth Day themes: environment, stewardship, and related vocabulary. Follow the Culture Class steps from MRJ Daily through bingo.",
+      "monthLayout": "earthday",
+      "craftPath": "craft/september/",
+      "craftTitle": "Earth Day Craft",
+      "craftButton": "Play September Craft",
+      "craftBlurb": "River cleanup to planet high-five (coming soon).",
+      "wordsPackPlanned": "sep-words.json",
+      "dailyQuizPlanned": "sep-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m09_cp.json"
     },
     {
       "id": "10",
@@ -180,9 +270,11 @@
       "wordsPreviewFile": "oct-words.json",
       "dailyQuizFile": "oct-daily-quiz.json",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
-        { "id": "f_C9M0GAhso", "title": "Halloween culture intro (9:45)" }
+        {
+          "id": "f_C9M0GAhso",
+          "title": "Halloween culture intro (9:45)"
+        }
       ],
       "craftPath": "craft/october/",
       "craftTitle": "Jack-o'-Lantern Craft",
@@ -202,18 +294,28 @@
       "showUnitId": "culture_m11_show",
       "cpDocUrl": "https://docs.google.com/document/d/1hvlItBfKqVCGyBnZi9mfFwOwkZdg3In-3vYMgKqeZ4s/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
       "introYoutube": [
         {
           "placeholder": true,
           "title": "MRJ Daily ONE — coming soon",
           "note": "First Thanksgiving intro slot not matched on @mrjenglishnews yet."
         },
-        { "id": "Yrl0P1nbotU", "title": "Thanksgiving culture intro (6:55)" }
+        {
+          "id": "Yrl0P1nbotU",
+          "title": "Thanksgiving culture intro (6:55)"
+        }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Thanksgiving traditions, gratitude, and harvest themes with the full monthly step stack."
+      "featureLabel": "Play the Thanksgiving craft",
+      "featureDetail": "Turkey to thankful card (coming soon).",
+      "notes": "Thanksgiving traditions, gratitude, and harvest themes with the full monthly step stack.",
+      "monthLayout": "thanksgiving",
+      "craftPath": "craft/november/",
+      "craftTitle": "Thanksgiving Craft",
+      "craftButton": "Play November Craft",
+      "craftBlurb": "Turkey to thankful card (coming soon).",
+      "wordsPackPlanned": "nov-words.json",
+      "dailyQuizPlanned": "nov-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m11_cp.json"
     },
     {
       "id": "12",
@@ -224,10 +326,17 @@
       "showUnitId": "culture_m12_show",
       "cpDocUrl": "https://docs.google.com/document/d/1ZfiXZS-Oln5WyxzEhASuT_weXqGoseHu_ANVVkUqHJ0/edit",
       "wordMasterLearnUrl": "#",
-      "wordMasterMatchUrl": "#",
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
-      "notes": "Christmas culture, vocabulary, and year-end review games including bingo and Mountain Climb quizzes."
+      "featureLabel": "Play the Christmas craft",
+      "featureDetail": "Tree to Santa visit (coming soon).",
+      "notes": "Christmas culture, vocabulary, and year-end review games including bingo and Mountain Climb quizzes.",
+      "monthLayout": "christmas",
+      "craftPath": "craft/december/",
+      "craftTitle": "Christmas Craft",
+      "craftButton": "Play December Craft",
+      "craftBlurb": "Tree to Santa visit (coming soon).",
+      "wordsPackPlanned": "dec-words.json",
+      "dailyQuizPlanned": "dec-daily-quiz.json",
+      "cpPackPlanned": "cp/culture_m12_cp.json"
     }
   ]
 }

@@ -1,0 +1,167 @@
+{
+  "id": "culture_m01",
+  "kind": "culture",
+  "title": "Culture · January · New Year Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m01"
+  ],
+  "wordAudio": "../data/audio/jan-words/",
+  "picDir": "../assets/words/jan/",
+  "coach": {
+    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "right": [
+      "right1.mp3",
+      "right2.mp3",
+      "right3.mp3"
+    ],
+    "wrong": [
+      "wrong1.mp3",
+      "wrong2.mp3"
+    ],
+    "top": [
+      "top1.mp3"
+    ],
+    "retry": [
+      "retry1.mp3"
+    ]
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "새해"
+      },
+      "choices": [
+        "New Year",
+        "resolution",
+        "countdown",
+        "midnight"
+      ],
+      "answer": "New Year",
+      "pic": "../assets/words/jan/new-year.jpg",
+      "audio": "../data/audio/jan-words/new-year.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "새해 결심"
+      },
+      "choices": [
+        "resolution",
+        "New Year",
+        "countdown",
+        "midnight"
+      ],
+      "answer": "resolution",
+      "pic": "../assets/words/jan/resolution.jpg",
+      "audio": "../data/audio/jan-words/resolution.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "카운트다운"
+      },
+      "choices": [
+        "countdown",
+        "New Year",
+        "resolution",
+        "midnight"
+      ],
+      "answer": "countdown",
+      "pic": "../assets/words/jan/countdown.jpg",
+      "audio": "../data/audio/jan-words/countdown.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "자정"
+      },
+      "choices": [
+        "midnight",
+        "New Year",
+        "resolution",
+        "countdown"
+      ],
+      "answer": "midnight",
+      "pic": "../assets/words/jan/midnight.jpg",
+      "audio": "../data/audio/jan-words/midnight.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "불꽃놀이"
+      },
+      "choices": [
+        "fireworks",
+        "New Year",
+        "resolution",
+        "countdown"
+      ],
+      "answer": "fireworks",
+      "pic": "../assets/words/jan/fireworks.jpg",
+      "audio": "../data/audio/jan-words/fireworks.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "풍선"
+      },
+      "choices": [
+        "balloon",
+        "New Year",
+        "resolution",
+        "countdown"
+      ],
+      "answer": "balloon",
+      "pic": "../assets/words/jan/balloon.jpg",
+      "audio": "../data/audio/jan-words/balloon.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "색종이"
+      },
+      "choices": [
+        "confetti",
+        "New Year",
+        "resolution",
+        "countdown"
+      ],
+      "answer": "confetti",
+      "pic": "../assets/words/jan/confetti.jpg",
+      "audio": "../data/audio/jan-words/confetti.mp3"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "파티 모자"
+      },
+      "choices": [
+        "party hat",
+        "New Year",
+        "resolution",
+        "countdown"
+      ],
+      "answer": "party hat",
+      "pic": "../assets/words/jan/party-hat.jpg",
+      "audio": "../data/audio/jan-words/party-hat.mp3"
+    }
+  ]
+}

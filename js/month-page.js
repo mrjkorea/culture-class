@@ -14,7 +14,9 @@ import { monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
-import { renderOctoberHalloweenMonth } from "./month-page-halloween.js";
+import { renderThemedMapMonth } from "./month-map-page.js";
+import { isThemedMapMonth } from "./month-themes.js";
+import { ensureThemeStylesheet } from "./month-styles.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -110,19 +112,21 @@ function renderDefaultMonth(month, wordsPreview) {
     learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until the month word list exists.</p>`;
   }
 
-  const memoryHref = builtinWords
-    ? wordsMemoryUrl(month.id)
-    : month.wordMasterMatchUrl;
-  const matchHint = builtinWords
-    ? "Matching game — all words in fixed rounds. Open anytime."
-    : month.wordMasterMatchUrl === "#"
-      ? "Memory match — wired when the month word list is published."
-      : "Memory match / pairing game (same pack as Learn).";
-  const matchStepBody = `
-    <div class="step-actions">
-      <a class="btn btn-primary" href="${escapeHtml(memoryHref)}">Memory</a>
-    </div>
-    <p class="hint">${matchHint}</p>`;
+  const meetHref = builtinWords ? wordsMeetUrl(month.id) : learnHref;
+  const memoryHref = builtinWords ? wordsMemoryUrl(month.id) : "#";
+  const wordsStepBody = builtinWords
+    ? `<div class="step-actions word-master-row">
+        <a class="btn btn-primary" href="${escapeHtml(meetHref)}">Meet the words</a>
+        <a class="btn btn-primary" href="${escapeHtml(learnHref)}">Learn</a>
+      </div>
+      <p class="hint">Meet → Learn only (no Match). Memory is the next step.</p>`
+    : learnStepBody;
+  const memoryStepBody = builtinWords
+    ? `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(memoryHref)}">Play Memory</a>
+      </div>
+      <p class="hint">Picture ↔ Korean pairs under the clock. Hear English on picture flips.</p>`
+    : `<p class="hint">Memory opens when the month word pack is published.</p>`;
 
   const craftHref = month.craftPath
     ? `${root}/${String(month.craftPath).replace(/^\/+/, "")}`
@@ -153,18 +157,28 @@ function renderDefaultMonth(month, wordsPreview) {
     ),
     stepBlock(
       2,
-      "Words — Learn",
-      builtinWords ? "Flashcards — all words in order" : "Flashcards",
-      learnStepBody
+      month.dailyQuizFile ? "Daily quiz" : "Words — Learn",
+      month.dailyQuizFile ? "5 questions after the video" : builtinWords ? "Meet → Learn" : "Flashcards",
+      month.dailyQuizFile
+        ? `<div class="step-actions">
+            <a class="btn btn-primary" href="${escapeHtml(dailyQuizUrl(month.id))}">Start quiz</a>
+          </div>`
+        : wordsStepBody
     ),
     stepBlock(
       3,
-      "Words — Memory",
-      builtinWords ? "Matching game" : "Matching game",
-      matchStepBody
+      builtinWords ? "Words" : "Words — Learn",
+      builtinWords ? "Meet → Learn" : "Flashcards",
+      builtinWords && month.dailyQuizFile ? wordsStepBody : learnStepBody
     ),
     stepBlock(
       4,
+      "Memory",
+      "Timer + local leaderboard",
+      memoryStepBody
+    ),
+    stepBlock(
+      5,
       "Words quiz — Mountain Climb",
       "Solo / class quiz on month vocabulary",
       `<div class="step-actions">
@@ -173,13 +187,13 @@ function renderDefaultMonth(month, wordsPreview) {
       <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code></p>`
     ),
     stepBlock(
-      5,
+      6,
       "PRO COMP — CP TEST",
       cpSpeak ? "Pronunciation speak practice (Day 4 style)" : "Pronunciation &amp; comprehension sentences (Google Doc)",
       cpStepBody
     ),
     stepBlock(
-      6,
+      7,
       featureTitle,
       featureDesc,
       month.craftPath
@@ -190,7 +204,7 @@ function renderDefaultMonth(month, wordsPreview) {
         : renderFeatureVideoHtml(month)
     ),
     stepBlock(
-      7,
+      8,
       "Feature quiz — Mountain Climb",
       "Questions about the feature video",
       `<div class="step-actions">
@@ -199,7 +213,7 @@ function renderDefaultMonth(month, wordsPreview) {
       <p class="hint">Unit: <code>${escapeHtml(month.showUnitId)}</code></p>`
     ),
     stepBlock(
-      8,
+      9,
       "Bingo",
       "Teacher calls words; students mark cards",
       `<div class="step-actions">
@@ -385,8 +399,9 @@ async function init() {
   if (month.wordsPreviewFile) {
     wordsPreview = await loadWordsPreview(month.wordsPreviewFile);
   }
-  if (month.id === "10") {
-    renderOctoberHalloweenMonth(month);
+  if (isThemedMapMonth(month)) {
+    ensureThemeStylesheet(month);
+    renderThemedMapMonth(month);
     return;
   }
   renderMonth(month, wordsPreview);

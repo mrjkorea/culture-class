@@ -9,7 +9,8 @@ body.halloween-theme {
   color: rgba(255, 230, 200, 0.75);
 }
 
-.halloween-map-page {
+.halloween-map-page,
+.themed-map-page {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0.75rem 1rem 2.5rem;
@@ -134,7 +135,8 @@ body.halloween-theme {
   margin-top: 1.25rem;
 }
 
-.halloween-panel {
+.halloween-panel,
+.themed-panel {
   background: rgba(45, 10, 80, 0.72);
   border: 2px solid rgba(255, 180, 80, 0.35);
   border-radius: 18px;
@@ -142,13 +144,15 @@ body.halloween-theme {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 
-.halloween-hero h2 {
+.halloween-hero h2,
+.themed-words-hero h2 {
   margin: 0;
   font-size: 1.65rem;
   font-weight: 900;
 }
 
-.halloween-hero p {
+.halloween-hero p,
+.themed-words-hero p {
   margin: 0.35rem 0 0;
   color: rgba(255, 220, 180, 0.85);
 }
