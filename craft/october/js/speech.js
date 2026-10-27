@@ -1,10 +1,18 @@
-/** Web Speech wrapper. Lines are chosen by the caller; this only speaks them. */
+/**
+ * Frankenstein host voice: deep Web Speech + talking head.
+ * Optional pre-recorded clips via manifest.audio[clipKey] → path under assets/.
+ */
 
-export function createSpeech(tts = {}) {
+export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
   let enabled = true;
   let voice = null;
   let lastMiss = 0;
   let kick = 0;
+  let flapTimer = 0;
+  let frankImg = null;
+  let frankOpenUrl = "";
+  let frankClosedUrl = "";
+  let speaking = false;
 
   function pickVoice() {
     const synth = window.speechSynthesis;
@@ -12,12 +20,46 @@ export function createSpeech(tts = {}) {
     const voices = synth.getVoices() || [];
     const lang = String(tts.lang || "en-US").toLowerCase().replace("_", "-");
     const prefix = lang.slice(0, 2);
-    const friendly = /google|natural|samantha|karen|female|child|serena|moira/i;
+    const deepMale = /david|daniel|james|mark|aaron|guy|fred|ralph|richard|thomas|male|paul|george|lee/i;
+    const avoid = /female|child|zira|samantha|karen|serena|moira|google.*english.*female/i;
+    const inLang = voices.filter((v) => v.lang.toLowerCase().replace("_", "-").startsWith(lang));
+    const pool = inLang.length ? inLang : voices.filter((v) => v.lang.toLowerCase().replace("_", "-").startsWith(prefix));
     voice =
-      voices.find((v) => v.lang.toLowerCase().replace("_", "-").startsWith(lang) && friendly.test(v.name)) ||
-      voices.find((v) => v.lang.toLowerCase().replace("_", "-").startsWith(lang)) ||
-      voices.find((v) => v.lang.toLowerCase().replace("_", "-").startsWith(prefix)) ||
+      pool.find((v) => deepMale.test(v.name) && !avoid.test(v.name)) ||
+      pool.find((v) => deepMale.test(v.name)) ||
+      pool.find((v) => !avoid.test(v.name)) ||
+      pool[0] ||
       null;
+  }
+
+  function setFrank(img, urls) {
+    frankImg = img || null;
+    frankOpenUrl = urls?.open || "";
+    frankClosedUrl = urls?.closed || "";
+    if (frankImg && frankClosedUrl) frankImg.src = frankClosedUrl;
+  }
+
+  function setMouth(open) {
+    if (!frankImg || !frankOpenUrl || !frankClosedUrl) return;
+    frankImg.src = open ? frankOpenUrl : frankClosedUrl;
+    frankImg.closest(".frank-host")?.classList.toggle("is-talking", open);
+  }
+
+  function startFlap() {
+    clearInterval(flapTimer);
+    let open = false;
+    flapTimer = window.setInterval(() => {
+      open = !open;
+      setMouth(open);
+    }, speaking ? 140 : 200);
+  }
+
+  function stopFlap() {
+    clearInterval(flapTimer);
+    flapTimer = 0;
+    setMouth(false);
+    speaking = false;
+    frankImg?.closest(".frank-host")?.classList.remove("is-talking");
   }
 
   function armKick() {
@@ -30,7 +72,37 @@ export function createSpeech(tts = {}) {
         return;
       }
       synth.resume();
-    }, 1500);
+    }, 1200);
+  }
+
+  function clipUrl(clipKey) {
+    const rel = manifest?.audio?.[clipKey];
+    if (!rel || !assetBase) return "";
+    return new URL(rel, assetBase).href;
+  }
+
+  function playClip(clipKey) {
+    const url = clipUrl(clipKey);
+    if (!url) return Promise.resolve(false);
+    return new Promise((resolve) => {
+      const audio = new Audio(url);
+      audio.volume = Number(tts.volume ?? 1);
+      speaking = true;
+      startFlap();
+      const done = () => {
+        audio.removeEventListener("ended", done);
+        audio.removeEventListener("error", done);
+        stopFlap();
+        resolve(true);
+      };
+      audio.addEventListener("ended", done);
+      audio.addEventListener("error", done);
+      if (!enabled) {
+        done();
+        return;
+      }
+      audio.play().catch(() => done());
+    });
   }
 
   function unlock() {
@@ -44,27 +116,40 @@ export function createSpeech(tts = {}) {
   }
 
   function speak(text, opts = {}) {
-    if (!enabled || !text || !window.speechSynthesis) return Promise.resolve();
+    if (!enabled || !text) return Promise.resolve();
     if (opts.miss) {
       const now = performance.now();
       if (now - lastMiss < (tts.missDebounceMs || 1200)) return Promise.resolve();
       lastMiss = now;
     }
+    const clipKey = opts.clipKey;
+    if (clipKey && manifest?.audio?.[clipKey]) {
+      return playClip(clipKey);
+    }
+    if (!window.speechSynthesis) return Promise.resolve();
+
     return new Promise((resolve) => {
       let settled = false;
       const finish = () => {
         if (settled) return;
         settled = true;
+        stopFlap();
+        clearInterval(kick);
         resolve();
       };
       try {
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = tts.lang || "en-US";
-        utter.pitch = Number(tts.pitch ?? 1.35);
-        utter.rate = Number(tts.rate ?? 1.04);
+        utter.pitch = Number(tts.pitch ?? 0.45);
+        utter.rate = Number(tts.rate ?? 0.9);
         utter.volume = Number(tts.volume ?? 1);
         if (voice) utter.voice = voice;
+        utter.onstart = () => {
+          speaking = true;
+          startFlap();
+          armKick();
+        };
         utter.onend = finish;
         utter.onerror = finish;
         window.setTimeout(() => {
@@ -74,12 +159,11 @@ export function createSpeech(tts = {}) {
           }
           try {
             window.speechSynthesis.speak(utter);
-            armKick();
           } catch {
             finish();
           }
-        }, 40);
-        window.setTimeout(finish, Number(tts.maxMs || 3200));
+        }, 30);
+        window.setTimeout(finish, Number(tts.maxMs || 5200));
       } catch {
         finish();
       }
@@ -90,6 +174,7 @@ export function createSpeech(tts = {}) {
     enabled = Boolean(next);
     if (!enabled) {
       clearInterval(kick);
+      stopFlap();
       try {
         window.speechSynthesis?.cancel();
       } catch {
@@ -100,6 +185,7 @@ export function createSpeech(tts = {}) {
 
   function stop() {
     clearInterval(kick);
+    stopFlap();
     try {
       window.speechSynthesis?.cancel();
     } catch {
@@ -112,6 +198,7 @@ export function createSpeech(tts = {}) {
     unlock,
     stop,
     setEnabled,
+    setFrank,
     get enabled() {
       return enabled;
     },

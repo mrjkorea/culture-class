@@ -4,6 +4,7 @@ import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
 import { mountStage } from "./scenes.js";
 import { pumpkinSvg } from "./art.js";
 import { createSpeech } from "./speech.js";
+import { createSfx } from "./sfx.js";
 
 const LANG_KEY = "culture_craft_oct_pumpkin_v1_ui";
 
@@ -18,6 +19,7 @@ let manifest;
 let assetBase;
 let faces = [];
 let speech;
+let sfx;
 let uiLang = "en";
 let lineState = null;
 let lineToken = 0;
@@ -92,6 +94,20 @@ function pickBlock() {
     en: [spec.uiCopy.en.pickFace],
     ko: [spec.uiCopy.ko.pickFace],
   };
+}
+
+function frankUrls() {
+  if (!manifest?.frank) return null;
+  return {
+    open: new URL(manifest.frank.open, assetBase).href,
+    closed: new URL(manifest.frank.closed, assetBase).href,
+  };
+}
+
+function wireFrank() {
+  const img = document.getElementById("frank-img");
+  const urls = frankUrls();
+  if (img && urls) speech.setFrank(img, urls);
 }
 
 function paintLang() {
@@ -230,6 +246,7 @@ async function onStart(event) {
   error.textContent = "";
   starting = true;
   speech.unlock();
+  sfx?.unlock?.();
   try {
     await runGame(name);
   } catch (err) {
@@ -271,6 +288,11 @@ function stageShell(stage, index) {
       <p id="line-b" class="line mini"></p>
       <div class="bar" id="bar"><span id="progress-fill"></span></div>
       <p id="progress-label" class="progress-label"></p>
+      <div class="frank-row">
+        <div class="frank-host" id="frank-host" aria-hidden="true">
+          <img id="frank-img" alt="" width="72" height="72" decoding="async" />
+        </div>
+      </div>
     </div>
     <div id="play" class="play"></div>
   </section>`;
@@ -302,10 +324,12 @@ function playStage(stage, index) {
     const play = document.getElementById("play");
     let handle = null;
     let mid = false;
+    wireFrank();
     const ctx = {
       faces,
       face: state.face,
       reducedMotion,
+      sfx,
       setFace(id) {
         state.faceId = id;
         state.face = faces.find((face) => face.id === id) || null;
@@ -330,6 +354,7 @@ function playStage(stage, index) {
         if (state.phase === "success") return;
         state.misses += 1;
         paintMisses();
+        sfx?.miss?.();
         if (stage.type !== "luck_hunt") return;
         const token = ++lineToken;
         showLines(stage.lines, 1, true);
@@ -344,6 +369,7 @@ function playStage(stage, index) {
         state.phase = "success";
         lineToken += 1;
         timer.pause();
+        sfx?.win?.();
         showLines(stage.lines, 2);
         const started = performance.now();
         speech.speak(spoken(stage.lines)[2]).then(() => {
@@ -389,10 +415,14 @@ function showTransition(stage, transition) {
         <p id="line-a" class="line"></p>
         <p id="line-b" class="line mini"></p>
         <p class="watch" id="watch"></p>
+        <div class="frank-host still-frank" id="frank-host" aria-hidden="true">
+          <img id="frank-img" alt="" width="64" height="64" decoding="async" />
+        </div>
       </div>
     </div>
   </section>`;
   paintMisses();
+  wireFrank();
   const caption = transition?.caption || { en: stage.title, ko: stage.titleKo || "" };
   showLines({ en: [caption.en], ko: [caption.ko] }, 0);
   const watch = document.getElementById("watch");
@@ -554,7 +584,10 @@ function bindChrome() {
   langKo.addEventListener("click", () => setLang("ko"));
   soundBtn.addEventListener("click", () => {
     speech.unlock();
-    speech.setEnabled(!speech.enabled);
+    sfx?.unlock?.();
+    const on = !speech.enabled;
+    speech.setEnabled(on);
+    sfx?.setEnabled?.(on);
     paintLang();
   });
 }
@@ -578,8 +611,17 @@ async function init() {
     faces = prepared;
     const tts = { ...(spec.tts || {}) };
     if (listenKo()) tts.lang = "ko-KR";
-    speech = createSpeech(tts);
+    sfx = createSfx();
+    speech = createSpeech(tts, manifest, assetBase);
     preload();
+    if (manifest.frank) {
+      const urls = frankUrls();
+      [urls?.open, urls?.closed].forEach((href) => {
+        if (!href) return;
+        const img = new Image();
+        img.src = href;
+      });
+    }
     bindChrome();
     paintLang();
     renderTitle(false);

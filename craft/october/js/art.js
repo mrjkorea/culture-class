@@ -129,6 +129,21 @@ export function panSvg() {
       <path d="M118 44c10-14 10-14 0-28"/>
       <path d="M156 50c8-12 8-12 0-22"/>
     </g>
+    <g data-sizzle fill="#ff6b1a" opacity="0">
+      <ellipse cx="90" cy="74" rx="10" ry="4"/>
+      <ellipse cx="118" cy="70" rx="12" ry="5"/>
+      <ellipse cx="146" cy="76" rx="9" ry="4"/>
+    </g>
+  </svg>`;
+}
+
+export function spoonSvg() {
+  return `<svg class="spoon-svg" viewBox="0 0 120 200" aria-hidden="true">
+    <ellipse cx="60" cy="168" rx="34" ry="10" fill="rgba(70,20,60,.15)"/>
+    <ellipse cx="60" cy="42" rx="28" ry="34" fill="#d8dde6" stroke="#9aa8b8" stroke-width="3"/>
+    <path d="M52 72 h16 v88 h-16z" fill="#c9d0da" stroke="#9aa8b8" stroke-width="2"/>
+    <rect x="44" y="156" width="32" height="22" rx="8" fill="#ff7a18"/>
+    <ellipse cx="60" cy="42" rx="18" ry="22" fill="#eef3f8" opacity=".55"/>
   </svg>`;
 }
 

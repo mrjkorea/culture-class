@@ -6,6 +6,7 @@
 import {
   HOUSE_SPOTS,
   bowlSvg,
+  spoonSvg,
   candleSvg,
   faceBoxStyle,
   houseSvg,
@@ -72,6 +73,7 @@ function mountLuck(root, stage, ctx) {
     if (e.button !== undefined && e.button !== 0) return;
     const btn = e.target.closest("[data-choice]");
     if (!btn || btn.disabled) return;
+    ctx.sfx?.stage?.(stage.key);
     settle(btn, good.has(Number(btn.dataset.choice)));
   }
 
@@ -80,6 +82,7 @@ function mountLuck(root, stage, ctx) {
     const btn = e.target.closest("[data-choice]");
     if (!btn || btn.disabled) return;
     e.preventDefault();
+    ctx.sfx?.stage?.(stage.key);
     settle(btn, good.has(Number(btn.dataset.choice)));
   }
 
@@ -145,6 +148,16 @@ function mountMash(root, stage, ctx) {
   function step(clientX, clientY) {
     if (finished) return;
     done += 1;
+    if (stage.key === "scoop") {
+      scoopClick(root, ctx);
+    } else if (stage.key === "roast") {
+      roastClick(root, ctx);
+    } else if (stage.key === "wash") {
+      moveSponge(root, clientX, clientY);
+      ctx.sfx?.splash?.();
+    } else {
+      ctx.sfx?.stage?.(stage.key);
+    }
     spawnBit(root, stage.key, clientX, clientY, ctx.reducedMotion);
     paintMash(root, stage, done / total, ctx);
     ctx.onProgress(done, total);
@@ -182,6 +195,29 @@ function mountMash(root, stage, ctx) {
 }
 
 function mashMarkup(stage, ctx) {
+  if (stage.key === "scoop") {
+    return `<div class="scene scene-scoop scoop-layout" data-play>
+      <div class="pumpkin-stack scoop-pumpkin">
+        ${pumpkinSvg(stage.key)}
+        <button type="button" class="mash-hit" data-hit aria-label="${esc(stage.title)}"></button>
+      </div>
+      <div class="scoop-bowl" aria-hidden="true">
+        ${bowlSvg()}
+        <div class="bowl-guts" data-bowl-guts></div>
+      </div>
+      <div class="scoop-spoon" data-spoon>${spoonSvg()}</div>
+    </div>`;
+  }
+  if (stage.key === "wash") {
+    return `<div class="scene scene-wash scene-wash-big" data-play>
+      <div class="wash-splash" data-splash aria-hidden="true"></div>
+      <div class="pumpkin-stack">
+        ${pumpkinSvg(stage.key)}
+        <div class="wash-sponge" data-sponge aria-hidden="true"></div>
+        <button type="button" class="mash-hit" data-hit aria-label="${esc(stage.title)}"></button>
+      </div>
+    </div>`;
+  }
   if (stage.key === "roast") {
     return `<div class="scene scene-roast" data-play>
       <div class="pan-wrap" data-pan>
@@ -258,12 +294,12 @@ function paintMash(root, stage, t, ctx) {
     if (group) group.style.color = mixHex("#f8e7a8", "#c46212", clamped);
     const steam = root.querySelector("[data-steam]");
     if (steam) steam.setAttribute("opacity", String(0.15 + clamped * 0.75));
-    const pan = root.querySelector("[data-pan]");
-    if (pan && clamped > 0) {
-      pan.classList.remove("shake");
-      void pan.offsetWidth;
-      pan.classList.add("shake");
-    }
+    const sizzle = root.querySelector("[data-sizzle]");
+    if (sizzle) sizzle.setAttribute("opacity", String(0.2 + clamped * 0.8));
+  }
+  if (stage.key === "wash") {
+    const splash = root.querySelector("[data-splash]");
+    if (splash) splash.style.opacity = String(0.15 + clamped * 0.55);
   }
   if (stage.key === "light") {
     const flame = root.querySelector("[data-flame]");
@@ -291,6 +327,72 @@ function paintMash(root, stage, t, ctx) {
       bob.classList.add("hop");
     }
   }
+}
+
+function scoopClick(root, ctx) {
+  ctx.sfx?.scrape?.();
+  const spoon = root.querySelector("[data-spoon]");
+  if (spoon) {
+    spoon.classList.remove("scoop-swing");
+    void spoon.offsetWidth;
+    spoon.classList.add("scoop-swing");
+  }
+  const seeds = [...root.querySelectorAll("[data-seed]")].filter((el) => el.style.opacity !== "0");
+  const seed = seeds[seeds.length - 1];
+  if (!seed || ctx.reducedMotion) return;
+  const bowl = root.querySelector(".scoop-bowl");
+  const host = root.querySelector(".scoop-layout");
+  if (!bowl || !host) return;
+  const from = seed.getBoundingClientRect();
+  const to = bowl.getBoundingClientRect();
+  const rect = host.getBoundingClientRect();
+  const fly = document.createElement("i");
+  fly.className = "scoop-fly";
+  fly.style.left = `${from.left - rect.left + from.width / 2}px`;
+  fly.style.top = `${from.top - rect.top + from.height / 2}px`;
+  fly.style.setProperty("--tx", `${to.left - from.left + to.width * 0.35}px`);
+  fly.style.setProperty("--ty", `${to.top - from.top + to.height * 0.2}px`);
+  host.append(fly);
+  seed.style.opacity = "0";
+  const guts = root.querySelector("[data-bowl-guts]");
+  if (guts) guts.style.setProperty("--fill", `${Math.min(100, guts.children.length * 4 + 6)}%`);
+  window.setTimeout(() => {
+    if (guts && guts.children.length < 40) {
+      const bit = document.createElement("span");
+      bit.className = "bowl-bit";
+      guts.append(bit);
+    }
+    fly.remove();
+  }, 520);
+}
+
+function roastClick(root, ctx) {
+  ctx.sfx?.flip?.();
+  const pan = root.querySelector("[data-pan]");
+  if (pan) {
+    pan.classList.remove("pan-flip");
+    void pan.offsetWidth;
+    pan.classList.add("pan-flip");
+  }
+  const seeds = root.querySelectorAll(".roast-seed");
+  if (seeds.length) {
+    const pick = seeds[Math.floor(Math.random() * seeds.length)];
+    pick.classList.remove("seed-jump");
+    void pick.getBoundingClientRect();
+    pick.classList.add("seed-jump");
+  }
+}
+
+function moveSponge(root, clientX, clientY) {
+  const sponge = root.querySelector("[data-sponge]");
+  const scene = root.querySelector(".scene-wash");
+  if (!sponge || !scene) return;
+  const rect = scene.getBoundingClientRect();
+  sponge.style.left = `${clientX - rect.left}px`;
+  sponge.style.top = `${clientY - rect.top}px`;
+  sponge.classList.remove("scrub");
+  void sponge.offsetWidth;
+  sponge.classList.add("scrub");
 }
 
 let bits = 0;
@@ -421,6 +523,7 @@ function mountGuided(root, stage, ctx) {
   function advance() {
     if (finished) return;
     index += 1;
+    ctx.sfx?.stage?.(stage.key);
     ctx.onProgress(index, points.length);
     if (index >= points.length) {
       finished = true;
@@ -455,6 +558,7 @@ function mountGuided(root, stage, ctx) {
       advance();
       return;
     }
+    ctx.sfx?.miss?.();
     ctx.onMiss();
     const stack = root.querySelector(".pumpkin-stack");
     stack?.classList.add("nudge");
