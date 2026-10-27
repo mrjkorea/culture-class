@@ -1,0 +1,7 @@
+{
+  "id": "craft_july_canada_day_v1",
+  "month": "07",
+  "stages": 11,
+  "narrator": "Robot Fish (see bake-robot-audio.sh)",
+  "stage6": "fish_hold continuous 60000ms — release early resets; then reel"
+}

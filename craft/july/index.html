@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Canada Day Quest — Mr. Jay's Culture Class July craft">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' x='6' font-size='22'%3E🍁%3C/text%3E%3C/svg%3E">
+  <title>Canada Day Quest — Culture Class</title>
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <div class="sky canada-sky">
+    <header class="topbar">
+      <a class="top-link" id="back-link" href="../../months/07-july/">July</a>
+      <p class="top-title">Canada Day</p>
+      <div class="top-actions">
+        <div class="lang" role="group" aria-label="On-screen language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-ko" aria-pressed="false">KO</button>
+        </div>
+        <button type="button" id="sound-btn" aria-pressed="true" aria-label="Sound on">
+          <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 10l5 5M21 10l-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+      </div>
+    </header>
+    <main id="view">
+      <p class="boot">Loading craft…</p>
+    </main>
+  </div>
+  <p id="live" class="sr-only" aria-live="polite"></p>
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>

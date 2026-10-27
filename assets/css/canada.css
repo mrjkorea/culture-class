@@ -1,0 +1,39 @@
+/* July / Canada Day themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-canada {
+  background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #ffe8e8 45%, #c41e3a 100%);
+  color: #3d1018;
+}
+
+.theme-canada .site-footer,
+.theme-canada .hint {
+  color: rgba(60, 16, 24, 0.75);
+}
+
+.theme-canada .map-title h1 {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.theme-canada .map-title p {
+  color: #9d0208;
+}
+
+.theme-canada .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 0 60px rgba(255, 255, 255, 0.4);
+}
+
+.theme-canada .map-node-emoji {
+  background: linear-gradient(145deg, #fff, #ffd6d6);
+  border-color: #c41e3a;
+  box-shadow: 0 0 16px rgba(196, 30, 58, 0.35);
+}
+
+.theme-canada .map-back {
+  color: #5c0011;
+}
+
+.theme-canada .themed-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(196, 30, 58, 0.35);
+}
