@@ -1,0 +1,198 @@
+{
+  "id": "craft_june_remembrance_v1",
+  "title": "We Remember",
+  "month": "06",
+  "targetMinutes": [12, 18],
+  "leaderboard": {
+    "key": "culture_craft_june_remembrance_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · June",
+      "play": "Begin",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Plant poppies, walk to the memorial, and share a moment of silence — ten respectful steps. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Remember again",
+      "doneTitle": "Lest we forget",
+      "doneBody": "Thank you for remembering.",
+      "watch": "Remember",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "June",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 6월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "양귀비를 심고, 추모비에 다가가 고요한 순간을 나눠요. 열 단계, 존중의 마음으로.",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 기억하기",
+      "doneTitle": "잊지 않겠습니다",
+      "doneBody": "기억해 주셔서 감사합니다.",
+      "watch": "기억",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "6월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "dig",
+      "title": "Dig the soil",
+      "titleKo": "흙을 파기",
+      "type": "dig",
+      "clicks": 18,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Dig soft soil for the seeds.", "Gentle scoops.", "The earth is ready."],
+        "ko": ["씨를 위한 흙을 파요.", "부드럽게.", "흙이 준비됐어요."]
+      }
+    },
+    {
+      "id": 2,
+      "key": "plant",
+      "title": "Plant seeds",
+      "titleKo": "씨 심기",
+      "type": "plant",
+      "clicks": 6,
+      "lines": {
+        "en": ["Plant poppy seeds.", "One by one.", "Seeds are tucked in."],
+        "ko": ["양귀비 씨를 심어요.", "하나씩.", "씨를 넣었어요."]
+      }
+    },
+    {
+      "id": 3,
+      "key": "water",
+      "title": "Water",
+      "titleKo": "물 주기",
+      "type": "water",
+      "clicks": 22,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Water the seeds.", "Slow and steady.", "The soil is moist."],
+        "ko": ["씨에 물을 줘요.", "천천히.", "흙이 촉촉해요."]
+      }
+    },
+    {
+      "id": 4,
+      "key": "grow",
+      "title": "Poppies grow",
+      "titleKo": "양귀비 자라기",
+      "type": "grow",
+      "clicks": 10,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Watch the poppies grow.", "Red petals open.", "They are in bloom."],
+        "ko": ["양귀비가 자라요.", "빨간 꽃.", "꽃이 폈어요."]
+      }
+    },
+    {
+      "id": 5,
+      "key": "pick",
+      "title": "Pick a poppy",
+      "titleKo": "꽃 따기",
+      "type": "pick",
+      "clicks": 3,
+      "lines": {
+        "en": ["Pick a poppy with care.", "Choose three.", "Poppies in hand."],
+        "ko": ["조심히 꽃을 따요.", "세 송이.", "꽃을 들었어요."]
+      }
+    },
+    {
+      "id": 6,
+      "key": "pin",
+      "title": "Pin on coat",
+      "titleKo": "옷에 꽂기",
+      "type": "pin",
+      "clicks": 4,
+      "lines": {
+        "en": ["Pin a poppy on your coat.", "Over your heart.", "Worn with respect."],
+        "ko": ["옷에 양귀비를 꽂아요.", "가슴 위.", "존중의 마음."]
+      }
+    },
+    {
+      "id": 7,
+      "key": "march",
+      "title": "Walk to memorial",
+      "titleKo": "추모비로 걷기",
+      "type": "march",
+      "clicks": 40,
+      "midAt": 0.55,
+      "lines": {
+        "en": ["Walk quietly to the memorial.", "Steady steps.", "You have arrived."],
+        "ko": ["조용히 추모비로 걸어요.", "꾸준한 걸음.", "도착했어요."]
+      }
+    },
+    {
+      "id": 8,
+      "key": "place",
+      "title": "Place poppy",
+      "titleKo": "꽃 올리기",
+      "type": "place",
+      "clicks": 1,
+      "lines": {
+        "en": ["Place your poppy at the memorial.", "Gently.", "It rests in honor."],
+        "ko": ["추모비에 꽃을 올려요.", "살짝.", "존경의 마음."]
+      }
+    },
+    {
+      "id": 9,
+      "key": "card",
+      "title": "We remember",
+      "titleKo": "기억합니다",
+      "type": "card",
+      "clicks": 5,
+      "lines": {
+        "en": ["Write and place a remembrance card.", "We remember.", "Your card is placed."],
+        "ko": ["기억 카드를 올려요.", "우리는 기억합니다.", "카드를 놓았어요."]
+      }
+    },
+    {
+      "id": 10,
+      "key": "silence",
+      "title": "Moment of silence",
+      "titleKo": "묵념",
+      "type": "silence",
+      "holdRequiredMs": 60000,
+      "lines": {
+        "en": ["The crowd chatters. Hold for quiet.", "Keep holding…", "Thank you for remembering."],
+        "ko": ["사람들이 수군거려요. 고요히.", "계속…", "기억해 주셔서 감사합니다."]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_dig", "durationSec": 3, "caption": { "en": "Dig", "ko": "파기" } },
+    { "id": "t02_plant", "durationSec": 3, "caption": { "en": "Plant", "ko": "심기" } },
+    { "id": "t03_water", "durationSec": 3, "caption": { "en": "Water", "ko": "물" } },
+    { "id": "t04_grow", "durationSec": 3, "caption": { "en": "Grow", "ko": "자람" } },
+    { "id": "t05_pick", "durationSec": 3, "caption": { "en": "Pick", "ko": "따기" } },
+    { "id": "t06_pin", "durationSec": 3, "caption": { "en": "Pin", "ko": "꽂기" } },
+    { "id": "t07_march", "durationSec": 3, "caption": { "en": "Walk", "ko": "걷기" } },
+    { "id": "t08_place", "durationSec": 3, "caption": { "en": "Memorial", "ko": "추모" } },
+    { "id": "t09_card", "durationSec": 3, "caption": { "en": "Card", "ko": "카드" } },
+    { "id": "t10_silence", "durationSec": 3, "caption": { "en": "Silence", "ko": "묵념" } }
+  ]
+}

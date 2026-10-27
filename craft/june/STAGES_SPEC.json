@@ -1,0 +1,7 @@
+{
+  "id": "craft_june_remembrance_v1",
+  "month": "06",
+  "stages": 10,
+  "narrator": "Grandma June (see bake-june-audio.sh)",
+  "stage10": "silence hold 60000ms cumulative, crowd SFX when not holding"
+}
