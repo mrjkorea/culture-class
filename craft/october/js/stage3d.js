@@ -34,8 +34,8 @@ export function mountPatch3D(root, stage, ctx) {
     good.add(Math.floor(Math.random() * pool));
   }
 
-  const { ground, vines } = buildPatchGround();
-  gl.scene.add(ground, vines);
+  const { ground, vines, fencePosts } = buildPatchGround();
+  gl.scene.add(ground, vines, fencePosts);
 
   const cols = Math.ceil(Math.sqrt(pool));
   const rows = Math.ceil(pool / cols);
