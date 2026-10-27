@@ -253,17 +253,18 @@
         }
       ],
       "featureLabel": "Play the Earth Day craft",
-      "featureDetail": "River cleanup to planet high-five (coming soon).",
+      "featureDetail": "Eleven stages with Nia narration — river grabber, sorting bins, tree planting, lights off, bike path, Earth high-five.",
       "notes": "Earth Day themes: environment, stewardship, and related vocabulary. Follow the Culture Class steps from MRJ Daily through bingo.",
       "monthLayout": "earthday",
       "craftPath": "craft/september/",
-      "craftTitle": "Earth Day Craft",
+      "craftTitle": "Save the Planet",
       "craftButton": "Play September Craft",
-      "craftBlurb": "River cleanup to planet high-five (coming soon).",
+      "craftBlurb": "Grabber cleanup, sort plastic/paper/cans, plant a tree, save power, bike not car — fastest time on this device.",
+      "featureTitle": "Save the Planet",
+      "craftEmoji": "🌍",
       "wordsPreviewFile": "sep-words.json",
       "dailyQuizFile": "sep-daily-quiz.json",
-      "cpPackFile": "cp/culture_m09_cp.json",
-      "wordMasterMatchUrl": "#"
+      "cpPackFile": "cp/culture_m09_cp.json"
     },
     {
       "id": "10",

@@ -1,0 +1,39 @@
+/* September / Earth Day themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-earthday {
+  background: radial-gradient(ellipse at 50% 0%, #d8f3dc 0%, #52b788 45%, #1b4332 100%);
+  color: #1b4332;
+}
+
+.theme-earthday .site-footer,
+.theme-earthday .hint {
+  color: rgba(27, 67, 50, 0.78);
+}
+
+.theme-earthday .map-title h1 {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.theme-earthday .map-title p {
+  color: #2d6a4f;
+}
+
+.theme-earthday .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 0 60px rgba(149, 213, 178, 0.35);
+}
+
+.theme-earthday .map-node-emoji {
+  background: linear-gradient(145deg, #b7e4c7, #52b788);
+  border-color: #fff;
+  box-shadow: 0 0 16px rgba(45, 106, 79, 0.35);
+}
+
+.theme-earthday .map-back {
+  color: #1b4332;
+}
+
+.theme-earthday .themed-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(45, 106, 79, 0.35);
+}

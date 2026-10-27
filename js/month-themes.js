@@ -101,7 +101,7 @@ const THEMES = {
   },
   earthday: {
     bodyClass: "theme-earthday",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/earthday.css",
     mapImage: "assets/covers/09-september-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(100,200,120,0.55)",
