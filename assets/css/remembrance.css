@@ -1,0 +1,39 @@
+/* June / Remembrance themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-remembrance {
+  background: radial-gradient(ellipse at 50% 0%, #4a1518 0%, #2a0a0c 50%, #0a0406 100%);
+  color: #fff5f5;
+}
+
+.theme-remembrance .site-footer,
+.theme-remembrance .hint {
+  color: rgba(255, 220, 220, 0.78);
+}
+
+.theme-remembrance .map-title h1 {
+  text-shadow: 0 0 24px rgba(196, 30, 58, 0.4);
+}
+
+.theme-remembrance .map-title p {
+  color: #f4a6a6;
+}
+
+.theme-remembrance .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(120, 20, 30, 0.2);
+}
+
+.theme-remembrance .map-node-emoji {
+  background: linear-gradient(145deg, #c41e3a, #9d0208);
+  border-color: #ffc9c9;
+  box-shadow: 0 0 18px rgba(196, 30, 58, 0.4);
+}
+
+.theme-remembrance .map-back {
+  color: rgba(255, 230, 230, 0.9);
+}
+
+.theme-remembrance .themed-panel {
+  background: rgba(40, 12, 16, 0.78);
+  border-color: rgba(196, 30, 58, 0.35);
+}

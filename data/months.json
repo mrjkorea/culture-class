@@ -165,17 +165,18 @@
         }
       ],
       "featureLabel": "Play the Remembrance Day craft",
-      "featureDetail": "Poppies and moment of silence (coming soon).",
+      "featureDetail": "Ten respectful stages with Grandma June narration — poppies, memorial, and a one-minute moment of silence.",
       "notes": "June focuses on Remembrance Day (as listed in the course outline). Practice pronunciation with the CP TEST doc and review with bingo.",
       "monthLayout": "remembrance",
       "craftPath": "craft/june/",
-      "craftTitle": "Remembrance Craft",
+      "craftTitle": "We Remember",
       "craftButton": "Play June Craft",
-      "craftBlurb": "Poppies and moment of silence (coming soon).",
+      "craftBlurb": "Dig, plant, walk to the memorial, place a card, then hold for quiet — fastest time on this device.",
+      "featureTitle": "We Remember",
+      "craftEmoji": "🌺",
       "wordsPreviewFile": "jun-words.json",
       "dailyQuizFile": "jun-daily-quiz.json",
-      "cpPackFile": "cp/culture_m06_cp.json",
-      "wordMasterMatchUrl": "#"
+      "cpPackFile": "cp/culture_m06_cp.json"
     },
     {
       "id": "07",

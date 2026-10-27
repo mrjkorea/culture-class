@@ -74,7 +74,7 @@ const THEMES = {
   },
   remembrance: {
     bodyClass: "theme-remembrance",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/remembrance.css",
     mapImage: "assets/covers/06-june-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(200,80,80,0.45)",
