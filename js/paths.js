@@ -10,6 +10,9 @@ export function repoRoot() {
   if (path.endsWith("/words/learn.html") || path.endsWith("/words/memory.html")) {
     return path.replace(/\/words\/[^/]+$/, "");
   }
+  if (path.endsWith("/cp/speak.html")) {
+    return path.replace(/\/cp\/[^/]+$/, "");
+  }
   const monthMatch = path.match(/^(.*)\/months\/\d{2}-[^/]+$/);
   if (monthMatch) {
     return monthMatch[1] || "";
@@ -35,6 +38,10 @@ export function wordsLearnUrl(monthId) {
 
 export function wordsMemoryUrl(monthId) {
   return `${repoRoot()}/words/memory.html?month=${encodeURIComponent(monthId)}`;
+}
+
+export function cpSpeakUrl(monthId) {
+  return `${repoRoot()}/cp/speak.html?month=${encodeURIComponent(monthId)}`;
 }
 
 export function monthPageUrl(slug) {

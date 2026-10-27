@@ -419,6 +419,39 @@ a:hover {
   margin-top: 0.65rem;
 }
 
+/* Feature subtitles — Study World News pattern; active state green for Culture Class */
+.subs.video-subs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.65rem 0 0.25rem;
+}
+
+.subs .sub {
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: var(--surface2);
+  color: var(--text);
+  border: 2px solid var(--border);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.subs .sub:hover {
+  border-color: var(--accent-dim);
+}
+
+.subs .sub.on {
+  background: var(--ok);
+  color: #052010;
+  border-color: #2da86a;
+  box-shadow: 0 0 0 2px rgba(62, 207, 142, 0.35);
+}
+
 /* Built-in Words — Learn & Memory */
 .words-flow .words-hero {
   margin-bottom: 1rem;
@@ -578,6 +611,170 @@ a:hover {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--muted);
+}
+
+/* CP Speak (Day 4–style flow on culture-class chrome) */
+.cp-speak .cp-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: var(--accent);
+  color: #061018;
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.checker-label {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 0.35rem;
+}
+
+.checker-track {
+  height: 6px;
+  max-width: 420px;
+  margin: 0 auto 1rem;
+  background: var(--surface2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#checkerFill {
+  height: 100%;
+  width: 8%;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.cp-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.cp-progress {
+  flex: 1;
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cp-progress::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--pct, 0%);
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.cp-cue-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.cp-cue-btn {
+  background: linear-gradient(135deg, #2a6fad, #5b4bb8);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  width: 100%;
+  max-width: 420px;
+  cursor: pointer;
+  font: inherit;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.cp-korean {
+  font-size: clamp(1.15rem, 4.5vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.4;
+  display: block;
+}
+
+.cp-english {
+  margin: 0.85rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ok);
+}
+
+.cp-cue-pic {
+  max-width: 200px;
+  max-height: 140px;
+  margin: 0.75rem auto 0;
+  border-radius: 10px;
+}
+
+.cp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.cp-actions .mic.listening {
+  background: #c44;
+  animation: cp-pulse 1s infinite;
+}
+
+@keyframes cp-pulse {
+  50% { transform: scale(1.03); }
+}
+
+.cp-status {
+  text-align: center;
+  min-height: 1.4em;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cp-result.result {
+  margin: 0.75rem auto;
+  max-width: 400px;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.cp-result.result.pass {
+  outline: 3px solid var(--ok);
+}
+
+.cp-result.result.fail {
+  outline: 3px solid var(--warn);
+}
+
+.cp-result .big-score {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0.15rem 0;
+}
+
+.cp-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 @media (min-width: 480px) {

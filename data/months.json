@@ -129,6 +129,7 @@
       "unitId": "culture_m08",
       "showUnitId": "culture_m08_show",
       "cpDocUrl": "https://docs.google.com/document/d/1IpHw5NeUjRo6RaRNbj6khLVr4dyowaUq9m0qeDA87EU/edit",
+      "cpPackFile": "cp/culture_m08_cp.json",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
       "wordsPreviewFile": "aug-words.json",
@@ -143,9 +144,10 @@
           "title": "MRJ Daily TWO — 5000 Years of Korean History (11:45)"
         }
       ],
+      "featureYoutubeId": "6qsTgptIhlw",
       "featureTitle": "Why Is Korea Divided in Two?",
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Short feature (~5 min): \"Why Is Korea Divided in Two?\" — video file coming soon; your teacher may play it in class from the licensed source.",
+      "featureLabel": "Watch in class",
+      "featureDetail": "Why Is Korea Divided in Two? — A Kid Explains History (~5 min). Tap Green subtitles for English captions.",
       "notes": "Students learn about Korean History Day: what it is, why it matters, and how people celebrate or remember it. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review."
     },
     {

@@ -24,7 +24,7 @@ Each month follows the same stack:
 2. **Words — Learn** — Built-in flashcards when `wordsPreviewFile` exists in `data/months.json`; otherwise Word Master link (`#` until published)
 3. **Words — Memory** — Built-in matching game (unlock after Learn on this device); otherwise Word Master match link
 4. **Words quiz** — [Mountain Climb](https://mrjkorea.github.io/day2-words/day3/climb.html) `?unit=culture_mNN`
-5. **PRO COMP** — Google Doc CP TEST (see `data/months.json`)
+5. **PRO COMP** — Built-in **CP Speak** when `cpPackFile` is set (`cp/speak.html?month=NN`); otherwise Google Doc CP TEST
 6. **Feature show** — “Watch in class (licensed source)” — no cartoon hosting
 7. **Feature quiz** — Mountain Climb `?unit=culture_mNN_show`
 8. **Bingo** — teacher + student pages (`?month=NN`)
