@@ -1,4 +1,4 @@
-import { bingoUrl, climbUrl, dataUrl, repoRoot, wordsLearnUrl, wordsMemoryUrl } from "./paths.js";
+import { bingoUrl, climbUrl, cpSpeakUrl, dataUrl, repoRoot, wordsLearnUrl, wordsMemoryUrl } from "./paths.js";
 import { isLearnDone, monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
@@ -112,6 +112,16 @@ function renderMonth(month, wordsPreview) {
     <p class="hint">${matchHint}</p>`;
 
   const featureTitle = month.featureTitle || "Feature show";
+  const cpSpeak = Boolean(month.cpPackFile);
+  const cpStepBody = cpSpeak
+    ? `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(cpSpeakUrl(month.id))}">CP Speak practice</a>
+      </div>
+      <p class="hint">Korean cue → Hear English → Speak into the mic. All sentences in order; pass at 60%.</p>`
+    : `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(month.cpDocUrl)}" target="_blank" rel="noopener">Open CP TEST Doc</a>
+      </div>
+      <p class="hint">Printable EN sentences with Korean gloss and grade bands — same shape as conversation-day CP practice.</p>`;
 
   const steps = [
     stepBlock(
@@ -144,11 +154,8 @@ function renderMonth(month, wordsPreview) {
     stepBlock(
       5,
       "PRO COMP — CP TEST",
-      "Pronunciation &amp; comprehension sentences (Google Doc)",
-      `<div class="step-actions">
-        <a class="btn btn-primary" href="${escapeHtml(month.cpDocUrl)}" target="_blank" rel="noopener">Open CP TEST Doc</a>
-      </div>
-      <p class="hint">Printable EN sentences with Korean gloss and grade bands — same shape as conversation-day CP practice.</p>`
+      cpSpeak ? "Pronunciation speak practice (Day 4 style)" : "Pronunciation &amp; comprehension sentences (Google Doc)",
+      cpStepBody
     ),
     stepBlock(
       6,
