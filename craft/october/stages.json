@@ -21,7 +21,7 @@
     "tieBreak": "misses"
   },
   "betweenStage": {
-    "animation": "countdown_3s",
+    "animation": "still_3s_countdown_overlay",
     "skipAllowed": false,
     "durationSec": 3
   },
@@ -42,7 +42,7 @@
       "namePlaceholder": "Your name",
       "needName": "Type a nickname to play.",
       "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "A quick 3-second countdown before each stage. Then play fast!",
+      "beatNote": "A picture plays before each stage (~3 seconds). Watch it — no skip.",
       "timeNote": "Time counts while you play. Countdowns and the end reel are not timed.",
       "board": "Fastest times",
       "empty": "No times yet. Be the first!",
@@ -66,7 +66,7 @@
       "namePlaceholder": "이름",
       "needName": "플레이하려면 닉네임을 입력하세요.",
       "how": "호박을 찾고, 씻고, 얼굴을 새긴 다음 사탕 {candies}개를 주세요. 가장 빠른 시간이 이겨요.",
-      "beatNote": "단계마다 3초 카운트다운 후 바로 플레이!",
+      "beatNote": "단계마다 그림이 나와요 (~3초). 넘길 수 없어요.",
       "timeNote": "시간은 플레이 중에만 흘러요. 카운트다운과 마지막 영상은 포함되지 않아요.",
       "board": "최고 기록",
       "empty": "아직 기록이 없어요. 첫 기록을 남겨 보세요!",
@@ -353,7 +353,7 @@
   "transitions": [
     {
       "id": "t01_enter_patch",
-      "durationSec": 9,
+      "durationSec": 3,
       "caption": {
         "en": "Into the patch!",
         "ko": "호박밭으로!"
@@ -361,7 +361,7 @@
     },
     {
       "id": "t02_wash_splash",
-      "durationSec": 10,
+      "durationSec": 3,
       "caption": {
         "en": "Splish splash!",
         "ko": "첨벙첨벙!"
@@ -369,7 +369,7 @@
     },
     {
       "id": "t03_knife_ready",
-      "durationSec": 8,
+      "durationSec": 3,
       "caption": {
         "en": "Knife ready!",
         "ko": "칼 준비!"
@@ -377,7 +377,7 @@
     },
     {
       "id": "t04_scoop_mess",
-      "durationSec": 11,
+      "durationSec": 3,
       "caption": {
         "en": "Seed time!",
         "ko": "씨 시간!"
@@ -385,7 +385,7 @@
     },
     {
       "id": "t05_seeds_sizzle",
-      "durationSec": 10,
+      "durationSec": 3,
       "caption": {
         "en": "Into the pan!",
         "ko": "팬에 넣어요!"
@@ -393,7 +393,7 @@
     },
     {
       "id": "t06_pin_closeup",
-      "durationSec": 9,
+      "durationSec": 3,
       "caption": {
         "en": "Pins ready!",
         "ko": "핀 준비!"
@@ -401,7 +401,7 @@
     },
     {
       "id": "t07_carve_glow",
-      "durationSec": 12,
+      "durationSec": 3,
       "caption": {
         "en": "Carve time!",
         "ko": "조각 시간!"
@@ -409,7 +409,7 @@
     },
     {
       "id": "t08_candle_spark",
-      "durationSec": 8,
+      "durationSec": 3,
       "caption": {
         "en": "A little spark!",
         "ko": "작은 불꽃!"
@@ -417,7 +417,7 @@
     },
     {
       "id": "t09_porch_night",
-      "durationSec": 10,
+      "durationSec": 3,
       "caption": {
         "en": "Night at the house!",
         "ko": "밤의 집 앞!"
@@ -425,7 +425,7 @@
     },
     {
       "id": "t10_trick_or_treat",
-      "durationSec": 11,
+      "durationSec": 3,
       "caption": {
         "en": "Trick or treat!",
         "ko": "트릭 오어 트릿!"

@@ -4,6 +4,7 @@
  */
 
 import { scene3dUrl } from "./assets.js";
+import { mountCut3D, mountPatch3D, mountWash3D } from "./stage3d.js";
 import {
   HOUSE_SPOTS,
   bowlSvg,
@@ -33,6 +34,18 @@ function vary(i) {
 }
 
 export function mountStage(root, stage, ctx) {
+  if (stage.key === "patch" && stage.type === "luck_hunt") {
+    const gl = mountPatch3D(root, stage, ctx);
+    if (gl) return gl;
+  }
+  if (stage.key === "cut") {
+    const gl = mountCut3D(root, stage, ctx);
+    if (gl) return gl;
+  }
+  if (stage.key === "wash") {
+    const gl = mountWash3D(root, stage, ctx);
+    if (gl) return gl;
+  }
   if (stage.type === "luck_hunt") return mountLuck(root, stage, ctx);
   if (stage.type === "guided_mash" && (stage.key === "pin" || !ctx.face)) return mountPin(root, stage, ctx);
   if (stage.type === "guided_mash") return mountGuided(root, stage, ctx);

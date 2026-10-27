@@ -1,4 +1,4 @@
-# Jack-o'-Lantern Craft (V3)
+# Jack-o'-Lantern Craft (V4)
 
 October mini-game for Mr. Jay's Culture Class. Students open the page, type a nickname, and play all 10 stages. Fastest time on that device wins.
 
@@ -10,10 +10,11 @@ The October month page links here (`months/10-october/`).
 
 | Era | In-game look | Between stages / end |
 |-----|----------------|----------------------|
-| **V1/V2** | Mostly flat **CSS/SVG** pumpkins, house, pan, kids | **AI photoreal stills** (JPG) — 8–12s each |
-| **V3** | **3D-style AI scene art** (`assets/scenes3d/*.jpg`) with large props (~75–85% of the screen) | **3s countdown** only; after the run, **10 highlight clips** (`assets/transitions/video/t01…t10.mp4`) |
+| **V4** | **three.js WebGL** low-poly meshes (patch field, cut + knife, wash; other stages mix SVG props + optional `scenes3d` backdrops) — same approach as [ski-jump](https://github.com/mrjkorea/ski-jump) | **Photoreal stills** (`assets/transitions/t01…t10.jpg`) ~3s + countdown overlay; after the run, **10 clips** (`assets/transitions/video/t01…t10.mp4`) |
 
-Chrome (HUD, titles) is minimized. One short Frank line on screen. EN mode shows **English only** until the player switches to KO.
+`three` loads from an import map (r162). Quality/DPR auto-tunes in `js/three-runtime.js`.
+
+EN mode shows **English only** until the player switches to KO.
 
 ## Voice (Fish Audio)
 
@@ -36,7 +37,7 @@ Clip paths are wired in `assets/manifest.json` → `audio`. Game code passes `cl
 | 9 Front of the house | luck hunt | 20 spots, 1 good |
 | 10 Give candy | mash | 50 clicks |
 
-Before each stage: **3-second countdown** (optional `countdown.mp3`). Play time pauses during countdowns and the end reel. Leaderboard: fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
+Before each stage: **photoreal still** (~3s) with countdown overlay + `countdown.mp3`. Play time pauses during stills and the end reel. Leaderboard: fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
 
 Stages 1 and 9 are pure luck. Spoken lines stay generic in `stages.json` (no hints about side, size, color, window, door, or step).
 

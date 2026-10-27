@@ -1,4 +1,4 @@
-import { loadCraft, transitionVideoUrl } from "./assets.js";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js";
 import { prepareFaces } from "./faces.js";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
 import { mountStage } from "./scenes.js";
@@ -271,7 +271,7 @@ async function runGame(name) {
   state = { name, misses: 0, faceId: null, face: null, phase: "transition", saved: false, entry: null };
   timer.reset();
   for (let i = 0; i < spec.stages.length; i += 1) {
-    await showCountdown(spec.stages[i], spec.transitions[i], i);
+    await showTransition(spec.stages[i], spec.transitions[i], i);
     await playStage(spec.stages[i], i);
   }
   await playHighlightReel();
@@ -407,8 +407,10 @@ function playStage(stage, index) {
   });
 }
 
-function showCountdown(stage, transition, index) {
-  const duration = COUNTDOWN_SEC * 1000;
+function showTransition(stage, transition, index) {
+  const seconds = Number(transition?.durationSec);
+  const duration = Number.isFinite(seconds) ? seconds * 1000 : COUNTDOWN_SEC * 1000;
+  const src = transitionUrl(assetBase, manifest, transition?.id);
   const caption = transition?.caption || { en: stage.title, ko: stage.titleKo || stage.title };
   const title = uiLang === "ko" ? caption.ko : caption.en;
   view.dataset.screen = "transition";
@@ -416,24 +418,40 @@ function showCountdown(stage, transition, index) {
   view.dataset.phase = "transition";
   state.phase = "transition";
   timer.pause();
-  view.innerHTML = `<section class="countdown-screen">
-    <p class="countdown-meta"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
-    <div class="countdown-card">
-      <p class="countdown-kicker">${esc(`${index + 1}/${spec.stages.length}`)}</p>
-      <p class="countdown-title">${esc(title)}</p>
-      <p class="countdown-num" id="count-num" aria-live="polite">3</p>
-      <div class="frank-host countdown-frank" id="frank-host" aria-hidden="true">
-        <img id="frank-img" alt="" width="56" height="56" decoding="async" />
+  view.innerHTML = `<section class="still-screen">
+    <p class="still-time"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
+    <div class="still-frame">
+      <div class="still-fallback" aria-hidden="true"></div>
+      ${src ? `<img id="still" class="still-img" alt="" draggable="false">` : ""}
+      <div class="still-countdown" aria-hidden="true"><span id="count-num">3</span></div>
+      <div class="still-bar" aria-hidden="true"><span id="still-fill"></span></div>
+      <div class="still-caption">
+        <p class="kicker">${esc(`${index + 1}/${spec.stages.length}`)} · ${esc(title)}</p>
+        <p id="line-a" class="line line-single"></p>
+        <p id="line-b" class="line mini" hidden></p>
+        <p class="watch" id="watch"></p>
+        <div class="frank-host still-frank" id="frank-host" aria-hidden="true">
+          <img id="frank-img" alt="" width="64" height="64" decoding="async" />
+        </div>
       </div>
     </div>
   </section>`;
   paintMisses();
   wireFrank();
+  showLines({ en: [caption.en], ko: [caption.ko] }, 0);
+  const watch = document.getElementById("watch");
+  if (watch) watch.textContent = t("watch");
+  const img = document.getElementById("still");
+  if (img) {
+    img.addEventListener("error", () => img.remove());
+    img.src = src;
+  }
   speech.playClip("countdown");
-  return waitCountdown(duration);
+  return waitStill(duration);
 }
 
-function waitCountdown(duration) {
+function waitStill(duration) {
+  const fill = document.getElementById("still-fill");
   const numEl = document.getElementById("count-num");
   let elapsed = 0;
   let last = performance.now();
@@ -448,10 +466,14 @@ function waitCountdown(duration) {
         resolve();
         return;
       }
-      if (!document.hidden) elapsed += now - last;
+      if (!document.hidden) elapsed += Math.min(80, now - last);
       last = now;
+      const pct = Math.max(0, Math.min(1, elapsed / duration));
+      if (fill) fill.style.width = `${pct * 100}%`;
       const left = Math.max(0, Math.ceil((duration - elapsed) / 1000));
       if (numEl) numEl.textContent = String(left || 1);
+      const watch = document.getElementById("watch");
+      if (watch) watch.textContent = `${t("watch")} · ${left}`;
       if (elapsed >= duration) {
         document.removeEventListener("visibilitychange", onVis);
         resolve();

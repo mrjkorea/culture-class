@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "faces": "faces.json",
   "frank": {
     "closed": "frank/frank_talk_closed.jpg",

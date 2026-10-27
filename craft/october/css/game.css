@@ -893,12 +893,55 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
     radial-gradient(circle at 80% 20%, #ffe98a 0 40px, transparent 42px),
     linear-gradient(160deg, #7c4dff, #ff4d8d 55%, #ff8a1e);
 }
-.still-frame img {
+.still-frame img,
+.still-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.still-countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.5rem;
+  height: 5.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(58, 20, 88, 0.55);
+  color: #fff;
+  font-size: clamp(2.4rem, 12vw, 3.2rem);
+  font-weight: 900;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+.gl-host {
+  position: relative;
+  width: min(980px, 98vw, calc((100dvh - 100px) * 1.35));
+  height: min(78dvh, calc(100dvh - 110px));
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 0 rgba(80, 16, 90, 0.18);
+  background: #2a1240;
+}
+.gl-host .gl-stage {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+.gl-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 900;
+  z-index: 2;
 }
 .still-bar {
   position: absolute;
