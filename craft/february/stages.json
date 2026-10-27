@@ -1,0 +1,201 @@
+{
+  "id": "craft_february_valentine",
+  "title": "Valentine Card Craft",
+  "month": "02",
+  "targetMinutes": [10, 14],
+  "leaderboard": {
+    "key": "culture_craft_feb_valentine_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · February",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Pick paper, fold a card, decorate it, mail it to a classmate, and trade candy hearts. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Valentine's Day!",
+      "pickColor": "Pick a card color",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "February",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 2월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "색종이를 고르고, 카드를 접고, 꾸민 뒤, 우편함에 넣고, 캔디 하트를 나눠요.",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 하기",
+      "doneTitle": "해냈어요!",
+      "doneBody": "해피 발렌타인!",
+      "pickColor": "카드 색을 고르세요",
+      "watch": "준비하세요",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "2월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "color",
+      "title": "Pick card color",
+      "titleKo": "카드 색 고르기",
+      "type": "pick",
+      "options": 4,
+      "lines": {
+        "en": ["Pick your card color!", "Nice color!", "Beautiful paper!"],
+        "ko": ["카드 색을 고르세요!", "예쁜 색!", "멋진 종이!"]
+      }
+    },
+    {
+      "id": 2,
+      "key": "fold",
+      "title": "Fold",
+      "titleKo": "접기",
+      "type": "fold",
+      "clicks": 3,
+      "lines": {
+        "en": ["Fold the card in half.", "Crease it well!", "Perfect fold!"],
+        "ko": ["카드를 반으로 접어요.", "잘 눌러요!", "완벽한 접기!"]
+      }
+    },
+    {
+      "id": 3,
+      "key": "stamp",
+      "title": "Stamp hearts",
+      "titleKo": "하트 도장",
+      "type": "stamp",
+      "clicks": 8,
+      "lines": {
+        "en": ["Stamp hearts on the card!", "More hearts!", "So many hearts!"],
+        "ko": ["하트 도장을 찍어요!", "더 찍어요!", "하트가 많아요!"]
+      }
+    },
+    {
+      "id": 4,
+      "key": "stickers",
+      "title": "Stickers",
+      "titleKo": "스티커",
+      "type": "mash",
+      "clicks": 45,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Add fun stickers!", "Stick them on!", "Stickers look great!"],
+        "ko": ["스티커를 붙여요!", "계속 붙여요!", "멋져요!"]
+      }
+    },
+    {
+      "id": 5,
+      "key": "write",
+      "title": "Write wish",
+      "titleKo": "소원 쓰기",
+      "type": "mash",
+      "clicks": 55,
+      "midAt": 0.55,
+      "lines": {
+        "en": ["Write your Valentine wish!", "Keep writing!", "Sweet message!"],
+        "ko": ["발렌타인 메시지를 써요!", "계속 써요!", "예쁜 메시지!"]
+      }
+    },
+    {
+      "id": 6,
+      "key": "seal",
+      "title": "Seal envelope",
+      "titleKo": "봉투 봉인",
+      "type": "mash",
+      "clicks": 30,
+      "midAt": 0.45,
+      "lines": {
+        "en": ["Seal the envelope!", "Press it shut!", "Sealed tight!"],
+        "ko": ["봉투를 봉인해요!", "꾹 눌러요!", "단단히 봉인!"]
+      }
+    },
+    {
+      "id": 7,
+      "key": "address",
+      "title": "Address mailbox",
+      "titleKo": "우편함 주소",
+      "type": "luck_hunt",
+      "poolSize": 12,
+      "goodCount": 1,
+      "lines": {
+        "en": ["Address your classmate's mailbox!", "Wrong mailbox — try again!", "Address is right!"],
+        "ko": ["친구 우편함을 찾아요!", "다시 찾아요!", "맞는 우편함!"]
+      }
+    },
+    {
+      "id": 8,
+      "key": "drop",
+      "title": "Drop in mailbox",
+      "titleKo": "우편함에 넣기",
+      "type": "drop",
+      "clicks": 1,
+      "lines": {
+        "en": ["Drop it in the mailbox!", "Almost in!", "It's in the mailbox!"],
+        "ko": ["우편함에 넣어요!", "거의 다!", "넣었어요!"]
+      }
+    },
+    {
+      "id": 9,
+      "key": "open",
+      "title": "Open received card",
+      "titleKo": "받은 카드 열기",
+      "type": "mash",
+      "clicks": 40,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Open the card you received!", "Open it gently!", "What a nice card!"],
+        "ko": ["받은 카드를 열어요!", "조심히!", "예쁜 카드!"]
+      }
+    },
+    {
+      "id": 10,
+      "key": "candy",
+      "title": "Trade candy hearts",
+      "titleKo": "캔디 하트 교환",
+      "type": "pick",
+      "options": 5,
+      "lines": {
+        "en": ["Trade candy hearts with a friend!", "Pick a candy heart!", "Happy Valentine's Day! You did it!"],
+        "ko": ["캔디 하트를 나눠요!", "하트를 골라요!", "해피 발렌타인! 해냈어요!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_color", "durationSec": 3, "caption": { "en": "Pick your paper!", "ko": "종이!" } },
+    { "id": "t02_fold", "durationSec": 3, "caption": { "en": "Fold time!", "ko": "접기!" } },
+    { "id": "t03_stamp", "durationSec": 3, "caption": { "en": "Hearts!", "ko": "하트!" } },
+    { "id": "t04_stickers", "durationSec": 3, "caption": { "en": "Stickers!", "ko": "스티커!" } },
+    { "id": "t05_write", "durationSec": 3, "caption": { "en": "Write!", "ko": "쓰기!" } },
+    { "id": "t06_seal", "durationSec": 3, "caption": { "en": "Seal!", "ko": "봉인!" } },
+    { "id": "t07_address", "durationSec": 3, "caption": { "en": "Mailbox!", "ko": "우편함!" } },
+    { "id": "t08_drop", "durationSec": 3, "caption": { "en": "Drop!", "ko": "넣기!" } },
+    { "id": "t09_open", "durationSec": 3, "caption": { "en": "Open!", "ko": "열기!" } },
+    { "id": "t10_candy", "durationSec": 3, "caption": { "en": "Candy hearts!", "ko": "캔디!" } }
+  ]
+}

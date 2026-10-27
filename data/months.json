@@ -48,13 +48,15 @@
         }
       ],
       "featureLabel": "Play the Valentine's Day craft",
-      "featureDetail": "Ten stages — card to candy hearts (coming soon).",
+      "featureDetail": "Ten interactive stages with Miss Harper narration, stage movies, and a local fastest-time board.",
       "notes": "Explore Valentine's Day traditions, vocabulary, and how the holiday is celebrated in English-speaking cultures.",
       "monthLayout": "valentine",
       "craftPath": "craft/february/",
-      "craftTitle": "Valentine Craft",
+      "craftTitle": "Valentine Card Craft",
       "craftButton": "Play Valentine Craft",
-      "craftBlurb": "Ten stages — card to candy hearts (coming soon).",
+      "craftBlurb": "Card color, fold, hearts, mailbox, and candy hearts — fastest time on this device.",
+      "featureTitle": "Valentine Card Craft",
+      "craftEmoji": "💌",
       "wordsPackPlanned": "feb-words.json",
       "dailyQuizPlanned": "feb-daily-quiz.json",
       "cpPackPlanned": "cp/culture_m02_cp.json"
