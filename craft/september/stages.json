@@ -1,0 +1,212 @@
+{
+  "id": "craft_september_earth_v1",
+  "title": "Save the Planet",
+  "month": "09",
+  "targetMinutes": [12, 18],
+  "leaderboard": {
+    "key": "culture_craft_september_earth_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · September",
+      "play": "Start helping",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Eleven Earth Day steps — river grabber cleanup, sorting bins, plant a tree, save power, bike instead of drive. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Help again",
+      "doneTitle": "Planet hero",
+      "doneBody": "Planet saved for today!",
+      "watch": "Earth",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "September",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 9월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "열한 단계로 지구를 도와요. 강 정리, 분리수거, 나무 심기, 전기 아껴요.",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 돕기",
+      "doneTitle": "지구 히어로",
+      "doneBody": "오늘 지구를 지켰어요!",
+      "watch": "지구",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "9월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "river",
+      "title": "River cleanup",
+      "titleKo": "강 정리",
+      "type": "river_grab",
+      "clicks": 10,
+      "lines": {
+        "en": ["Use the grabber — snag floating trash.", "Don't miss the bottles.", "The river looks cleaner."],
+        "ko": ["집게로 떠다니는 쓰레기를 잡아요.", "병도 잡아요.", "강이 깨끗해졌어요."]
+      }
+    },
+    {
+      "id": 2,
+      "key": "bag",
+      "title": "Fill the bag",
+      "titleKo": "봉투 채우기",
+      "type": "bag_fill",
+      "clicks": 14,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Pick up park and beach litter.", "Into the trash bag.", "Bag is full."],
+        "ko": ["공원과 해변 쓰레기를 줍어요.", "봉투에 넣어요.", "봉투가 찼어요."]
+      }
+    },
+    {
+      "id": 3,
+      "key": "plastic",
+      "title": "Sort plastic",
+      "titleKo": "플라스틱",
+      "type": "sort_plastic",
+      "sortCount": 6,
+      "lines": {
+        "en": ["Plastic goes in the blue bin.", "Tap the right bin.", "Plastic sorted."],
+        "ko": ["플라스틱은 파란 통.", "맞는 통을 눌러요.", "분리 완료."]
+      }
+    },
+    {
+      "id": 4,
+      "key": "paper",
+      "title": "Sort paper",
+      "titleKo": "종이",
+      "type": "sort_paper",
+      "sortCount": 6,
+      "lines": {
+        "en": ["Paper in the green bin.", "Keep sorting.", "Paper sorted."],
+        "ko": ["종이는 초록 통.", "계속 분리해요.", "종이 완료."]
+      }
+    },
+    {
+      "id": 5,
+      "key": "cans",
+      "title": "Sort cans",
+      "titleKo": "캔",
+      "type": "sort_cans",
+      "sortCount": 6,
+      "lines": {
+        "en": ["Metal cans in the gray bin.", "Nice sorting.", "Cans sorted."],
+        "ko": ["캔은 회색 통.", "잘했어요.", "캔 완료."]
+      }
+    },
+    {
+      "id": 6,
+      "key": "dig",
+      "title": "Dig the hole",
+      "titleKo": "구덩이",
+      "type": "dig_hole",
+      "clicks": 22,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Dig a hole for the tree.", "Deep enough.", "Hole is ready."],
+        "ko": ["나무 구덩이를 파요.", "깊게.", "준비됐어요."]
+      }
+    },
+    {
+      "id": 7,
+      "key": "plant",
+      "title": "Plant sapling",
+      "titleKo": "묘목 심기",
+      "type": "plant_tree",
+      "clicks": 4,
+      "lines": {
+        "en": ["Place the sapling gently.", "Pat the soil.", "Tree is planted."],
+        "ko": ["묘목을 심어요.", "흙을 다져요.", "심었어요."]
+      }
+    },
+    {
+      "id": 8,
+      "key": "water",
+      "title": "Water the tree",
+      "titleKo": "물 주기",
+      "type": "water_tree",
+      "clicks": 18,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Water the new tree.", "Slow and steady.", "Tree is watered."],
+        "ko": ["나무에 물을 줘요.", "천천히.", "물 줬어요."]
+      }
+    },
+    {
+      "id": 9,
+      "key": "lights",
+      "title": "Turn off lights",
+      "titleKo": "불 끄기",
+      "type": "lights_off",
+      "rooms": 8,
+      "lines": {
+        "en": ["Turn off wasted electricity.", "Dark rooms save power.", "Lights are off."],
+        "ko": ["쓸데없는 전기를 꺼요.", "어두운 방이 절약.", "불을 껐어요."]
+      }
+    },
+    {
+      "id": 10,
+      "key": "bike",
+      "title": "Bike not car",
+      "titleKo": "자전거",
+      "type": "bike_path",
+      "clicks": 35,
+      "midAt": 0.55,
+      "lines": {
+        "en": ["Choose bike or walk — not the car.", "Pedal the path.", "Clean trip!"],
+        "ko": ["자전거나 걸어요 — 차 대신.", "페달을 밟아요.", "깨끗한 이동!"]
+      }
+    },
+    {
+      "id": 11,
+      "key": "highfive",
+      "title": "High-five Earth",
+      "titleKo": "지구 하이파이브",
+      "type": "earth_highfive",
+      "clicks": 12,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["High-five the planet!", "Planet saved for today.", "You did it!"],
+        "ko": ["지구와 하이파이브!", "오늘 지구를 지켰어요.", "해냈어요!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_river", "durationSec": 3, "caption": { "en": "River", "ko": "강" } },
+    { "id": "t02_bag", "durationSec": 3, "caption": { "en": "Trash bag", "ko": "봉투" } },
+    { "id": "t03_plastic", "durationSec": 3, "caption": { "en": "Plastic", "ko": "플라스틱" } },
+    { "id": "t04_paper", "durationSec": 3, "caption": { "en": "Paper", "ko": "종이" } },
+    { "id": "t05_cans", "durationSec": 3, "caption": { "en": "Cans", "ko": "캔" } },
+    { "id": "t06_dig", "durationSec": 3, "caption": { "en": "Dig", "ko": "파기" } },
+    { "id": "t07_plant", "durationSec": 3, "caption": { "en": "Plant", "ko": "심기" } },
+    { "id": "t08_water", "durationSec": 3, "caption": { "en": "Water", "ko": "물" } },
+    { "id": "t09_lights", "durationSec": 3, "caption": { "en": "Lights", "ko": "전기" } },
+    { "id": "t10_bike", "durationSec": 3, "caption": { "en": "Bike", "ko": "자전거" } },
+    { "id": "t11_highfive", "durationSec": 3, "caption": { "en": "Earth", "ko": "지구" } }
+  ]
+}
