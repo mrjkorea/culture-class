@@ -30,11 +30,12 @@
   },
   "tts": {
     "lang": "en-US",
-    "pitch": 1.38,
-    "rate": 1.04,
+    "pitch": 0.42,
+    "rate": 0.88,
     "volume": 1,
     "missDebounceMs": 1300,
-    "maxMs": 3200
+    "maxMs": 5200,
+    "voiceHint": "deep_monster_male_en"
   },
   "uiCopy": {
     "en": {

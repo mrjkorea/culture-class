@@ -1,4 +1,4 @@
-# Jack-o'-Lantern Craft
+# Jack-o'-Lantern Craft (V2)
 
 October mini-game for Mr. Jay's Culture Class. Students open the page, type a nickname, and play all 10 stages. Fastest time on that device wins.
 
@@ -21,11 +21,11 @@ The October month page links here (`months/10-october/`).
 | 9 Front of the house | luck hunt | 20 spots, 1 good |
 | 10 Give candy | mash | 50 clicks |
 
-A still picture plays **before** each stage for 8–12 seconds. There is no skip button and no video. Play time pauses during those pictures. The leaderboard sorts by fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
+A **photoreal still** (JPG) plays **before** each stage for 8–12 seconds. There is no skip button. Play time pauses during those pictures. The leaderboard sorts by fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
 
 Stages 1 and 9 are pure luck. Spoken lines must stay the generic lines in `stages.json`. Do not add words that point at a side, size, color, window, door, or step.
 
-Speech uses the Web Speech API in English (`languages.listeningPrimary`). English and Korean both stay on screen. The EN / KO control only changes which line is larger.
+**V2 feel:** larger stage props (CSS/SVG), scoop spoon arcs + seeds into a bowl, roast pan flip + sizzle, sponge splash on wash, Web Audio SFX every stage, Frankenstein host voice with talking-head mouth flap, EN speech + EN/KO on screen.
 
 ## Swap lines
 
@@ -40,32 +40,51 @@ Edit `stages.json`.
 
 `STAGES_SPEC.json` is the build contract. If you change a budget or a stage line, update both files.
 
-## Swap TTS
+## Swap TTS / Frank voice
 
 In `stages.json` → `tts`:
 
-- `pitch` — playful is about `1.3`–`1.45`
-- `rate` — about `1.0`–`1.08`
-- `lang` — `en-US` while listening stays English
+- `pitch` — monster Frank is about `0.35`–`0.55` (default `0.42`)
+- `rate` — slightly slow, about `0.85`–`0.95`
+- `lang` — `en-US` while `languages.listeningPrimary` is `en`
 - `missDebounceMs` — how often a wrong pumpkin can talk
+- `maxMs` — safety cap for long lines (default `5200`)
 
-To speak Korean later, set `languages.listeningPrimary` to `ko`. The game then uses `ko-KR` and the Korean line. No other code change.
+**Talking head:** `assets/manifest.json` → `frank.closed` / `frank.open` (JPG paths). The HUD shows Frank while lines play; mouth toggles open/closed during speech.
 
-The Sound button mutes speech for this tab.
+**Pre-recorded clips (Fish Audio, etc.):** add entries under `manifest.json` → `audio`, for example:
+
+```json
+"audio": {
+  "stage4_start": "audio/scoop_start.mp3"
+}
+```
+
+Then pass `clipKey: "stage4_start"` from game code when you wire a line to a file. If the key is missing, Web Speech is used.
+
+To speak Korean later, set `languages.listeningPrimary` to `ko`. The game then uses `ko-KR` and the Korean line.
+
+The Sound button mutes speech **and** SFX for this tab.
+
+## Swap SFX
+
+Stage clicks use `js/sfx.js` (Web Audio). To replace a sound with a short file, extend `sfx.js` or load from `assets/sfx/` (add paths in manifest if you want them data-driven).
+
+Distinct cues: miss, win, per-stage click (splash, scrape, flip/sizzle, pin, carve, strike, candy, patch, cut).
 
 ## Swap art
 
 `assets/manifest.json` maps every transition id to a file under `assets/`:
 
 ```json
-"t01_enter_patch": "transitions/t01.svg"
+"t01_enter_patch": "transitions/t01_enter_patch.jpg"
 ```
 
-Drop in a PNG (or a new SVG) and change that path, for example to `transitions/t01.png`. The game loads whatever path is listed. Do not point these slots at video files. Stills only, until Jay approves which pictures become animation.
+Drop in a new JPG/PNG/SVG and change that path. **Stills only** until Jay picks which get motion; then swap the same id to a video or animated asset without renaming ids.
 
-Built-in pumpkin, house, pan, candle, and kids are SVG in `js/art.js`. Face shapes are `assets/faces.json` (four presets). Each face is sampled to the pin count and the carve count, so every preset stays the same number of clicks.
+Built-in pumpkin, house, pan, candle, spoon, and kids are SVG in `js/art.js`. Face shapes are `assets/faces.json` (four presets).
 
-Stage backgrounds are drawn in code so the game looks finished before any PNG arrives. Optional later: replace a transition still first; scene SVG can stay.
+Photoreal stills live in `assets/transitions/t01_enter_patch.jpg` … `t10_trick_or_treat.jpg`. Frank host: `assets/frank/frank_talk_closed.jpg` / `frank_talk_open.jpg`.
 
 ## Files
 
@@ -75,8 +94,10 @@ Stage backgrounds are drawn in code so the game looks finished before any PNG ar
 | `stages.json` | Budgets, lines, TTS, still timing |
 | `STAGES_SPEC.json` | Original 10-stage contract |
 | `CRAFT_BUILD.md` | Build brief |
-| `assets/manifest.json` | Art paths |
+| `assets/manifest.json` | Art, Frank, optional audio clip paths |
 | `assets/faces.json` | Four face presets |
-| `assets/transitions/t01.svg` … `t10.svg` | Still slots |
+| `assets/transitions/*.jpg` | Photoreal still slots |
+| `assets/frank/*.jpg` | Talking head |
+| `js/sfx.js` | Web Audio SFX |
 | `js/` | Game, scenes, speech, leaderboard |
 | `css/game.css` | Layout and colors |

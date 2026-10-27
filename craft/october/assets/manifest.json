@@ -1,16 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "faces": "faces.json",
+  "frank": {
+    "closed": "frank/frank_talk_closed.jpg",
+    "open": "frank/frank_talk_open.jpg"
+  },
+  "audio": {},
   "transitions": {
-    "t01_enter_patch": "transitions/t01.svg",
-    "t02_wash_splash": "transitions/t02.svg",
-    "t03_knife_ready": "transitions/t03.svg",
-    "t04_scoop_mess": "transitions/t04.svg",
-    "t05_seeds_sizzle": "transitions/t05.svg",
-    "t06_pin_closeup": "transitions/t06.svg",
-    "t07_carve_glow": "transitions/t07.svg",
-    "t08_candle_spark": "transitions/t08.svg",
-    "t09_porch_night": "transitions/t09.svg",
-    "t10_trick_or_treat": "transitions/t10.svg"
+    "t01_enter_patch": "transitions/t01_enter_patch.jpg",
+    "t02_wash_splash": "transitions/t02_wash_splash.jpg",
+    "t03_knife_ready": "transitions/t03_knife_ready.jpg",
+    "t04_scoop_mess": "transitions/t04_scoop_mess.jpg",
+    "t05_seeds_sizzle": "transitions/t05_seeds_sizzle.jpg",
+    "t06_pin_closeup": "transitions/t06_pin_closeup.jpg",
+    "t07_carve_glow": "transitions/t07_carve_glow.jpg",
+    "t08_candle_spark": "transitions/t08_candle_spark.jpg",
+    "t09_porch_night": "transitions/t09_porch_night.jpg",
+    "t10_trick_or_treat": "transitions/t10_trick_or_treat.jpg"
   }
 }
