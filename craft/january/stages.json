@@ -2,37 +2,15 @@
   "id": "craft_january_newyear",
   "title": "New Year's Party Craft",
   "month": "01",
-  "targetMinutes": [
-    12,
-    15
-  ],
-  "fairness": "luck_and_clicks_only",
-  "languages": {
-    "ui": [
-      "en",
-      "ko"
-    ],
-    "default": "en",
-    "listeningPrimary": "en"
-  },
+  "targetMinutes": [10, 14],
   "leaderboard": {
-    "key": "culture_craft_jan_newyear_v1",
+    "key": "culture_craft_jan_newyear_v2",
     "sort": "fastestTime",
     "tieBreak": "misses"
   },
   "betweenStage": {
-    "animation": "stage_movie_after_complete",
-    "skipAllowed": false,
-    "durationSec": 0
-  },
-  "tts": {
-    "lang": "en-US",
-    "pitch": 0.42,
-    "rate": 0.88,
-    "volume": 1,
-    "missDebounceMs": 1300,
-    "maxMs": 5200,
-    "voiceHint": "deep_monster_male_en"
+    "stillSec": 3,
+    "movieAfterStage": true
   },
   "uiCopy": {
     "en": {
@@ -42,8 +20,8 @@
       "namePlaceholder": "Your name",
       "needName": "Type a nickname to play.",
       "how": "Hang balloons, set the table, count down to midnight, and pick a resolution. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays (~3s).",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "beatNote": "After each stage: a short still, then your stage movie when available.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
       "board": "Fastest times",
       "empty": "No times yet. Be the first!",
       "misses": "Misses",
@@ -52,12 +30,13 @@
       "playAgain": "Play again",
       "doneTitle": "You did it!",
       "doneBody": "Happy New Year!",
-      "pickFace": "Pick a party hat",
+      "pickHat": "Pick a party hat",
       "watch": "Get ready",
       "soundOn": "Sound on",
       "soundOff": "Sound off",
       "back": "January",
-      "loadError": "Something went wrong. Reload the page."
+      "loadError": "Could not load the craft. Reload the page.",
+      "countdownGo": "Start countdown"
     },
     "ko": {
       "classTag": "제이 선생님 문화 수업 · 1월",
@@ -65,157 +44,89 @@
       "nickname": "닉네임",
       "namePlaceholder": "이름",
       "needName": "플레이하려면 닉네임을 입력하세요.",
-      "how": "풍선을 달고, 테이블을 차리고, 자정까지 카운트다운한 뒤 새해 결심을 고르세요.",
-      "beatNote": "단계가 끝나면 짧은 영상이 나와요. 넘길 수 없어요.",
-      "timeNote": "시간은 플레이 중에만 흘러요. 단계 영상과 마지막 유령은 포함되지 않아요.",
+      "how": "풍선, 테이블, 자정 카운트다운, 새해 결심! 가장 빠른 시간이 이겨요.",
+      "beatNote": "단계 후 짧은 사진, 그다음 단계 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
       "board": "최고 기록",
-      "empty": "아직 기록이 없어요. 첫 기록을 남겨 보세요!",
+      "empty": "아직 기록이 없어요!",
       "misses": "실수",
       "yourTime": "내 시간",
       "rank": "순위",
       "playAgain": "다시 하기",
       "doneTitle": "해냈어요!",
       "doneBody": "새해 복 많이 받으세요!",
-      "pickFace": "파티 모자를 고르세요",
+      "pickHat": "파티 모자를 고르세요",
       "watch": "준비하세요",
       "soundOn": "소리 켜짐",
       "soundOff": "소리 꺼짐",
       "back": "1월",
-      "loadError": "문제가 생겼어요. 페이지를 다시 불러오세요."
+      "loadError": "불러오지 못했어요. 다시 시도하세요.",
+      "countdownGo": "카운트다운 시작"
     }
   },
   "stages": [
     {
       "id": 1,
-      "key": "patch",
+      "key": "balloons",
       "title": "Hang balloons",
       "titleKo": "풍선 달기",
       "type": "luck_hunt",
-      "poolSize": 36,
+      "poolSize": 28,
       "goodCount": 1,
-      "estClicks": [
-        10,
-        25
-      ],
-      "estSec": [
-        40,
-        80
-      ],
       "lines": {
-        "en": [
-          "Hang the balloons!",
-          "Higher!",
-          "Perfect balloons!"
-        ],
-        "ko": [
-          "풍선을 달아요!",
-          "더 높이!",
-          "풍선 완성!"
-        ]
+        "en": ["Hang the balloons!", "Higher!", "Perfect balloons!"],
+        "ko": ["풍선을 달아요!", "더 높이!", "완벽한 풍선!"]
       }
     },
     {
       "id": 2,
-      "key": "wash",
-      "title": "Set the party table",
+      "key": "table",
+      "title": "Set party table",
       "titleKo": "파티 테이블",
       "type": "mash",
-      "clicks": 50,
-      "midAt": 0.72,
-      "estSec": [
-        25,
-        35
-      ],
+      "clicks": 55,
+      "midAt": 0.55,
       "lines": {
-        "en": [
-          "Set plates and cups.",
-          "Almost ready!",
-          "Table looks great!"
-        ],
-        "ko": [
-          "접시와 컵을 놓아요.",
-          "거의 다 됐어요!",
-          "멋진 테이블!"
-        ]
+        "en": ["Set plates and cups.", "Almost ready!", "Table looks great!"],
+        "ko": ["접시와 컵을 놓아요.", "거의 다 됐어요!", "멋진 테이블!"]
       }
     },
     {
       "id": 3,
-      "key": "scoop",
+      "key": "snacks",
       "title": "Snacks and juice",
       "titleKo": "간식과 주스",
       "type": "mash",
-      "clicks": 150,
-      "midAt": 0.82,
-      "estSec": [
-        70,
-        90
-      ],
+      "clicks": 50,
+      "midAt": 0.5,
       "lines": {
-        "en": [
-          "Put out snacks and juice.",
-          "Yummy!",
-          "Party food ready!"
-        ],
-        "ko": [
-          "간식과 주스를 놓아요.",
-          "맛있어요!",
-          "음식 준비 완료!"
-        ]
+        "en": ["Put out snacks and juice.", "Yummy!", "Party food ready!"],
+        "ko": ["간식과 주스를 놓아요.", "맛있어요!", "음식 준비 완료!"]
       }
     },
     {
       "id": 4,
-      "key": "pin",
-      "title": "Pick your hat",
-      "titleKo": "모자 고르기",
-      "type": "guided_mash",
-      "clicks": 80,
-      "midAt": 0.5,
-      "hitSlop": 22,
-      "estSec": [
-        45,
-        60
-      ],
-      "facePresets": 4,
-      "sameClicksAllFaces": true,
+      "key": "hats",
+      "title": "Party hats",
+      "titleKo": "파티 모자",
+      "type": "pick",
+      "options": 4,
       "lines": {
-        "en": [
-          "Choose your party hat!",
-          "Nice choice!",
-          "You look ready!"
-        ],
-        "ko": [
-          "파티 모자를 고르세요!",
-          "멋진 선택!",
-          "준비 완료!"
-        ]
+        "en": ["Choose your party hat!", "Nice choice!", "You look ready!"],
+        "ko": ["파티 모자를 고르세요!", "멋진 선택!", "준비 완료!"]
       }
     },
     {
       "id": 5,
-      "key": "cut",
+      "key": "noisemakers",
       "title": "Noisemakers",
       "titleKo": "요란한 장난감",
       "type": "mash",
-      "clicks": 80,
-      "midAt": 0.4,
-      "estSec": [
-        40,
-        55
-      ],
-      "fx": "knife_bob",
+      "clicks": 60,
+      "midAt": 0.5,
       "lines": {
-        "en": [
-          "Hand out noisemakers!",
-          "Keep shaking!",
-          "Let's get loud!"
-        ],
-        "ko": [
-          "요란한 장난감을 나눠요!",
-          "계속 흔들어요!",
-          "시끌벅적!"
-        ]
+        "en": ["Hand out noisemakers!", "Keep shaking!", "Let's get loud!"],
+        "ko": ["요란한 장난감을 나눠요!", "계속 흔들어요!", "시끌벅적!"]
       }
     },
     {
@@ -226,218 +137,74 @@
       "type": "countdown",
       "clicks": 10,
       "lines": {
-        "en": [
-          "Tap Start — count 10 to 1!",
-          "Almost midnight…",
-          "Happy New Year!"
-        ],
-        "ko": [
-          "시작을 누르고 10부터 세세요!",
-          "곧 자정…",
-          "새해 복 많이 받으세요!"
-        ]
+        "en": ["Tap Start — count 10 to 1!", "Almost midnight…", "Happy New Year!"],
+        "ko": ["시작을 누르고 10부터 세세요!", "곧 자정…", "새해 복 많이 받으세요!"]
       }
     },
     {
       "id": 7,
-      "key": "house",
+      "key": "balldrop",
       "title": "Ball drop",
       "titleKo": "공 떨어뜨리기",
       "type": "luck_hunt",
-      "poolSize": 20,
+      "poolSize": 16,
       "goodCount": 1,
-      "estClicks": [
-        8,
-        15
-      ],
-      "estSec": [
-        40,
-        70
-      ],
       "lines": {
-        "en": [
-          "Drop the ball at midnight!",
-          "Missed — try again!",
-          "The ball dropped!"
-        ],
-        "ko": [
-          "자정에 공을 떨어뜨려요!",
-          "다시 해봐요!",
-          "공이 떨어졌어요!"
-        ]
+        "en": ["Drop the ball at midnight!", "Missed — try again!", "The ball dropped!"],
+        "ko": ["자정에 공을 떨어뜨려요!", "다시 해봐요!", "공이 떨어졌어요!"]
       }
     },
     {
       "id": 8,
-      "key": "light",
+      "key": "confetti",
       "title": "Throw confetti",
       "titleKo": "색종이",
       "type": "mash",
-      "clicks": 40,
+      "clicks": 45,
       "midAt": 0.45,
-      "estSec": [
-        20,
-        30
-      ],
       "lines": {
-        "en": [
-          "Throw confetti everywhere!",
-          "More confetti!",
-          "What a party!"
-        ],
-        "ko": [
-          "색종이를 뿌려요!",
-          "더 뿌려요!",
-          "최고의 파티!"
-        ]
+        "en": ["Throw confetti everywhere!", "More confetti!", "What a party!"],
+        "ko": ["색종이를 뿌려요!", "더 뿌려요!", "최고의 파티!"]
       }
     },
     {
       "id": 9,
-      "key": "carve",
-      "title": "Write a resolution",
+      "key": "resolution",
+      "title": "New Year's resolution",
       "titleKo": "새해 결심",
-      "type": "guided_mash",
-      "clicks": 80,
-      "midAt": 0.5,
-      "hitSlop": 22,
-      "estSec": [
-        55,
-        75
-      ],
+      "type": "mash",
+      "clicks": 70,
+      "midAt": 0.55,
       "lines": {
-        "en": [
-          "Trace your resolution.",
-          "Keep writing!",
-          "Great goal for the year!"
-        ],
-        "ko": [
-          "결심을 따라 써요.",
-          "계속 써요!",
-          "멋진 올해 목표!"
-        ]
+        "en": ["Trace your resolution.", "Keep writing!", "Great goal for the year!"],
+        "ko": ["결심을 따라 써요.", "계속 써요!", "멋진 올해 목표!"]
       }
     },
     {
       "id": 10,
-      "key": "candy",
+      "key": "toast",
       "title": "Toast!",
       "titleKo": "건배",
       "type": "mash",
-      "clicks": 30,
-      "midAt": 0.7,
-      "estSec": [
-        40,
-        60
-      ],
+      "clicks": 35,
+      "midAt": 0.4,
       "endsRun": true,
       "lines": {
-        "en": [
-          "Raise your juice — toast!",
-          "Happy New Year!",
-          "You did it! Great job!"
-        ],
-        "ko": [
-          "주스를 들고 건배!",
-          "새해 복 많이 받으세요!",
-          "해냈어요! 잘했어요!"
-        ]
+        "en": ["Raise your juice — toast!", "Happy New Year!", "You did it! Great job!"],
+        "ko": ["주스를 들고 건배!", "새해 복 많이 받으세요!", "해냈어요! 잘했어요!"]
       }
     }
   ],
   "transitions": [
-    {
-      "id": "t01_enter_patch",
-      "durationSec": 3,
-      "caption": {
-        "en": "Balloons up!",
-        "ko": "Balloons up!"
-      }
-    },
-    {
-      "id": "t02_wash_splash",
-      "durationSec": 3,
-      "caption": {
-        "en": "Table set!",
-        "ko": "Table set!"
-      }
-    },
-    {
-      "id": "t03_knife_ready",
-      "durationSec": 3,
-      "caption": {
-        "en": "Snack time!",
-        "ko": "Snack time!"
-      }
-    },
-    {
-      "id": "t04_scoop_mess",
-      "durationSec": 3,
-      "caption": {
-        "en": "Hats on!",
-        "ko": "Hats on!"
-      }
-    },
-    {
-      "id": "t05_seeds_sizzle",
-      "durationSec": 3,
-      "caption": {
-        "en": "Noisemakers!",
-        "ko": "Noisemakers!"
-      }
-    },
-    {
-      "id": "t06_pin_closeup",
-      "durationSec": 3,
-      "caption": {
-        "en": "Countdown!",
-        "ko": "Countdown!"
-      }
-    },
-    {
-      "id": "t07_carve_glow",
-      "durationSec": 3,
-      "caption": {
-        "en": "Hat pick!",
-        "ko": "Hat pick!"
-      }
-    },
-    {
-      "id": "t08_candle_spark",
-      "durationSec": 3,
-      "caption": {
-        "en": "Resolution!",
-        "ko": "Resolution!"
-      }
-    },
-    {
-      "id": "t09_porch_night",
-      "durationSec": 3,
-      "caption": {
-        "en": "Ball drop!",
-        "ko": "Ball drop!"
-      }
-    },
-    {
-      "id": "t10_trick_or_treat",
-      "durationSec": 3,
-      "caption": {
-        "en": "Confetti!",
-        "ko": "Confetti!"
-      }
-    }
-  ],
-  "transitionStills": [
-    "t01_enter_patch",
-    "t02_wash_splash",
-    "t03_knife_ready",
-    "t04_scoop_mess",
-    "t05_seeds_sizzle",
-    "t06_pin_closeup",
-    "t07_carve_glow",
-    "t08_candle_spark",
-    "t09_porch_night",
-    "t10_trick_or_treat"
-  ],
-  "modularity": "All stages driven by stages.json; art paths in assets/manifest.json; TTS lines swappable; transition stills swap to animated files later without a code rewrite."
+    { "id": "t01_balloons", "durationSec": 3, "caption": { "en": "Balloons up!", "ko": "풍선!" } },
+    { "id": "t02_table", "durationSec": 3, "caption": { "en": "Table time!", "ko": "테이블!" } },
+    { "id": "t03_snacks", "durationSec": 3, "caption": { "en": "Snacks!", "ko": "간식!" } },
+    { "id": "t04_hats", "durationSec": 3, "caption": { "en": "Hats on!", "ko": "모자!" } },
+    { "id": "t05_noisemakers", "durationSec": 3, "caption": { "en": "Noisemakers!", "ko": "요란!" } },
+    { "id": "t06_countdown", "durationSec": 3, "caption": { "en": "Countdown!", "ko": "카운트다운!" } },
+    { "id": "t07_balldrop", "durationSec": 3, "caption": { "en": "Ball drop!", "ko": "공!" } },
+    { "id": "t08_confetti", "durationSec": 3, "caption": { "en": "Confetti!", "ko": "색종이!" } },
+    { "id": "t09_resolution", "durationSec": 3, "caption": { "en": "Resolution!", "ko": "결심!" } },
+    { "id": "t10_toast", "durationSec": 3, "caption": { "en": "Cheers!", "ko": "건배!" } }
+  ]
 }

@@ -7,31 +7,31 @@
     {
       "korean": "새해 첫날을 축하해요.",
       "english": "Happy New Year's Day!",
-      "audio": "audio/jan-cp/01.mp3",
+      "audio": "data/audio/jan-cp/01.mp3",
       "image": ""
     },
     {
       "korean": "자정에 카운트다운을 해요.",
       "english": "We do a countdown at midnight.",
-      "audio": "audio/jan-cp/02.mp3",
+      "audio": "data/audio/jan-cp/02.mp3",
       "image": ""
     },
     {
       "korean": "새해 결심을 씁니다.",
       "english": "I write a New Year's resolution.",
-      "audio": "audio/jan-cp/03.mp3",
+      "audio": "data/audio/jan-cp/03.mp3",
       "image": ""
     },
     {
       "korean": "불꽃놀이가 하늘을 밝혀요.",
       "english": "Fireworks light up the sky.",
-      "audio": "audio/jan-cp/04.mp3",
+      "audio": "data/audio/jan-cp/04.mp3",
       "image": ""
     },
     {
       "korean": "풍선과 색종이로 파티를 해요.",
       "english": "We party with balloons and confetti.",
-      "audio": "audio/jan-cp/05.mp3",
+      "audio": "data/audio/jan-cp/05.mp3",
       "image": ""
     }
   ]

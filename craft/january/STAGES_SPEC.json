@@ -2,23 +2,11 @@
   "id": "craft_january_newyear",
   "title": "New Year's Party Craft",
   "month": "01",
-  "targetMinutes": [10, 14],
-  "fairness": "luck_and_clicks_only",
-  "languages": { "ui": ["en", "ko"], "default": "en", "listeningPrimary": "en" },
-  "leaderboard": { "key": "culture_craft_jan_newyear_v1", "sort": "fastestTime", "tieBreak": "misses" },
-  "betweenStage": { "animation": "stage_movie_after_complete", "skipAllowed": false, "durationSec": 3 },
+  "narrator": "Coach Ray Fish 76bb6ae7b26c41fbbd484514fdb014c2",
+  "audioDir": "assets/audio/coach/",
+  "leaderboard": { "key": "culture_craft_jan_newyear_v2" },
   "stages": [
-    { "id": 1, "key": "patch", "title": "Hang balloons", "type": "luck_hunt", "poolSize": 30, "goodCount": 1 },
-    { "id": 2, "key": "wash", "title": "Set party table", "type": "mash", "clicks": 50 },
-    { "id": 3, "key": "scoop", "title": "Snacks and juice", "type": "mash", "clicks": 60 },
-    { "id": 4, "key": "pin", "title": "Pick party hat", "type": "guided_mash", "clicks": 70, "facePresets": 4 },
-    { "id": 5, "key": "cut", "title": "Noisemakers", "type": "mash", "clicks": 55 },
-    { "id": 6, "key": "countdown", "title": "Midnight countdown", "type": "countdown", "clicks": 10 },
-    { "id": 7, "key": "house", "title": "Ball drop", "type": "luck_hunt", "poolSize": 16, "goodCount": 1 },
-    { "id": 8, "key": "light", "title": "Throw confetti", "type": "mash", "clicks": 40 },
-    { "id": 9, "key": "carve", "title": "Write resolution", "type": "guided_mash", "clicks": 80 },
-    { "id": 10, "key": "candy", "title": "Toast", "type": "mash", "clicks": 30, "endsRun": true }
-  ],
-  "narrator": "Coach Ray (Fish pre-baked mp3 under assets/audio/frank/ — swap to coach/ when baked)",
-  "modularity": "Driven by stages.json; January countdown type in js/scenes.js"
+    "balloons", "table", "snacks", "hats", "noisemakers",
+    "countdown", "balldrop", "confetti", "resolution", "toast"
+  ]
 }

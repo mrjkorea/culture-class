@@ -1,29 +1,27 @@
 /**
- * Frank host voice: Fish Audio pre-baked MP3s only (no Web Speech).
- * manifest.audio[clipKey] → path under assets/.
+ * Coach Ray host: Fish pre-baked MP3s in assets/audio/coach/ only.
  */
 
-export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
+export function createSpeech(manifest = {}, assetBase = "") {
   let enabled = true;
-  let lastMiss = 0;
   let flapTimer = 0;
-  let frankImg = null;
-  let frankOpenUrl = "";
-  let frankClosedUrl = "";
+  let coachImg = null;
+  let coachOpenUrl = "";
+  let coachClosedUrl = "";
   let speaking = false;
   let activeAudio = null;
 
-  function setFrank(img, urls) {
-    frankImg = img || null;
-    frankOpenUrl = urls?.open || "";
-    frankClosedUrl = urls?.closed || "";
-    if (frankImg && frankClosedUrl) frankImg.src = frankClosedUrl;
+  function setCoach(img, urls) {
+    coachImg = img || null;
+    coachOpenUrl = urls?.open || "";
+    coachClosedUrl = urls?.closed || "";
+    if (coachImg && coachClosedUrl) coachImg.src = coachClosedUrl;
   }
 
   function setMouth(open) {
-    if (!frankImg || !frankOpenUrl || !frankClosedUrl) return;
-    frankImg.src = open ? frankOpenUrl : frankClosedUrl;
-    frankImg.closest(".frank-host")?.classList.toggle("is-talking", open);
+    if (!coachImg || !coachOpenUrl || !coachClosedUrl) return;
+    coachImg.src = open ? coachOpenUrl : coachClosedUrl;
+    coachImg.closest(".coach-host")?.classList.toggle("is-talking", open);
   }
 
   function startFlap() {
@@ -40,7 +38,7 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
     flapTimer = 0;
     setMouth(false);
     speaking = false;
-    frankImg?.closest(".frank-host")?.classList.remove("is-talking");
+    coachImg?.closest(".coach-host")?.classList.remove("is-talking");
   }
 
   function clipUrl(clipKey) {
@@ -54,7 +52,6 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
     if (!url) return Promise.resolve(false);
     return new Promise((resolve) => {
       const audio = new Audio(url);
-      audio.volume = Number(tts.volume ?? 1);
       if (!overlap) {
         try {
           activeAudio?.pause();
@@ -80,44 +77,22 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
         done();
         return;
       }
-      audio.play().catch(() => done());
+      audio.play().catch(done);
     });
   }
 
-  function unlock() {
-    /* gesture unlock for HTMLAudioElement */
-  }
-
-  function speak(_text, opts = {}) {
-    if (!enabled) return Promise.resolve();
-    if (opts.miss) {
-      const now = performance.now();
-      if (now - lastMiss < (tts.missDebounceMs || 1200)) return Promise.resolve();
-      lastMiss = now;
-    }
+  function speak(text, opts = {}) {
     const clipKey = opts.clipKey;
     if (clipKey && manifest?.audio?.[clipKey]) {
       return playClip(clipKey);
     }
-    return Promise.resolve();
+    return Promise.resolve(false);
   }
 
-  function playKidTrickOrTreat() {
-    const keys = [
-      "kid_maya_tot",
-      "kid_leo_tot",
-      "kid_little_boy_tot",
-      "kid_little_girl_tot",
-      "kid_teen_boy_tot",
-    ];
-    keys.forEach((key, i) => {
-      window.setTimeout(() => playClip(key, { overlap: true }), i * 220);
-    });
-  }
-
-  function setEnabled(next) {
-    enabled = Boolean(next);
-    if (!enabled) {
+  return {
+    speak,
+    playClip,
+    stop() {
       try {
         activeAudio?.pause();
       } catch {
@@ -125,29 +100,17 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
       }
       activeAudio = null;
       stopFlap();
-    }
-  }
-
-  function stop() {
-    try {
-      activeAudio?.pause();
-    } catch {
-      /* ignore */
-    }
-    activeAudio = null;
-    stopFlap();
-  }
-
-  return {
-    speak,
-    playClip,
-    playKidTrickOrTreat,
-    unlock,
-    stop,
-    setEnabled,
-    setFrank,
+    },
+    setCoach,
+    setEnabled(on) {
+      enabled = Boolean(on);
+      if (!enabled) this.stop();
+    },
     get enabled() {
       return enabled;
+    },
+    unlock() {
+      playClip("intro", { overlap: true }).catch(() => {});
     },
   };
 }
