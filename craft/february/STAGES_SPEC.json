@@ -1,0 +1,12 @@
+{
+  "id": "craft_february_valentine",
+  "title": "Valentine Card Craft",
+  "month": "02",
+  "narrator": "Miss Harper Fish 736de7d32d7949469ba4664bce9f3f32",
+  "audioDir": "assets/audio/harper/",
+  "leaderboard": { "key": "culture_craft_feb_valentine_v1" },
+  "stages": [
+    "color", "fold", "stamp", "stickers", "write",
+    "seal", "address", "drop", "open", "candy"
+  ]
+}

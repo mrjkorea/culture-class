@@ -38,7 +38,7 @@ const THEMES = {
   },
   valentine: {
     bodyClass: "theme-valentine",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/valentine.css",
     mapImage: "assets/covers/02-valentine-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(255,150,180,0.55)",

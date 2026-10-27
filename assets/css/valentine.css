@@ -1,0 +1,39 @@
+/* February / Valentine themed month — map + words flow */
+@import url("./month-theme-shell.css");
+
+body.theme-valentine {
+  background: radial-gradient(ellipse at 50% 0%, #6b1d45 0%, #2a0f1f 50%, #120810 100%);
+  color: #fff5f8;
+}
+
+.theme-valentine .site-footer,
+.theme-valentine .hint {
+  color: rgba(255, 220, 235, 0.78);
+}
+
+.theme-valentine .map-title h1 {
+  text-shadow: 0 0 24px rgba(255, 107, 157, 0.5);
+}
+
+.theme-valentine .map-title p {
+  color: #ffb3c6;
+}
+
+.theme-valentine .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(200, 60, 120, 0.2);
+}
+
+.theme-valentine .map-node-emoji {
+  background: linear-gradient(145deg, #ff8fab, #e64980);
+  border-color: #ffd6e7;
+  box-shadow: 0 0 18px rgba(255, 107, 157, 0.55);
+}
+
+.theme-valentine .map-back {
+  color: rgba(255, 220, 235, 0.9);
+}
+
+.theme-valentine .themed-panel {
+  background: rgba(60, 20, 40, 0.72);
+  border-color: rgba(255, 150, 180, 0.35);
+}
