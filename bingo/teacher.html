@@ -16,6 +16,7 @@
       getMonthIdFromQuery,
       loadMonthsMeta,
       loadWordPool,
+      playBingoTermAudio,
       shuffle,
     } from "../js/bingo.js";
     import { repoRoot } from "../js/paths.js";
@@ -55,10 +56,11 @@
         <p class="hint">Called: <strong id="called-count">${called.size}</strong> / ${terms.length}</p>
         <footer class="site-footer">Bingo v0 — offline · Firebase sync later</footer>`;
 
-      document.getElementById("pool").addEventListener("click", (e) => {
+      document.getElementById("pool").addEventListener("click", async (e) => {
         const btn = e.target.closest("[data-word]");
         if (!btn) return;
         const w = btn.getAttribute("data-word");
+        await playBingoTermAudio(monthId, w);
         if (called.has(w)) called.delete(w);
         else called.add(w);
         render();

@@ -1,0 +1,194 @@
+{
+  "id": "culture_m10",
+  "title": "October · Halloween",
+  "source": "Halloween_Bingo.pdf caller card + NOTES",
+  "note": "Primary bingo/Learn set.",
+  "words": [
+    {
+      "id": "c10_01",
+      "en": "Pumpkin",
+      "ko": "호박",
+      "audio": "audio/oct-words/pumpkin.mp3"
+    },
+    {
+      "id": "c10_02",
+      "en": "Broom",
+      "ko": "빗자루",
+      "audio": "audio/oct-words/broom.mp3"
+    },
+    {
+      "id": "c10_03",
+      "en": "jack-o-lantern",
+      "ko": "잭오랜턴",
+      "audio": "audio/oct-words/jack_o_lantern.mp3"
+    },
+    {
+      "id": "c10_04",
+      "en": "Haunted house",
+      "ko": "유령의 집",
+      "audio": "audio/oct-words/haunted_house.mp3"
+    },
+    {
+      "id": "c10_05",
+      "en": "Witch",
+      "ko": "마녀",
+      "audio": "audio/oct-words/witch.mp3"
+    },
+    {
+      "id": "c10_06",
+      "en": "black cat",
+      "ko": "검은 고양이",
+      "audio": "audio/oct-words/black_cat.mp3"
+    },
+    {
+      "id": "c10_07",
+      "en": "fortune teller",
+      "ko": "점쟁이",
+      "audio": "audio/oct-words/fortune_teller.mp3"
+    },
+    {
+      "id": "c10_08",
+      "en": "Trick or Treat!",
+      "ko": "트릭 오어 트리트",
+      "audio": "audio/oct-words/trick_or_treat.mp3"
+    },
+    {
+      "id": "c10_09",
+      "en": "Candle",
+      "ko": "양초",
+      "audio": "audio/oct-words/candle.mp3"
+    },
+    {
+      "id": "c10_10",
+      "en": "Autumn",
+      "ko": "가을",
+      "audio": "audio/oct-words/autumn.mp3"
+    },
+    {
+      "id": "c10_11",
+      "en": "Costume",
+      "ko": "의상",
+      "audio": "audio/oct-words/costume.mp3"
+    },
+    {
+      "id": "c10_12",
+      "en": "Mask",
+      "ko": "가면",
+      "audio": "audio/oct-words/mask.mp3"
+    },
+    {
+      "id": "c10_13",
+      "en": "Skeleton",
+      "ko": "해골",
+      "audio": "audio/oct-words/skeleton.mp3"
+    },
+    {
+      "id": "c10_14",
+      "en": "Carve",
+      "ko": "조각하다",
+      "audio": "audio/oct-words/carve.mp3"
+    },
+    {
+      "id": "c10_15",
+      "en": "Ghost",
+      "ko": "유령",
+      "audio": "audio/oct-words/ghost.mp3"
+    },
+    {
+      "id": "c10_16",
+      "en": "Bones",
+      "ko": "뼈",
+      "audio": "audio/oct-words/bones.mp3"
+    },
+    {
+      "id": "c10_17",
+      "en": "Pirate",
+      "ko": "해적",
+      "audio": "audio/oct-words/pirate.mp3"
+    },
+    {
+      "id": "c10_18",
+      "en": "Mummy",
+      "ko": "미라",
+      "audio": "audio/oct-words/mummy.mp3"
+    },
+    {
+      "id": "c10_19",
+      "en": "Vampire",
+      "ko": "뱀파이어",
+      "audio": "audio/oct-words/vampire.mp3"
+    },
+    {
+      "id": "c10_20",
+      "en": "Werewolf",
+      "ko": "늑대인간",
+      "audio": "audio/oct-words/werewolf.mp3"
+    },
+    {
+      "id": "c10_21",
+      "en": "Full Moon",
+      "ko": "보름달",
+      "audio": "audio/oct-words/full_moon.mp3"
+    },
+    {
+      "id": "c10_22",
+      "en": "Decorations",
+      "ko": "장식품",
+      "audio": "audio/oct-words/decorations.mp3"
+    },
+    {
+      "id": "c10_23",
+      "en": "Monster",
+      "ko": "괴물",
+      "audio": "audio/oct-words/monster.mp3"
+    },
+    {
+      "id": "c10_24",
+      "en": "Graveyard",
+      "ko": "묘지",
+      "audio": "audio/oct-words/graveyard.mp3"
+    },
+    {
+      "id": "c10_25",
+      "en": "Wizard",
+      "ko": "마법사",
+      "audio": "audio/oct-words/wizard.mp3"
+    },
+    {
+      "id": "c10_26",
+      "en": "Zombie",
+      "ko": "좀비",
+      "audio": "audio/oct-words/zombie.mp3"
+    },
+    {
+      "id": "c10_27",
+      "en": "Goblin",
+      "ko": "도깨비",
+      "audio": "audio/oct-words/goblin.mp3"
+    },
+    {
+      "id": "c10_28",
+      "en": "devil",
+      "ko": "악마",
+      "audio": "audio/oct-words/devil.mp3"
+    },
+    {
+      "id": "c10_29",
+      "en": "Bat",
+      "ko": "박쥐",
+      "audio": "audio/oct-words/bat.mp3"
+    },
+    {
+      "id": "c10_30",
+      "en": "Trick",
+      "ko": "속임수",
+      "audio": "audio/oct-words/trick.mp3"
+    },
+    {
+      "id": "c10_31",
+      "en": "Potion",
+      "ko": "물약",
+      "audio": "audio/oct-words/potion.mp3"
+    }
+  ]
+}

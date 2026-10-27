@@ -1,5 +1,17 @@
-import { bingoUrl, climbUrl, cpSpeakUrl, dataUrl, repoRoot, wordsLearnUrl, wordsMemoryUrl } from "./paths.js";
-import { isLearnDone, monthHasBuiltinWords } from "./words-data.js";
+import {
+  bingoUrl,
+  climbUrl,
+  cpSpeakUrl,
+  dailyQuizUrl,
+  dataUrl,
+  monthPageUrl,
+  repoRoot,
+  wordsLearnUrl,
+  wordsMatchUrl,
+  wordsMeetUrl,
+  wordsMemoryUrl,
+} from "./paths.js";
+import { monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
@@ -26,9 +38,9 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-function stepBlock(num, title, desc, bodyHtml) {
+function stepBlock(num, title, desc, bodyHtml, extraClass = "") {
   return `
-    <article class="step" id="step-${num}">
+    <article class="step ${extraClass}" id="step-${num}">
       <div class="step-header">
         <div class="step-num">${num}</div>
         <div>
@@ -40,10 +52,16 @@ function stepBlock(num, title, desc, bodyHtml) {
     </article>`;
 }
 
-function renderMonth(month, wordsPreview) {
+function climbHref(month, unitId) {
+  const base = climbUrl(unitId);
+  const back = encodeURIComponent(monthPageUrl(month.slug));
+  return `${base}${base.includes("?") ? "&" : "?"}back=${back}`;
+}
+
+function renderDefaultMonth(month, wordsPreview) {
   const root = repoRoot();
-  const climbWords = climbUrl(month.unitId);
-  const climbShow = climbUrl(month.showUnitId);
+  const climbWords = climbHref(month, month.unitId);
+  const climbShow = climbHref(month, month.showUnitId);
   const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
   const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
 
@@ -92,23 +110,17 @@ function renderMonth(month, wordsPreview) {
     learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until the month word list exists.</p>`;
   }
 
-  const memoryUnlocked = builtinWords ? isLearnDone(month.id) : month.wordMasterMatchUrl !== "#";
   const memoryHref = builtinWords
     ? wordsMemoryUrl(month.id)
     : month.wordMasterMatchUrl;
-  const memoryBtnClass = memoryUnlocked ? "btn btn-primary" : "btn btn-primary disabled";
-  const memoryAria = memoryUnlocked ? "" : ' aria-disabled="true" tabindex="-1"';
   const matchHint = builtinWords
-    ? memoryUnlocked
-      ? "Matching game — all words in fixed rounds (finish Learn once on this device to unlock)."
-      : "Finish Learn on this device first to unlock Memory."
+    ? "Matching game — all words in fixed rounds. Open anytime."
     : month.wordMasterMatchUrl === "#"
       ? "Memory match — wired when the month word list is published."
       : "Memory match / pairing game (same pack as Learn).";
   const matchStepBody = `
     <div class="step-actions">
-      <a class="${memoryBtnClass}" href="${escapeHtml(memoryHref)}"${memoryAria}>Memory</a>
-      ${builtinWords && !memoryUnlocked ? `<a class="btn btn-secondary" href="${escapeHtml(wordsLearnUrl(month.id))}">Go to Learn</a>` : ""}
+      <a class="btn btn-primary" href="${escapeHtml(memoryHref)}">Memory</a>
     </div>
     <p class="hint">${matchHint}</p>`;
 
@@ -148,7 +160,7 @@ function renderMonth(month, wordsPreview) {
     stepBlock(
       3,
       "Words — Memory",
-      builtinWords ? "Matching game — unlock after Learn" : "Matching game",
+      builtinWords ? "Matching game" : "Matching game",
       matchStepBody
     ),
     stepBlock(
@@ -158,7 +170,7 @@ function renderMonth(month, wordsPreview) {
       `<div class="step-actions">
         <a class="btn btn-primary" href="${escapeHtml(climbWords)}" target="_blank" rel="noopener">Open Mountain Climb</a>
       </div>
-      <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code> (quiz data may be added on the climb server later).</p>`
+      <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code></p>`
     ),
     stepBlock(
       5,
@@ -189,31 +201,162 @@ function renderMonth(month, wordsPreview) {
     stepBlock(
       8,
       "Bingo",
-      "Teacher calls words; students mark cards (v0 offline)",
+      "Teacher calls words; students mark cards",
       `<div class="step-actions">
         <a class="btn btn-primary" href="${escapeHtml(bingoTeacher)}">Teacher — call list</a>
         <a class="btn btn-secondary" href="${escapeHtml(bingoStudent)}">Student — bingo card</a>
       </div>
-      <p class="hint">v0: no login or Firebase yet — teacher projects the call list; students use local cards on their devices.</p>`
-    ),
-    stepBlock(
-      9,
-      "Notes",
-      "Month overview",
-      `<div class="notes-block">${escapeHtml(month.notes)}</div>`
+      <p class="hint">FREE center square · tap words on student cards to hear audio when available.</p>`
     ),
   ];
 
+  if (!month.hideNotes && month.notes) {
+    steps.push(
+      stepBlock(
+        steps.length + 1,
+        "Notes",
+        "Month overview",
+        `<div class="notes-block">${escapeHtml(month.notes)}</div>`
+      )
+    );
+  }
+
+  return { steps, pilotBadge, craftHref, heroCover: "" };
+}
+
+function renderHalloweenMonth(month) {
+  const root = repoRoot();
+  const climbWords = climbHref(month, month.unitId);
+  const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
+  const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
+  const craftHref = `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
+  const cover = month.coverImage
+    ? `${root}/${month.coverImage.replace(/^\/+/, "")}`
+    : "";
+
+  const wordsBody = `
+    <div class="step-actions word-master-row">
+      <a class="btn btn-primary" href="${escapeHtml(wordsMeetUrl(month.id))}">Meet the words</a>
+      <a class="btn btn-primary" href="${escapeHtml(wordsMatchUrl(month.id))}">Match</a>
+      <a class="btn btn-primary" href="${escapeHtml(wordsLearnUrl(month.id))}">Learn</a>
+    </div>
+    <p class="hint">31 Halloween words · Fish Jay TTS · emoji art cards. Do Meet → Match → Learn in any order — all open.</p>`;
+
+  const steps = [
+    stepBlock(
+      1,
+      "MRJ Daily",
+      "Halloween culture intro — watch, then take the quiz",
+      renderIntroVideosHtml(month),
+      "step-daily"
+    ),
+    stepBlock(
+      2,
+      "Daily quiz",
+      "5 questions after the video",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(dailyQuizUrl(month.id))}">Start quiz</a>
+      </div>
+      <p class="hint">Retake anytime · scores saved on this device · EN/KO explanations after mistakes.</p>`,
+      "step-quiz"
+    ),
+    stepBlock(
+      3,
+      "Words",
+      "Meet → Match → Learn (Word Master order)",
+      wordsBody,
+      "step-words"
+    ),
+    stepBlock(
+      4,
+      "Memory",
+      "Timer + mini leaderboard",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(wordsMemoryUrl(month.id))}">Play Memory</a>
+      </div>
+      <p class="hint">Match English &amp; Korean under the clock. Best times saved locally.</p>`,
+      "step-memory"
+    ),
+    stepBlock(
+      5,
+      "Mountain Climb",
+      "Full animation quiz on Halloween vocabulary",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(climbWords)}">Open Mountain Climb</a>
+      </div>
+      <p class="hint">Same climb experience as conversation class — videos, trail, and 🧗 climber.</p>`,
+      "step-climb"
+    ),
+    stepBlock(
+      6,
+      "CP Speak",
+      "Hear → Speak · pass at 60%",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(cpSpeakUrl(month.id))}">CP Speak practice</a>
+      </div>
+      <p class="hint">Day 4 style — Korean cue, English speech, Citrinet scoring.</p>`,
+      "step-cp"
+    ),
+    stepBlock(
+      7,
+      "Jack-o'-lantern Craft",
+      "10-stage pumpkin mini-game",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(craftHref)}">${escapeHtml(month.craftButton || "Play craft")}</a>
+      </div>
+      <p class="hint">${escapeHtml(month.craftBlurb || month.featureDetail || "")}</p>`,
+      "step-craft"
+    ),
+    stepBlock(
+      8,
+      "Bingo",
+      "FREE center · tap to hear words",
+      `<div class="step-actions">
+        <a class="btn btn-primary" href="${escapeHtml(bingoTeacher)}">Teacher — call list</a>
+        <a class="btn btn-secondary" href="${escapeHtml(bingoStudent)}">Student — bingo card</a>
+      </div>
+      <p class="hint">Loud, repeatable word audio on every cell. 4×4 card with FREE in the middle.</p>`,
+      "step-bingo"
+    ),
+  ];
+
+  const heroCover = cover
+    ? `<div class="month-cover" style="background-image:url('${escapeHtml(cover)}')"></div>`
+    : "";
+
+  return {
+    steps,
+    pilotBadge: "",
+    craftHref,
+    heroCover,
+    halloween: true,
+  };
+}
+
+function renderMonth(month, wordsPreview) {
+  const root = repoRoot();
+  const isHalloween = month.monthLayout === "halloween" || month.id === "10";
+  const layout = isHalloween
+    ? renderHalloweenMonth(month)
+    : renderDefaultMonth(month, wordsPreview);
+
+  const { steps, pilotBadge, craftHref, heroCover } = layout;
+
+  if (isHalloween) {
+    document.body.classList.add("theme-halloween");
+  }
+
   document.getElementById("app").innerHTML = `
-    <div class="wrap">
+    <div class="wrap ${isHalloween ? "wrap-halloween" : ""}">
       <a class="back-link" href="${root}/">← All months</a>
-      <header class="site-header month-hero">
+      ${heroCover || ""}
+      <header class="site-header month-hero ${isHalloween ? "month-hero-halloween" : ""}">
         <h2>${escapeHtml(month.name)}</h2>
         <div class="theme-tag">${escapeHtml(month.theme)}</div>
         ${pilotBadge}
       </header>
       ${
-        month.craftPath
+        month.craftPath && !isHalloween
           ? `<a class="craft-callout" href="${escapeHtml(craftHref)}">
               <span class="craft-kicker">Play in class</span>
               <strong>${escapeHtml(month.craftTitle || "Craft")}</strong>
@@ -221,10 +364,10 @@ function renderMonth(month, wordsPreview) {
             </a>`
           : ""
       }
-      <section class="steps" aria-label="Lesson steps">
+      <section class="steps steps-halloween" aria-label="Lesson steps">
         ${steps.join("")}
       </section>
-      <footer class="site-footer">Culture Class · MRJ ENGLISH · No sign-in required (v1)</footer>
+      <footer class="site-footer">Culture Class · MRJ ENGLISH · No sign-in required</footer>
     </div>`;
 
   document.title = `Culture Class — ${month.name}: ${month.theme}`;

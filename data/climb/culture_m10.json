@@ -1,0 +1,289 @@
+{
+  "id": "culture_m10",
+  "kind": "culture",
+  "title": "Culture · October · Halloween Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m10"
+  ],
+  "wordAudio": "",
+  "picDir": "",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "호박"
+      },
+      "choices": [
+        "Broom",
+        "Vampire",
+        "jack-o-lantern",
+        "Pumpkin"
+      ],
+      "answer": "Pumpkin"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "빗자루"
+      },
+      "choices": [
+        "Broom",
+        "Bones",
+        "Witch",
+        "Werewolf"
+      ],
+      "answer": "Broom"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "잭오랜턴"
+      },
+      "choices": [
+        "Pumpkin",
+        "jack-o-lantern",
+        "fortune teller",
+        "Goblin"
+      ],
+      "answer": "jack-o-lantern"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "유령의 집"
+      },
+      "choices": [
+        "Haunted house",
+        "Bat",
+        "Costume",
+        "Ghost"
+      ],
+      "answer": "Haunted house"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "마녀"
+      },
+      "choices": [
+        "Witch",
+        "Wizard",
+        "Mask",
+        "Pirate"
+      ],
+      "answer": "Witch"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "검은 고양이"
+      },
+      "choices": [
+        "Bat",
+        "Skeleton",
+        "Witch",
+        "black cat"
+      ],
+      "answer": "black cat"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "점쟁이"
+      },
+      "choices": [
+        "Werewolf",
+        "Full Moon",
+        "Broom",
+        "fortune teller"
+      ],
+      "answer": "fortune teller"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "트릭 오어 트리트"
+      },
+      "choices": [
+        "Bat",
+        "Candle",
+        "Trick or Treat!",
+        "Zombie"
+      ],
+      "answer": "Trick or Treat!"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "양초"
+      },
+      "choices": [
+        "Autumn",
+        "Candle",
+        "Trick",
+        "Bones"
+      ],
+      "answer": "Candle"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "가을"
+      },
+      "choices": [
+        "Autumn",
+        "Werewolf",
+        "Pirate",
+        "Goblin"
+      ],
+      "answer": "Autumn"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "의상"
+      },
+      "choices": [
+        "black cat",
+        "Mask",
+        "Pumpkin",
+        "Costume"
+      ],
+      "answer": "Costume"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "가면"
+      },
+      "choices": [
+        "Mask",
+        "Goblin",
+        "Bat",
+        "Ghost"
+      ],
+      "answer": "Mask"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "해골"
+      },
+      "choices": [
+        "Costume",
+        "Mask",
+        "Decorations",
+        "Skeleton"
+      ],
+      "answer": "Skeleton"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "조각하다"
+      },
+      "choices": [
+        "black cat",
+        "Carve",
+        "fortune teller",
+        "Zombie"
+      ],
+      "answer": "Carve"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "유령"
+      },
+      "choices": [
+        "Broom",
+        "Ghost",
+        "Vampire",
+        "Werewolf"
+      ],
+      "answer": "Ghost"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "뼈"
+      },
+      "choices": [
+        "Potion",
+        "Costume",
+        "Bat",
+        "Bones"
+      ],
+      "answer": "Bones"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "해적"
+      },
+      "choices": [
+        "Pumpkin",
+        "Haunted house",
+        "Monster",
+        "Pirate"
+      ],
+      "answer": "Pirate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "미라"
+      },
+      "choices": [
+        "devil",
+        "jack-o-lantern",
+        "Mask",
+        "Mummy"
+      ],
+      "answer": "Mummy"
+    }
+  ]
+}

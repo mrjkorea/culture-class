@@ -1,5 +1,6 @@
 import { dataUrl, repoRoot } from "./paths.js";
-import { normalizeWordTerms } from "./word-list.js";
+import { normalizeWordEntries, normalizeWordTerms } from "./word-list.js";
+import { playWordAudio, playTermAudioFromPack } from "./word-audio.js";
 
 const DEFAULT_POOL = [
   "culture",
@@ -23,6 +24,8 @@ export async function loadWordPool(monthId) {
     const wRes = await fetch(dataUrl(month.wordsPreviewFile));
     if (wRes.ok) {
       const words = await wRes.json();
+      const entries = normalizeWordEntries(words);
+      if (entries.length) return entries;
       const terms = normalizeWordTerms(words);
       if (terms.length) return terms;
     }
@@ -56,4 +59,26 @@ export async function loadMonthsMeta() {
   const res = await fetch(dataUrl("months.json"));
   if (!res.ok) return null;
   return res.json();
+}
+
+let _wordPackCache = null;
+
+export async function loadWordPack(monthId) {
+  const meta = await loadMonthsMeta();
+  const month = meta?.months?.find((m) => m.id === monthId);
+  if (!month?.wordsPreviewFile) return null;
+  const wRes = await fetch(dataUrl(month.wordsPreviewFile));
+  if (!wRes.ok) return null;
+  return wRes.json();
+}
+
+export async function playBingoTermAudio(monthId, term) {
+  if (!_wordPackCache) _wordPackCache = await loadWordPack(monthId);
+  if (_wordPackCache) {
+    const ok = await playTermAudioFromPack(_wordPackCache, term);
+    if (ok) return;
+  }
+  const pool = await loadWordPool(monthId);
+  const entry = pool.find((t) => String(t.term).toLowerCase() === String(term).toLowerCase());
+  if (entry?.audio) await playWordAudio(entry, { volume: 1 });
 }
