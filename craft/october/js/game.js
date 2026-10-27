@@ -1,4 +1,4 @@
-import { transitionUrl, loadCraft } from "./assets.js";
+import { loadCraft, transitionVideoUrl } from "./assets.js";
 import { prepareFaces } from "./faces.js";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
 import { mountStage } from "./scenes.js";
@@ -7,6 +7,7 @@ import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
 
 const LANG_KEY = "culture_craft_oct_pumpkin_v1_ui";
+const COUNTDOWN_SEC = 3;
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
@@ -81,12 +82,22 @@ function fill(template) {
   return String(template || "").split("{candies}").join(String(candyCount()));
 }
 
-function listenKo() {
-  return spec.languages?.listeningPrimary === "ko";
+function spoken(block) {
+  return uiLang === "ko" ? block.ko : block.en;
 }
 
-function spoken(block) {
-  return listenKo() ? block.ko : block.en;
+function clipKeyFor(stage, lineIndex) {
+  if (!stage) return "";
+  const key = stage.key;
+  if (lineIndex === 1 && stage.type === "luck_hunt") return `${key}_miss`;
+  const suffix = lineIndex === 0 ? "start" : lineIndex === 1 ? "mid" : "win";
+  return `${key}_${suffix}`;
+}
+
+function speakLine(stage, block, lineIndex, opts = {}) {
+  const text = spoken(block)[lineIndex] || "";
+  const clipKey = opts.clipKey || (stage ? clipKeyFor(stage, lineIndex) : "pin_start");
+  return speech.speak(text, { ...opts, clipKey });
 }
 
 function pickBlock() {
@@ -127,16 +138,15 @@ function showLines(block, index, alert = false) {
 
 function paintLines() {
   if (!lineState) return;
-  const order = uiLang === "ko" ? ["ko", "en"] : ["en", "ko"];
+  const lang = uiLang === "ko" ? "ko" : "en";
   const a = document.getElementById("line-a");
   const b = document.getElementById("line-b");
   if (!a || !b) return;
-  a.textContent = lineState.block[order[0]][lineState.index] || "";
-  a.lang = order[0];
-  b.textContent = lineState.block[order[1]][lineState.index] || "";
-  b.lang = order[1];
+  a.textContent = lineState.block[lang][lineState.index] || "";
+  a.lang = lang;
+  b.textContent = "";
+  b.hidden = true;
   a.classList.toggle("is-alert", Boolean(lineState.alert));
-  b.classList.toggle("is-alert", Boolean(lineState.alert));
   const live = document.getElementById("live");
   if (live) live.textContent = a.textContent;
 }
@@ -199,13 +209,11 @@ function renderTitle(keepName) {
   view.dataset.screen = "title";
   view.dataset.stageKey = "";
   view.dataset.phase = "title";
-  const other = uiLang === "ko" ? "en" : "ko";
   view.innerHTML = `<section class="card title-card">
     <div class="title-art">${pumpkinSvg("title")}</div>
     <h1>${esc(spec.title)}</h1>
-    <p class="brand">${esc(spec.uiCopy.en.classTag)}</p>
+    <p class="brand">${esc(t("classTag"))}</p>
     <p class="how">${esc(fill(t("how")))}</p>
-    <p class="how mini" lang="${other}">${esc(fill(spec.uiCopy[other].how))}</p>
     <p class="hint">${esc(t("beatNote"))}</p>
     <form id="nick-form">
       <label for="nick">${esc(t("nickname"))}</label>
@@ -263,9 +271,10 @@ async function runGame(name) {
   state = { name, misses: 0, faceId: null, face: null, phase: "transition", saved: false, entry: null };
   timer.reset();
   for (let i = 0; i < spec.stages.length; i += 1) {
-    await showTransition(spec.stages[i], spec.transitions[i], i);
+    await showCountdown(spec.stages[i], spec.transitions[i], i);
     await playStage(spec.stages[i], i);
   }
+  await playHighlightReel();
   showResults();
 }
 
@@ -277,15 +286,14 @@ function stageShell(stage, index) {
     <div class="hud">
       <div class="hud-row">
         <div class="pips" aria-hidden="true">${pips}</div>
-        <h2 id="stage-label">${esc(`${index + 1}/${spec.stages.length} ${stage.title}`)}</h2>
-        <p id="stage-ko" class="mini" lang="ko">${esc(stage.titleKo || "")}</p>
+        <h2 id="stage-label">${esc(`${index + 1}/${spec.stages.length} ${uiLang === "ko" ? stage.titleKo || stage.title : stage.title}`)}</h2>
         <div class="stats">
           <span id="timer">${esc(formatTime(timer.read()))}</span>
           <span id="misses"></span>
         </div>
       </div>
-      <p id="line-a" class="line"></p>
-      <p id="line-b" class="line mini"></p>
+      <p id="line-a" class="line line-single"></p>
+      <p id="line-b" class="line mini" hidden></p>
       <div class="bar" id="bar"><span id="progress-fill"></span></div>
       <p id="progress-label" class="progress-label"></p>
       <div class="frank-row">
@@ -330,6 +338,10 @@ function playStage(stage, index) {
       face: state.face,
       reducedMotion,
       sfx,
+      speech,
+      assetBase,
+      manifest,
+      uiLang,
       setFace(id) {
         state.faceId = id;
         state.face = faces.find((face) => face.id === id) || null;
@@ -339,7 +351,7 @@ function playStage(stage, index) {
         state.phase = "play";
         view.dataset.phase = "play";
         showLines(stage.lines, 0);
-        speech.speak(spoken(stage.lines)[0]);
+        speakLine(stage, stage.lines, 0);
       },
       onProgress(n, total) {
         paintProgress(stage, n, total);
@@ -347,7 +359,7 @@ function playStage(stage, index) {
         if (!mid && n < total && n / total >= midAt) {
           mid = true;
           showLines(stage.lines, 1);
-          speech.speak(spoken(stage.lines)[1]);
+          speakLine(stage, stage.lines, 1);
         }
       },
       onMiss() {
@@ -358,7 +370,7 @@ function playStage(stage, index) {
         if (stage.type !== "luck_hunt") return;
         const token = ++lineToken;
         showLines(stage.lines, 1, true);
-        speech.speak(spoken(stage.lines)[1], { miss: true });
+        speakLine(stage, stage.lines, 1, { miss: true });
         window.setTimeout(() => {
           if (token !== lineToken || state.phase !== "play") return;
           showLines(stage.lines, 0);
@@ -372,7 +384,7 @@ function playStage(stage, index) {
         sfx?.win?.();
         showLines(stage.lines, 2);
         const started = performance.now();
-        speech.speak(spoken(stage.lines)[2]).then(() => {
+        speakLine(stage, stage.lines, 2).then(() => {
           const wait = Math.max(0, 700 - (performance.now() - started));
           window.setTimeout(() => {
             handle?.destroy();
@@ -384,60 +396,45 @@ function playStage(stage, index) {
     if (stage.key === "pin") {
       state.phase = "pick";
       showLines(pickBlock(), 0);
-      speech.speak(spoken(pickBlock())[0]);
+      speakLine(stage, pickBlock(), 0);
     } else {
       state.phase = "play";
       showLines(stage.lines, 0);
-      speech.speak(spoken(stage.lines)[0]);
+      speakLine(stage, stage.lines, 0);
     }
     timer.resume();
     handle = mountStage(play, stage, ctx);
   });
 }
 
-function showTransition(stage, transition) {
-  const seconds = Number(transition?.durationSec);
-  const duration = Number.isFinite(seconds) ? seconds * 1000 : 10000;
-  const src = transitionUrl(assetBase, manifest, transition?.id);
+function showCountdown(stage, transition, index) {
+  const duration = COUNTDOWN_SEC * 1000;
+  const caption = transition?.caption || { en: stage.title, ko: stage.titleKo || stage.title };
+  const title = uiLang === "ko" ? caption.ko : caption.en;
   view.dataset.screen = "transition";
   view.dataset.stageKey = stage.key;
   view.dataset.phase = "transition";
   state.phase = "transition";
   timer.pause();
-  view.innerHTML = `<section class="still-screen">
-    <p class="still-time"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
-    <div class="still-frame">
-      <div class="still-fallback" aria-hidden="true"></div>
-      ${src ? `<img id="still" alt="" draggable="false">` : ""}
-      <div class="still-bar" aria-hidden="true"><span id="still-fill"></span></div>
-      <div class="still-caption">
-        <p class="kicker">${esc(stage.title)} · ${esc(stage.titleKo || "")}</p>
-        <p id="line-a" class="line"></p>
-        <p id="line-b" class="line mini"></p>
-        <p class="watch" id="watch"></p>
-        <div class="frank-host still-frank" id="frank-host" aria-hidden="true">
-          <img id="frank-img" alt="" width="64" height="64" decoding="async" />
-        </div>
+  view.innerHTML = `<section class="countdown-screen">
+    <p class="countdown-meta"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
+    <div class="countdown-card">
+      <p class="countdown-kicker">${esc(`${index + 1}/${spec.stages.length}`)}</p>
+      <p class="countdown-title">${esc(title)}</p>
+      <p class="countdown-num" id="count-num" aria-live="polite">3</p>
+      <div class="frank-host countdown-frank" id="frank-host" aria-hidden="true">
+        <img id="frank-img" alt="" width="56" height="56" decoding="async" />
       </div>
     </div>
   </section>`;
   paintMisses();
   wireFrank();
-  const caption = transition?.caption || { en: stage.title, ko: stage.titleKo || "" };
-  showLines({ en: [caption.en], ko: [caption.ko] }, 0);
-  const watch = document.getElementById("watch");
-  if (watch) watch.textContent = t("watch");
-  const img = document.getElementById("still");
-  if (img) {
-    img.addEventListener("error", () => img.remove());
-    img.src = src;
-  }
-  speech.speak(spoken({ en: [caption.en], ko: [caption.ko] })[0]);
-  return waitStill(duration);
+  speech.playClip("countdown");
+  return waitCountdown(duration);
 }
 
-function waitStill(duration) {
-  const fill = document.getElementById("still-fill");
+function waitCountdown(duration) {
+  const numEl = document.getElementById("count-num");
   let elapsed = 0;
   let last = performance.now();
   const onVis = () => {
@@ -451,12 +448,10 @@ function waitStill(duration) {
         resolve();
         return;
       }
-      if (!document.hidden) elapsed += Math.min(80, now - last);
+      if (!document.hidden) elapsed += now - last;
       last = now;
-      const pct = Math.max(0, Math.min(1, elapsed / duration));
-      if (fill) fill.style.width = `${pct * 100}%`;
-      const watch = document.getElementById("watch");
-      if (watch) watch.textContent = `${t("watch")} · ${Math.max(0, Math.ceil((duration - elapsed) / 1000))}`;
+      const left = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+      if (numEl) numEl.textContent = String(left || 1);
       if (elapsed >= duration) {
         document.removeEventListener("visibilitychange", onVis);
         resolve();
@@ -465,6 +460,57 @@ function waitStill(duration) {
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);
+  });
+}
+
+function playHighlightReel() {
+  const ids = spec.transitionStills || spec.transitions.map((tr) => tr.id);
+  return new Promise((resolve) => {
+    view.dataset.screen = "reel";
+    view.dataset.phase = "reel";
+    timer.pause();
+    view.innerHTML = `<section class="reel-screen">
+      <video id="reel-video" class="reel-video" playsinline muted></video>
+      <p class="reel-label" id="reel-label"></p>
+    </section>`;
+    const video = document.getElementById("reel-video");
+    const label = document.getElementById("reel-label");
+    if (!video) {
+      resolve();
+      return;
+    }
+    let i = 0;
+    const next = () => {
+      if (i >= ids.length) {
+        resolve();
+        return;
+      }
+      const id = ids[i];
+      const src = transitionVideoUrl(assetBase, manifest, id);
+      i += 1;
+      if (!src) {
+        next();
+        return;
+      }
+      if (label) label.textContent = `${i}/${ids.length}`;
+      video.src = src;
+      video.load();
+      const onEnd = () => {
+        video.removeEventListener("ended", onEnd);
+        video.removeEventListener("error", onEnd);
+        next();
+      };
+      video.addEventListener("ended", onEnd);
+      video.addEventListener("error", onEnd);
+      if (!speech.enabled) {
+        video.muted = true;
+      } else {
+        video.muted = false;
+        video.volume = Number(spec.tts?.volume ?? 1);
+      }
+      video.play().catch(onEnd);
+    };
+    next();
   });
 }
 
@@ -493,12 +539,12 @@ function renderResults() {
   view.dataset.screen = "results";
   view.dataset.stageKey = "";
   view.dataset.phase = "results";
-  const faceLabel = face ? `${face.label.en} · ${face.label.ko}` : "";
+  const faceLabel = face ? (uiLang === "ko" ? face.label.ko : face.label.en) : "";
   view.innerHTML = `<section class="card results-card" id="results">
     <div class="confetti" aria-hidden="true"></div>
     <p class="kicker">${esc(t("doneTitle"))}</p>
-    <h1 id="line-a"></h1>
-    <p id="line-b" class="mini"></p>
+    <h1 id="line-a" class="line-single"></h1>
+    <p id="line-b" class="mini" hidden></p>
     <p class="result-name"></p>
     <div class="result-grid">
       <div><span>${esc(t("yourTime"))}</span><strong>${esc(formatTime(entry.timeMs))}</strong></div>
@@ -610,7 +656,6 @@ async function init() {
     validate(spec, prepared);
     faces = prepared;
     const tts = { ...(spec.tts || {}) };
-    if (listenKo()) tts.lang = "ko-KR";
     sfx = createSfx();
     speech = createSpeech(tts, manifest, assetBase);
     preload();

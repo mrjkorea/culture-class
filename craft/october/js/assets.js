@@ -20,3 +20,15 @@ export function transitionUrl(assetBase, manifest, id) {
   if (!rel) return "";
   return new URL(rel, assetBase).href;
 }
+
+export function scene3dUrl(assetBase, manifest, key) {
+  const rel = manifest.scenes3d && manifest.scenes3d[key];
+  if (!rel) return "";
+  return new URL(rel, assetBase).href;
+}
+
+export function transitionVideoUrl(assetBase, manifest, id) {
+  const rel = manifest.transitionVideos && manifest.transitionVideos[id];
+  if (!rel) return "";
+  return new URL(rel, assetBase).href;
+}
