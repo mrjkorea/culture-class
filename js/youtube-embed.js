@@ -1,5 +1,11 @@
 const EMBED_BASE = "https://www.youtube-nocookie.com/embed/";
 
+function featureNocookieEmbedSrc(videoId) {
+  const id = encodeURIComponent(String(videoId).trim());
+  const origin = encodeURIComponent(window.location.origin);
+  return `${EMBED_BASE}${id}?cc_load_policy=1&cc_lang_pref=en&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${origin}`;
+}
+
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, "&amp;")
@@ -96,16 +102,28 @@ export function renderFeatureVideoHtml(month) {
   if (month.featureYoutubeId) {
     const title = month.featureTitle || month.featureLabel || "Feature video";
     const videoId = String(month.featureYoutubeId).trim();
-    const mountId = `yt-feature-${month.id || videoId}`;
+    const iframeId = `yt-feature-${month.id || videoId}`;
     const label = escapeHtml(title);
+    const iframeTitle = escapeHtml(title);
+    const src = featureNocookieEmbedSrc(videoId);
     return `
-      <div class="video-feature" data-youtube-feature-id="${escapeHtml(videoId)}" data-player-mount-id="${escapeHtml(mountId)}">
+      <div class="video-feature" data-youtube-feature-id="${escapeHtml(videoId)}" data-iframe-id="${escapeHtml(iframeId)}">
         <p class="video-slot-label">${label}</p>
-        <div class="video-embed youtube-feature-mount" id="${escapeHtml(mountId)}"></div>
-        <div class="video-toolbar">
-          <button type="button" class="btn btn-green-subtitles" data-green-subtitles aria-pressed="false">
-            Green subtitles
-          </button>
+        <div class="video-embed">
+          <iframe
+            id="${escapeHtml(iframeId)}"
+            src="${escapeHtml(src)}"
+            title="${iframeTitle}"
+            allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+        <div class="subs video-subs" role="group" aria-label="Subtitles">
+          <button type="button" class="sub on" data-cc="en">English</button>
+          <button type="button" class="sub" data-cc="ko">한국어</button>
+          <button type="button" class="sub" data-cc="off">Off</button>
         </div>
         <p class="hint video-attribution">${featureYoutubeCreditHtml(month, videoId)}</p>
       </div>`;
