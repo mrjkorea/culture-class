@@ -16,6 +16,7 @@
       getMonthIdFromQuery,
       loadMonthsMeta,
       loadWordPool,
+      playBingoTermAudio,
       shuffle,
     } from "../js/bingo.js";
 
@@ -69,19 +70,20 @@
           <h1>Bingo — Student</h1>
           <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Month ${monthId}</p>
         </header>
-        <p class="hint">Tap words when your teacher calls them. Mark <strong>FREE</strong> automatically. <a href="teacher.html?month=${monthId}">Teacher call list</a></p>
+        <p class="hint">Tap a word to <strong>hear it loud</strong> (repeat anytime) and mark it. <strong>FREE</strong> is pre-marked. <a href="teacher.html?month=${monthId}">Teacher call list</a></p>
         <div class="bingo-toolbar" style="justify-content:center">
           <button type="button" class="btn btn-primary" id="btn-new">New card</button>
         </div>
         <div class="bingo-grid" style="grid-template-columns: repeat(${card.cols}, 1fr)">${cells}</div>
         <footer class="site-footer">Bingo v0 — local card only</footer>`;
 
-      document.querySelector(".bingo-grid").addEventListener("click", (e) => {
+      document.querySelector(".bingo-grid").addEventListener("click", async (e) => {
         const cell = e.target.closest("[data-idx]");
         if (!cell) return;
         const idx = Number(cell.getAttribute("data-idx"));
         const item = card.grid[idx];
         if (item.free) return;
+        await playBingoTermAudio(monthId, item.text);
         item.marked = !item.marked;
         render();
       });

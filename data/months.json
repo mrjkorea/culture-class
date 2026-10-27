@@ -172,11 +172,18 @@
       "slug": "10-october",
       "name": "October",
       "theme": "Halloween",
+      "monthLayout": "halloween",
       "unitId": "culture_m10",
       "showUnitId": "culture_m10_show",
       "cpDocUrl": "https://docs.google.com/document/d/17vSv9DrpUVql8BSBHjJod0fW7GwiZL9ZEd-41vD85b8/edit",
+      "cpPackFile": "cp/culture_m10_cp.json",
+      "wordsPreviewFile": "oct-words.json",
+      "dailyQuizFile": "oct-daily-quiz.json",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "coverImage": "assets/covers/10-halloween-header.jpg",
+      "cardCover": "assets/covers/10-halloween.jpg",
+      "hideNotes": true,
       "introYoutube": [
         { "id": "f_C9M0GAhso", "title": "Halloween culture intro (9:45)" }
       ],
@@ -186,8 +193,7 @@
       "craftBlurb": "Find a pumpkin, wash it, carve a face, light it, and give out candy. Fastest time is saved on this device.",
       "featureTitle": "Jack-o'-Lantern Craft",
       "featureLabel": "Play the pumpkin craft (replaces the feature video)",
-      "featureDetail": "Open the Halloween craft mini-game. Ten stages, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
-      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here — watch in class from licensed sources."
+      "featureDetail": "Open the Halloween craft mini-game. Ten stages, English speech, Korean on screen, and a fastest-time leaderboard on this device."
     },
     {
       "id": "11",

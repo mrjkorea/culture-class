@@ -1,9 +1,16 @@
-import { dataUrl, monthUrl } from "./paths.js";
+import { dataUrl, monthUrl, repoRoot } from "./paths.js";
 
 async function loadMonths() {
   const res = await fetch(dataUrl("months.json"));
   if (!res.ok) throw new Error("Could not load months.json");
   return res.json();
+}
+
+function coverStyle(month) {
+  const file = month.cardCover || month.coverImage;
+  if (!file) return "";
+  const url = `${repoRoot()}/${String(file).replace(/^\/+/, "")}`;
+  return ` style="--month-cover:url('${url}')"`;
 }
 
 function renderHome(data) {
@@ -15,14 +22,16 @@ function renderHome(data) {
   if (subEl) subEl.textContent = data.siteSubtitle;
 
   grid.innerHTML = data.months
-    .map(
-      (m) => `
-    <a class="month-card" href="${monthUrl(m.slug)}">
+    .map((m) => {
+      const halloween = m.monthLayout === "halloween" || m.id === "10";
+      const cls = halloween ? "month-card month-card-cover" : "month-card";
+      return `
+    <a class="${cls}" href="${monthUrl(m.slug)}"${coverStyle(m)}>
       <div class="num">Month ${m.id}</div>
       <div class="name">${m.name}</div>
       <div class="theme">${m.theme}</div>
-    </a>`
-    )
+    </a>`;
+    })
     .join("");
 }
 
