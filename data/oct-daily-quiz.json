@@ -1,0 +1,151 @@
+{
+  "id": "culture_m10_daily_quiz",
+  "monthId": "10",
+  "title": "Halloween — after Daily video",
+  "source": "HALLOWEEN NOTES Easy + CP TEST facts",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What culture / holiday are we learning about today?",
+      "ko": "오늘 배우는 문화/기념일은 무엇인가요?",
+      "choices": [
+        {
+          "en": "Halloween",
+          "ko": "할로윈",
+          "correct": true
+        },
+        {
+          "en": "Christmas",
+          "ko": "크리스마스"
+        },
+        {
+          "en": "Easter",
+          "ko": "부활절"
+        },
+        {
+          "en": "Valentine's Day",
+          "ko": "발렌타인데이"
+        }
+      ],
+      "explain": {
+        "en": "This month's theme is Halloween.",
+        "ko": "이번 달 주제는 할로윈입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What date is Halloween?",
+      "ko": "할로윈은 몇 월 며칠인가요?",
+      "choices": [
+        {
+          "en": "October 31",
+          "ko": "10월 31일",
+          "correct": true
+        },
+        {
+          "en": "November 1",
+          "ko": "11월 1일"
+        },
+        {
+          "en": "October 1",
+          "ko": "10월 1일"
+        },
+        {
+          "en": "December 25",
+          "ko": "12월 25일"
+        }
+      ],
+      "explain": {
+        "en": "Halloween is October 31 — the day before November 1st.",
+        "ko": "할로윈은 10월 31일, 즉 11월 1일 전날입니다."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What do kids say on Halloween when they knock on doors?",
+      "ko": "할로윈에 아이들이 문을 두드리며 뭐라고 하나요?",
+      "choices": [
+        {
+          "en": "Trick or treat!",
+          "ko": "Trick or treat!",
+          "correct": true
+        },
+        {
+          "en": "Merry Christmas!",
+          "ko": "Merry Christmas!"
+        },
+        {
+          "en": "Happy birthday!",
+          "ko": "Happy birthday!"
+        },
+        {
+          "en": "Good morning!",
+          "ko": "Good morning!"
+        }
+      ],
+      "explain": {
+        "en": "Kids say “Trick or treat!” to ask for candy.",
+        "ko": "아이들은 사탕을 받으려고 “Trick or treat!”라고 합니다."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "What vegetable do kids carve for Halloween?",
+      "ko": "할로윈에 아이들이 조각하는 채소는?",
+      "choices": [
+        {
+          "en": "Pumpkin",
+          "ko": "호박",
+          "correct": true
+        },
+        {
+          "en": "Carrot",
+          "ko": "당근"
+        },
+        {
+          "en": "Potato",
+          "ko": "감자"
+        },
+        {
+          "en": "Tomato",
+          "ko": "토마토"
+        }
+      ],
+      "explain": {
+        "en": "Kids carve pumpkins into jack-o’-lanterns to scare ghosts.",
+        "ko": "아이들은 유령을 겁주려고 호박을 잭오랜턴으로 조각합니다."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What are two classic Halloween colors?",
+      "ko": "할로윈의 대표 색깔 두 가지는?",
+      "choices": [
+        {
+          "en": "Orange and black",
+          "ko": "주황과 검정",
+          "correct": true
+        },
+        {
+          "en": "Red and green",
+          "ko": "빨강과 초록"
+        },
+        {
+          "en": "Blue and white",
+          "ko": "파랑과 흰색"
+        },
+        {
+          "en": "Pink and purple",
+          "ko": "분홍과 보라"
+        }
+      ],
+      "explain": {
+        "en": "Halloween’s classic colors are orange and black.",
+        "ko": "할로윈의 대표 색깔은 주황과 검정입니다."
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "culture_m10_show",
+  "kind": "culture",
+  "title": "Culture · October · Halloween Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m10_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "할로윈은 몇 월 며칠인가요?"
+      },
+      "choices": [
+        "October 31",
+        "November 1",
+        "December 25",
+        "July 4"
+      ],
+      "answer": "October 31",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "아이들이 문을 두드리며 뭐라고 하나요?"
+      },
+      "choices": [
+        "Trick or Treat!",
+        "Happy birthday!",
+        "Good night!",
+        "See you!"
+      ],
+      "answer": "Trick or Treat!",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "호박을 조각해서 만드는 것은?"
+      },
+      "choices": [
+        "jack-o-lantern",
+        "snowman",
+        "sandcastle",
+        "birthday cake"
+      ],
+      "answer": "jack-o-lantern",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "할로윈 대표 색깔은?"
+      },
+      "choices": [
+        "Orange and black",
+        "Red and green",
+        "Blue and yellow",
+        "Pink and white"
+      ],
+      "answer": "Orange and black",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "유령의 집을 영어로?"
+      },
+      "choices": [
+        "Haunted house",
+        "Grocery store",
+        "School",
+        "Library"
+      ],
+      "answer": "Haunted house",
+      "prompt": "Choose the best answer."
+    }
+  ]
+}

@@ -15,6 +15,9 @@ export function repoRoot() {
   ) {
     return path.replace(/\/words\/[^/]+$/, "");
   }
+  if (path.endsWith("/quiz/daily.html")) {
+    return path.replace(/\/quiz\/[^/]+$/, "");
+  }
   if (path.endsWith("/climb/climb.html")) {
     return path.replace(/\/climb\/[^/]+$/, "");
   }
@@ -64,6 +67,16 @@ export function monthPageUrl(slug) {
   return monthUrl(slug);
 }
 
+export const CLIMB_BASE = "https://mrjkorea.github.io/day2-words/day3/climb.html";
+const LOCAL_CLIMB_UNITS = new Set(["culture_m10", "culture_m10_show"]);
+
 export function climbUrl(unitId) {
-  return `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}&test=1`;
+  if (LOCAL_CLIMB_UNITS.has(unitId)) {
+    return `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}&test=1`;
+  }
+  return `${CLIMB_BASE}?unit=${encodeURIComponent(unitId)}`;
+}
+
+export function dailyQuizUrl(monthId) {
+  return `${repoRoot()}/quiz/daily.html?month=${encodeURIComponent(monthId)}`;
 }
