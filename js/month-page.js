@@ -1,4 +1,5 @@
-import { bingoUrl, climbUrl, dataUrl, monthUrl, repoRoot } from "./paths.js";
+import { bingoUrl, climbUrl, dataUrl, repoRoot, wordsLearnUrl, wordsMemoryUrl } from "./paths.js";
+import { isLearnDone, monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
 
@@ -50,18 +51,24 @@ function renderMonth(month, wordsPreview) {
       ? '<span class="pilot">Pilot month — words preview &amp; full CP link</span>'
       : "";
 
+  const builtinWords = monthHasBuiltinWords(month);
+  const learnHref = builtinWords
+    ? wordsLearnUrl(month.id)
+    : month.wordMasterLearnUrl;
+
   let learnStepBody = `
     <div class="step-actions">
-      <a class="btn btn-primary" href="${escapeHtml(month.wordMasterLearnUrl)}">Word Master — Learn</a>
+      <a class="btn btn-primary" href="${escapeHtml(learnHref)}">Learn</a>
     </div>`;
 
   if (wordsPreview?.source) {
-    const wmStatus =
-      month.wordMasterLearnUrl === "#"
-        ? " · Word Master pack coming."
-        : " · Open Word Master (Learn / Match) below.";
+    const wordsStatus = builtinWords
+      ? " · Built-in Learn &amp; Memory on this site."
+      : month.wordMasterLearnUrl === "#"
+        ? " · Word pack coming."
+        : " · Open Learn / Memory below.";
     learnStepBody += `
-      <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)}${wmStatus}</p>`;
+      <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)}${wordsStatus}</p>`;
   }
 
   const previewTerms = normalizeWordTerms(wordsPreview);
@@ -80,17 +87,27 @@ function renderMonth(month, wordsPreview) {
           <tbody>${rows}</tbody>
         </table>
       </div>`;
-  } else if (month.wordMasterLearnUrl === "#") {
-    learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until Word Master pack exists.</p>`;
+  } else if (!builtinWords && month.wordMasterLearnUrl === "#") {
+    learnStepBody += `<p class="hint">Word pack coming soon — link placeholder until the month word list exists.</p>`;
   }
 
-  const matchHint =
-    month.wordMasterMatchUrl === "#"
-      ? "Memory match / pairing game — wired when the month pack is published."
-      : "Memory match / pairing game in Word Master (same pack as Learn).";
+  const memoryUnlocked = builtinWords ? isLearnDone(month.id) : month.wordMasterMatchUrl !== "#";
+  const memoryHref = builtinWords
+    ? wordsMemoryUrl(month.id)
+    : month.wordMasterMatchUrl;
+  const memoryBtnClass = memoryUnlocked ? "btn btn-primary" : "btn btn-primary disabled";
+  const memoryAria = memoryUnlocked ? "" : ' aria-disabled="true" tabindex="-1"';
+  const matchHint = builtinWords
+    ? memoryUnlocked
+      ? "Matching game — all words in fixed rounds (finish Learn once on this device to unlock)."
+      : "Finish Learn on this device first to unlock Memory."
+    : month.wordMasterMatchUrl === "#"
+      ? "Memory match — wired when the month word list is published."
+      : "Memory match / pairing game (same pack as Learn).";
   const matchStepBody = `
     <div class="step-actions">
-      <a class="btn btn-primary" href="${escapeHtml(month.wordMasterMatchUrl)}">Word Master — Match</a>
+      <a class="${memoryBtnClass}" href="${escapeHtml(memoryHref)}"${memoryAria}>Memory</a>
+      ${builtinWords && !memoryUnlocked ? `<a class="btn btn-secondary" href="${escapeHtml(wordsLearnUrl(month.id))}">Go to Learn</a>` : ""}
     </div>
     <p class="hint">${matchHint}</p>`;
 
@@ -106,13 +123,13 @@ function renderMonth(month, wordsPreview) {
     stepBlock(
       2,
       "Words — Learn",
-      "Flashcards (Word Master)",
+      builtinWords ? "Flashcards — all words in order" : "Flashcards",
       learnStepBody
     ),
     stepBlock(
       3,
-      "Words — Match",
-      "Matching game (Word Master)",
+      "Words — Memory",
+      builtinWords ? "Matching game — unlock after Learn" : "Matching game",
       matchStepBody
     ),
     stepBlock(

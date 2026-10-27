@@ -21,8 +21,8 @@ MRJ ENGLISH **Culture Class** course hub (GitHub Pages).
 Each month follows the same stack:
 
 1. **MRJ Daily** — YouTube embeds from [@mrjenglishnews](https://www.youtube.com/@mrjenglishnews) when `introYoutube` IDs exist in `data/months.json` (placeholder if missing)
-2. **Words — Learn** — Word Master pack link (`#` until published)
-3. **Words — Match** — Word Master match link
+2. **Words — Learn** — Built-in flashcards when `wordsPreviewFile` exists in `data/months.json`; otherwise Word Master link (`#` until published)
+3. **Words — Memory** — Built-in matching game (unlock after Learn on this device); otherwise Word Master match link
 4. **Words quiz** — [Mountain Climb](https://mrjkorea.github.io/day2-words/day3/climb.html) `?unit=culture_mNN`
 5. **PRO COMP** — Google Doc CP TEST (see `data/months.json`)
 6. **Feature show** — “Watch in class (licensed source)” — no cartoon hosting
@@ -30,7 +30,7 @@ Each month follows the same stack:
 8. **Bingo** — teacher + student pages (`?month=NN`)
 9. **Notes** — static blurb per month
 
-**August pilot** includes the full 24-term words preview, CP Doc link, bingo pool (`?month=08`), and live Word Master pack `culture_m08` (Learn/Match deep link in `data/months.json`).
+**August pilot** includes the full 24-term words preview, built-in **Learn** + **Memory** (`words/learn.html?month=08`, `words/memory.html?month=08`), CP Doc link, and bingo pool (`?month=08`).
 
 ## Mountain Climb unit ids
 

@@ -419,6 +419,182 @@ a:hover {
   margin-top: 0.65rem;
 }
 
+/* Built-in Words — Learn & Memory */
+.words-flow .words-hero {
+  margin-bottom: 1rem;
+}
+
+.words-subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.flashcard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.flashcard-progress {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+}
+
+.flashcard-face {
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  background: var(--surface2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.flashcard-en {
+  margin: 0 0 0.65rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.flashcard-ko {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--accent);
+  line-height: 1.45;
+}
+
+.flashcard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.words-complete {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1rem;
+}
+
+.words-complete-lead {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.memory-round-label {
+  text-align: center;
+  margin-top: 0;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--surface2), #1e2a3d);
+  cursor: pointer;
+  padding: 0.35rem;
+  font: inherit;
+  color: inherit;
+  position: relative;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.memory-card:hover:not(:disabled) {
+  border-color: var(--accent-dim);
+}
+
+.memory-card:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.memory-card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.2;
+  opacity: 0;
+  transition: opacity 0.15s;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.memory-card.memory-flipped .memory-card-inner,
+.memory-card.memory-matched .memory-card-inner {
+  opacity: 1;
+}
+
+.memory-card.memory-flipped {
+  border-color: var(--accent);
+  background: rgba(61, 156, 245, 0.12);
+}
+
+.memory-card.memory-matched {
+  border-color: var(--ok);
+  background: rgba(62, 207, 142, 0.2);
+  cursor: default;
+}
+
+.memory-card.memory-ko.memory-flipped .memory-card-inner {
+  color: var(--accent);
+}
+
+.memory-card:disabled {
+  cursor: default;
+}
+
+.memory-card:not(.memory-flipped):not(.memory-matched)::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+@media (min-width: 480px) {
+  .memory-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 480px;
+  }
+
+  .memory-card-inner {
+    font-size: 0.75rem;
+  }
+
+  .flashcard-en {
+    font-size: 1.5rem;
+  }
+}
+
 @media (min-width: 480px) {
   .month-grid {
     grid-template-columns: repeat(3, 1fr);
