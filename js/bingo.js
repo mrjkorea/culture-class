@@ -1,5 +1,5 @@
 import { dataUrl, repoRoot } from "./paths.js";
-import { normalizeWordEntries, normalizeWordTerms } from "./word-list.js";
+import { normalizeWordTerms } from "./word-list.js";
 import { playWordAudio, playTermAudioFromPack } from "./word-audio.js";
 
 const DEFAULT_POOL = [
@@ -32,7 +32,7 @@ export async function loadWordPool(monthId) {
     const wRes = await fetch(dataUrl(month.wordsPreviewFile));
     if (wRes.ok) {
       const words = await wRes.json();
-      const entries = normalizeWordEntries(words);
+      const entries = normalizeWordTerms(words);
       if (entries.length) return entries;
       const terms = normalizeWordTerms(words);
       if (terms.length) return terms.map((t) => ({ ...t }));

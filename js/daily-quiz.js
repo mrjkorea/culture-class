@@ -1,5 +1,6 @@
-import { dataUrl, monthPageUrl, repoRoot } from "./paths.js";
+import { dataUrl, monthPageUrl, repoRoot, wordsMeetUrl } from "./paths.js";
 import { escapeHtml, getMonthIdFromQuery, loadMonthById } from "./words-data.js";
+import { setStepDone } from "./month-progress.js";
 
 const SCORE_KEY_PREFIX = "culture-class-daily-quiz-";
 
@@ -117,6 +118,7 @@ function renderResults() {
   const perfect = score === total;
   const when = new Date().toLocaleString();
   saveAttempt(month.id, { score, total, perfect, when });
+  setStepDone(month.id, "quiz");
 
   const toggle =
     !perfect && quiz.languageToggleIfNotPerfect
@@ -152,8 +154,9 @@ function renderResults() {
       ${toggle}
       ${mistakeHtml}
       <div class="step-actions" style="margin-top:1rem">
-        <button type="button" class="btn btn-primary" id="btn-retake">Retake quiz</button>
-        <a class="btn btn-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to month</a>
+        <a class="btn btn-primary" href="${escapeHtml(wordsMeetUrl(month.id))}">Next: Meet the words →</a>
+        <button type="button" class="btn btn-secondary" id="btn-retake">Retake quiz</button>
+        <a class="btn btn-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
       </div>
     </div>`);
 
