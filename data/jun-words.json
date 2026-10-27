@@ -1,0 +1,169 @@
+{
+  "id": "culture_m06",
+  "title": "June · Remembrance Day vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "walt",
+  "words": [
+    {
+      "id": "jun_01",
+      "en": "remember",
+      "ko": "기억하다",
+      "audio": "data/audio/jun-words/remember.mp3",
+      "pic": "assets/words/jun/remember.jpg",
+      "image": "assets/words/jun/remember.jpg",
+      "term": "remember",
+      "definition": "기억하다"
+    },
+    {
+      "id": "jun_02",
+      "en": "soldier",
+      "ko": "군인",
+      "audio": "data/audio/jun-words/soldier.mp3",
+      "pic": "assets/words/jun/soldier.jpg",
+      "image": "assets/words/jun/soldier.jpg",
+      "term": "soldier",
+      "definition": "군인"
+    },
+    {
+      "id": "jun_03",
+      "en": "war",
+      "ko": "전쟁",
+      "audio": "data/audio/jun-words/war.mp3",
+      "pic": "assets/words/jun/war.jpg",
+      "image": "assets/words/jun/war.jpg",
+      "term": "war",
+      "definition": "전쟁"
+    },
+    {
+      "id": "jun_04",
+      "en": "peace",
+      "ko": "평화",
+      "audio": "data/audio/jun-words/peace.mp3",
+      "pic": "assets/words/jun/peace.jpg",
+      "image": "assets/words/jun/peace.jpg",
+      "term": "peace",
+      "definition": "평화"
+    },
+    {
+      "id": "jun_05",
+      "en": "flag",
+      "ko": "깃발 / 국기",
+      "audio": "data/audio/jun-words/flag.mp3",
+      "pic": "assets/words/jun/flag.jpg",
+      "image": "assets/words/jun/flag.jpg",
+      "term": "flag",
+      "definition": "깃발 / 국기"
+    },
+    {
+      "id": "jun_06",
+      "en": "poppy",
+      "ko": "양귀비꽃",
+      "audio": "data/audio/jun-words/poppy.mp3",
+      "pic": "assets/words/jun/poppy.jpg",
+      "image": "assets/words/jun/poppy.jpg",
+      "term": "poppy",
+      "definition": "양귀비꽃"
+    },
+    {
+      "id": "jun_07",
+      "en": "memorial",
+      "ko": "기념비",
+      "audio": "data/audio/jun-words/memorial.mp3",
+      "pic": "assets/words/jun/memorial.jpg",
+      "image": "assets/words/jun/memorial.jpg",
+      "term": "memorial",
+      "definition": "기념비"
+    },
+    {
+      "id": "jun_08",
+      "en": "silence",
+      "ko": "침묵",
+      "audio": "data/audio/jun-words/silence.mp3",
+      "pic": "assets/words/jun/silence.jpg",
+      "image": "assets/words/jun/silence.jpg",
+      "term": "silence",
+      "definition": "침묵"
+    },
+    {
+      "id": "jun_09",
+      "en": "hero",
+      "ko": "영웅",
+      "audio": "data/audio/jun-words/hero.mp3",
+      "pic": "assets/words/jun/hero.jpg",
+      "image": "assets/words/jun/hero.jpg",
+      "term": "hero",
+      "definition": "영웅"
+    },
+    {
+      "id": "jun_10",
+      "en": "honor",
+      "ko": "기리다 / 명예",
+      "audio": "data/audio/jun-words/honor.mp3",
+      "pic": "assets/words/jun/honor.jpg",
+      "image": "assets/words/jun/honor.jpg",
+      "term": "honor",
+      "definition": "기리다 / 명예"
+    },
+    {
+      "id": "jun_11",
+      "en": "army",
+      "ko": "군대",
+      "audio": "data/audio/jun-words/army.mp3",
+      "pic": "assets/words/jun/army.jpg",
+      "image": "assets/words/jun/army.jpg",
+      "term": "army",
+      "definition": "군대"
+    },
+    {
+      "id": "jun_12",
+      "en": "medal",
+      "ko": "메달 / 훈장",
+      "audio": "data/audio/jun-words/medal.mp3",
+      "pic": "assets/words/jun/medal.jpg",
+      "image": "assets/words/jun/medal.jpg",
+      "term": "medal",
+      "definition": "메달 / 훈장"
+    },
+    {
+      "id": "jun_13",
+      "en": "veteran",
+      "ko": "참전 용사",
+      "audio": "data/audio/jun-words/veteran.mp3",
+      "pic": "assets/words/jun/veteran.jpg",
+      "image": "assets/words/jun/veteran.jpg",
+      "term": "veteran",
+      "definition": "참전 용사"
+    },
+    {
+      "id": "jun_14",
+      "en": "cemetery",
+      "ko": "묘지",
+      "audio": "data/audio/jun-words/cemetery.mp3",
+      "pic": "assets/words/jun/cemetery.jpg",
+      "image": "assets/words/jun/cemetery.jpg",
+      "term": "cemetery",
+      "definition": "묘지"
+    },
+    {
+      "id": "jun_15",
+      "en": "brave",
+      "ko": "용감한",
+      "audio": "data/audio/jun-words/brave.mp3",
+      "pic": "assets/words/jun/brave.jpg",
+      "image": "assets/words/jun/brave.jpg",
+      "term": "brave",
+      "definition": "용감한"
+    },
+    {
+      "id": "jun_16",
+      "en": "thank",
+      "ko": "감사하다",
+      "audio": "data/audio/jun-words/thank.mp3",
+      "pic": "assets/words/jun/thank.jpg",
+      "image": "assets/words/jun/thank.jpg",
+      "term": "thank",
+      "definition": "감사하다"
+    }
+  ]
+}

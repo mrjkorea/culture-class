@@ -1,6 +1,6 @@
 {
   "siteTitle": "Culture Class",
-  "siteSubtitle": "MRJ ENGLISH — 12 monthly culture units",
+  "siteSubtitle": "MRJ ENGLISH \u2014 12 monthly culture units",
   "months": [
     {
       "id": "01",
@@ -27,10 +27,11 @@
       "craftPath": "craft/january/",
       "craftTitle": "New Year's Party Craft",
       "craftButton": "Play New Year's Craft",
-      "craftBlurb": "Balloons, countdown, confetti, and a resolution — fastest time on this device.",
+      "craftBlurb": "Balloons, countdown, confetti, and a resolution \u2014 fastest time on this device.",
       "featureTitle": "New Year's Party Craft",
-      "craftEmoji": "🎉",
-      "hideNotes": true
+      "craftEmoji": "\ud83c\udf89",
+      "hideNotes": true,
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "02",
@@ -48,16 +49,17 @@
         }
       ],
       "featureLabel": "Play the Valentine's Day craft",
-      "featureDetail": "Ten stages — card to candy hearts (coming soon).",
+      "featureDetail": "Ten stages \u2014 card to candy hearts (coming soon).",
       "notes": "Explore Valentine's Day traditions, vocabulary, and how the holiday is celebrated in English-speaking cultures.",
       "monthLayout": "valentine",
       "craftPath": "craft/february/",
       "craftTitle": "Valentine Craft",
       "craftButton": "Play Valentine Craft",
-      "craftBlurb": "Ten stages — card to candy hearts (coming soon).",
-      "wordsPackPlanned": "feb-words.json",
-      "dailyQuizPlanned": "feb-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m02_cp.json"
+      "craftBlurb": "Ten stages \u2014 card to candy hearts (coming soon).",
+      "wordsPreviewFile": "feb-words.json",
+      "dailyQuizFile": "feb-daily-quiz.json",
+      "cpPackFile": "cp/culture_m02_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "03",
@@ -82,9 +84,10 @@
       "craftTitle": "St. Patrick's Craft",
       "craftButton": "Play March Craft",
       "craftBlurb": "Irish luck, jig, and Wheaten terrier stages (coming soon).",
-      "wordsPackPlanned": "mar-words.json",
-      "dailyQuizPlanned": "mar-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m03_cp.json"
+      "wordsPreviewFile": "mar-words.json",
+      "dailyQuizFile": "mar-daily-quiz.json",
+      "cpPackFile": "cp/culture_m03_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "04",
@@ -109,9 +112,10 @@
       "craftTitle": "Easter Craft",
       "craftButton": "Play Easter Craft",
       "craftBlurb": "Egg hunt, decorate, and roll (coming soon).",
-      "wordsPackPlanned": "apr-words.json",
-      "dailyQuizPlanned": "apr-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m04_cp.json"
+      "wordsPreviewFile": "apr-words.json",
+      "dailyQuizFile": "apr-daily-quiz.json",
+      "cpPackFile": "cp/culture_m04_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "05",
@@ -125,7 +129,7 @@
       "introYoutube": [
         {
           "id": "krh4hu-hGPc",
-          "title": "Buddha — Journey to Enlightenment (8:40)"
+          "title": "Buddha \u2014 Journey to Enlightenment (8:40)"
         }
       ],
       "featureLabel": "Play the Buddhism craft",
@@ -136,9 +140,10 @@
       "craftTitle": "Buddhism Path Craft",
       "craftButton": "Play May Craft",
       "craftBlurb": "Calm path to enlightenment (coming soon).",
-      "wordsPackPlanned": "may-words.json",
-      "dailyQuizPlanned": "may-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m05_cp.json"
+      "wordsPreviewFile": "may-words.json",
+      "dailyQuizFile": "may-daily-quiz.json",
+      "cpPackFile": "cp/culture_m05_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "06",
@@ -163,9 +168,10 @@
       "craftTitle": "Remembrance Craft",
       "craftButton": "Play June Craft",
       "craftBlurb": "Poppies and moment of silence (coming soon).",
-      "wordsPackPlanned": "jun-words.json",
-      "dailyQuizPlanned": "jun-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m06_cp.json"
+      "wordsPreviewFile": "jun-words.json",
+      "dailyQuizFile": "jun-daily-quiz.json",
+      "cpPackFile": "cp/culture_m06_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "07",
@@ -179,7 +185,7 @@
       "introYoutube": [
         {
           "id": "bzZUUL34cKg",
-          "title": "Exploring Canada — Part 1 (4:34)"
+          "title": "Exploring Canada \u2014 Part 1 (4:34)"
         }
       ],
       "featureLabel": "Play the Canada Day craft",
@@ -190,9 +196,10 @@
       "craftTitle": "Canada Day Craft",
       "craftButton": "Play July Craft",
       "craftBlurb": "Syrup, ice fishing, hockey (coming soon).",
-      "wordsPackPlanned": "jul-words.json",
-      "dailyQuizPlanned": "jul-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m07_cp.json"
+      "wordsPreviewFile": "jul-words.json",
+      "dailyQuizFile": "jul-daily-quiz.json",
+      "cpPackFile": "cp/culture_m07_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "08",
@@ -208,27 +215,21 @@
       "introYoutube": [
         {
           "placeholder": true,
-          "title": "MRJ Daily ONE — coming soon",
-          "note": "Korean History intro part 1 (~8:20) — not matched on @mrjenglishnews yet."
+          "title": "MRJ Daily ONE \u2014 coming soon",
+          "note": "Korean History intro part 1 (~8:20) \u2014 not matched on @mrjenglishnews yet."
         },
         {
           "id": "njECVX72TbY",
-          "title": "MRJ Daily TWO — 5000 Years of Korean History (11:45)"
+          "title": "MRJ Daily TWO \u2014 5000 Years of Korean History (11:45)"
         }
       ],
       "featureYoutubeId": "6qsTgptIhlw",
       "featureTitle": "Why Is Korea Divided in Two?",
-      "featureLabel": "Play the Korean History Day craft",
-      "featureDetail": "Respectful history stages (coming soon).",
+      "featureLabel": "Watch in class",
+      "featureDetail": "Why Is Korea Divided in Two? \u2014 A Kid Explains History (~5 min). Tap Green subtitles for English captions.",
       "notes": "Students learn about Korean History Day: what it is, why it matters, and how people celebrate or remember it. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review.",
-      "monthLayout": "koreanhistory",
-      "craftPath": "craft/august/",
-      "craftTitle": "Korean History Craft",
-      "craftButton": "Play August Craft",
-      "craftBlurb": "Respectful history stages (coming soon).",
-      "wordsPackPlanned": "aug-words.json",
-      "dailyQuizPlanned": "aug-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m08_cp.json"
+      "dailyQuizFile": "aug-daily-quiz.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "09",
@@ -242,7 +243,7 @@
       "introYoutube": [
         {
           "id": "Jx5Pxlc85G8",
-          "title": "Saving Our Planet — Earth Day (15:48)"
+          "title": "Saving Our Planet \u2014 Earth Day (15:48)"
         }
       ],
       "featureLabel": "Play the Earth Day craft",
@@ -253,9 +254,10 @@
       "craftTitle": "Earth Day Craft",
       "craftButton": "Play September Craft",
       "craftBlurb": "River cleanup to planet high-five (coming soon).",
-      "wordsPackPlanned": "sep-words.json",
-      "dailyQuizPlanned": "sep-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m09_cp.json"
+      "wordsPreviewFile": "sep-words.json",
+      "dailyQuizFile": "sep-daily-quiz.json",
+      "cpPackFile": "cp/culture_m09_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "10",
@@ -283,7 +285,7 @@
       "featureTitle": "Jack-o'-Lantern Craft",
       "featureLabel": "Play the pumpkin craft (replaces the feature video)",
       "featureDetail": "Open the Halloween craft mini-game. Ten stages, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
-      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here — watch in class from licensed sources."
+      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here \u2014 watch in class from licensed sources."
     },
     {
       "id": "11",
@@ -297,7 +299,7 @@
       "introYoutube": [
         {
           "placeholder": true,
-          "title": "MRJ Daily ONE — coming soon",
+          "title": "MRJ Daily ONE \u2014 coming soon",
           "note": "First Thanksgiving intro slot not matched on @mrjenglishnews yet."
         },
         {
@@ -313,9 +315,10 @@
       "craftTitle": "Thanksgiving Craft",
       "craftButton": "Play November Craft",
       "craftBlurb": "Turkey to thankful card (coming soon).",
-      "wordsPackPlanned": "nov-words.json",
-      "dailyQuizPlanned": "nov-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m11_cp.json"
+      "wordsPreviewFile": "nov-words.json",
+      "dailyQuizFile": "nov-daily-quiz.json",
+      "cpPackFile": "cp/culture_m11_cp.json",
+      "wordMasterMatchUrl": "#"
     },
     {
       "id": "12",
@@ -334,9 +337,10 @@
       "craftTitle": "Christmas Craft",
       "craftButton": "Play December Craft",
       "craftBlurb": "Tree to Santa visit (coming soon).",
-      "wordsPackPlanned": "dec-words.json",
-      "dailyQuizPlanned": "dec-daily-quiz.json",
-      "cpPackPlanned": "cp/culture_m12_cp.json"
+      "wordsPreviewFile": "dec-words.json",
+      "dailyQuizFile": "dec-daily-quiz.json",
+      "cpPackFile": "cp/culture_m12_cp.json",
+      "wordMasterMatchUrl": "#"
     }
   ]
 }

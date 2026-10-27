@@ -1,0 +1,39 @@
+{
+  "monthId": "09",
+  "title": "September Earth Day CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1Jd7UhoCLSym9CJN8yoWLuvIz9AlPrHnXa2OH6nmoy00/edit",
+  "items": [
+    {
+      "korean": "햄버거 하나는 2,500 리터의 물을 사용합니다.",
+      "english": "A hamburger uses 2,500 liters of water.",
+      "audio": "data/audio/sep-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "에어컨은 선풍기보다 90% 더 많은 에너지를 사용합니다.",
+      "english": "Air conditioners use 90% more power than fans.",
+      "audio": "data/audio/sep-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "플라스틱 병은 분해되는데 450년이 걸립니다.",
+      "english": "Plastic bottles take 450 years to break down.",
+      "audio": "data/audio/sep-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "재활용된 캔 하나는 TV를 3시간 동안 사용할 에너지를 절약합니다.",
+      "english": "One recycled can saves 3 hours of TV power.",
+      "audio": "data/audio/sep-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "2분 동안 차를 공회전하는 것은 다시 시동 거는 것보다 연료를 더 사용합니다.",
+      "english": "Idling for 2 minutes wastes more gas than turning off.",
+      "audio": "data/audio/sep-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

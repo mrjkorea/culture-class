@@ -1,0 +1,169 @@
+{
+  "id": "culture_m05",
+  "title": "May · Buddhism vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "june",
+  "words": [
+    {
+      "id": "may_01",
+      "en": "Buddha",
+      "ko": "부처님",
+      "audio": "data/audio/may-words/buddha.mp3",
+      "pic": "assets/words/may/buddha.jpg",
+      "image": "assets/words/may/buddha.jpg",
+      "term": "Buddha",
+      "definition": "부처님"
+    },
+    {
+      "id": "may_02",
+      "en": "temple",
+      "ko": "절",
+      "audio": "data/audio/may-words/temple.mp3",
+      "pic": "assets/words/may/temple.jpg",
+      "image": "assets/words/may/temple.jpg",
+      "term": "temple",
+      "definition": "절"
+    },
+    {
+      "id": "may_03",
+      "en": "monk",
+      "ko": "스님",
+      "audio": "data/audio/may-words/monk.mp3",
+      "pic": "assets/words/may/monk.jpg",
+      "image": "assets/words/may/monk.jpg",
+      "term": "monk",
+      "definition": "스님"
+    },
+    {
+      "id": "may_04",
+      "en": "lotus",
+      "ko": "연꽃",
+      "audio": "data/audio/may-words/lotus.mp3",
+      "pic": "assets/words/may/lotus.jpg",
+      "image": "assets/words/may/lotus.jpg",
+      "term": "lotus",
+      "definition": "연꽃"
+    },
+    {
+      "id": "may_05",
+      "en": "lantern",
+      "ko": "연등",
+      "audio": "data/audio/may-words/lantern.mp3",
+      "pic": "assets/words/may/lantern.jpg",
+      "image": "assets/words/may/lantern.jpg",
+      "term": "lantern",
+      "definition": "연등"
+    },
+    {
+      "id": "may_06",
+      "en": "meditate",
+      "ko": "명상하다",
+      "audio": "data/audio/may-words/meditate.mp3",
+      "pic": "assets/words/may/meditate.jpg",
+      "image": "assets/words/may/meditate.jpg",
+      "term": "meditate",
+      "definition": "명상하다"
+    },
+    {
+      "id": "may_07",
+      "en": "calm",
+      "ko": "차분한",
+      "audio": "data/audio/may-words/calm.mp3",
+      "pic": "assets/words/may/calm.jpg",
+      "image": "assets/words/may/calm.jpg",
+      "term": "calm",
+      "definition": "차분한"
+    },
+    {
+      "id": "may_08",
+      "en": "kind",
+      "ko": "친절한",
+      "audio": "data/audio/may-words/kind.mp3",
+      "pic": "assets/words/may/kind.jpg",
+      "image": "assets/words/may/kind.jpg",
+      "term": "kind",
+      "definition": "친절한"
+    },
+    {
+      "id": "may_09",
+      "en": "bell",
+      "ko": "종",
+      "audio": "data/audio/may-words/bell.mp3",
+      "pic": "assets/words/may/bell.jpg",
+      "image": "assets/words/may/bell.jpg",
+      "term": "bell",
+      "definition": "종"
+    },
+    {
+      "id": "may_10",
+      "en": "incense",
+      "ko": "향",
+      "audio": "data/audio/may-words/incense.mp3",
+      "pic": "assets/words/may/incense.jpg",
+      "image": "assets/words/may/incense.jpg",
+      "term": "incense",
+      "definition": "향"
+    },
+    {
+      "id": "may_11",
+      "en": "statue",
+      "ko": "불상",
+      "audio": "data/audio/may-words/statue.mp3",
+      "pic": "assets/words/may/statue.jpg",
+      "image": "assets/words/may/statue.jpg",
+      "term": "statue",
+      "definition": "불상"
+    },
+    {
+      "id": "may_12",
+      "en": "bow",
+      "ko": "절하다",
+      "audio": "data/audio/may-words/bow.mp3",
+      "pic": "assets/words/may/bow.jpg",
+      "image": "assets/words/may/bow.jpg",
+      "term": "bow",
+      "definition": "절하다"
+    },
+    {
+      "id": "may_13",
+      "en": "peace",
+      "ko": "평화",
+      "audio": "data/audio/may-words/peace.mp3",
+      "pic": "assets/words/may/peace.jpg",
+      "image": "assets/words/may/peace.jpg",
+      "term": "peace",
+      "definition": "평화"
+    },
+    {
+      "id": "may_14",
+      "en": "tree",
+      "ko": "나무",
+      "audio": "data/audio/may-words/tree.mp3",
+      "pic": "assets/words/may/tree.jpg",
+      "image": "assets/words/may/tree.jpg",
+      "term": "tree",
+      "definition": "나무"
+    },
+    {
+      "id": "may_15",
+      "en": "India",
+      "ko": "인도",
+      "audio": "data/audio/may-words/india.mp3",
+      "pic": "assets/words/may/india.jpg",
+      "image": "assets/words/may/india.jpg",
+      "term": "India",
+      "definition": "인도"
+    },
+    {
+      "id": "may_16",
+      "en": "wise",
+      "ko": "지혜로운",
+      "audio": "data/audio/may-words/wise.mp3",
+      "pic": "assets/words/may/wise.jpg",
+      "image": "assets/words/may/wise.jpg",
+      "term": "wise",
+      "definition": "지혜로운"
+    }
+  ]
+}

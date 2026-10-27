@@ -1,0 +1,169 @@
+{
+  "id": "culture_m04",
+  "title": "April · Easter vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "maya",
+  "words": [
+    {
+      "id": "apr_01",
+      "en": "Easter",
+      "ko": "부활절",
+      "audio": "data/audio/apr-words/easter.mp3",
+      "pic": "assets/words/apr/easter.jpg",
+      "image": "assets/words/apr/easter.jpg",
+      "term": "Easter",
+      "definition": "부활절"
+    },
+    {
+      "id": "apr_02",
+      "en": "egg",
+      "ko": "달걀",
+      "audio": "data/audio/apr-words/egg.mp3",
+      "pic": "assets/words/apr/egg.jpg",
+      "image": "assets/words/apr/egg.jpg",
+      "term": "egg",
+      "definition": "달걀"
+    },
+    {
+      "id": "apr_03",
+      "en": "egg hunt",
+      "ko": "달걀 찾기",
+      "audio": "data/audio/apr-words/egg_hunt.mp3",
+      "pic": "assets/words/apr/egg_hunt.jpg",
+      "image": "assets/words/apr/egg_hunt.jpg",
+      "term": "egg hunt",
+      "definition": "달걀 찾기"
+    },
+    {
+      "id": "apr_04",
+      "en": "basket",
+      "ko": "바구니",
+      "audio": "data/audio/apr-words/basket.mp3",
+      "pic": "assets/words/apr/basket.jpg",
+      "image": "assets/words/apr/basket.jpg",
+      "term": "basket",
+      "definition": "바구니"
+    },
+    {
+      "id": "apr_05",
+      "en": "bunny",
+      "ko": "토끼",
+      "audio": "data/audio/apr-words/bunny.mp3",
+      "pic": "assets/words/apr/bunny.jpg",
+      "image": "assets/words/apr/bunny.jpg",
+      "term": "bunny",
+      "definition": "토끼"
+    },
+    {
+      "id": "apr_06",
+      "en": "chick",
+      "ko": "병아리",
+      "audio": "data/audio/apr-words/chick.mp3",
+      "pic": "assets/words/apr/chick.jpg",
+      "image": "assets/words/apr/chick.jpg",
+      "term": "chick",
+      "definition": "병아리"
+    },
+    {
+      "id": "apr_07",
+      "en": "spring",
+      "ko": "봄",
+      "audio": "data/audio/apr-words/spring.mp3",
+      "pic": "assets/words/apr/spring.jpg",
+      "image": "assets/words/apr/spring.jpg",
+      "term": "spring",
+      "definition": "봄"
+    },
+    {
+      "id": "apr_08",
+      "en": "flower",
+      "ko": "꽃",
+      "audio": "data/audio/apr-words/flower.mp3",
+      "pic": "assets/words/apr/flower.jpg",
+      "image": "assets/words/apr/flower.jpg",
+      "term": "flower",
+      "definition": "꽃"
+    },
+    {
+      "id": "apr_09",
+      "en": "dye",
+      "ko": "염색하다",
+      "audio": "data/audio/apr-words/dye.mp3",
+      "pic": "assets/words/apr/dye.jpg",
+      "image": "assets/words/apr/dye.jpg",
+      "term": "dye",
+      "definition": "염색하다"
+    },
+    {
+      "id": "apr_10",
+      "en": "paint",
+      "ko": "칠하다",
+      "audio": "data/audio/apr-words/paint.mp3",
+      "pic": "assets/words/apr/paint.jpg",
+      "image": "assets/words/apr/paint.jpg",
+      "term": "paint",
+      "definition": "칠하다"
+    },
+    {
+      "id": "apr_11",
+      "en": "hide",
+      "ko": "숨기다",
+      "audio": "data/audio/apr-words/hide.mp3",
+      "pic": "assets/words/apr/hide.jpg",
+      "image": "assets/words/apr/hide.jpg",
+      "term": "hide",
+      "definition": "숨기다"
+    },
+    {
+      "id": "apr_12",
+      "en": "find",
+      "ko": "찾다",
+      "audio": "data/audio/apr-words/find.mp3",
+      "pic": "assets/words/apr/find.jpg",
+      "image": "assets/words/apr/find.jpg",
+      "term": "find",
+      "definition": "찾다"
+    },
+    {
+      "id": "apr_13",
+      "en": "chocolate egg",
+      "ko": "초콜릿 달걀",
+      "audio": "data/audio/apr-words/chocolate_egg.mp3",
+      "pic": "assets/words/apr/chocolate_egg.jpg",
+      "image": "assets/words/apr/chocolate_egg.jpg",
+      "term": "chocolate egg",
+      "definition": "초콜릿 달걀"
+    },
+    {
+      "id": "apr_14",
+      "en": "lamb",
+      "ko": "어린 양",
+      "audio": "data/audio/apr-words/lamb.mp3",
+      "pic": "assets/words/apr/lamb.jpg",
+      "image": "assets/words/apr/lamb.jpg",
+      "term": "lamb",
+      "definition": "어린 양"
+    },
+    {
+      "id": "apr_15",
+      "en": "church",
+      "ko": "교회",
+      "audio": "data/audio/apr-words/church.mp3",
+      "pic": "assets/words/apr/church.jpg",
+      "image": "assets/words/apr/church.jpg",
+      "term": "church",
+      "definition": "교회"
+    },
+    {
+      "id": "apr_16",
+      "en": "Sunday",
+      "ko": "일요일",
+      "audio": "data/audio/apr-words/sunday.mp3",
+      "pic": "assets/words/apr/sunday.jpg",
+      "image": "assets/words/apr/sunday.jpg",
+      "term": "Sunday",
+      "definition": "일요일"
+    }
+  ]
+}

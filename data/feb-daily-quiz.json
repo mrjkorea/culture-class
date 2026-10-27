@@ -1,0 +1,156 @@
+{
+  "id": "culture_m02_daily_quiz",
+  "monthId": "02",
+  "title": "Valentine's Day — after Daily video",
+  "source": "Valentine's Day culture intro (6:01)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What holiday is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "Canada Day",
+          "ko": "캐나다 데이"
+        },
+        {
+          "en": "Valentine's Day",
+          "ko": "발렌타인데이",
+          "correct": true
+        },
+        {
+          "en": "Earth Day",
+          "ko": "지구의 날"
+        },
+        {
+          "en": "Thanksgiving",
+          "ko": "추수감사절"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "The video is about Valentine's Day.",
+        "ko": "영상은 발렌타인데이에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What date is Valentine's Day?",
+      "ko": "발렌타인데이는 몇 월 며칠인가요?",
+      "choices": [
+        {
+          "en": "February 14",
+          "ko": "2월 14일",
+          "correct": true
+        },
+        {
+          "en": "February 4",
+          "ko": "2월 4일"
+        },
+        {
+          "en": "March 14",
+          "ko": "3월 14일"
+        },
+        {
+          "en": "January 14",
+          "ko": "1월 14일"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Valentine's Day is on February 14.",
+        "ko": "발렌타인데이는 2월 14일이에요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What shape is the symbol of Valentine's Day?",
+      "ko": "발렌타인데이의 상징 모양은 무엇인가요?",
+      "choices": [
+        {
+          "en": "A heart",
+          "ko": "하트",
+          "correct": true
+        },
+        {
+          "en": "A circle",
+          "ko": "동그라미"
+        },
+        {
+          "en": "A star",
+          "ko": "별"
+        },
+        {
+          "en": "A tree",
+          "ko": "나무"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "The heart is the symbol of love.",
+        "ko": "하트는 사랑의 상징이에요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Who shoots arrows to make people fall in love?",
+      "ko": "사람들이 사랑에 빠지도록 화살을 쏘는 것은 누구인가요?",
+      "choices": [
+        {
+          "en": "A leprechaun",
+          "ko": "레프러콘"
+        },
+        {
+          "en": "The Easter Bunny",
+          "ko": "부활절 토끼"
+        },
+        {
+          "en": "Santa",
+          "ko": "산타"
+        },
+        {
+          "en": "Cupid",
+          "ko": "큐피드",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Cupid is the little angel of love with a bow and arrow.",
+        "ko": "큐피드는 활과 화살을 가진 사랑의 천사예요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What do people often give on Valentine's Day?",
+      "ko": "발렌타인데이에 사람들은 무엇을 자주 주나요?",
+      "choices": [
+        {
+          "en": "Pumpkins",
+          "ko": "호박"
+        },
+        {
+          "en": "Fireworks",
+          "ko": "불꽃놀이"
+        },
+        {
+          "en": "Christmas trees",
+          "ko": "크리스마스트리"
+        },
+        {
+          "en": "Cards and chocolate",
+          "ko": "카드와 초콜릿",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "People give cards, chocolate, and flowers.",
+        "ko": "사람들은 카드, 초콜릿, 꽃을 줘요."
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "id": "culture_m12_show",
+  "kind": "culture",
+  "title": "Culture · December · Christmas Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m12_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "12월 25일은 어떤 날인가요?"
+      },
+      "choices": [
+        "New Year's Day",
+        "Easter",
+        "Thanksgiving",
+        "Christmas"
+      ],
+      "answer": "Christmas",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "크리스마스이브에 선물을 가져오는 사람은?"
+      },
+      "choices": [
+        "A leprechaun",
+        "Cupid",
+        "Santa Claus",
+        "The Easter Bunny"
+      ],
+      "answer": "Santa Claus",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "산타의 썰매를 끄는 동물은?"
+      },
+      "choices": [
+        "Horses",
+        "Dogs",
+        "Turkeys",
+        "Reindeer"
+      ],
+      "answer": "Reindeer",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "아이들은 산타를 위해 무엇을 남겨두나요?"
+      },
+      "choices": [
+        "Pizza and soda",
+        "Candy corn",
+        "Cookies and milk",
+        "Rice and kimchi"
+      ],
+      "answer": "Cookies and milk",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 무엇을 불빛과 장식으로 꾸미나요?"
+      },
+      "choices": [
+        "A pumpkin",
+        "A maple tree",
+        "A lotus",
+        "A Christmas tree"
+      ],
+      "answer": "A Christmas tree",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "크리스마스는 12월 25일이에요."
+      },
+      "choices": [
+        "Christmas celebrates the birth of Jesus.",
+        "Reindeer pull Santa's magical flying sleigh.",
+        "Christmas is on December twenty-fifth.",
+        "Children leave cookies for Santa Claus."
+      ],
+      "answer": "Christmas is on December twenty-fifth.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "아이들은 산타에게 쿠키를 남겨둬요."
+      },
+      "choices": [
+        "Reindeer pull Santa's magical flying sleigh.",
+        "Christmas is on December twenty-fifth.",
+        "Many houses have sparkling Christmas lights.",
+        "Children leave cookies for Santa Claus."
+      ],
+      "answer": "Children leave cookies for Santa Claus.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "많은 집들이 반짝이는 크리스마스 불빛이 있어요."
+      },
+      "choices": [
+        "Christmas is on December twenty-fifth.",
+        "Reindeer pull Santa's magical flying sleigh.",
+        "Many houses have sparkling Christmas lights.",
+        "Children leave cookies for Santa Claus."
+      ],
+      "answer": "Many houses have sparkling Christmas lights.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "순록이 산타의 마법 나는 썰매를 끌어요."
+      },
+      "choices": [
+        "Reindeer pull Santa's magical flying sleigh.",
+        "Christmas is on December twenty-fifth.",
+        "Many houses have sparkling Christmas lights.",
+        "Children leave cookies for Santa Claus."
+      ],
+      "answer": "Reindeer pull Santa's magical flying sleigh.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "크리스마스는 예수님의 탄생을 기념해요."
+      },
+      "choices": [
+        "Reindeer pull Santa's magical flying sleigh.",
+        "Many houses have sparkling Christmas lights.",
+        "Children leave cookies for Santa Claus.",
+        "Christmas celebrates the birth of Jesus."
+      ],
+      "answer": "Christmas celebrates the birth of Jesus.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

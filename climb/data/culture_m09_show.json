@@ -1,0 +1,156 @@
+{
+  "id": "culture_m09_show",
+  "kind": "culture",
+  "title": "Culture · September · Earth Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m09_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "Thanksgiving",
+        "Christmas",
+        "Earth Day",
+        "Canada Day"
+      ],
+      "answer": "Earth Day",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "지구의 날은 언제인가요?"
+      },
+      "choices": [
+        "September 1",
+        "December 25",
+        "April 22",
+        "July 1"
+      ],
+      "answer": "April 22",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "\"recycle\"은 무슨 뜻인가요?"
+      },
+      "choices": [
+        "Buy new things",
+        "Throw everything away",
+        "Burn trash",
+        "Use old things again"
+      ],
+      "answer": "Use old things again",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "플라스틱 병은 분해되는 데 얼마나 걸리나요?"
+      },
+      "choices": [
+        "About 1 year",
+        "About 1 week",
+        "About 450 years",
+        "About 10 years"
+      ],
+      "answer": "About 450 years",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "지구를 돕는 좋은 방법은 무엇인가요?"
+      },
+      "choices": [
+        "Drop trash in the river",
+        "Drive everywhere",
+        "Turn off lights you don't use",
+        "Leave the water running"
+      ],
+      "answer": "Turn off lights you don't use",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "햄버거 하나는 2,500 리터의 물을 사용합니다."
+      },
+      "choices": [
+        "Air conditioners use 90% more power than fans.",
+        "A hamburger uses 2,500 liters of water.",
+        "Plastic bottles take 450 years to break down.",
+        "One recycled can saves 3 hours of TV power."
+      ],
+      "answer": "A hamburger uses 2,500 liters of water.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "에어컨은 선풍기보다 90% 더 많은 에너지를 사용합니다."
+      },
+      "choices": [
+        "Idling for 2 minutes wastes more gas than turning off.",
+        "Plastic bottles take 450 years to break down.",
+        "Air conditioners use 90% more power than fans.",
+        "One recycled can saves 3 hours of TV power."
+      ],
+      "answer": "Air conditioners use 90% more power than fans.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "플라스틱 병은 분해되는데 450년이 걸립니다."
+      },
+      "choices": [
+        "Air conditioners use 90% more power than fans.",
+        "Idling for 2 minutes wastes more gas than turning off.",
+        "Plastic bottles take 450 years to break down.",
+        "A hamburger uses 2,500 liters of water."
+      ],
+      "answer": "Plastic bottles take 450 years to break down.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "재활용된 캔 하나는 TV를 3시간 동안 사용할 에너지를 절약합니다."
+      },
+      "choices": [
+        "One recycled can saves 3 hours of TV power.",
+        "Plastic bottles take 450 years to break down.",
+        "A hamburger uses 2,500 liters of water.",
+        "Idling for 2 minutes wastes more gas than turning off."
+      ],
+      "answer": "One recycled can saves 3 hours of TV power.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "2분 동안 차를 공회전하는 것은 다시 시동 거는 것보다 연료를 더 사용합니다."
+      },
+      "choices": [
+        "Plastic bottles take 450 years to break down.",
+        "A hamburger uses 2,500 liters of water.",
+        "Air conditioners use 90% more power than fans.",
+        "Idling for 2 minutes wastes more gas than turning off."
+      ],
+      "answer": "Idling for 2 minutes wastes more gas than turning off.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

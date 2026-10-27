@@ -1,0 +1,259 @@
+{
+  "id": "culture_m09",
+  "kind": "culture",
+  "title": "Culture · September · Earth Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m09"
+  ],
+  "wordAudio": "data/audio/sep-words/",
+  "picDir": "assets/words/sep/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "지구"
+      },
+      "choices": [
+        "Earth",
+        "paper",
+        "recycle",
+        "trash"
+      ],
+      "answer": "Earth"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "재활용하다"
+      },
+      "choices": [
+        "save",
+        "bin",
+        "recycle",
+        "trash"
+      ],
+      "answer": "recycle"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "쓰레기"
+      },
+      "choices": [
+        "light",
+        "save",
+        "trash",
+        "river"
+      ],
+      "answer": "trash"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "플라스틱"
+      },
+      "choices": [
+        "Earth",
+        "plastic",
+        "paper",
+        "bin"
+      ],
+      "answer": "plastic"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "종이"
+      },
+      "choices": [
+        "Earth",
+        "paper",
+        "plastic",
+        "can"
+      ],
+      "answer": "paper"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "캔"
+      },
+      "choices": [
+        "plant",
+        "can",
+        "bin",
+        "light"
+      ],
+      "answer": "can"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "쓰레기통"
+      },
+      "choices": [
+        "recycle",
+        "plastic",
+        "Earth",
+        "bin"
+      ],
+      "answer": "bin"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "심다"
+      },
+      "choices": [
+        "bin",
+        "recycle",
+        "save",
+        "plant"
+      ],
+      "answer": "plant"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "나무"
+      },
+      "choices": [
+        "light",
+        "recycle",
+        "tree",
+        "water"
+      ],
+      "answer": "tree"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "물"
+      },
+      "choices": [
+        "water",
+        "bin",
+        "paper",
+        "light"
+      ],
+      "answer": "water"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "에너지"
+      },
+      "choices": [
+        "paper",
+        "energy",
+        "bike",
+        "water"
+      ],
+      "answer": "energy"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "전등"
+      },
+      "choices": [
+        "clean",
+        "Earth",
+        "light",
+        "river"
+      ],
+      "answer": "light"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "자전거"
+      },
+      "choices": [
+        "save",
+        "bike",
+        "bin",
+        "light"
+      ],
+      "answer": "bike"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "강"
+      },
+      "choices": [
+        "bin",
+        "trash",
+        "river",
+        "save"
+      ],
+      "answer": "river"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "깨끗한 / 청소하다"
+      },
+      "choices": [
+        "clean",
+        "plant",
+        "water",
+        "can"
+      ],
+      "answer": "clean"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "아끼다 / 구하다"
+      },
+      "choices": [
+        "trash",
+        "tree",
+        "Earth",
+        "save"
+      ],
+      "answer": "save"
+    }
+  ]
+}

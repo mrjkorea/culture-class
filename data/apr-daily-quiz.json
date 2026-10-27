@@ -1,0 +1,156 @@
+{
+  "id": "culture_m04_daily_quiz",
+  "monthId": "04",
+  "title": "Easter — after Daily video",
+  "source": "Easter Revealed",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What holiday is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "Easter",
+          "ko": "부활절",
+          "correct": true
+        },
+        {
+          "en": "Christmas",
+          "ko": "크리스마스"
+        },
+        {
+          "en": "Halloween",
+          "ko": "할로윈"
+        },
+        {
+          "en": "Valentine's Day",
+          "ko": "발렌타인데이"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "The video \"Easter Revealed\" is about Easter.",
+        "ko": "영상 \"Easter Revealed\"는 부활절에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What day of the week is Easter?",
+      "ko": "부활절은 무슨 요일인가요?",
+      "choices": [
+        {
+          "en": "Sunday",
+          "ko": "일요일",
+          "correct": true
+        },
+        {
+          "en": "Friday",
+          "ko": "금요일"
+        },
+        {
+          "en": "Saturday",
+          "ko": "토요일"
+        },
+        {
+          "en": "Monday",
+          "ko": "월요일"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Easter is always on a Sunday.",
+        "ko": "부활절은 항상 일요일이에요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What do children look for on Easter?",
+      "ko": "부활절에 아이들은 무엇을 찾나요?",
+      "choices": [
+        {
+          "en": "Eggs",
+          "ko": "달걀",
+          "correct": true
+        },
+        {
+          "en": "Presents under a tree",
+          "ko": "트리 아래 선물"
+        },
+        {
+          "en": "Gold coins",
+          "ko": "금화"
+        },
+        {
+          "en": "Pumpkins",
+          "ko": "호박"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Kids go on an Easter egg hunt.",
+        "ko": "아이들은 부활절 달걀 찾기를 해요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Which animal brings Easter eggs?",
+      "ko": "어떤 동물이 부활절 달걀을 가져오나요?",
+      "choices": [
+        {
+          "en": "A turkey",
+          "ko": "칠면조"
+        },
+        {
+          "en": "A black cat",
+          "ko": "검은 고양이"
+        },
+        {
+          "en": "A reindeer",
+          "ko": "순록"
+        },
+        {
+          "en": "The Easter Bunny",
+          "ko": "부활절 토끼",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "The Easter Bunny brings eggs and candy.",
+        "ko": "부활절 토끼가 달걀과 사탕을 가져와요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What do Easter eggs mean?",
+      "ko": "부활절 달걀은 무엇을 의미하나요?",
+      "choices": [
+        {
+          "en": "Bad luck",
+          "ko": "불운"
+        },
+        {
+          "en": "Winter",
+          "ko": "겨울"
+        },
+        {
+          "en": "Money",
+          "ko": "돈"
+        },
+        {
+          "en": "New life",
+          "ko": "새 생명",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Eggs are a symbol of new life in spring.",
+        "ko": "달걀은 봄의 새 생명을 상징해요."
+      }
+    }
+  ]
+}

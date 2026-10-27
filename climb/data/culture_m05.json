@@ -1,0 +1,259 @@
+{
+  "id": "culture_m05",
+  "kind": "culture",
+  "title": "Culture · May · Buddhism Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m05"
+  ],
+  "wordAudio": "data/audio/may-words/",
+  "picDir": "assets/words/may/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "부처님"
+      },
+      "choices": [
+        "wise",
+        "Buddha",
+        "India",
+        "bell"
+      ],
+      "answer": "Buddha"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "절"
+      },
+      "choices": [
+        "temple",
+        "bell",
+        "monk",
+        "meditate"
+      ],
+      "answer": "temple"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "스님"
+      },
+      "choices": [
+        "temple",
+        "incense",
+        "India",
+        "monk"
+      ],
+      "answer": "monk"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "연꽃"
+      },
+      "choices": [
+        "temple",
+        "wise",
+        "lotus",
+        "lantern"
+      ],
+      "answer": "lotus"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "연등"
+      },
+      "choices": [
+        "lantern",
+        "monk",
+        "calm",
+        "statue"
+      ],
+      "answer": "lantern"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "명상하다"
+      },
+      "choices": [
+        "bell",
+        "India",
+        "lotus",
+        "meditate"
+      ],
+      "answer": "meditate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "차분한"
+      },
+      "choices": [
+        "Buddha",
+        "bow",
+        "bell",
+        "calm"
+      ],
+      "answer": "calm"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "친절한"
+      },
+      "choices": [
+        "peace",
+        "kind",
+        "monk",
+        "calm"
+      ],
+      "answer": "kind"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "종"
+      },
+      "choices": [
+        "bell",
+        "meditate",
+        "India",
+        "temple"
+      ],
+      "answer": "bell"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "향"
+      },
+      "choices": [
+        "incense",
+        "India",
+        "temple",
+        "calm"
+      ],
+      "answer": "incense"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "불상"
+      },
+      "choices": [
+        "statue",
+        "wise",
+        "peace",
+        "lantern"
+      ],
+      "answer": "statue"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "절하다"
+      },
+      "choices": [
+        "bow",
+        "incense",
+        "wise",
+        "calm"
+      ],
+      "answer": "bow"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "평화"
+      },
+      "choices": [
+        "lantern",
+        "peace",
+        "tree",
+        "Buddha"
+      ],
+      "answer": "peace"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "나무"
+      },
+      "choices": [
+        "lantern",
+        "tree",
+        "India",
+        "statue"
+      ],
+      "answer": "tree"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "인도"
+      },
+      "choices": [
+        "calm",
+        "meditate",
+        "India",
+        "bell"
+      ],
+      "answer": "India"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "지혜로운"
+      },
+      "choices": [
+        "Buddha",
+        "India",
+        "peace",
+        "wise"
+      ],
+      "answer": "wise"
+    }
+  ]
+}

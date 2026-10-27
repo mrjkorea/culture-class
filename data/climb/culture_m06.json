@@ -1,0 +1,259 @@
+{
+  "id": "culture_m06",
+  "kind": "culture",
+  "title": "Culture · June · Remembrance Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m06"
+  ],
+  "wordAudio": "data/audio/jun-words/",
+  "picDir": "assets/words/jun/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "기억하다"
+      },
+      "choices": [
+        "peace",
+        "remember",
+        "army",
+        "memorial"
+      ],
+      "answer": "remember"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "군인"
+      },
+      "choices": [
+        "thank",
+        "flag",
+        "silence",
+        "soldier"
+      ],
+      "answer": "soldier"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "전쟁"
+      },
+      "choices": [
+        "remember",
+        "war",
+        "silence",
+        "poppy"
+      ],
+      "answer": "war"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "평화"
+      },
+      "choices": [
+        "veteran",
+        "cemetery",
+        "brave",
+        "peace"
+      ],
+      "answer": "peace"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "깃발 / 국기"
+      },
+      "choices": [
+        "silence",
+        "remember",
+        "soldier",
+        "flag"
+      ],
+      "answer": "flag"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "양귀비꽃"
+      },
+      "choices": [
+        "poppy",
+        "peace",
+        "cemetery",
+        "soldier"
+      ],
+      "answer": "poppy"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "기념비"
+      },
+      "choices": [
+        "veteran",
+        "thank",
+        "brave",
+        "memorial"
+      ],
+      "answer": "memorial"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "침묵"
+      },
+      "choices": [
+        "silence",
+        "remember",
+        "war",
+        "cemetery"
+      ],
+      "answer": "silence"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "영웅"
+      },
+      "choices": [
+        "medal",
+        "hero",
+        "flag",
+        "veteran"
+      ],
+      "answer": "hero"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "기리다 / 명예"
+      },
+      "choices": [
+        "medal",
+        "memorial",
+        "honor",
+        "hero"
+      ],
+      "answer": "honor"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "군대"
+      },
+      "choices": [
+        "flag",
+        "honor",
+        "army",
+        "hero"
+      ],
+      "answer": "army"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "메달 / 훈장"
+      },
+      "choices": [
+        "honor",
+        "cemetery",
+        "medal",
+        "peace"
+      ],
+      "answer": "medal"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "참전 용사"
+      },
+      "choices": [
+        "poppy",
+        "silence",
+        "veteran",
+        "flag"
+      ],
+      "answer": "veteran"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "묘지"
+      },
+      "choices": [
+        "hero",
+        "peace",
+        "remember",
+        "cemetery"
+      ],
+      "answer": "cemetery"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "용감한"
+      },
+      "choices": [
+        "remember",
+        "thank",
+        "peace",
+        "brave"
+      ],
+      "answer": "brave"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "감사하다"
+      },
+      "choices": [
+        "peace",
+        "soldier",
+        "flag",
+        "thank"
+      ],
+      "answer": "thank"
+    }
+  ]
+}

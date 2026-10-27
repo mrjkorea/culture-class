@@ -1,0 +1,169 @@
+{
+  "id": "culture_m03",
+  "title": "March · St. Patrick's Day vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "leo",
+  "words": [
+    {
+      "id": "mar_01",
+      "en": "St. Patrick's Day",
+      "ko": "성 패트릭 데이",
+      "audio": "data/audio/mar-words/st_patrick_s_day.mp3",
+      "pic": "assets/words/mar/st_patrick_s_day.jpg",
+      "image": "assets/words/mar/st_patrick_s_day.jpg",
+      "term": "St. Patrick's Day",
+      "definition": "성 패트릭 데이"
+    },
+    {
+      "id": "mar_02",
+      "en": "Ireland",
+      "ko": "아일랜드",
+      "audio": "data/audio/mar-words/ireland.mp3",
+      "pic": "assets/words/mar/ireland.jpg",
+      "image": "assets/words/mar/ireland.jpg",
+      "term": "Ireland",
+      "definition": "아일랜드"
+    },
+    {
+      "id": "mar_03",
+      "en": "shamrock",
+      "ko": "샴록 (세잎클로버)",
+      "audio": "data/audio/mar-words/shamrock.mp3",
+      "pic": "assets/words/mar/shamrock.jpg",
+      "image": "assets/words/mar/shamrock.jpg",
+      "term": "shamrock",
+      "definition": "샴록 (세잎클로버)"
+    },
+    {
+      "id": "mar_04",
+      "en": "four-leaf clover",
+      "ko": "네잎클로버",
+      "audio": "data/audio/mar-words/four_leaf_clover.mp3",
+      "pic": "assets/words/mar/four_leaf_clover.jpg",
+      "image": "assets/words/mar/four_leaf_clover.jpg",
+      "term": "four-leaf clover",
+      "definition": "네잎클로버"
+    },
+    {
+      "id": "mar_05",
+      "en": "leprechaun",
+      "ko": "레프러콘 (요정)",
+      "audio": "data/audio/mar-words/leprechaun.mp3",
+      "pic": "assets/words/mar/leprechaun.jpg",
+      "image": "assets/words/mar/leprechaun.jpg",
+      "term": "leprechaun",
+      "definition": "레프러콘 (요정)"
+    },
+    {
+      "id": "mar_06",
+      "en": "pot of gold",
+      "ko": "금 항아리",
+      "audio": "data/audio/mar-words/pot_of_gold.mp3",
+      "pic": "assets/words/mar/pot_of_gold.jpg",
+      "image": "assets/words/mar/pot_of_gold.jpg",
+      "term": "pot of gold",
+      "definition": "금 항아리"
+    },
+    {
+      "id": "mar_07",
+      "en": "rainbow",
+      "ko": "무지개",
+      "audio": "data/audio/mar-words/rainbow.mp3",
+      "pic": "assets/words/mar/rainbow.jpg",
+      "image": "assets/words/mar/rainbow.jpg",
+      "term": "rainbow",
+      "definition": "무지개"
+    },
+    {
+      "id": "mar_08",
+      "en": "green",
+      "ko": "초록색",
+      "audio": "data/audio/mar-words/green.mp3",
+      "pic": "assets/words/mar/green.jpg",
+      "image": "assets/words/mar/green.jpg",
+      "term": "green",
+      "definition": "초록색"
+    },
+    {
+      "id": "mar_09",
+      "en": "luck",
+      "ko": "행운",
+      "audio": "data/audio/mar-words/luck.mp3",
+      "pic": "assets/words/mar/luck.jpg",
+      "image": "assets/words/mar/luck.jpg",
+      "term": "luck",
+      "definition": "행운"
+    },
+    {
+      "id": "mar_10",
+      "en": "parade",
+      "ko": "퍼레이드",
+      "audio": "data/audio/mar-words/parade.mp3",
+      "pic": "assets/words/mar/parade.jpg",
+      "image": "assets/words/mar/parade.jpg",
+      "term": "parade",
+      "definition": "퍼레이드"
+    },
+    {
+      "id": "mar_11",
+      "en": "jig",
+      "ko": "지그 (아일랜드 춤)",
+      "audio": "data/audio/mar-words/jig.mp3",
+      "pic": "assets/words/mar/jig.jpg",
+      "image": "assets/words/mar/jig.jpg",
+      "term": "jig",
+      "definition": "지그 (아일랜드 춤)"
+    },
+    {
+      "id": "mar_12",
+      "en": "drum",
+      "ko": "북",
+      "audio": "data/audio/mar-words/drum.mp3",
+      "pic": "assets/words/mar/drum.jpg",
+      "image": "assets/words/mar/drum.jpg",
+      "term": "drum",
+      "definition": "북"
+    },
+    {
+      "id": "mar_13",
+      "en": "soda bread",
+      "ko": "소다빵",
+      "audio": "data/audio/mar-words/soda_bread.mp3",
+      "pic": "assets/words/mar/soda_bread.jpg",
+      "image": "assets/words/mar/soda_bread.jpg",
+      "term": "soda bread",
+      "definition": "소다빵"
+    },
+    {
+      "id": "mar_14",
+      "en": "hat",
+      "ko": "모자",
+      "audio": "data/audio/mar-words/hat.mp3",
+      "pic": "assets/words/mar/hat.jpg",
+      "image": "assets/words/mar/hat.jpg",
+      "term": "hat",
+      "definition": "모자"
+    },
+    {
+      "id": "mar_15",
+      "en": "terrier",
+      "ko": "테리어 (개)",
+      "audio": "data/audio/mar-words/terrier.mp3",
+      "pic": "assets/words/mar/terrier.jpg",
+      "image": "assets/words/mar/terrier.jpg",
+      "term": "terrier",
+      "definition": "테리어 (개)"
+    },
+    {
+      "id": "mar_16",
+      "en": "coin",
+      "ko": "동전",
+      "audio": "data/audio/mar-words/coin.mp3",
+      "pic": "assets/words/mar/coin.jpg",
+      "image": "assets/words/mar/coin.jpg",
+      "term": "coin",
+      "definition": "동전"
+    }
+  ]
+}
