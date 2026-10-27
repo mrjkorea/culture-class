@@ -1,0 +1,12 @@
+{
+  "id": "craft_april_easter",
+  "title": "Easter Egg Craft",
+  "month": "04",
+  "narrator": "Maya Fish (see bake-maya-audio.sh MAYA_VOICE_ID)",
+  "audioDir": "assets/audio/maya/",
+  "leaderboard": { "key": "culture_craft_apr_easter_v1" },
+  "stages": [
+    "hunt1", "hunt2", "hunt3", "hunt4", "hunt5",
+    "wash", "dye", "face", "aim", "roll"
+  ]
+}

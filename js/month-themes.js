@@ -56,7 +56,7 @@ const THEMES = {
   },
   easter: {
     bodyClass: "theme-easter",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/easter.css",
     mapImage: "assets/covers/04-april-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(200,160,255,0.55)",

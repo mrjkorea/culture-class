@@ -107,17 +107,18 @@
         }
       ],
       "featureLabel": "Play the Easter craft",
-      "featureDetail": "Egg hunt, decorate, and roll (coming soon).",
+      "featureDetail": "Ten interactive stages with Maya narration — Waldo egg hunts, decorate, aim, and roll — plus a local fastest-time board.",
       "notes": "Study Easter traditions and spring culture themes. Work through vocabulary, comprehension (PRO COMP), and Mountain Climb quizzes.",
       "monthLayout": "easter",
-      "craftPath": "craft/april/",
-      "craftTitle": "Easter Craft",
-      "craftButton": "Play Easter Craft",
-      "craftBlurb": "Egg hunt, decorate, and roll (coming soon).",
       "wordsPreviewFile": "apr-words.json",
       "dailyQuizFile": "apr-daily-quiz.json",
       "cpPackFile": "cp/culture_m04_cp.json",
-      "wordMasterMatchUrl": "#"
+      "craftPath": "craft/april/",
+      "craftTitle": "Easter Egg Craft",
+      "craftButton": "Play Easter Craft",
+      "craftBlurb": "Five hunt levels, wash–dye–decorate, then roll downhill — fastest time on this device.",
+      "featureTitle": "Easter Egg Craft",
+      "craftEmoji": "🥚"
     },
     {
       "id": "05",

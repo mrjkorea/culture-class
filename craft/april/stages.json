@@ -1,0 +1,198 @@
+{
+  "id": "craft_april_easter",
+  "title": "Easter Egg Craft",
+  "month": "04",
+  "targetMinutes": [10, 14],
+  "leaderboard": {
+    "key": "culture_craft_apr_easter_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · April",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Hunt hidden eggs (they get trickier!), decorate your egg, aim, and roll downhill to the finish. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Easter!",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "April",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 4월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "숨은 달걀을 찾고, 꾸미고, 굴리세요. 단계마다 더 어려워요!",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 하기",
+      "doneTitle": "해냈어요!",
+      "doneBody": "해피 이스터!",
+      "watch": "준비하세요",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "4월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "hunt1",
+      "title": "Egg hunt L1",
+      "titleKo": "달걀 찾기 1",
+      "type": "egg_hunt",
+      "level": 1,
+      "poolSize": 16,
+      "lines": {
+        "en": ["Find the hidden Easter egg!", "Look closely!", "You found it!"],
+        "ko": ["숨은 달걀을 찾아요!", "잘 보세요!", "찾았어요!"]
+      }
+    },
+    {
+      "id": 2,
+      "key": "hunt2",
+      "title": "Egg hunt L2",
+      "titleKo": "달걀 찾기 2",
+      "type": "egg_hunt",
+      "level": 2,
+      "poolSize": 20,
+      "lines": {
+        "en": ["Level two — the egg hides better!", "Keep searching!", "Sharp eyes!"],
+        "ko": ["2단계 — 더 잘 숨었어요!", "계속 찾아요!", "날카로운 눈!"]
+      }
+    },
+    {
+      "id": 3,
+      "key": "hunt3",
+      "title": "Egg hunt L3",
+      "titleKo": "달걀 찾기 3",
+      "type": "egg_hunt",
+      "level": 3,
+      "poolSize": 24,
+      "lines": {
+        "en": ["Level three — smaller and fainter!", "Almost there!", "Found it!"],
+        "ko": ["3단계 — 더 작고 흐려요!", "거의 다!", "찾았어요!"]
+      }
+    },
+    {
+      "id": 4,
+      "key": "hunt4",
+      "title": "Egg hunt L4",
+      "titleKo": "달걀 찾기 4",
+      "type": "egg_hunt",
+      "level": 4,
+      "poolSize": 28,
+      "lines": {
+        "en": ["Level four — Waldo mode!", "Don't give up!", "Amazing hunt!"],
+        "ko": ["4단계 — 왈도 모드!", "포기하지 마요!", "대단해요!"]
+      }
+    },
+    {
+      "id": 5,
+      "key": "hunt5",
+      "title": "Egg hunt L5",
+      "titleKo": "달걀 찾기 5",
+      "type": "egg_hunt",
+      "level": 5,
+      "poolSize": 32,
+      "lines": {
+        "en": ["Final hunt — tiny and faint!", "Last egg!", "Master egg hunter!"],
+        "ko": ["마지막 — 아주 작아요!", "마지막 달걀!", "달걀 찾기 달인!"]
+      }
+    },
+    {
+      "id": 6,
+      "key": "wash",
+      "title": "Wash egg",
+      "titleKo": "달걀 씻기",
+      "type": "wash",
+      "clicks": 35,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Wash your egg clean!", "Scrub scrub!", "Sparkling clean!"],
+        "ko": ["달걀을 씻어요!", "문질문질!", "반짝반짝!"]
+      }
+    },
+    {
+      "id": 7,
+      "key": "dye",
+      "title": "Dye egg",
+      "titleKo": "달걀 물들이기",
+      "type": "dye",
+      "lines": {
+        "en": ["Pick a dye color!", "Dip the egg!", "Beautiful color!"],
+        "ko": ["색을 고르세요!", "달걀을 담가요!", "예쁜 색!"]
+      }
+    },
+    {
+      "id": 8,
+      "key": "face",
+      "title": "Face & stickers",
+      "titleKo": "얼굴·스티커",
+      "type": "face",
+      "clicks": 40,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Add a face and stickers!", "Keep decorating!", "What a cute egg!"],
+        "ko": ["얼굴과 스티커!", "계속 꾸며요!", "귀여운 달걀!"]
+      }
+    },
+    {
+      "id": 9,
+      "key": "aim",
+      "title": "Aim",
+      "titleKo": "조준",
+      "type": "aim",
+      "lines": {
+        "en": ["Aim for the hill!", "Set your angle!", "Ready to roll!"],
+        "ko": ["언덕을 조준!", "각도를 맞춰요!", "굴릴 준비!"]
+      }
+    },
+    {
+      "id": 10,
+      "key": "roll",
+      "title": "Roll downhill",
+      "titleKo": "언덕 굴리기",
+      "type": "roll",
+      "lines": {
+        "en": ["Roll your egg downhill!", "Almost at the finish!", "Happy Easter! You did it!"],
+        "ko": ["달걀을 굴려요!", "거의 다!", "해피 이스터! 해냈어요!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_hunt1", "durationSec": 3, "caption": { "en": "Egg hunt!", "ko": "찾기!" } },
+    { "id": "t02_hunt2", "durationSec": 3, "caption": { "en": "Harder!", "ko": "더 어려움!" } },
+    { "id": "t03_hunt3", "durationSec": 3, "caption": { "en": "Level 3", "ko": "3단계" } },
+    { "id": "t04_hunt4", "durationSec": 3, "caption": { "en": "Level 4", "ko": "4단계" } },
+    { "id": "t05_hunt5", "durationSec": 3, "caption": { "en": "Final hunt", "ko": "마지막" } },
+    { "id": "t06_wash", "durationSec": 3, "caption": { "en": "Wash", "ko": "씻기" } },
+    { "id": "t07_dye", "durationSec": 3, "caption": { "en": "Dye", "ko": "물들이기" } },
+    { "id": "t08_face", "durationSec": 3, "caption": { "en": "Decorate", "ko": "꾸미기" } },
+    { "id": "t09_aim", "durationSec": 3, "caption": { "en": "Aim", "ko": "조준" } },
+    { "id": "t10_roll", "durationSec": 3, "caption": { "en": "Roll!", "ko": "굴리기!" } }
+  ]
+}

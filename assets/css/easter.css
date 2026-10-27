@@ -1,0 +1,39 @@
+/* April / Easter themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-easter {
+  background: radial-gradient(ellipse at 50% 0%, #5f3dc4 0%, #2b1558 50%, #12081f 100%);
+  color: #fff5f8;
+}
+
+.theme-easter .site-footer,
+.theme-easter .hint {
+  color: rgba(230, 220, 255, 0.78);
+}
+
+.theme-easter .map-title h1 {
+  text-shadow: 0 0 24px rgba(252, 194, 211, 0.5);
+}
+
+.theme-easter .map-title p {
+  color: #fcc2d7;
+}
+
+.theme-easter .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(150, 80, 200, 0.2);
+}
+
+.theme-easter .map-node-emoji {
+  background: linear-gradient(145deg, #fcc2d7, #cc5de8);
+  border-color: #f3d9fa;
+  box-shadow: 0 0 18px rgba(204, 93, 232, 0.55);
+}
+
+.theme-easter .map-back {
+  color: rgba(240, 220, 255, 0.9);
+}
+
+.theme-easter .themed-panel {
+  background: rgba(50, 25, 80, 0.72);
+  border-color: rgba(204, 93, 232, 0.35);
+}
