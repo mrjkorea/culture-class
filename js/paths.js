@@ -7,6 +7,9 @@ export function repoRoot() {
   if (path.endsWith("/bingo/teacher.html") || path.endsWith("/bingo/student.html")) {
     return path.replace(/\/bingo\/[^/]+$/, "");
   }
+  if (path.endsWith("/words/learn.html") || path.endsWith("/words/memory.html")) {
+    return path.replace(/\/words\/[^/]+$/, "");
+  }
   const monthMatch = path.match(/^(.*)\/months\/\d{2}-[^/]+$/);
   if (monthMatch) {
     return monthMatch[1] || "";
@@ -24,6 +27,18 @@ export function monthUrl(slug) {
 
 export function bingoUrl(which) {
   return `${repoRoot()}/bingo/${which}.html`;
+}
+
+export function wordsLearnUrl(monthId) {
+  return `${repoRoot()}/words/learn.html?month=${encodeURIComponent(monthId)}`;
+}
+
+export function wordsMemoryUrl(monthId) {
+  return `${repoRoot()}/words/memory.html?month=${encodeURIComponent(monthId)}`;
+}
+
+export function monthPageUrl(slug) {
+  return monthUrl(slug);
 }
 
 export const CLIMB_BASE = "https://mrjkorea.github.io/day2-words/day3/climb.html";
