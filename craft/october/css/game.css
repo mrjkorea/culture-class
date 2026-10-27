@@ -858,6 +858,25 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   font-weight: 900;
   text-shadow: 0 1px 0 #000;
 }
+.stage-movie-screen {
+  flex-direction: column;
+  gap: 6px;
+}
+.stage-movie-hud {
+  width: min(960px, 100%);
+  margin: 0;
+}
+.ghost-screen {
+  background: #000;
+  padding: 0;
+}
+.ghost-video {
+  width: 100%;
+  max-width: none;
+  max-height: 100dvh;
+  border-radius: 0;
+  object-fit: cover;
+}
 
 .still-screen {
   flex: 1;

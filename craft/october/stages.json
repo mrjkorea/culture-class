@@ -21,9 +21,9 @@
     "tieBreak": "misses"
   },
   "betweenStage": {
-    "animation": "still_3s_countdown_overlay",
+    "animation": "stage_movie_after_complete",
     "skipAllowed": false,
-    "durationSec": 3
+    "durationSec": 0
   },
   "tts": {
     "lang": "en-US",
@@ -42,8 +42,8 @@
       "namePlaceholder": "Your name",
       "needName": "Type a nickname to play.",
       "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "A picture plays before each stage (~3 seconds). Watch it — no skip.",
-      "timeNote": "Time counts while you play. Countdowns and the end reel are not timed.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
       "board": "Fastest times",
       "empty": "No times yet. Be the first!",
       "misses": "Misses",
@@ -66,8 +66,8 @@
       "namePlaceholder": "이름",
       "needName": "플레이하려면 닉네임을 입력하세요.",
       "how": "호박을 찾고, 씻고, 얼굴을 새긴 다음 사탕 {candies}개를 주세요. 가장 빠른 시간이 이겨요.",
-      "beatNote": "단계마다 그림이 나와요 (~3초). 넘길 수 없어요.",
-      "timeNote": "시간은 플레이 중에만 흘러요. 카운트다운과 마지막 영상은 포함되지 않아요.",
+      "beatNote": "단계가 끝나면 짧은 영상이 나와요. 넘길 수 없어요.",
+      "timeNote": "시간은 플레이 중에만 흘러요. 단계 영상과 마지막 유령은 포함되지 않아요.",
       "board": "최고 기록",
       "empty": "아직 기록이 없어요. 첫 기록을 남겨 보세요!",
       "misses": "실수",

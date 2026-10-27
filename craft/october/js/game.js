@@ -1,4 +1,4 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js";
+import { ghostAssetUrl, loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js";
 import { prepareFaces } from "./faces.js";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
 import { mountStage } from "./scenes.js";
@@ -7,7 +7,6 @@ import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
 
 const LANG_KEY = "culture_craft_oct_pumpkin_v1_ui";
-const COUNTDOWN_SEC = 3;
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
@@ -271,10 +270,10 @@ async function runGame(name) {
   state = { name, misses: 0, faceId: null, face: null, phase: "transition", saved: false, entry: null };
   timer.reset();
   for (let i = 0; i < spec.stages.length; i += 1) {
-    await showTransition(spec.stages[i], spec.transitions[i], i);
     await playStage(spec.stages[i], i);
+    await playStageMovie(spec.transitions[i], i);
   }
-  await playHighlightReel();
+  await playGhostFinale();
   showResults();
 }
 
@@ -407,132 +406,82 @@ function playStage(stage, index) {
   });
 }
 
-function showTransition(stage, transition, index) {
-  const seconds = Number(transition?.durationSec);
-  const duration = Number.isFinite(seconds) ? seconds * 1000 : COUNTDOWN_SEC * 1000;
-  const src = transitionUrl(assetBase, manifest, transition?.id);
-  const caption = transition?.caption || { en: stage.title, ko: stage.titleKo || stage.title };
-  const title = uiLang === "ko" ? caption.ko : caption.en;
-  view.dataset.screen = "transition";
-  view.dataset.stageKey = stage.key;
-  view.dataset.phase = "transition";
-  state.phase = "transition";
-  timer.pause();
-  view.innerHTML = `<section class="still-screen">
-    <p class="still-time"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
-    <div class="still-frame">
-      <div class="still-fallback" aria-hidden="true"></div>
-      ${src ? `<img id="still" class="still-img" alt="" draggable="false">` : ""}
-      <div class="still-countdown" aria-hidden="true"><span id="count-num">3</span></div>
-      <div class="still-bar" aria-hidden="true"><span id="still-fill"></span></div>
-      <div class="still-caption">
-        <p class="kicker">${esc(`${index + 1}/${spec.stages.length}`)} · ${esc(title)}</p>
-        <p id="line-a" class="line line-single"></p>
-        <p id="line-b" class="line mini" hidden></p>
-        <p class="watch" id="watch"></p>
-        <div class="frank-host still-frank" id="frank-host" aria-hidden="true">
-          <img id="frank-img" alt="" width="64" height="64" decoding="async" />
-        </div>
-      </div>
-    </div>
-  </section>`;
-  paintMisses();
-  wireFrank();
-  showLines({ en: [caption.en], ko: [caption.ko] }, 0);
-  const watch = document.getElementById("watch");
-  if (watch) watch.textContent = t("watch");
-  const img = document.getElementById("still");
-  if (img) {
-    img.addEventListener("error", () => img.remove());
-    img.src = src;
+function applyTransitionVideoMute(video) {
+  if (!video) return;
+  if (!speech.enabled) {
+    video.muted = true;
+  } else {
+    video.muted = false;
+    video.volume = Number(spec.tts?.volume ?? 1);
   }
-  speech.playClip("countdown");
-  return waitStill(duration);
 }
 
-function waitStill(duration) {
-  const fill = document.getElementById("still-fill");
-  const numEl = document.getElementById("count-num");
-  let elapsed = 0;
-  let last = performance.now();
-  const onVis = () => {
-    last = performance.now();
-  };
-  document.addEventListener("visibilitychange", onVis);
+function playStageMovie(transition, index) {
+  const id = transition?.id;
+  const src = transitionVideoUrl(assetBase, manifest, id);
+  if (!src) return Promise.resolve();
+  const poster = transitionUrl(assetBase, manifest, id);
+  const caption = transition?.caption || { en: "", ko: "" };
+  const title = uiLang === "ko" ? caption.ko : caption.en;
   return new Promise((resolve) => {
-    const frame = (now) => {
-      if (view.dataset.phase !== "transition") {
-        document.removeEventListener("visibilitychange", onVis);
-        resolve();
-        return;
-      }
-      if (!document.hidden) elapsed += Math.min(80, now - last);
-      last = now;
-      const pct = Math.max(0, Math.min(1, elapsed / duration));
-      if (fill) fill.style.width = `${pct * 100}%`;
-      const left = Math.max(0, Math.ceil((duration - elapsed) / 1000));
-      if (numEl) numEl.textContent = String(left || 1);
-      const watch = document.getElementById("watch");
-      if (watch) watch.textContent = `${t("watch")} · ${left}`;
-      if (elapsed >= duration) {
-        document.removeEventListener("visibilitychange", onVis);
-        resolve();
-        return;
-      }
-      requestAnimationFrame(frame);
-    };
-    requestAnimationFrame(frame);
-  });
-}
-
-function playHighlightReel() {
-  const ids = spec.transitionStills || spec.transitions.map((tr) => tr.id);
-  return new Promise((resolve) => {
-    view.dataset.screen = "reel";
-    view.dataset.phase = "reel";
+    view.dataset.screen = "stage-movie";
+    view.dataset.phase = "stage-movie";
     timer.pause();
-    view.innerHTML = `<section class="reel-screen">
-      <video id="reel-video" class="reel-video" playsinline muted></video>
-      <p class="reel-label" id="reel-label"></p>
+    speech.stop();
+    view.innerHTML = `<section class="reel-screen stage-movie-screen" aria-live="polite">
+      <p class="still-time stage-movie-hud"><span id="timer">${esc(formatTime(timer.read()))}</span> · <span id="misses"></span></p>
+      <video id="stage-movie" class="reel-video stage-movie-video" playsinline preload="auto"${poster ? ` poster="${esc(poster)}"` : ""}></video>
+      <p class="reel-label" id="stage-movie-label">${esc(`${index + 1}/${spec.stages.length}`)} · ${esc(title)}</p>
     </section>`;
-    const video = document.getElementById("reel-video");
-    const label = document.getElementById("reel-label");
+    paintMisses();
+    const video = document.getElementById("stage-movie");
     if (!video) {
       resolve();
       return;
     }
-    let i = 0;
-    const next = () => {
-      if (i >= ids.length) {
-        resolve();
-        return;
-      }
-      const id = ids[i];
-      const src = transitionVideoUrl(assetBase, manifest, id);
-      i += 1;
-      if (!src) {
-        next();
-        return;
-      }
-      if (label) label.textContent = `${i}/${ids.length}`;
-      video.src = src;
-      video.load();
-      const onEnd = () => {
-        video.removeEventListener("ended", onEnd);
-        video.removeEventListener("error", onEnd);
-        next();
-      };
-      video.addEventListener("ended", onEnd);
-      video.addEventListener("error", onEnd);
-      if (!speech.enabled) {
-        video.muted = true;
-      } else {
-        video.muted = false;
-        video.volume = Number(spec.tts?.volume ?? 1);
-      }
-      video.play().catch(onEnd);
+    const finish = () => {
+      video.removeEventListener("ended", finish);
+      video.removeEventListener("error", finish);
+      resolve();
     };
-    next();
+    video.addEventListener("ended", finish);
+    video.addEventListener("error", finish);
+    video.src = src;
+    applyTransitionVideoMute(video);
+    video.load();
+    video.play().catch(finish);
+  });
+}
+
+function playGhostFinale() {
+  const src = ghostAssetUrl(assetBase, manifest, "video");
+  const poster = ghostAssetUrl(assetBase, manifest, "still");
+  if (!src) return Promise.resolve();
+  return new Promise((resolve) => {
+    view.dataset.screen = "ghost";
+    view.dataset.phase = "ghost";
+    timer.pause();
+    speech.stop();
+    view.innerHTML = `<section class="reel-screen ghost-screen" aria-live="assertive">
+      <video id="ghost-video" class="reel-video ghost-video" playsinline preload="auto"${poster ? ` poster="${esc(poster)}"` : ""}></video>
+    </section>`;
+    const video = document.getElementById("ghost-video");
+    if (!video) {
+      resolve();
+      return;
+    }
+    const audioPromise = speech.playClip("ghost_happy_halloween");
+    const finish = () => {
+      video.removeEventListener("ended", finish);
+      video.removeEventListener("error", finish);
+      Promise.resolve(audioPromise).finally(resolve);
+    };
+    video.addEventListener("ended", finish);
+    video.addEventListener("error", finish);
+    video.src = src;
+    applyTransitionVideoMute(video);
+    video.load();
+    video.play().catch(finish);
   });
 }
 

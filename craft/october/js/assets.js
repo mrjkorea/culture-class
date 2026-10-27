@@ -32,3 +32,9 @@ export function transitionVideoUrl(assetBase, manifest, id) {
   if (!rel) return "";
   return new URL(rel, assetBase).href;
 }
+
+export function ghostAssetUrl(assetBase, manifest, key) {
+  const rel = manifest.ghost && manifest.ghost[key];
+  if (!rel) return "";
+  return new URL(rel, assetBase).href;
+}
