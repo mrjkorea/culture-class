@@ -136,17 +136,18 @@
         }
       ],
       "featureLabel": "Play the Buddhism craft",
-      "featureDetail": "Calm path to enlightenment (coming soon).",
+      "featureDetail": "Ten calm stages with Grandpa Walt narration — Eightfold Path steps and a local fastest-time board.",
       "notes": "This unit introduces Buddhist culture and related vocabulary with the standard Culture Class step stack.",
       "monthLayout": "buddhism",
-      "craftPath": "craft/may/",
-      "craftTitle": "Buddhism Path Craft",
-      "craftButton": "Play May Craft",
-      "craftBlurb": "Calm path to enlightenment (coming soon).",
       "wordsPreviewFile": "may-words.json",
       "dailyQuizFile": "may-daily-quiz.json",
       "cpPackFile": "cp/culture_m05_cp.json",
-      "wordMasterMatchUrl": "#"
+      "craftPath": "craft/may/",
+      "craftTitle": "Path to Enlightenment",
+      "craftButton": "Play May Craft",
+      "craftBlurb": "Gate, fog, lamp, kind speech, offering, sweep, walk, breathe, bell, lotus — fastest time on this device.",
+      "featureTitle": "Path to Enlightenment",
+      "craftEmoji": "🪷"
     },
     {
       "id": "06",
