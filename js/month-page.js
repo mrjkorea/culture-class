@@ -1,5 +1,6 @@
 import { bingoUrl, climbUrl, dataUrl, monthUrl, repoRoot } from "./paths.js";
 import { normalizeWordTerms } from "./word-list.js";
+import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -94,14 +95,13 @@ function renderMonth(month, wordsPreview) {
     <p class="hint">${matchHint}</p>`;
 
   const featureTitle = month.featureTitle || "Feature show";
-  const featureDetail = month.featureDetail || month.featureLabel;
 
   const steps = [
     stepBlock(
       1,
       "MRJ Daily",
-      "Class introduction video",
-      `<div class="placeholder-box"><strong>Video coming soon</strong> — MRJ Daily for ${escapeHtml(month.name)} will be added here. Your teacher may play the lesson video in class meanwhile.</div>`
+      "Class introduction video(s) from @mrjenglishnews",
+      renderIntroVideosHtml(month)
     ),
     stepBlock(
       2,
@@ -137,11 +137,7 @@ function renderMonth(month, wordsPreview) {
       6,
       featureTitle,
       month.featureLabel,
-      `<div class="placeholder-box">
-        <strong>${escapeHtml(month.featureLabel)}</strong><br>
-        ${escapeHtml(featureDetail)}
-        ${month.id === "08" ? "<br><br><em>Hosted video file coming soon.</em>" : ""}
-      </div>`
+      renderFeatureVideoHtml(month)
     ),
     stepBlock(
       7,

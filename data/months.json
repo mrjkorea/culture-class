@@ -12,6 +12,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1zERDaLaI50F-UOPseBi0dt-Cr1B98zWyVNCxPI6Wl-8/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "JK7bdzzyZww", "title": "New Year's Traditions (9:53)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — Bean / Simpsons / Tom & Jerry / Snowman or month clip as directed by your teacher.",
       "notes": "Welcome the new year with customs, resolutions, and culture around New Year's Day. Practice theme vocabulary, comprehension, and class games."
@@ -26,6 +29,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1v0N6ffLAcJGUpJXe0KQBIhGqBhhBGTyoNhrjy5KtWjA/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "Hs5onZK0t7M", "title": "Valentine's Day culture intro (6:01)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Explore Valentine's Day traditions, vocabulary, and how the holiday is celebrated in English-speaking cultures."
@@ -40,6 +46,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1SK_LGn8PJd9ILZEgca0aOMcdzgnXbS1M2FQZiJm5-oA/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "6XO41l7T6qU", "title": "St. Patrick's Day culture intro" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Learn about St. Patrick's Day, Irish culture connections, and March theme words through flashcards, quizzes, and bingo."
@@ -54,6 +63,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1CaNZ6_Y9-pLWzTGNLb5w0CsnSPOFTjw_VTKgG77jmyA/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "9aSud3EUe54", "title": "Easter Revealed" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Study Easter traditions and spring culture themes. Work through vocabulary, comprehension (PRO COMP), and Mountain Climb quizzes."
@@ -68,6 +80,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1ejMK3OaExVuONDZkppywSe9aCEAgzbh_L4vdc2eFWR0/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "krh4hu-hGPc", "title": "Buddha — Journey to Enlightenment (8:40)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "This unit introduces Buddhist culture and related vocabulary with the standard Culture Class step stack."
@@ -82,6 +97,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1Bv1cE5fvhLQEajYtokFnWmttDuOUAJGua30aR0egLRE/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "ijKvMMoplsA", "title": "Remembrance Day culture intro (REMEMBRANCECC)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "June focuses on Remembrance Day (as listed in the course outline). Practice pronunciation with the CP TEST doc and review with bingo."
@@ -96,6 +114,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1tAwV_5cgOIZv_BjXUJeNM--BGlevLWYpbrsOmIYQYco/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "bzZUUL34cKg", "title": "Exploring Canada — Part 1 (4:34)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Celebrate Canada Day with theme vocabulary, comprehension practice, and quizzes. CP TEST uses the July Google Doc."
@@ -111,6 +132,17 @@
       "wordMasterLearnUrl": "https://mrjkorea.github.io/word-master/?packsrc=https://mrjkorea.github.io/word-master/packs/culture_m08.json",
       "wordMasterMatchUrl": "https://mrjkorea.github.io/word-master/?packsrc=https://mrjkorea.github.io/word-master/packs/culture_m08.json",
       "wordsPreviewFile": "aug-words.json",
+      "introYoutube": [
+        {
+          "placeholder": true,
+          "title": "MRJ Daily ONE — coming soon",
+          "note": "Korean History intro part 1 (~8:20) — not matched on @mrjenglishnews yet."
+        },
+        {
+          "id": "njECVX72TbY",
+          "title": "MRJ Daily TWO — 5000 Years of Korean History (11:45)"
+        }
+      ],
       "featureTitle": "Why Is Korea Divided in Two?",
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Short feature (~5 min): \"Why Is Korea Divided in Two?\" — video file coming soon; your teacher may play it in class from the licensed source.",
@@ -126,6 +158,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/1Jd7UhoCLSym9CJN8yoWLuvIz9AlPrHnXa2OH6nmoy00/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "Jx5Pxlc85G8", "title": "Saving Our Planet — Earth Day (15:48)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Earth Day themes: environment, stewardship, and related vocabulary. Follow the Culture Class steps from MRJ Daily through bingo."
@@ -140,6 +175,9 @@
       "cpDocUrl": "https://docs.google.com/document/d/17vSv9DrpUVql8BSBHjJod0fW7GwiZL9ZEd-41vD85b8/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        { "id": "f_C9M0GAhso", "title": "Halloween culture intro (9:45)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — Bean / Simpsons / Tom & Jerry / Snowman or Halloween clip as directed by your teacher.",
       "notes": "Halloween customs, spooky vocabulary, and class games. Cartoons are not hosted here — watch in class from licensed sources."
@@ -154,6 +192,14 @@
       "cpDocUrl": "https://docs.google.com/document/d/1hvlItBfKqVCGyBnZi9mfFwOwkZdg3In-3vYMgKqeZ4s/edit",
       "wordMasterLearnUrl": "#",
       "wordMasterMatchUrl": "#",
+      "introYoutube": [
+        {
+          "placeholder": true,
+          "title": "MRJ Daily ONE — coming soon",
+          "note": "First Thanksgiving intro slot not matched on @mrjenglishnews yet."
+        },
+        { "id": "Yrl0P1nbotU", "title": "Thanksgiving culture intro (6:55)" }
+      ],
       "featureLabel": "Watch in class (licensed source)",
       "featureDetail": "Class feature show — watch from the licensed source your teacher provides.",
       "notes": "Thanksgiving traditions, gratitude, and harvest themes with the full monthly step stack."

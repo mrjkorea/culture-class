@@ -20,7 +20,7 @@ MRJ ENGLISH **Culture Class** course hub (GitHub Pages).
 
 Each month follows the same stack:
 
-1. **MRJ Daily** — placeholder (“Video coming soon”)
+1. **MRJ Daily** — YouTube embeds from [@mrjenglishnews](https://www.youtube.com/@mrjenglishnews) when `introYoutube` IDs exist in `data/months.json` (placeholder if missing)
 2. **Words — Learn** — Word Master pack link (`#` until published)
 3. **Words — Match** — Word Master match link
 4. **Words quiz** — [Mountain Climb](https://mrjkorea.github.io/day2-words/day3/climb.html) `?unit=culture_mNN`
@@ -47,6 +47,6 @@ Deploy from **`main`** branch, folder **`/`** (root).
 ## v1 scope
 
 - No mrj-signin gate
-- No MRJ Daily video embeds yet
+- Culture intro videos play in-page via YouTube (`youtube-nocookie.com` embeds); missing slots stay as placeholders
 - No copyrighted cartoon hosting
 - Bingo v0 without Firebase (teacher projects call list)
