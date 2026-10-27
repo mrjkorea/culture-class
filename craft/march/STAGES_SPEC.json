@@ -1,0 +1,12 @@
+{
+  "id": "craft_march_stpatricks_wheaten",
+  "title": "St. Patrick's & Wheaten Craft",
+  "month": "03",
+  "narrator": "Leo Fish a60e9fc6e78c4bdca656702c6d27ba08",
+  "audioDir": "assets/audio/leo/",
+  "leaderboard": { "key": "culture_craft_mar_stpatricks_v1" },
+  "stages": [
+    "shamrocks", "jig", "green", "pot", "chase", "bread",
+    "bodhran", "wheaten", "walk", "clover", "parade"
+  ]
+}

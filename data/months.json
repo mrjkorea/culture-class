@@ -78,17 +78,18 @@
         }
       ],
       "featureLabel": "Play the St. Patrick's Day craft",
-      "featureDetail": "Irish luck, jig, and Wheaten terrier stages (coming soon).",
+      "featureDetail": "Eleven interactive stages with Leo narration, shamrocks, jig, bodhrán, Wheaten terrier, and a local fastest-time board.",
       "notes": "Learn about St. Patrick's Day, Irish culture connections, and March theme words through flashcards, quizzes, and bingo.",
       "monthLayout": "stpatricks",
-      "craftPath": "craft/march/",
-      "craftTitle": "St. Patrick's Craft",
-      "craftButton": "Play March Craft",
-      "craftBlurb": "Irish luck, jig, and Wheaten terrier stages (coming soon).",
       "wordsPreviewFile": "mar-words.json",
       "dailyQuizFile": "mar-daily-quiz.json",
       "cpPackFile": "cp/culture_m03_cp.json",
-      "wordMasterMatchUrl": "#"
+      "craftPath": "craft/march/",
+      "craftTitle": "St. Patrick's & Wheaten Craft",
+      "craftButton": "Play March Craft",
+      "craftBlurb": "Shamrocks, jig, leprechaun chase, bodhrán, and Jay's Wheaten — fastest time on this device.",
+      "featureTitle": "St. Patrick's & Wheaten Craft",
+      "craftEmoji": "☘️"
     },
     {
       "id": "04",

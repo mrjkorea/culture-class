@@ -1,0 +1,216 @@
+{
+  "id": "craft_march_stpatricks_wheaten",
+  "title": "St. Patrick's & Wheaten Craft",
+  "month": "03",
+  "targetMinutes": [12, 16],
+  "leaderboard": {
+    "key": "culture_craft_mar_stpatricks_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · March",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Spot shamrocks, dance a jig, chase a leprechaun, play the bodhrán, meet a Wheaten terrier, and join the parade. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy St. Patrick's Day!",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "March",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 3월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "클로버를 찾고, 지그를 춤추고, 레프러콘을 따라가고, 보드란을 치고, 휘튼 테리어를 만나고, 퍼레이드에 참여해요.",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 하기",
+      "doneTitle": "해냈어요!",
+      "doneBody": "해피 세인트 패트릭!",
+      "watch": "준비하세요",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "3월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "shamrocks",
+      "title": "Spot shamrocks",
+      "titleKo": "클로버 찾기",
+      "type": "luck_hunt",
+      "poolSize": 16,
+      "goodCount": 3,
+      "lines": {
+        "en": ["Spot the shamrocks in the Irish field!", "Keep looking!", "You found the shamrocks!"],
+        "ko": ["아일랜드 들판에서 클로버를 찾아요!", "더 찾아요!", "클로버를 찾았어요!"]
+      }
+    },
+    {
+      "id": 2,
+      "key": "jig",
+      "title": "Dance the jig",
+      "titleKo": "지그 춤",
+      "type": "jig",
+      "clicks": 40,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Dance a short Irish jig!", "Tap to the music!", "Great dancing!"],
+        "ko": ["아일랜드 지그를 춤춰요!", "음악에 맞춰 탭!", "멋진 춤!"]
+      }
+    },
+    {
+      "id": 3,
+      "key": "green",
+      "title": "Wear green",
+      "titleKo": "초록 입기",
+      "type": "green",
+      "clicks": 35,
+      "midAt": 0.45,
+      "lines": {
+        "en": ["Paint a green stripe and wear your hat!", "More green!", "You're wearing green!"],
+        "ko": ["초록 줄무늬와 모자!", "더 초록!", "초록을 입었어요!"]
+      }
+    },
+    {
+      "id": 4,
+      "key": "pot",
+      "title": "Pot of gold",
+      "titleKo": "금화 항아리",
+      "type": "rainbow_hunt",
+      "poolSize": 7,
+      "goodCount": 1,
+      "lines": {
+        "en": ["Find the pot of gold at the rainbow!", "Try another color!", "You found the gold!"],
+        "ko": ["무지개 끝 금화를 찾아요!", "다시!", "금화를 찾았어요!"]
+      }
+    },
+    {
+      "id": 5,
+      "key": "chase",
+      "title": "Catch the leprechaun",
+      "titleKo": "레프러콘 잡기",
+      "type": "chase",
+      "clicks": 12,
+      "lines": {
+        "en": ["Catch the leprechaun!", "He's quick!", "You caught him!"],
+        "ko": ["레프러콘을 잡아요!", "빨라요!", "잡았어요!"]
+      }
+    },
+    {
+      "id": 6,
+      "key": "bread",
+      "title": "Soda bread",
+      "titleKo": "소다 빵",
+      "type": "plate",
+      "clicks": 6,
+      "lines": {
+        "en": ["Share Irish soda bread!", "Put slices on the plate!", "Bread for everyone!"],
+        "ko": ["아일랜드 소다 빵!", "접시에 올려요!", "모두에게 빵!"]
+      }
+    },
+    {
+      "id": 7,
+      "key": "bodhran",
+      "title": "Bodhrán beats",
+      "titleKo": "보드란",
+      "type": "rhythm",
+      "clicks": 16,
+      "lines": {
+        "en": ["Play bodhrán drum beats!", "Keep the rhythm!", "Great drumming!"],
+        "ko": ["보드란을 쳐요!", "리듬을 타요!", "멋진 연주!"]
+      }
+    },
+    {
+      "id": 8,
+      "key": "wheaten",
+      "title": "Meet the Wheaten",
+      "titleKo": "휘튼 만나기",
+      "type": "photo_mash",
+      "photo": "wheaten/wheaten_portrait.jpg",
+      "clicks": 45,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Meet the soft-coated Wheaten terrier!", "Pet and brush her!", "She loves you!"],
+        "ko": ["휘튼 테리어를 만나요!", "쓰다듬고 빗겨요!", "좋아해요!"]
+      }
+    },
+    {
+      "id": 9,
+      "key": "walk",
+      "title": "Walk the park",
+      "titleKo": "공원 산책",
+      "type": "walk",
+      "steps": 4,
+      "lines": {
+        "en": ["Walk the Wheaten through the green park!", "Keep walking!", "What a lovely walk!"],
+        "ko": ["초록 공원을 걸어요!", "계속 걸어요!", "좋은 산책!"]
+      }
+    },
+    {
+      "id": 10,
+      "key": "clover",
+      "title": "Hidden clover",
+      "titleKo": "숨은 클로버",
+      "type": "photo_luck",
+      "photo": "wheaten/wheaten_grass.jpg",
+      "poolSize": 9,
+      "goodCount": 1,
+      "lines": {
+        "en": ["Help the Wheaten find a hidden clover!", "Not that spot!", "Lucky clover found!"],
+        "ko": ["숨은 클로버를 찾아요!", "다시!", "클로버를 찾았어요!"]
+      }
+    },
+    {
+      "id": 11,
+      "key": "parade",
+      "title": "Victory parade",
+      "titleKo": "승리 퍼레이드",
+      "type": "parade",
+      "clicks": 30,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Join the parade with the leprechaun and Wheaten!", "Wave and celebrate!", "Happy St. Patrick's Day! You did it!"],
+        "ko": ["퍼레이드에 참여해요!", "손을 흔들어요!", "해피 세인트 패트릭! 해냈어요!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_shamrocks", "durationSec": 3, "caption": { "en": "Irish field", "ko": "들판" } },
+    { "id": "t02_jig", "durationSec": 3, "caption": { "en": "Jig time!", "ko": "지그!" } },
+    { "id": "t03_green", "durationSec": 3, "caption": { "en": "Wear green!", "ko": "초록!" } },
+    { "id": "t04_pot", "durationSec": 3, "caption": { "en": "Rainbow!", "ko": "무지개!" } },
+    { "id": "t05_chase", "durationSec": 3, "caption": { "en": "Leprechaun!", "ko": "레프러콘!" } },
+    { "id": "t06_bread", "durationSec": 3, "caption": { "en": "Soda bread!", "ko": "빵!" } },
+    { "id": "t07_bodhran", "durationSec": 3, "caption": { "en": "Bodhrán!", "ko": "보드란!" } },
+    { "id": "t08_wheaten", "durationSec": 3, "caption": { "en": "Wheaten!", "ko": "휘튼!" } },
+    { "id": "t09_walk", "durationSec": 3, "caption": { "en": "Park walk!", "ko": "산책!" } },
+    { "id": "t10_clover", "durationSec": 3, "caption": { "en": "Lucky clover!", "ko": "클로버!" } },
+    { "id": "t11_parade", "durationSec": 3, "caption": { "en": "Parade!", "ko": "퍼레이드!" } }
+  ]
+}

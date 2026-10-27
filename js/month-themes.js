@@ -47,7 +47,7 @@ const THEMES = {
   },
   stpatricks: {
     bodyClass: "theme-stpatricks",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/stpatricks.css",
     mapImage: "assets/covers/03-march-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(120,220,120,0.55)",

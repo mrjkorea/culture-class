@@ -1,0 +1,39 @@
+/* March / St. Patrick's themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-stpatricks {
+  background: radial-gradient(ellipse at 50% 0%, #1b5e2a 0%, #0a2e14 50%, #041208 100%);
+  color: #e6fcf5;
+}
+
+.theme-stpatricks .site-footer,
+.theme-stpatricks .hint {
+  color: rgba(200, 245, 220, 0.78);
+}
+
+.theme-stpatricks .map-title h1 {
+  text-shadow: 0 0 24px rgba(81, 207, 102, 0.5);
+}
+
+.theme-stpatricks .map-title p {
+  color: #8ce99a;
+}
+
+.theme-stpatricks .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(47, 158, 68, 0.2);
+}
+
+.theme-stpatricks .map-node-emoji {
+  background: linear-gradient(145deg, #51cf66, #2f9e44);
+  border-color: #b2f2bb;
+  box-shadow: 0 0 18px rgba(81, 207, 102, 0.55);
+}
+
+.theme-stpatricks .map-back {
+  color: rgba(200, 245, 220, 0.9);
+}
+
+.theme-stpatricks .themed-panel {
+  background: rgba(20, 60, 35, 0.72);
+  border-color: rgba(140, 233, 154, 0.35);
+}
