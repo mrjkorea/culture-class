@@ -20,7 +20,7 @@ Playable Culture Class mini-game replacing feature video. Individual luck + clic
 3. Mash/guided mash with exact click budgets
 4. Four face presets for pin+carve
 5. Local leaderboard (localStorage)
-6. Chromebook-friendly (WebGL1-capable three r162 via import map)
+6. Chromebook-friendly (WebGL1-capable three r162 vendored in `vendor/`)
 
 ## Do not
 - Strip Fish MP3s or break manifest audio paths

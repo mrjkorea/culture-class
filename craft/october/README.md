@@ -12,7 +12,7 @@ The October month page links here (`months/10-october/`).
 |-----|----------------|----------------------|
 | **V4** | **three.js WebGL** low-poly meshes (patch field, cut + knife, wash; other stages mix SVG props + optional `scenes3d` backdrops) — same approach as [ski-jump](https://github.com/mrjkorea/ski-jump) | **Photoreal stills** (`assets/transitions/t01…t10.jpg`) ~3s + countdown overlay; after the run, **10 clips** (`assets/transitions/video/t01…t10.mp4`) |
 
-`three` loads from an import map (r162). Quality/DPR auto-tunes in `js/three-runtime.js`.
+**Engine stack (Games bot):** three.js **0.162.0** vendored in `vendor/` (WebGL1-friendly); procedural meshes only (`js/pumpkin-mesh.js` — Box/Capsule like [ski-jump skier.js](https://github.com/mrjkorea/ski-jump)); no AI meshes / no hero GLB. Kenney CC0 GLBs are OK for future set dressing only. Fish MP3 voice — no TTS. Quality/DPR: `js/three-runtime.js`.
 
 EN mode shows **English only** until the player switches to KO.
 
