@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-VOICE_ID="${WALT_VOICE_ID:-9a9cf47702da476aa4629e2506d4a857}"
+VOICE_ID="${WALT_VOICE_ID:-86d2e997840443a1832c999ee71468b2}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/assets/audio/walt"
 LINES="$OUT/LINES.md"
