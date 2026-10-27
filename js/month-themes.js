@@ -110,7 +110,7 @@ const THEMES = {
   },
   thanksgiving: {
     bodyClass: "theme-thanksgiving",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/thanksgiving.css",
     mapImage: "assets/covers/11-november-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(255,160,80,0.55)",
