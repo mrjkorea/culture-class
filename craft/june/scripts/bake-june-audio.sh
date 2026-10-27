@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 # Grandma June — set JUNE_VOICE_ID to your Fish Grandma June reference_id (see APPROVED_VOICES).
-VOICE_ID="${JUNE_VOICE_ID:-ca3007f96ae7499ab87d27ea3599956a}"
+VOICE_ID="${JUNE_VOICE_ID:-0a90765966ac4556a6ecfd86ef8057d3}"
 OUT="$ROOT/assets/audio/june"
 LINES="$OUT/LINES.md"
 
