@@ -792,6 +792,36 @@ a:hover {
   }
 }
 
+.craft-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0 0 1rem;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  text-decoration: none;
+  color: #3a1200;
+  background: linear-gradient(135deg, #ffe56a, #ff8a1e 48%, #ff4d8d);
+  box-shadow: var(--shadow);
+}
+
+.craft-callout strong {
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.craft-kicker {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.craft-callout:hover {
+  color: #3a1200;
+  filter: brightness(1.04);
+}
+
 @media (min-width: 480px) {
   .month-grid {
     grid-template-columns: repeat(3, 1fr);

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "faces": "faces.json",
+  "transitions": {
+    "t01_enter_patch": "transitions/t01.svg",
+    "t02_wash_splash": "transitions/t02.svg",
+    "t03_knife_ready": "transitions/t03.svg",
+    "t04_scoop_mess": "transitions/t04.svg",
+    "t05_seeds_sizzle": "transitions/t05.svg",
+    "t06_pin_closeup": "transitions/t06.svg",
+    "t07_carve_glow": "transitions/t07.svg",
+    "t08_candle_spark": "transitions/t08.svg",
+    "t09_porch_night": "transitions/t09.svg",
+    "t10_trick_or_treat": "transitions/t10.svg"
+  }
+}

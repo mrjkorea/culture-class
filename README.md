@@ -15,6 +15,7 @@ MRJ ENGLISH **Culture Class** course hub (GitHub Pages).
 | `bingo/teacher.html` | Teacher call list (v0 offline) |
 | `bingo/student.html` | Student local bingo card |
 | `assets/css/site.css` | Shared classroom UI |
+| `craft/october/` | October Jack-o'-Lantern craft mini-game |
 
 ## Monthly step map
 

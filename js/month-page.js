@@ -112,7 +112,15 @@ function renderMonth(month, wordsPreview) {
     </div>
     <p class="hint">${matchHint}</p>`;
 
-  const featureTitle = month.featureTitle || "Feature show";
+  const craftHref = month.craftPath
+    ? `${root}/${String(month.craftPath).replace(/^\/+/, "")}`
+    : "";
+  const featureTitle = month.craftPath
+    ? month.craftTitle || month.featureTitle || "Craft"
+    : month.featureTitle || "Feature show";
+  const featureDesc = month.craftPath
+    ? month.featureLabel || "Play the class craft"
+    : month.featureLabel;
   const cpSpeak = Boolean(month.cpPackFile);
   const cpStepBody = cpSpeak
     ? `<div class="step-actions">
@@ -161,8 +169,13 @@ function renderMonth(month, wordsPreview) {
     stepBlock(
       6,
       featureTitle,
-      month.featureLabel,
-      renderFeatureVideoHtml(month)
+      featureDesc,
+      month.craftPath
+        ? `<div class="step-actions">
+            <a class="btn btn-primary" href="${escapeHtml(craftHref)}">${escapeHtml(month.craftButton || "Play craft")}</a>
+          </div>
+          <p class="hint">${escapeHtml(month.featureDetail || "")}</p>`
+        : renderFeatureVideoHtml(month)
     ),
     stepBlock(
       7,
@@ -199,6 +212,15 @@ function renderMonth(month, wordsPreview) {
         <div class="theme-tag">${escapeHtml(month.theme)}</div>
         ${pilotBadge}
       </header>
+      ${
+        month.craftPath
+          ? `<a class="craft-callout" href="${escapeHtml(craftHref)}">
+              <span class="craft-kicker">Play in class</span>
+              <strong>${escapeHtml(month.craftTitle || "Craft")}</strong>
+              <span>${escapeHtml(month.craftBlurb || "")}</span>
+            </a>`
+          : ""
+      }
       <section class="steps" aria-label="Lesson steps">
         ${steps.join("")}
       </section>

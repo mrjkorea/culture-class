@@ -1,0 +1,37 @@
+{
+  "id": "craft_october_pumpkin",
+  "title": "Jack-o'-Lantern Craft",
+  "month": "10",
+  "targetMinutes": [12, 15],
+  "fairness": "luck_and_clicks_only",
+  "languages": { "ui": ["en", "ko"], "default": "en", "listeningPrimary": "en" },
+  "leaderboard": { "key": "culture_craft_oct_pumpkin_v1", "sort": "fastestTime", "tieBreak": "misses" },
+  "betweenStage": { "animation": "still_then_anim_after_jay_approves", "skipAllowed": false, "durationSec": [8, 12] },
+  "stages": [
+    { "id": 1, "key": "patch", "title": "Pumpkin patch", "type": "luck_hunt", "poolSize": 36, "goodCount": 1, "estClicks": [10, 25], "estSec": [40, 80],
+      "lines": { "en": ["Find a good pumpkin!", "Oh no! Try another!", "That's a good one!"], "ko": ["좋은 호박을 찾으세요!", "앗! 다른 걸 찾아보세요!", "좋은 호박이에요!"] } },
+    { "id": 2, "key": "wash", "title": "Wash", "type": "mash", "clicks": 50, "estSec": [25, 35],
+      "lines": { "en": ["Wash the pumpkin. Keep scrubbing!", "Nice and clean!", "Good job!"], "ko": ["호박을 씻으세요. 계속 문지르세요!", "깨끗해졌어요!", "잘했어요!"] } },
+    { "id": 3, "key": "cut", "title": "Cut the top", "type": "mash", "clicks": 80, "estSec": [40, 55], "fx": "knife_bob",
+      "lines": { "en": ["Cut open the top. Don't stop!", "Keep cutting!", "The lid is off!"], "ko": ["위를 자르세요. 멈추지 마세요!", "계속 자르세요!", "뚜껑이 열렸어요!"] } },
+    { "id": 4, "key": "scoop", "title": "Scoop", "type": "mash", "clicks": 150, "estSec": [70, 90],
+      "lines": { "en": ["Scoop out all the seeds.", "Almost empty!", "All scooped!"], "ko": ["씨를 모두 퍼내세요.", "거의 다 됐어요!", "다 퍼냈어요!"] } },
+    { "id": 5, "key": "roast", "title": "Roast seeds", "type": "mash", "clicks": 60, "estSec": [30, 45],
+      "lines": { "en": ["Roast the pumpkin seeds.", "Shake the pan!", "Yummy seeds!"], "ko": ["호박씨를 볶으세요.", "팬을 흔드세요!", "맛있는 씨예요!"] } },
+    { "id": 6, "key": "pin", "title": "Pin the face", "type": "guided_mash", "clicks": 80, "estSec": [45, 60], "facePresets": 4, "sameClicksAllFaces": true,
+      "lines": { "en": ["Trace the face with the pin.", "Keep pinning!", "Face is ready!"], "ko": ["핀으로 얼굴을 따라 찍으세요.", "계속 찍으세요!", "얼굴이 준비됐어요!"] } },
+    { "id": 7, "key": "carve", "title": "Carve", "type": "guided_mash", "clicks": 120, "estSec": [55, 75],
+      "lines": { "en": ["Carve along the lines.", "Keep carving!", "Spooky face!"], "ko": ["선을 따라 새기세요.", "계속 새기세요!", "무서운 얼굴이에요!"] } },
+    { "id": 8, "key": "light", "title": "Light the candle", "type": "mash", "clicks": 25, "estSec": [20, 30],
+      "lines": { "en": ["Put in the candle. Light it!", "Glow!", "Beautiful!"], "ko": ["촛불을 넣고 켜세요!", "빛나요!", "멋져요!"] } },
+    { "id": 9, "key": "house", "title": "Front of the house", "type": "luck_hunt", "poolSize": 20, "goodCount": 1, "estClicks": [8, 15], "estSec": [40, 70],
+      "lines": { "en": ["Put it by the house!", "Oh no! It fell!", "Perfect spot!"], "ko": ["집 앞에 두세요!", "앗! 떨어졌어요!", "딱 좋은 자리예요!"] } },
+    { "id": 10, "key": "candy", "title": "Give candy", "type": "mash", "clicks": 50, "estSec": [40, 60], "endsRun": true,
+      "lines": { "en": ["Give candy to the kids!", "Happy Halloween!", "You're done! Great job!"], "ko": ["아이들에게 사탕을 주세요!", "해피 할로윈!", "끝났어요! 잘했어요!"] } }
+  ],
+  "transitionStills": [
+    "t01_enter_patch", "t02_wash_splash", "t03_knife_ready", "t04_scoop_mess", "t05_seeds_sizzle",
+    "t06_pin_closeup", "t07_carve_glow", "t08_candle_spark", "t09_porch_night", "t10_trick_or_treat"
+  ],
+  "modularity": "All stages driven by stages.json; art paths in assets/; TTS lines swappable; transition stills swap to animated files later without code rewrite."
+}

@@ -180,9 +180,14 @@
       "introYoutube": [
         { "id": "f_C9M0GAhso", "title": "Halloween culture intro (9:45)" }
       ],
-      "featureLabel": "Watch in class (licensed source)",
-      "featureDetail": "Class feature show — Bean / Simpsons / Tom & Jerry / Snowman or Halloween clip as directed by your teacher.",
-      "notes": "Halloween customs, spooky vocabulary, and class games. Cartoons are not hosted here — watch in class from licensed sources."
+      "craftPath": "craft/october/",
+      "craftTitle": "Jack-o'-Lantern Craft",
+      "craftButton": "Play Jack-o'-Lantern Craft",
+      "craftBlurb": "Find a pumpkin, wash it, carve a face, light it, and give out candy. Fastest time is saved on this device.",
+      "featureTitle": "Jack-o'-Lantern Craft",
+      "featureLabel": "Play the pumpkin craft (replaces the feature video)",
+      "featureDetail": "Open the Halloween craft mini-game. Ten stages, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
+      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here — watch in class from licensed sources."
     },
     {
       "id": "11",

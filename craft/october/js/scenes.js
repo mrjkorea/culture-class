@@ -1,0 +1,482 @@
+/**
+ * Stage views. Click totals, pools, and lines come from stages.json.
+ * Luck stages never mark the correct choice in the DOM.
+ */
+
+import {
+  HOUSE_SPOTS,
+  bowlSvg,
+  candleSvg,
+  faceBoxStyle,
+  houseSvg,
+  kidsSvg,
+  knifeSvg,
+  mixHex,
+  panSvg,
+  pumpkinIcon,
+  pumpkinSvg,
+} from "./art.js";
+import { faceSvgMarkup } from "./faces.js";
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function vary(i) {
+  const n = Math.sin((i + 1) * 12.9898) * 43758.5453;
+  return n - Math.floor(n);
+}
+
+export function mountStage(root, stage, ctx) {
+  if (stage.type === "luck_hunt") return mountLuck(root, stage, ctx);
+  if (stage.type === "guided_mash" && (stage.key === "pin" || !ctx.face)) return mountPin(root, stage, ctx);
+  if (stage.type === "guided_mash") return mountGuided(root, stage, ctx);
+  return mountMash(root, stage, ctx);
+}
+
+function mountLuck(root, stage, ctx) {
+  const good = new Set();
+  const pool = stage.poolSize;
+  while (good.size < stage.goodCount) {
+    good.add(Math.floor(Math.random() * pool));
+  }
+  let found = 0;
+  let finished = false;
+  root.innerHTML = stage.key === "house" ? houseMarkup(pool) : patchMarkup(pool);
+  const buttons = [...root.querySelectorAll("[data-choice]")];
+
+  function settle(btn, ok) {
+    if (finished || btn.disabled) return;
+    if (ok) {
+      btn.classList.add("is-good");
+      found += 1;
+      if (found >= stage.goodCount) {
+        finished = true;
+        buttons.forEach((b) => {
+          b.disabled = true;
+        });
+        ctx.onComplete();
+      }
+      return;
+    }
+    btn.disabled = true;
+    btn.classList.add("is-out");
+    ctx.onMiss();
+  }
+
+  function onPointer(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    const btn = e.target.closest("[data-choice]");
+    if (!btn || btn.disabled) return;
+    settle(btn, good.has(Number(btn.dataset.choice)));
+  }
+
+  function onKey(e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const btn = e.target.closest("[data-choice]");
+    if (!btn || btn.disabled) return;
+    e.preventDefault();
+    settle(btn, good.has(Number(btn.dataset.choice)));
+  }
+
+  root.addEventListener("pointerdown", onPointer);
+  root.addEventListener("keydown", onKey);
+  return {
+    destroy() {
+      root.removeEventListener("pointerdown", onPointer);
+      root.removeEventListener("keydown", onKey);
+    },
+  };
+}
+
+function patchMarkup(count) {
+  const cols = Math.ceil(Math.sqrt(count));
+  const buttons = Array.from({ length: count }, (_, i) => {
+    const scale = (0.9 + vary(i) * 0.18).toFixed(3);
+    const rot = (-6 + vary(i + 3) * 12).toFixed(2);
+    return `<button type="button" class="pumpkin-btn" data-choice="${i}" aria-label="Pumpkin">
+      <span class="pumpkin-tilt" style="--s:${scale};--r:${rot}deg">${pumpkinSvg(`patch${i}`)}</span>
+    </button>`;
+  }).join("");
+  return `<div class="patch" data-play>
+    <div class="fence" aria-hidden="true"></div>
+    <div class="patch-grid" style="grid-template-columns:repeat(${cols}, minmax(0, 1fr))">${buttons}</div>
+  </div>`;
+}
+
+function houseMarkup(count) {
+  const spots = count === HOUSE_SPOTS.length ? HOUSE_SPOTS : fallbackSpots(count);
+  const buttons = spots
+    .map(
+      ([x, y], i) =>
+        `<button type="button" class="spot" data-choice="${i}" style="left:${x}%;top:${y}%" aria-label="Spot">${pumpkinIcon()}</button>`
+    )
+    .join("");
+  return `<div class="house-scene" data-play>
+    ${houseSvg()}
+    <div class="spots">${buttons}</div>
+  </div>`;
+}
+
+function fallbackSpots(count) {
+  const spots = [];
+  const cols = 5;
+  for (let i = 0; i < count; i += 1) {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    spots.push([12 + col * 18, 68 + row * 8]);
+  }
+  return spots;
+}
+
+function mountMash(root, stage, ctx) {
+  let done = 0;
+  let finished = false;
+  const total = stage.clicks;
+  root.innerHTML = mashMarkup(stage, ctx);
+  primeScene(root, stage, ctx);
+  paintMash(root, stage, 0, ctx);
+  const hit = root.querySelector("[data-hit]");
+
+  function step(clientX, clientY) {
+    if (finished) return;
+    done += 1;
+    spawnBit(root, stage.key, clientX, clientY, ctx.reducedMotion);
+    paintMash(root, stage, done / total, ctx);
+    ctx.onProgress(done, total);
+    if (done >= total) {
+      finished = true;
+      if (hit) hit.disabled = true;
+      if (stage.key === "light") root.querySelector(".scene")?.classList.add("is-glowing");
+      ctx.onComplete();
+    }
+  }
+
+  function onPointer(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    if (!e.target.closest("[data-hit]")) return;
+    if (e.cancelable) e.preventDefault();
+    step(e.clientX, e.clientY);
+  }
+
+  function onKey(e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    if (!e.target.closest("[data-hit]")) return;
+    e.preventDefault();
+    const rect = hit.getBoundingClientRect();
+    step(rect.left + rect.width / 2, rect.top + rect.height / 2);
+  }
+
+  root.addEventListener("pointerdown", onPointer);
+  root.addEventListener("keydown", onKey);
+  return {
+    destroy() {
+      root.removeEventListener("pointerdown", onPointer);
+      root.removeEventListener("keydown", onKey);
+    },
+  };
+}
+
+function mashMarkup(stage, ctx) {
+  if (stage.key === "roast") {
+    return `<div class="scene scene-roast" data-play>
+      <div class="pan-wrap" data-pan>
+        ${panSvg()}
+        <button type="button" class="mash-hit" data-hit aria-label="${esc(stage.title)}"></button>
+      </div>
+    </div>`;
+  }
+  if (stage.key === "candy") {
+    return `<div class="scene scene-candy" data-play>
+      ${kidsSvg()}
+      <button type="button" class="bowl-hit" data-hit aria-label="${esc(stage.title)}">
+        ${bowlSvg()}
+        <span class="bowl-count" data-count>0 / ${stage.clicks}</span>
+      </button>
+    </div>`;
+  }
+  const face =
+    stage.key === "light" && ctx.face
+      ? `<div class="face-layer" data-face style="${faceBoxStyle()}">${faceSvgMarkup(ctx.face)}</div>`
+      : "";
+  return `<div class="scene scene-${esc(stage.key)}" data-play>
+    <div class="pumpkin-stack">
+      ${pumpkinSvg(stage.key)}
+      <div class="cut-orbit" data-orbit><div class="knife ${stage.fx === "knife_bob" ? "knife-bob" : ""}">${knifeSvg()}</div></div>
+      ${face}
+      <div class="candle">${candleSvg()}</div>
+      <button type="button" class="mash-hit" data-hit aria-label="${esc(stage.title)}"></button>
+    </div>
+  </div>`;
+}
+
+const LID_ASIDE = "translate(42 -2) rotate(22 80 52)";
+
+function primeScene(root, stage) {
+  const lid = root.querySelector("[data-lid]");
+  if (lid && ["scoop", "light"].includes(stage.key)) {
+    lid.setAttribute("transform", LID_ASIDE);
+  }
+  if (stage.key === "scoop") {
+    root.querySelector("[data-cavity]")?.setAttribute("visibility", "visible");
+  }
+}
+
+function paintMash(root, stage, t, ctx) {
+  const clamped = Math.max(0, Math.min(1, t));
+  if (stage.key === "wash") {
+    const dirt = root.querySelector("[data-dirt]");
+    if (dirt) dirt.style.opacity = String(1 - clamped);
+  }
+  if (stage.key === "cut") {
+    const ring = root.querySelector("[data-cutring]");
+    if (ring) ring.setAttribute("stroke-dashoffset", String(138 * (1 - clamped)));
+    const orbit = root.querySelector("[data-orbit]");
+    if (orbit) orbit.style.transform = `rotate(${clamped * 340}deg)`;
+    const lid = root.querySelector("[data-lid]");
+    if (lid) {
+      const lift = clamped * 22;
+      lid.setAttribute(
+        "transform",
+        `translate(${(lift * 1.15).toFixed(1)} ${(-lift * 0.25).toFixed(1)}) rotate(${(-clamped * 20).toFixed(1)} 80 52)`
+      );
+    }
+  }
+  if (stage.key === "scoop") {
+    const seeds = [...root.querySelectorAll("[data-seed]")];
+    const hide = Math.floor(clamped * seeds.length);
+    seeds.forEach((seed, i) => {
+      seed.style.opacity = i < hide ? "0" : "1";
+    });
+  }
+  if (stage.key === "roast") {
+    const group = root.querySelector("[data-roast]");
+    if (group) group.style.color = mixHex("#f8e7a8", "#c46212", clamped);
+    const steam = root.querySelector("[data-steam]");
+    if (steam) steam.setAttribute("opacity", String(0.15 + clamped * 0.75));
+    const pan = root.querySelector("[data-pan]");
+    if (pan && clamped > 0) {
+      pan.classList.remove("shake");
+      void pan.offsetWidth;
+      pan.classList.add("shake");
+    }
+  }
+  if (stage.key === "light") {
+    const flame = root.querySelector("[data-flame]");
+    if (flame) {
+      const scale = 0.42 + clamped * 0.7;
+      flame.setAttribute("transform", `translate(40 36) scale(${scale.toFixed(3)}) translate(-40 -36)`);
+      flame.setAttribute("opacity", String(Math.min(1, 0.2 + clamped)));
+    }
+    const glow = root.querySelector("[data-glow]");
+    if (glow) glow.setAttribute("opacity", String(clamped));
+    root.querySelectorAll(".face-shape, .face-line").forEach((el) => {
+      el.style.fill = clamped > 0.4 ? "#ffe56a" : "#3a1458";
+      el.style.stroke = clamped > 0.4 ? "#ffb703" : "#3a1458";
+      el.style.opacity = String(0.4 + clamped * 0.6);
+    });
+  }
+  if (stage.key === "candy") {
+    const n = Math.round(clamped * stage.clicks);
+    const label = root.querySelector("[data-count]");
+    if (label) label.textContent = `${n} / ${stage.clicks}`;
+    const bob = root.querySelector(`[data-kid="${(n - 1 + 4) % 4}"] .kid-bob`);
+    if (bob && n > 0) {
+      bob.classList.remove("hop");
+      void bob.getBoundingClientRect();
+      bob.classList.add("hop");
+    }
+  }
+}
+
+let bits = 0;
+
+function spawnBit(root, key, clientX, clientY, reduced) {
+  if (reduced || bits > 18) return;
+  const host = root.querySelector(".scene") || root;
+  const rect = host.getBoundingClientRect();
+  if (!rect.width) return;
+  const el = document.createElement("i");
+  el.className = `bit bit-${key === "wash" ? "bubble" : key === "candy" ? "candy" : "seed"}`;
+  const x = clientX ? clientX - rect.left : rect.width / 2;
+  const y = clientY ? clientY - rect.top : rect.height / 2;
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+  el.style.setProperty("--dx", `${-30 + Math.random() * 60}px`);
+  el.style.setProperty("--dy", `${-50 - Math.random() * 40}px`);
+  bits += 1;
+  host.append(el);
+  let gone = false;
+  const remove = () => {
+    if (gone) return;
+    gone = true;
+    el.remove();
+    bits -= 1;
+  };
+  el.addEventListener("animationend", remove);
+  window.setTimeout(remove, 800);
+}
+
+function mountPin(root, stage, ctx) {
+  let sub = { destroy() {} };
+  let finished = false;
+
+  function openGuided() {
+    sub.destroy();
+    sub = mountGuided(root, stage, ctx);
+  }
+
+  if (ctx.face) {
+    openGuided();
+    return {
+      destroy() {
+        finished = true;
+        sub.destroy();
+      },
+    };
+  }
+
+  root.innerHTML = `<div class="picker">
+    <div class="picker-grid">
+      ${ctx.faces
+        .map(
+          (face) => `<button type="button" class="face-choice" data-face="${esc(face.id)}">
+            <span class="mini-stack">${pumpkinSvg(`pick${face.id}`)}<span class="face-layer" style="${faceBoxStyle()}">${faceSvgMarkup(face)}</span></span>
+            <span class="face-name">${esc(face.label.en)}</span>
+            <span class="face-name ko" lang="ko">${esc(face.label.ko)}</span>
+          </button>`
+        )
+        .join("")}
+    </div>
+  </div>`;
+
+  function onPointer(e) {
+    if (finished) return;
+    const btn = e.target.closest("[data-face]");
+    if (!btn) return;
+    finished = true;
+    root.removeEventListener("pointerdown", onPointer);
+    ctx.setFace(btn.dataset.face);
+    ctx.onPickFace();
+    openGuided();
+    finished = false;
+  }
+
+  root.addEventListener("pointerdown", onPointer);
+  return {
+    destroy() {
+      finished = true;
+      root.removeEventListener("pointerdown", onPointer);
+      sub.destroy();
+    },
+  };
+}
+
+function mountGuided(root, stage, ctx) {
+  const face = ctx.face;
+  const points = stage.key === "carve" ? face.carve : face.pin;
+  const slop = Number(stage.hitSlop ?? 20);
+  let index = 0;
+  let finished = false;
+  root.innerHTML = `<div class="scene scene-${esc(stage.key)}" data-play>
+    <div class="pumpkin-stack">
+      ${pumpkinSvg(stage.key)}
+      <div class="face-layer" data-face-layer style="${faceBoxStyle()}">
+        ${faceSvgMarkup(face)}
+        <button type="button" class="dot" data-active-dot aria-label="${stage.key === "carve" ? "Carve" : "Pin"}"></button>
+      </div>
+    </div>
+  </div>`;
+  const lid = root.querySelector("[data-lid]");
+  if (lid) lid.setAttribute("transform", LID_ASIDE);
+  const layer = root.querySelector("[data-face-layer]");
+  const ghosts = root.querySelector("[data-ghosts]");
+  const done = root.querySelector("[data-done]");
+  const dot = root.querySelector("[data-active-dot]");
+  const mark = stage.key === "carve" ? "mark-carve" : "mark-pin";
+
+  function renderMarks() {
+    const upcoming = points.slice(index + 1, index + 9);
+    ghosts.innerHTML = upcoming
+      .map((p) => `<circle class="ghost-dot" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="2.4"/>`)
+      .join("");
+    done.innerHTML = points
+      .slice(0, index)
+      .map((p) => `<circle class="${mark}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="1.8"/>`)
+      .join("");
+    if (index >= points.length) {
+      dot.hidden = true;
+      if (stage.key === "carve") layer.classList.add("is-lit");
+      return;
+    }
+    dot.hidden = false;
+    dot.style.left = `${points[index].x}%`;
+    dot.style.top = `${points[index].y}%`;
+  }
+
+  function advance() {
+    if (finished) return;
+    index += 1;
+    ctx.onProgress(index, points.length);
+    if (index >= points.length) {
+      finished = true;
+      renderMarks();
+      if (stage.key === "carve") {
+        layer.classList.add("is-lit");
+        const glow = root.querySelector("[data-glow]");
+        if (glow) glow.setAttribute("opacity", "0.95");
+      }
+      ctx.onComplete();
+      return;
+    }
+    renderMarks();
+  }
+
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    if (!e.target.closest("[data-play]")) return;
+    if (e.target.closest("[data-active-dot]")) {
+      if (e.cancelable) e.preventDefault();
+      advance();
+      return;
+    }
+    const rect = layer.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const p = points[index];
+    const dist = Math.hypot(x - p.x, y - p.y);
+    if (dist <= slop) {
+      if (e.cancelable) e.preventDefault();
+      advance();
+      return;
+    }
+    ctx.onMiss();
+    const stack = root.querySelector(".pumpkin-stack");
+    stack?.classList.add("nudge");
+    window.setTimeout(() => stack?.classList.remove("nudge"), 180);
+  }
+
+  function onKey(e) {
+    if (finished) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    if (!e.target.closest("[data-active-dot]")) return;
+    e.preventDefault();
+    advance();
+  }
+
+  renderMarks();
+  root.addEventListener("pointerdown", onPointer);
+  root.addEventListener("keydown", onKey);
+  return {
+    destroy() {
+      finished = true;
+      root.removeEventListener("pointerdown", onPointer);
+      root.removeEventListener("keydown", onKey);
+    },
+  };
+}
