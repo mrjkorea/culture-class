@@ -83,7 +83,7 @@ const THEMES = {
   },
   canada: {
     bodyClass: "theme-canada",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/canada.css",
     mapImage: "assets/covers/07-july-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(255,80,80,0.55)",

@@ -194,17 +194,18 @@
         }
       ],
       "featureLabel": "Play the Canada Day craft",
-      "featureDetail": "Syrup, ice fishing, hockey (coming soon).",
+      "featureDetail": "Eleven stages with Robot narration — maple syrup, ice fishing, hockey, flag, and fireworks.",
       "notes": "Celebrate Canada Day with theme vocabulary, comprehension practice, and quizzes. CP TEST uses the July Google Doc.",
       "monthLayout": "canada",
       "craftPath": "craft/july/",
-      "craftTitle": "Canada Day Craft",
+      "craftTitle": "Canada Day Quest",
       "craftButton": "Play July Craft",
-      "craftBlurb": "Syrup, ice fishing, hockey (coming soon).",
+      "craftBlurb": "Sap to syrup, lake fishing, hockey goals, flag, fireworks — fastest time on this device.",
+      "featureTitle": "Canada Day Quest",
+      "craftEmoji": "🍁",
       "wordsPreviewFile": "jul-words.json",
       "dailyQuizFile": "jul-daily-quiz.json",
-      "cpPackFile": "cp/culture_m07_cp.json",
-      "wordMasterMatchUrl": "#"
+      "cpPackFile": "cp/culture_m07_cp.json"
     },
     {
       "id": "08",
