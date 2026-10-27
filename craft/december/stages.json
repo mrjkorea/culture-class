@@ -1,0 +1,214 @@
+{
+  "id": "craft_december_christmas_v1",
+  "title": "Christmas Tree Quest",
+  "month": "12",
+  "targetMinutes": [14, 22],
+  "leaderboard": {
+    "key": "culture_craft_december_christmas_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · December",
+      "play": "Start the quest",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Eleven Christmas steps — find a tree in the forest, decorate at home, stockings, cookies and milk, and welcome Santa. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Quest again",
+      "doneTitle": "Merry Christmas!",
+      "doneBody": "Joy to the world and peace on earth.",
+      "watch": "Celebrate",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "December",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 12월",
+      "play": "퀘스트 시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "열한 단계 크리스마스 — 숲에서 나무, 집에서 장식, 산타까지. 최고 기록에 도전!",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 하기",
+      "doneTitle": "메리 크리스마스!",
+      "doneBody": "기쁨과 평화가 함께하길.",
+      "watch": "축하",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "12월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "find",
+      "title": "Find the tree",
+      "titleKo": "나무 찾기",
+      "type": "tree_hunt",
+      "poolSize": 16,
+      "goodCount": 1,
+      "lines": {
+        "en": ["Find the perfect tree in the forest.", "Look between the pines.", "That's the one!"],
+        "ko": ["숲에서 나무를 찾아요.", "소나무 사이를 봐요.", "바로 그거예요!"]
+      }
+    },
+    {
+      "id": 2,
+      "key": "chop",
+      "title": "Chop it down",
+      "titleKo": "베기",
+      "type": "chop_tree",
+      "clicks": 24,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Chop the trunk.", "Swing the axe.", "Timber!"],
+        "ko": ["나무를 베어요.", "도끼를 휘두르세요.", "쓰러졌어요!"]
+      }
+    },
+    {
+      "id": 3,
+      "key": "carry",
+      "title": "Carry to the car",
+      "titleKo": "나르기",
+      "type": "carry_tree",
+      "clicks": 18,
+      "midAt": 0.55,
+      "lines": {
+        "en": ["Carry the tree to the car.", "Keep going down the path.", "Loaded up!"],
+        "ko": ["나무를 차까지 옮겨요.", "길을 따라 가요.", "실었어요!"]
+      }
+    },
+    {
+      "id": 4,
+      "key": "stand",
+      "title": "Tree in stand",
+      "titleKo": "받침대",
+      "type": "tree_stand",
+      "clicks": 14,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Set the tree in the stand.", "Tighten until steady.", "Standing tall at home."],
+        "ko": ["받침대에 세워요.", "단단히 조여요.", "집에 세웠어요!"]
+      }
+    },
+    {
+      "id": 5,
+      "key": "lights",
+      "title": "Hang lights",
+      "titleKo": "전구",
+      "type": "hang_lights",
+      "clicks": 22,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["String the lights.", "Wrap around the branches.", "Twinkle time!"],
+        "ko": ["전구를 달아요.", "가지에 돌려요.", "반짝반짝!"]
+      }
+    },
+    {
+      "id": 6,
+      "key": "ornaments",
+      "title": "Hang ornaments",
+      "titleKo": "장식",
+      "type": "hang_ornaments",
+      "clicks": 16,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Hang the ornaments.", "Color on every branch.", "Beautiful tree."],
+        "ko": ["장식을 달아요.", "가지마다 색을 더해요.", "예쁜 나무!"]
+      }
+    },
+    {
+      "id": 7,
+      "key": "presents",
+      "title": "Presents under tree",
+      "titleKo": "선물",
+      "type": "place_presents",
+      "clicks": 8,
+      "lines": {
+        "en": ["Place gifts under the tree.", "One for everyone.", "Presents are ready."],
+        "ko": ["나무 아래 선물.", "모두에게.", "선물 준비 완료!"]
+      }
+    },
+    {
+      "id": 8,
+      "key": "wrap",
+      "title": "Wrap a gift",
+      "titleKo": "포장",
+      "type": "wrap_gift",
+      "clicks": 20,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Wrap one more gift.", "Paper, then ribbon.", "Perfect bow."],
+        "ko": ["선물을 포장해요.", "종이, 리본.", "예쁜 리본!"]
+      }
+    },
+    {
+      "id": 9,
+      "key": "stockings",
+      "title": "Hang stockings",
+      "titleKo": "양말",
+      "type": "hang_stockings",
+      "clicks": 5,
+      "lines": {
+        "en": ["Hang the stockings.", "By the fireplace.", "Stockings are hung."],
+        "ko": ["양말을 걸어요.", "벽난로 옆.", "양말 완료!"]
+      }
+    },
+    {
+      "id": 10,
+      "key": "treats",
+      "title": "Cookies & milk",
+      "titleKo": "쿠키와 우유",
+      "type": "cookies_milk",
+      "clicks": 2,
+      "lines": {
+        "en": ["Set out cookies and milk for Santa.", "Don't forget the milk.", "Santa's snack is ready."],
+        "ko": ["산타를 위해 쿠키와 우유.", "우유도 놓아요.", "준비 완료!"]
+      }
+    },
+    {
+      "id": 11,
+      "key": "santa",
+      "title": "Santa visit",
+      "titleKo": "산타",
+      "type": "santa_visit",
+      "clicks": 1,
+      "lines": {
+        "en": ["Listen for Santa.", "Open the door.", "Merry Christmas!"],
+        "ko": ["산타를 기다려요.", "문을 열어요.", "메리 크리스마스!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_forest", "durationSec": 3, "caption": { "en": "Forest", "ko": "숲" } },
+    { "id": "t02_chop", "durationSec": 3, "caption": { "en": "Chop", "ko": "베기" } },
+    { "id": "t03_carry", "durationSec": 3, "caption": { "en": "Carry", "ko": "나르기" } },
+    { "id": "t04_stand", "durationSec": 3, "caption": { "en": "Stand", "ko": "받침대" } },
+    { "id": "t05_lights", "durationSec": 3, "caption": { "en": "Lights", "ko": "전구" } },
+    { "id": "t06_ornaments", "durationSec": 3, "caption": { "en": "Ornaments", "ko": "장식" } },
+    { "id": "t07_presents", "durationSec": 3, "caption": { "en": "Presents", "ko": "선물" } },
+    { "id": "t08_wrap", "durationSec": 3, "caption": { "en": "Wrap", "ko": "포장" } },
+    { "id": "t09_stockings", "durationSec": 3, "caption": { "en": "Stockings", "ko": "양말" } },
+    { "id": "t10_treats", "durationSec": 3, "caption": { "en": "Cookies", "ko": "쿠키" } },
+    { "id": "t11_santa", "durationSec": 3, "caption": { "en": "Santa", "ko": "산타" } }
+  ]
+}

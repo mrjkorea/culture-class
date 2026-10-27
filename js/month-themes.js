@@ -119,7 +119,7 @@ const THEMES = {
   },
   christmas: {
     bodyClass: "theme-christmas",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/christmas.css",
     mapImage: "assets/covers/12-december-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(180,220,255,0.55)",
