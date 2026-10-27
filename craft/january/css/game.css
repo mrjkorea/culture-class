@@ -24,7 +24,7 @@ body {
 
 body {
   overflow: hidden;
-  background: #9b5cff;
+  background: linear-gradient(180deg, #0a1a3a 0%, #1a3a6e 45%, #0d2040 100%);
   color: var(--ink);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -33,6 +33,77 @@ body {
 
 button,
 input { font: inherit; }
+
+.coach-host img {
+  border-radius: 50%;
+  border: 3px solid #ffd43b;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.coach-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.35rem;
+}
+
+.luck-grid.ny-luck {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+  gap: 0.45rem;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.luck-cell {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, hsl(var(--hue) 80% 70%), hsl(var(--hue) 60% 40%));
+  cursor: pointer;
+}
+
+.luck-cell.is-out { opacity: 0.25; }
+.luck-cell.is-good { box-shadow: 0 0 16px #ffd43b; }
+
+.hat-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.hat-pick {
+  background: rgba(255, 255, 255, 0.12);
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.hat-pick.on { border-color: #ffd43b; }
+
+.balldrop-tap-row {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  padding: 4px;
+}
+
+.balldrop-spot {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 212, 59, 0.85);
+  font-weight: 800;
+  cursor: pointer;
+}
 
 .countdown-stage {
   display: flex;

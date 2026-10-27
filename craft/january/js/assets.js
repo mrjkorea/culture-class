@@ -1,4 +1,4 @@
-/** Load stages.json + the asset manifest. Paths stay relative to this folder. */
+/** Load stages.json + manifest. Coach Ray audio only. */
 
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
@@ -11,30 +11,17 @@ export async function loadCraft() {
   const spec = await fetchJson(new URL("stages.json", root));
   const manifest = await fetchJson(new URL("assets/manifest.json", root));
   const assetBase = new URL("assets/", root);
-  const faces = await fetchJson(new URL(manifest.faces || "faces.json", assetBase));
-  return { spec, manifest, faces, assetBase };
+  return { spec, manifest, assetBase };
 }
 
 export function transitionUrl(assetBase, manifest, id) {
-  const rel = manifest.transitions && manifest.transitions[id];
-  if (!rel) return "";
-  return new URL(rel, assetBase).href;
-}
-
-export function scene3dUrl(assetBase, manifest, key) {
-  const rel = manifest.scenes3d && manifest.scenes3d[key];
+  const rel = manifest.transitions?.[id];
   if (!rel) return "";
   return new URL(rel, assetBase).href;
 }
 
 export function transitionVideoUrl(assetBase, manifest, id) {
-  const rel = manifest.transitionVideos && manifest.transitionVideos[id];
-  if (!rel) return "";
-  return new URL(rel, assetBase).href;
-}
-
-export function ghostAssetUrl(assetBase, manifest, key) {
-  const rel = manifest.ghost && manifest.ghost[key];
+  const rel = manifest.transitionVideos?.[id];
   if (!rel) return "";
   return new URL(rel, assetBase).href;
 }
