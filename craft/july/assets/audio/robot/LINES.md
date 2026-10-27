@@ -41,3 +41,5 @@ Bake with `scripts/bake-robot-audio.sh` (`ROBOT_VOICE_ID` + `FISH_API_KEY`).
 | stage11_win.mp3 | Happy Canada Day! |
 | miss.mp3 | Nice try — give it another go, eh? |
 | finale.mp3 | O Canada! Check the board for your time. |
+| countdown.mp3 | Three. Two. One. |
+| next_stage.mp3 | Nice work. Next stage! |

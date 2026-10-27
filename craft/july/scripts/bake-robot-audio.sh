@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-# Robot — set ROBOT_VOICE_ID to your Fish Robot reference_id (see APPROVED_VOICES).
-VOICE_ID="${ROBOT_VOICE_ID:-}"
+# July Robot host = KITT AI car (Fish "the Car"); override with ROBOT_VOICE_ID if needed.
+VOICE_ID="${ROBOT_VOICE_ID:-eaa8a416bfcd4a38b3e3fa94ad934225}"
 OUT="$ROOT/assets/audio/robot"
-
-if [ -z "$VOICE_ID" ]; then
-  echo "Set ROBOT_VOICE_ID (Fish Robot reference_id) and FISH_API_KEY." >&2
-  exit 1
-fi
 if [ -z "${FISH_API_KEY:-}" ]; then
   echo "Set FISH_API_KEY to bake Robot audio." >&2
   exit 1
