@@ -1,0 +1,213 @@
+{
+  "id": "craft_november_thanksgiving_v1",
+  "title": "Thanksgiving Feast",
+  "month": "11",
+  "targetMinutes": [14, 20],
+  "leaderboard": {
+    "key": "culture_craft_november_thanksgiving_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · November",
+      "play": "Start cooking",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Eleven Thanksgiving steps — find the turkey, roast in the oven, mash, gravy, pie, and set the table. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Feast again",
+      "doneTitle": "Happy Thanksgiving!",
+      "doneBody": "Grateful hearts and full plates.",
+      "watch": "Give thanks",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "November",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 11월",
+      "play": "요리 시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "열한 단계 추수감사절 — 칠면조, 오븐, 식탁 준비까지. 최고 기록에 도전!",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 하기",
+      "doneTitle": "추수감사절!",
+      "doneBody": "감사한 마음과 풍성한 식탁.",
+      "watch": "감사",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "11월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "hunt",
+      "title": "Turkey hunt",
+      "titleKo": "칠면조 찾기",
+      "type": "turkey_hunt",
+      "poolSize": 16,
+      "goodCount": 1,
+      "lines": {
+        "en": ["Find the turkey in the field.", "Tap the right bush.", "Gobble! You found it."],
+        "ko": ["밭에서 칠면조를 찾아요.", "맞는 곳을 눌러요.", "찾았어요!"]
+      }
+    },
+    {
+      "id": 2,
+      "key": "pluck",
+      "title": "Pluck turkey",
+      "titleKo": "털 뽑기",
+      "type": "pluck",
+      "clicks": 28,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Pluck the turkey.", "Feather by feather.", "Ready to stuff."],
+        "ko": ["털을 뽑아요.", "하나씩.", "속 채울 준비."]
+      }
+    },
+    {
+      "id": 3,
+      "key": "stuff",
+      "title": "Stuff dressing",
+      "titleKo": "속 채우기",
+      "type": "stuff",
+      "clicks": 20,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Stuff with dressing.", "Pack it gently.", "Stuffed and ready."],
+        "ko": ["속을 채워요.", "부드럽게.", "채웠어요."]
+      }
+    },
+    {
+      "id": 4,
+      "key": "oven",
+      "title": "Roast in oven",
+      "titleKo": "오븐 굽기",
+      "type": "oven_hold",
+      "holdRequiredMs": 60000,
+      "lines": {
+        "en": ["Hold to roast the turkey.", "Keep the heat steady…", "Golden and done."],
+        "ko": ["잡고 굽어요.", "열을 유지…", "노릇노릇."]
+      }
+    },
+    {
+      "id": 5,
+      "key": "mash",
+      "title": "Mash potatoes",
+      "titleKo": "으깨기",
+      "type": "mash",
+      "clicks": 32,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Mash the potatoes.", "Smooth and creamy.", "Mashed potatoes ready."],
+        "ko": ["감자를 으깨요.", "부드럽게.", "완성!"]
+      }
+    },
+    {
+      "id": 6,
+      "key": "gravy",
+      "title": "Pour gravy",
+      "titleKo": "그레이비",
+      "type": "gravy",
+      "clicks": 16,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Pour the gravy.", "Slow and steady.", "Gravy is served."],
+        "ko": ["그레이비를 부어요.", "천천히.", "완성!"]
+      }
+    },
+    {
+      "id": 7,
+      "key": "pie",
+      "title": "Bake the pie",
+      "titleKo": "파이",
+      "type": "pie",
+      "clicks": 12,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Finish the pumpkin pie.", "Bake until set.", "Pie is golden."],
+        "ko": ["호박 파이를 굽어요.", "익을 때까지.", "노릇해요."]
+      }
+    },
+    {
+      "id": 8,
+      "key": "plates",
+      "title": "Set plates",
+      "titleKo": "접시",
+      "type": "set_plates",
+      "clicks": 6,
+      "lines": {
+        "en": ["Set the plates.", "One for everyone.", "Plates are set."],
+        "ko": ["접시를 놓아요.", "모두에게.", "접시 완료."]
+      }
+    },
+    {
+      "id": 9,
+      "key": "silver",
+      "title": "Forks & glasses",
+      "titleKo": "포크와 컵",
+      "type": "set_silver",
+      "clicks": 8,
+      "lines": {
+        "en": ["Set forks and glasses.", "Don't forget napkins.", "Table is set."],
+        "ko": ["포크와 컵.", "냅킨도.", "식탁 준비!"]
+      }
+    },
+    {
+      "id": 10,
+      "key": "seat",
+      "title": "Seat family",
+      "titleKo": "자리",
+      "type": "seat_family",
+      "clicks": 5,
+      "lines": {
+        "en": ["Seat the family.", "Everyone together.", "We're gathered."],
+        "ko": ["가족을 앉혀요.", "함께.", "모였어요."]
+      }
+    },
+    {
+      "id": 11,
+      "key": "thanks",
+      "title": "Thankful card",
+      "titleKo": "감사 카드",
+      "type": "thankful_card",
+      "clicks": 1,
+      "lines": {
+        "en": ["Pick what you're thankful for.", "Share your gratitude.", "Happy Thanksgiving!"],
+        "ko": ["감사한 것을 골라요.", "마음을 나눠요.", "추수감사절!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_hunt", "durationSec": 3, "caption": { "en": "Turkey hunt", "ko": "찾기" } },
+    { "id": "t02_pluck", "durationSec": 3, "caption": { "en": "Pluck", "ko": "털" } },
+    { "id": "t03_stuff", "durationSec": 3, "caption": { "en": "Stuff", "ko": "속" } },
+    { "id": "t04_oven", "durationSec": 3, "caption": { "en": "Oven", "ko": "오븐" } },
+    { "id": "t05_mash", "durationSec": 3, "caption": { "en": "Mash", "ko": "으깨기" } },
+    { "id": "t06_gravy", "durationSec": 3, "caption": { "en": "Gravy", "ko": "그레이비" } },
+    { "id": "t07_pie", "durationSec": 3, "caption": { "en": "Pie", "ko": "파이" } },
+    { "id": "t08_plates", "durationSec": 3, "caption": { "en": "Plates", "ko": "접시" } },
+    { "id": "t09_silver", "durationSec": 3, "caption": { "en": "Forks", "ko": "포크" } },
+    { "id": "t10_seat", "durationSec": 3, "caption": { "en": "Family", "ko": "가족" } },
+    { "id": "t11_thanks", "durationSec": 3, "caption": { "en": "Thankful", "ko": "감사" } }
+  ]
+}

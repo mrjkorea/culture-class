@@ -314,18 +314,19 @@
           "title": "Thanksgiving culture intro (6:55)"
         }
       ],
-      "featureLabel": "Play the Thanksgiving craft",
-      "featureDetail": "Turkey to thankful card (coming soon).",
-      "notes": "Thanksgiving traditions, gratitude, and harvest themes with the full monthly step stack.",
+      "featureTitle": "Thanksgiving Feast Craft",
+      "featureLabel": "Play the Thanksgiving craft (replaces the feature video)",
+      "featureDetail": "Open the Thanksgiving kitchen mini-game. Eleven stages, Cowboy narrator, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
+      "notes": "Thanksgiving traditions, gratitude, and harvest themes. Play the Thanksgiving Feast Craft from this page.",
       "monthLayout": "thanksgiving",
       "craftPath": "craft/november/",
-      "craftTitle": "Thanksgiving Craft",
-      "craftButton": "Play November Craft",
-      "craftBlurb": "Turkey to thankful card (coming soon).",
+      "craftTitle": "Thanksgiving Feast Craft",
+      "craftButton": "Play Thanksgiving Feast Craft",
+      "craftBlurb": "Hunt the turkey, roast in the oven, mash, gravy, pie, set the table, and pick a thankful card — fastest time on this device.",
+      "craftEmoji": "🦃",
       "wordsPreviewFile": "nov-words.json",
       "dailyQuizFile": "nov-daily-quiz.json",
-      "cpPackFile": "cp/culture_m11_cp.json",
-      "wordMasterMatchUrl": "#"
+      "cpPackFile": "cp/culture_m11_cp.json"
     },
     {
       "id": "12",
