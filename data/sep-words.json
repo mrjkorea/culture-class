@@ -1,0 +1,169 @@
+{
+  "id": "culture_m09",
+  "title": "September · Earth Day vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "nia",
+  "words": [
+    {
+      "id": "sep_01",
+      "en": "Earth",
+      "ko": "지구",
+      "audio": "data/audio/sep-words/earth.mp3",
+      "pic": "assets/words/sep/earth.jpg",
+      "image": "assets/words/sep/earth.jpg",
+      "term": "Earth",
+      "definition": "지구"
+    },
+    {
+      "id": "sep_02",
+      "en": "recycle",
+      "ko": "재활용하다",
+      "audio": "data/audio/sep-words/recycle.mp3",
+      "pic": "assets/words/sep/recycle.jpg",
+      "image": "assets/words/sep/recycle.jpg",
+      "term": "recycle",
+      "definition": "재활용하다"
+    },
+    {
+      "id": "sep_03",
+      "en": "trash",
+      "ko": "쓰레기",
+      "audio": "data/audio/sep-words/trash.mp3",
+      "pic": "assets/words/sep/trash.jpg",
+      "image": "assets/words/sep/trash.jpg",
+      "term": "trash",
+      "definition": "쓰레기"
+    },
+    {
+      "id": "sep_04",
+      "en": "plastic",
+      "ko": "플라스틱",
+      "audio": "data/audio/sep-words/plastic.mp3",
+      "pic": "assets/words/sep/plastic.jpg",
+      "image": "assets/words/sep/plastic.jpg",
+      "term": "plastic",
+      "definition": "플라스틱"
+    },
+    {
+      "id": "sep_05",
+      "en": "paper",
+      "ko": "종이",
+      "audio": "data/audio/sep-words/paper.mp3",
+      "pic": "assets/words/sep/paper.jpg",
+      "image": "assets/words/sep/paper.jpg",
+      "term": "paper",
+      "definition": "종이"
+    },
+    {
+      "id": "sep_06",
+      "en": "can",
+      "ko": "캔",
+      "audio": "data/audio/sep-words/can.mp3",
+      "pic": "assets/words/sep/can.jpg",
+      "image": "assets/words/sep/can.jpg",
+      "term": "can",
+      "definition": "캔"
+    },
+    {
+      "id": "sep_07",
+      "en": "bin",
+      "ko": "쓰레기통",
+      "audio": "data/audio/sep-words/bin.mp3",
+      "pic": "assets/words/sep/bin.jpg",
+      "image": "assets/words/sep/bin.jpg",
+      "term": "bin",
+      "definition": "쓰레기통"
+    },
+    {
+      "id": "sep_08",
+      "en": "plant",
+      "ko": "심다",
+      "audio": "data/audio/sep-words/plant.mp3",
+      "pic": "assets/words/sep/plant.jpg",
+      "image": "assets/words/sep/plant.jpg",
+      "term": "plant",
+      "definition": "심다"
+    },
+    {
+      "id": "sep_09",
+      "en": "tree",
+      "ko": "나무",
+      "audio": "data/audio/sep-words/tree.mp3",
+      "pic": "assets/words/sep/tree.jpg",
+      "image": "assets/words/sep/tree.jpg",
+      "term": "tree",
+      "definition": "나무"
+    },
+    {
+      "id": "sep_10",
+      "en": "water",
+      "ko": "물",
+      "audio": "data/audio/sep-words/water.mp3",
+      "pic": "assets/words/sep/water.jpg",
+      "image": "assets/words/sep/water.jpg",
+      "term": "water",
+      "definition": "물"
+    },
+    {
+      "id": "sep_11",
+      "en": "energy",
+      "ko": "에너지",
+      "audio": "data/audio/sep-words/energy.mp3",
+      "pic": "assets/words/sep/energy.jpg",
+      "image": "assets/words/sep/energy.jpg",
+      "term": "energy",
+      "definition": "에너지"
+    },
+    {
+      "id": "sep_12",
+      "en": "light",
+      "ko": "전등",
+      "audio": "data/audio/sep-words/light.mp3",
+      "pic": "assets/words/sep/light.jpg",
+      "image": "assets/words/sep/light.jpg",
+      "term": "light",
+      "definition": "전등"
+    },
+    {
+      "id": "sep_13",
+      "en": "bike",
+      "ko": "자전거",
+      "audio": "data/audio/sep-words/bike.mp3",
+      "pic": "assets/words/sep/bike.jpg",
+      "image": "assets/words/sep/bike.jpg",
+      "term": "bike",
+      "definition": "자전거"
+    },
+    {
+      "id": "sep_14",
+      "en": "river",
+      "ko": "강",
+      "audio": "data/audio/sep-words/river.mp3",
+      "pic": "assets/words/sep/river.jpg",
+      "image": "assets/words/sep/river.jpg",
+      "term": "river",
+      "definition": "강"
+    },
+    {
+      "id": "sep_15",
+      "en": "clean",
+      "ko": "깨끗한 / 청소하다",
+      "audio": "data/audio/sep-words/clean.mp3",
+      "pic": "assets/words/sep/clean.jpg",
+      "image": "assets/words/sep/clean.jpg",
+      "term": "clean",
+      "definition": "깨끗한 / 청소하다"
+    },
+    {
+      "id": "sep_16",
+      "en": "save",
+      "ko": "아끼다 / 구하다",
+      "audio": "data/audio/sep-words/save.mp3",
+      "pic": "assets/words/sep/save.jpg",
+      "image": "assets/words/sep/save.jpg",
+      "term": "save",
+      "definition": "아끼다 / 구하다"
+    }
+  ]
+}

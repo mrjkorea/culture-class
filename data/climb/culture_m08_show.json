@@ -1,0 +1,156 @@
+{
+  "id": "culture_m08_show",
+  "kind": "culture",
+  "title": "Culture · August · Korean History Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m08_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "영상에서 한국 역사는 얼마나 긴가요?"
+      },
+      "choices": [
+        "About 50,000 years",
+        "About 5,000 years",
+        "About 500 years",
+        "About 50 years"
+      ],
+      "answer": "About 5,000 years",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "최초의 한국 나라 고조선을 세운 사람은?"
+      },
+      "choices": [
+        "Wang Geon",
+        "King Sejong",
+        "Dangun",
+        "Gojong"
+      ],
+      "answer": "Dangun",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "한글을 만든 사람은 누구인가요?"
+      },
+      "choices": [
+        "King Sejong",
+        "Kim Gu",
+        "Heo Jun",
+        "Yi Sun-sin"
+      ],
+      "answer": "King Sejong",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "거북선을 이끌고 왜군과 싸운 사람은?"
+      },
+      "choices": [
+        "Yun Dong-ju",
+        "Admiral Yi Sun-sin",
+        "Dae Joyeong",
+        "Jang Yeong-sil"
+      ],
+      "answer": "Admiral Yi Sun-sin",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "삼국은 어느 나라들인가요?"
+      },
+      "choices": [
+        "Joseon, Goryeo, Balhae",
+        "Goguryeo, Baekje, Silla",
+        "Korea, Japan, China",
+        "Seoul, Busan, Incheon"
+      ],
+      "answer": "Goguryeo, Baekje, Silla",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "역사를 배우면 과거의 실수를 피할 수 있어요."
+      },
+      "choices": [
+        "History helps us appreciate different cultures.",
+        "Knowing history makes us proud of our past.",
+        "Learning history helps us understand the world today.",
+        "Learning history helps us avoid past mistakes."
+      ],
+      "answer": "Learning history helps us avoid past mistakes.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "역사는 다양한 문화를 존중하게 해줘요."
+      },
+      "choices": [
+        "History helps us appreciate different cultures.",
+        "Learning history helps us understand the world today.",
+        "Learning history helps us avoid past mistakes.",
+        "History can make us heroes of the future."
+      ],
+      "answer": "History helps us appreciate different cultures.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "역사를 알면 우리의 과거에 대해 자부심을 느낄 수 있어요."
+      },
+      "choices": [
+        "Learning history helps us understand the world today.",
+        "Knowing history makes us proud of our past.",
+        "History helps us appreciate different cultures.",
+        "Learning history helps us avoid past mistakes."
+      ],
+      "answer": "Knowing history makes us proud of our past.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "역사를 배우면 오늘날의 세상을 이해할 수 있어요."
+      },
+      "choices": [
+        "Learning history helps us avoid past mistakes.",
+        "Learning history helps us understand the world today.",
+        "Knowing history makes us proud of our past.",
+        "History helps us appreciate different cultures."
+      ],
+      "answer": "Learning history helps us understand the world today.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "역사는 우리가 미래의 영웅이 될 수 있게 해줘요."
+      },
+      "choices": [
+        "Knowing history makes us proud of our past.",
+        "History helps us appreciate different cultures.",
+        "Learning history helps us avoid past mistakes.",
+        "History can make us heroes of the future."
+      ],
+      "answer": "History can make us heroes of the future.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

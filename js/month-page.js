@@ -67,10 +67,7 @@ function renderDefaultMonth(month, wordsPreview) {
   const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
   const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
 
-  const pilotBadge =
-    month.id === "08"
-      ? '<span class="pilot">Pilot month — words preview &amp; full CP link</span>'
-      : "";
+  const pilotBadge = "";
 
   const builtinWords = monthHasBuiltinWords(month);
   const learnHref = builtinWords
@@ -84,10 +81,10 @@ function renderDefaultMonth(month, wordsPreview) {
 
   if (wordsPreview?.source) {
     const wordsStatus = builtinWords
-      ? " · Built-in Learn &amp; Memory on this site."
+      ? " · Built-in Meet → Learn on this site (no Match)."
       : month.wordMasterLearnUrl === "#"
         ? " · Word pack coming."
-        : " · Open Learn / Memory below.";
+        : " · Open Learn below.";
     learnStepBody += `
       <p class="hint" style="margin-top:0.65rem">${escapeHtml(wordsPreview.source)}${wordsStatus}</p>`;
   }

@@ -1,0 +1,156 @@
+{
+  "id": "culture_m06_show",
+  "kind": "culture",
+  "title": "Culture · June · Remembrance Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m06_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "Earth Day",
+        "Canada Day",
+        "Remembrance Day",
+        "Easter"
+      ],
+      "answer": "Remembrance Day",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이날 우리는 누구를 기억하나요?"
+      },
+      "choices": [
+        "Soldiers who died in wars",
+        "Santa's elves",
+        "Famous singers",
+        "Sports stars"
+      ],
+      "answer": "Soldiers who died in wars",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 어떤 빨간 꽃을 다나요?"
+      },
+      "choices": [
+        "A tulip",
+        "A sunflower",
+        "A poppy",
+        "A rose"
+      ],
+      "answer": "A poppy",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "11월 11일 오전 11시에 사람들은 무엇을 하나요?"
+      },
+      "choices": [
+        "Eat cake",
+        "Sing loudly",
+        "Set off fireworks",
+        "A moment of silence"
+      ],
+      "answer": "A moment of silence",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "한국의 현충일은 언제인가요?"
+      },
+      "choices": [
+        "August 15",
+        "June 6",
+        "October 3",
+        "June 25"
+      ],
+      "answer": "June 6",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "한국 전쟁은 1950년 6월 25일에 시작되었습니다."
+      },
+      "choices": [
+        "The Korean War began on June 25th, 1950.",
+        "23 countries fought under UN flags.",
+        "The DMZ is four kilometers wide.",
+        "3 million people died in the Korean War."
+      ],
+      "answer": "The Korean War began on June 25th, 1950.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "한국 전쟁에서 300만 명이 사망했습니다."
+      },
+      "choices": [
+        "The DMZ is four kilometers wide.",
+        "The Korean War began on June 25th, 1950.",
+        "3 million people died in the Korean War.",
+        "November 11th is Remembrance Day too."
+      ],
+      "answer": "3 million people died in the Korean War.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "23개국이 유엔 깃발 아래 참전했습니다."
+      },
+      "choices": [
+        "November 11th is Remembrance Day too.",
+        "The DMZ is four kilometers wide.",
+        "The Korean War began on June 25th, 1950.",
+        "23 countries fought under UN flags."
+      ],
+      "answer": "23 countries fought under UN flags.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "11월 11일도 현충일입니다."
+      },
+      "choices": [
+        "23 countries fought under UN flags.",
+        "The DMZ is four kilometers wide.",
+        "The Korean War began on June 25th, 1950.",
+        "November 11th is Remembrance Day too."
+      ],
+      "answer": "November 11th is Remembrance Day too.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "DMZ는 폭이 4킬로미터입니다."
+      },
+      "choices": [
+        "November 11th is Remembrance Day too.",
+        "3 million people died in the Korean War.",
+        "The DMZ is four kilometers wide.",
+        "23 countries fought under UN flags."
+      ],
+      "answer": "The DMZ is four kilometers wide.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

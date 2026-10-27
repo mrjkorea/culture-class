@@ -1,0 +1,169 @@
+{
+  "id": "culture_m02",
+  "title": "February · Valentine's Day vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "harper",
+  "words": [
+    {
+      "id": "feb_01",
+      "en": "Valentine's Day",
+      "ko": "발렌타인데이",
+      "audio": "data/audio/feb-words/valentine_s_day.mp3",
+      "pic": "assets/words/feb/valentine_s_day.jpg",
+      "image": "assets/words/feb/valentine_s_day.jpg",
+      "term": "Valentine's Day",
+      "definition": "발렌타인데이"
+    },
+    {
+      "id": "feb_02",
+      "en": "heart",
+      "ko": "하트",
+      "audio": "data/audio/feb-words/heart.mp3",
+      "pic": "assets/words/feb/heart.jpg",
+      "image": "assets/words/feb/heart.jpg",
+      "term": "heart",
+      "definition": "하트"
+    },
+    {
+      "id": "feb_03",
+      "en": "card",
+      "ko": "카드",
+      "audio": "data/audio/feb-words/card.mp3",
+      "pic": "assets/words/feb/card.jpg",
+      "image": "assets/words/feb/card.jpg",
+      "term": "card",
+      "definition": "카드"
+    },
+    {
+      "id": "feb_04",
+      "en": "chocolate",
+      "ko": "초콜릿",
+      "audio": "data/audio/feb-words/chocolate.mp3",
+      "pic": "assets/words/feb/chocolate.jpg",
+      "image": "assets/words/feb/chocolate.jpg",
+      "term": "chocolate",
+      "definition": "초콜릿"
+    },
+    {
+      "id": "feb_05",
+      "en": "rose",
+      "ko": "장미",
+      "audio": "data/audio/feb-words/rose.mp3",
+      "pic": "assets/words/feb/rose.jpg",
+      "image": "assets/words/feb/rose.jpg",
+      "term": "rose",
+      "definition": "장미"
+    },
+    {
+      "id": "feb_06",
+      "en": "love",
+      "ko": "사랑",
+      "audio": "data/audio/feb-words/love.mp3",
+      "pic": "assets/words/feb/love.jpg",
+      "image": "assets/words/feb/love.jpg",
+      "term": "love",
+      "definition": "사랑"
+    },
+    {
+      "id": "feb_07",
+      "en": "friend",
+      "ko": "친구",
+      "audio": "data/audio/feb-words/friend.mp3",
+      "pic": "assets/words/feb/friend.jpg",
+      "image": "assets/words/feb/friend.jpg",
+      "term": "friend",
+      "definition": "친구"
+    },
+    {
+      "id": "feb_08",
+      "en": "candy hearts",
+      "ko": "하트 사탕",
+      "audio": "data/audio/feb-words/candy_hearts.mp3",
+      "pic": "assets/words/feb/candy_hearts.jpg",
+      "image": "assets/words/feb/candy_hearts.jpg",
+      "term": "candy hearts",
+      "definition": "하트 사탕"
+    },
+    {
+      "id": "feb_09",
+      "en": "envelope",
+      "ko": "봉투",
+      "audio": "data/audio/feb-words/envelope.mp3",
+      "pic": "assets/words/feb/envelope.jpg",
+      "image": "assets/words/feb/envelope.jpg",
+      "term": "envelope",
+      "definition": "봉투"
+    },
+    {
+      "id": "feb_10",
+      "en": "mailbox",
+      "ko": "우편함",
+      "audio": "data/audio/feb-words/mailbox.mp3",
+      "pic": "assets/words/feb/mailbox.jpg",
+      "image": "assets/words/feb/mailbox.jpg",
+      "term": "mailbox",
+      "definition": "우편함"
+    },
+    {
+      "id": "feb_11",
+      "en": "cupid",
+      "ko": "큐피드",
+      "audio": "data/audio/feb-words/cupid.mp3",
+      "pic": "assets/words/feb/cupid.jpg",
+      "image": "assets/words/feb/cupid.jpg",
+      "term": "cupid",
+      "definition": "큐피드"
+    },
+    {
+      "id": "feb_12",
+      "en": "arrow",
+      "ko": "화살",
+      "audio": "data/audio/feb-words/arrow.mp3",
+      "pic": "assets/words/feb/arrow.jpg",
+      "image": "assets/words/feb/arrow.jpg",
+      "term": "arrow",
+      "definition": "화살"
+    },
+    {
+      "id": "feb_13",
+      "en": "gift",
+      "ko": "선물",
+      "audio": "data/audio/feb-words/gift.mp3",
+      "pic": "assets/words/feb/gift.jpg",
+      "image": "assets/words/feb/gift.jpg",
+      "term": "gift",
+      "definition": "선물"
+    },
+    {
+      "id": "feb_14",
+      "en": "hug",
+      "ko": "포옹",
+      "audio": "data/audio/feb-words/hug.mp3",
+      "pic": "assets/words/feb/hug.jpg",
+      "image": "assets/words/feb/hug.jpg",
+      "term": "hug",
+      "definition": "포옹"
+    },
+    {
+      "id": "feb_15",
+      "en": "sticker",
+      "ko": "스티커",
+      "audio": "data/audio/feb-words/sticker.mp3",
+      "pic": "assets/words/feb/sticker.jpg",
+      "image": "assets/words/feb/sticker.jpg",
+      "term": "sticker",
+      "definition": "스티커"
+    },
+    {
+      "id": "feb_16",
+      "en": "red",
+      "ko": "빨간색",
+      "audio": "data/audio/feb-words/red.mp3",
+      "pic": "assets/words/feb/red.jpg",
+      "image": "assets/words/feb/red.jpg",
+      "term": "red",
+      "definition": "빨간색"
+    }
+  ]
+}

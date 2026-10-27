@@ -1,0 +1,156 @@
+{
+  "id": "culture_m06_daily_quiz",
+  "monthId": "06",
+  "title": "Remembrance Day — after Daily video",
+  "source": "Remembrance Day culture intro (REMEMBRANCECC)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What day is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "Canada Day",
+          "ko": "캐나다 데이"
+        },
+        {
+          "en": "Remembrance Day",
+          "ko": "현충일 / 리멤브런스 데이",
+          "correct": true
+        },
+        {
+          "en": "Easter",
+          "ko": "부활절"
+        },
+        {
+          "en": "Earth Day",
+          "ko": "지구의 날"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "The video is about remembering soldiers.",
+        "ko": "영상은 군인들을 기억하는 날에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "Who do we remember on this day?",
+      "ko": "이날 우리는 누구를 기억하나요?",
+      "choices": [
+        {
+          "en": "Sports stars",
+          "ko": "스포츠 스타들"
+        },
+        {
+          "en": "Famous singers",
+          "ko": "유명한 가수들"
+        },
+        {
+          "en": "Santa's elves",
+          "ko": "산타의 요정들"
+        },
+        {
+          "en": "Soldiers who died in wars",
+          "ko": "전쟁에서 돌아가신 군인들",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "We remember people who gave their lives in war.",
+        "ko": "전쟁에서 목숨을 바친 사람들을 기억해요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What red flower do people wear?",
+      "ko": "사람들은 어떤 빨간 꽃을 다나요?",
+      "choices": [
+        {
+          "en": "A tulip",
+          "ko": "튤립"
+        },
+        {
+          "en": "A poppy",
+          "ko": "양귀비꽃",
+          "correct": true
+        },
+        {
+          "en": "A rose",
+          "ko": "장미"
+        },
+        {
+          "en": "A sunflower",
+          "ko": "해바라기"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "The red poppy is the symbol of remembrance.",
+        "ko": "빨간 양귀비꽃은 추모의 상징이에요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "What do people do at 11:00 a.m. on November 11?",
+      "ko": "11월 11일 오전 11시에 사람들은 무엇을 하나요?",
+      "choices": [
+        {
+          "en": "A moment of silence",
+          "ko": "묵념",
+          "correct": true
+        },
+        {
+          "en": "Eat cake",
+          "ko": "케이크 먹기"
+        },
+        {
+          "en": "Sing loudly",
+          "ko": "큰 소리로 노래"
+        },
+        {
+          "en": "Set off fireworks",
+          "ko": "불꽃놀이"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "People stay quiet for a moment of silence.",
+        "ko": "사람들은 조용히 묵념을 해요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "When is Korea's Memorial Day (현충일)?",
+      "ko": "한국의 현충일은 언제인가요?",
+      "choices": [
+        {
+          "en": "October 3",
+          "ko": "10월 3일"
+        },
+        {
+          "en": "August 15",
+          "ko": "8월 15일"
+        },
+        {
+          "en": "June 25",
+          "ko": "6월 25일"
+        },
+        {
+          "en": "June 6",
+          "ko": "6월 6일",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Korea's Memorial Day is June 6.",
+        "ko": "한국의 현충일은 6월 6일이에요."
+      }
+    }
+  ]
+}

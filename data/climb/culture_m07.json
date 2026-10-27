@@ -1,0 +1,259 @@
+{
+  "id": "culture_m07",
+  "kind": "culture",
+  "title": "Culture · July · Canada Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m07"
+  ],
+  "wordAudio": "data/audio/jul-words/",
+  "picDir": "assets/words/jul/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "캐나다"
+      },
+      "choices": [
+        "Canada",
+        "maple syrup",
+        "ice fishing",
+        "Mountie"
+      ],
+      "answer": "Canada"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "단풍잎"
+      },
+      "choices": [
+        "Ottawa",
+        "skate",
+        "canoe",
+        "maple leaf"
+      ],
+      "answer": "maple leaf"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "메이플 시럽"
+      },
+      "choices": [
+        "beaver",
+        "canoe",
+        "maple syrup",
+        "pancake"
+      ],
+      "answer": "maple syrup"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "하키"
+      },
+      "choices": [
+        "Ottawa",
+        "moose",
+        "skate",
+        "hockey"
+      ],
+      "answer": "hockey"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "스케이트"
+      },
+      "choices": [
+        "skate",
+        "fireworks",
+        "flag",
+        "moose"
+      ],
+      "answer": "skate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "얼음 낚시"
+      },
+      "choices": [
+        "snow",
+        "canoe",
+        "hockey",
+        "ice fishing"
+      ],
+      "answer": "ice fishing"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "무스 (말코손바닥사슴)"
+      },
+      "choices": [
+        "maple leaf",
+        "moose",
+        "flag",
+        "Canada"
+      ],
+      "answer": "moose"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "비버"
+      },
+      "choices": [
+        "fireworks",
+        "beaver",
+        "maple leaf",
+        "lake"
+      ],
+      "answer": "beaver"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "국기"
+      },
+      "choices": [
+        "ice fishing",
+        "lake",
+        "flag",
+        "Canada"
+      ],
+      "answer": "flag"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "오타와"
+      },
+      "choices": [
+        "skate",
+        "Ottawa",
+        "pancake",
+        "Mountie"
+      ],
+      "answer": "Ottawa"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "호수"
+      },
+      "choices": [
+        "lake",
+        "hockey",
+        "pancake",
+        "Canada"
+      ],
+      "answer": "lake"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "눈"
+      },
+      "choices": [
+        "canoe",
+        "snow",
+        "moose",
+        "Mountie"
+      ],
+      "answer": "snow"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "불꽃놀이"
+      },
+      "choices": [
+        "fireworks",
+        "beaver",
+        "Mountie",
+        "maple syrup"
+      ],
+      "answer": "fireworks"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "카누"
+      },
+      "choices": [
+        "canoe",
+        "pancake",
+        "fireworks",
+        "snow"
+      ],
+      "answer": "canoe"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "팬케이크"
+      },
+      "choices": [
+        "Mountie",
+        "ice fishing",
+        "canoe",
+        "pancake"
+      ],
+      "answer": "pancake"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "캐나다 기마경찰"
+      },
+      "choices": [
+        "moose",
+        "Mountie",
+        "flag",
+        "hockey"
+      ],
+      "answer": "Mountie"
+    }
+  ]
+}

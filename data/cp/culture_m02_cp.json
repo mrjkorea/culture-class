@@ -1,0 +1,39 @@
+{
+  "monthId": "02",
+  "title": "February Valentine's Day CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1v0N6ffLAcJGUpJXe0KQBIhGqBhhBGTyoNhrjy5KtWjA/edit",
+  "items": [
+    {
+      "korean": "첫 발렌타인 편지는 감옥에서 왔어요.",
+      "english": "The first Valentine's note was from jail.",
+      "audio": "data/audio/feb-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "3천6백만 개의 하트 초콜릿이 팔려요.",
+      "english": "Over 36 million heart-shaped chocolates are sold.",
+      "audio": "data/audio/feb-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "선생님들이 가장 많은 발렌타인 카드를 받아요.",
+      "english": "Teachers get the most Valentine's cards.",
+      "audio": "data/audio/feb-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "일본에서는 여자들이 남자들에게 초콜릿을 줘요.",
+      "english": "In Japan, girls give boys chocolate.",
+      "audio": "data/audio/feb-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "발렌타인데이는 로마 축제로 시작되었어요.",
+      "english": "Valentine's Day started as a Roman festival.",
+      "audio": "data/audio/feb-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

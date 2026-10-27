@@ -1,0 +1,39 @@
+{
+  "monthId": "12",
+  "title": "December Christmas CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1ZfiXZS-Oln5WyxzEhASuT_weXqGoseHu_ANVVkUqHJ0/edit",
+  "items": [
+    {
+      "korean": "크리스마스는 12월 25일이에요.",
+      "english": "Christmas is on December twenty-fifth.",
+      "audio": "data/audio/dec-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "아이들은 산타에게 쿠키를 남겨둬요.",
+      "english": "Children leave cookies for Santa Claus.",
+      "audio": "data/audio/dec-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "많은 집들이 반짝이는 크리스마스 불빛이 있어요.",
+      "english": "Many houses have sparkling Christmas lights.",
+      "audio": "data/audio/dec-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "순록이 산타의 마법 나는 썰매를 끌어요.",
+      "english": "Reindeer pull Santa's magical flying sleigh.",
+      "audio": "data/audio/dec-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "크리스마스는 예수님의 탄생을 기념해요.",
+      "english": "Christmas celebrates the birth of Jesus.",
+      "audio": "data/audio/dec-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

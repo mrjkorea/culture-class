@@ -1,0 +1,156 @@
+{
+  "id": "culture_m11_show",
+  "kind": "culture",
+  "title": "Culture · November · Thanksgiving Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m11_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "Easter",
+        "Valentine's Day",
+        "Halloween",
+        "Thanksgiving"
+      ],
+      "answer": "Thanksgiving",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "가족들은 어떤 큰 새를 자주 먹나요?"
+      },
+      "choices": [
+        "Eagle",
+        "Turkey",
+        "Duck soup",
+        "Chicken nuggets"
+      ],
+      "answer": "Turkey",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "미국의 추수감사절은 언제인가요?"
+      },
+      "choices": [
+        "The 4th Thursday of November",
+        "December 25",
+        "The first Monday of May",
+        "July 4"
+      ],
+      "answer": "The 4th Thursday of November",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "첫 추수감사절 식사를 함께 나눈 사람들은?"
+      },
+      "choices": [
+        "Pilgrims and Native Americans",
+        "Kings and queens",
+        "Astronauts",
+        "Pirates"
+      ],
+      "answer": "Pilgrims and Native Americans",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "추수감사절에 사람들은 무엇을 말하나요?"
+      },
+      "choices": [
+        "Trick or treat",
+        "Be my Valentine",
+        "Happy New Year",
+        "What they are thankful for"
+      ],
+      "answer": "What they are thankful for",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "추수감사절은 10월이나 11월에 있어요."
+      },
+      "choices": [
+        "People say \"thank you\" on Thanksgiving.",
+        "Many people travel to see family.",
+        "Families eat a big meal.",
+        "Thanksgiving is in October or November."
+      ],
+      "answer": "Thanksgiving is in October or November.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "가족들은 큰 식사를 먹어요."
+      },
+      "choices": [
+        "Families eat a big meal.",
+        "Thanksgiving is in October or November.",
+        "People say \"thank you\" on Thanksgiving.",
+        "Many people travel to see family."
+      ],
+      "answer": "Families eat a big meal.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "추수감사절에 사람들은 \"고맙습니다\"라고 말해요."
+      },
+      "choices": [
+        "People say \"thank you\" on Thanksgiving.",
+        "Thanksgiving is in October or November.",
+        "Many people travel to see family.",
+        "Pilgrims and Native Americans shared food."
+      ],
+      "answer": "People say \"thank you\" on Thanksgiving.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "청교도와 원주민들은 음식을 나눴어요."
+      },
+      "choices": [
+        "People say \"thank you\" on Thanksgiving.",
+        "Many people travel to see family.",
+        "Thanksgiving is in October or November.",
+        "Pilgrims and Native Americans shared food."
+      ],
+      "answer": "Pilgrims and Native Americans shared food.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "많은 사람들이 가족을 만나러 여행해요."
+      },
+      "choices": [
+        "Thanksgiving is in October or November.",
+        "Pilgrims and Native Americans shared food.",
+        "Families eat a big meal.",
+        "Many people travel to see family."
+      ],
+      "answer": "Many people travel to see family.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "monthId": "03",
+  "title": "March St. Patrick's Day CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1SK_LGn8PJd9ILZEgca0aOMcdzgnXbS1M2FQZiJm5-oA/edit",
+  "items": [
+    {
+      "korean": "세인트 패트릭 데이는 3월 17일이에요.",
+      "english": "Saint Patrick's Day is March 17.",
+      "audio": "data/audio/mar-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "아주 오래전 아일랜드에서 시작됐어요.",
+      "english": "It came from Ireland long ago.",
+      "audio": "data/audio/mar-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "이날 사람들은 초록색 옷을 입어요.",
+      "english": "People wear green on this day.",
+      "audio": "data/audio/mar-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "샴록은 행운의 식물이에요.",
+      "english": "A shamrock is a lucky plant.",
+      "audio": "data/audio/mar-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "세인트 패트릭은 사람들을 가르치는 걸 좋아했어요.",
+      "english": "Saint Patrick loved to teach people.",
+      "audio": "data/audio/mar-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

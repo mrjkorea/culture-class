@@ -1,0 +1,39 @@
+{
+  "monthId": "04",
+  "title": "April Easter CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1CaNZ6_Y9-pLWzTGNLb5w0CsnSPOFTjw_VTKgG77jmyA/edit",
+  "items": [
+    {
+      "korean": "이스터는 항상 일요일이에요.",
+      "english": "Easter is always on Sunday.",
+      "audio": "data/audio/apr-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "이스터는 예수님의 귀환을 기념해요.",
+      "english": "Easter celebrates Jesus's return.",
+      "audio": "data/audio/apr-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "이스터 색은 분홍과 노랑이에요.",
+      "english": "Easter colors are pink and yellow.",
+      "audio": "data/audio/apr-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "많은 아이들이 이스터 바구니를 받아요.",
+      "english": "Many kids get Easter baskets.",
+      "audio": "data/audio/apr-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "이스터 에그는 새 생명을 의미해요.",
+      "english": "Easter eggs mean new life.",
+      "audio": "data/audio/apr-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "id": "culture_m05_show",
+  "kind": "culture",
+  "title": "Culture · May · Buddhism Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m05_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 누구에 관한 것인가요?"
+      },
+      "choices": [
+        "Saint Patrick",
+        "Santa Claus",
+        "King Sejong",
+        "The Buddha"
+      ],
+      "answer": "The Buddha",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부처님은 어디에서 오셨나요?"
+      },
+      "choices": [
+        "Korea",
+        "India / Nepal area",
+        "Canada",
+        "Ireland"
+      ],
+      "answer": "India / Nepal area",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부처님은 집을 떠나기 전 무엇이었나요?"
+      },
+      "choices": [
+        "A fisherman",
+        "A prince",
+        "A farmer",
+        "A soldier"
+      ],
+      "answer": "A prince",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "그는 진리를 찾기 위해 어디에서 명상했나요?"
+      },
+      "choices": [
+        "In a castle",
+        "On a mountain of snow",
+        "Under a big tree",
+        "On a boat"
+      ],
+      "answer": "Under a big tree",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "불교는 무엇을 가르치나요?"
+      },
+      "choices": [
+        "Calm and kindness",
+        "Getting rich",
+        "Fighting",
+        "Scaring ghosts"
+      ],
+      "answer": "Calm and kindness",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "불교는 인도에서 시작됐어요."
+      },
+      "choices": [
+        "Buddhism teaches calm and kindness.",
+        "Buddha meditated under a big tree.",
+        "Incense burns in every temple.",
+        "Buddhism began in India."
+      ],
+      "answer": "Buddhism began in India.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부처님은 “지혜로운 분”을 뜻해요."
+      },
+      "choices": [
+        "Buddhism teaches calm and kindness.",
+        "Incense burns in every temple.",
+        "Buddha means “wise one.”",
+        "Buddha meditated under a big tree."
+      ],
+      "answer": "Buddha means “wise one.”",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "불교는 차분함과 친절함을 가르쳐요."
+      },
+      "choices": [
+        "Buddhism began in India.",
+        "Buddha means “wise one.”",
+        "Buddhism teaches calm and kindness.",
+        "Incense burns in every temple."
+      ],
+      "answer": "Buddhism teaches calm and kindness.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부처님은 큰 나무 아래서 명상했어요."
+      },
+      "choices": [
+        "Buddha meditated under a big tree.",
+        "Buddhism began in India.",
+        "Incense burns in every temple.",
+        "Buddha means “wise one.”"
+      ],
+      "answer": "Buddha meditated under a big tree.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "모든 절에서 향을 피워요."
+      },
+      "choices": [
+        "Incense burns in every temple.",
+        "Buddha meditated under a big tree.",
+        "Buddha means “wise one.”",
+        "Buddhism began in India."
+      ],
+      "answer": "Incense burns in every temple.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "monthId": "11",
+  "title": "November Thanksgiving CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1hvlItBfKqVCGyBnZi9mfFwOwkZdg3In-3vYMgKqeZ4s/edit",
+  "items": [
+    {
+      "korean": "추수감사절은 10월이나 11월에 있어요.",
+      "english": "Thanksgiving is in October or November.",
+      "audio": "data/audio/nov-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "가족들은 큰 식사를 먹어요.",
+      "english": "Families eat a big meal.",
+      "audio": "data/audio/nov-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "추수감사절에 사람들은 \"고맙습니다\"라고 말해요.",
+      "english": "People say \"thank you\" on Thanksgiving.",
+      "audio": "data/audio/nov-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "청교도와 원주민들은 음식을 나눴어요.",
+      "english": "Pilgrims and Native Americans shared food.",
+      "audio": "data/audio/nov-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "많은 사람들이 가족을 만나러 여행해요.",
+      "english": "Many people travel to see family.",
+      "audio": "data/audio/nov-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "monthId": "05",
+  "title": "May Buddhism CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1ejMK3OaExVuONDZkppywSe9aCEAgzbh_L4vdc2eFWR0/edit",
+  "items": [
+    {
+      "korean": "불교는 인도에서 시작됐어요.",
+      "english": "Buddhism began in India.",
+      "audio": "data/audio/may-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "부처님은 “지혜로운 분”을 뜻해요.",
+      "english": "Buddha means “wise one.”",
+      "audio": "data/audio/may-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "불교는 차분함과 친절함을 가르쳐요.",
+      "english": "Buddhism teaches calm and kindness.",
+      "audio": "data/audio/may-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "부처님은 큰 나무 아래서 명상했어요.",
+      "english": "Buddha meditated under a big tree.",
+      "audio": "data/audio/may-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "모든 절에서 향을 피워요.",
+      "english": "Incense burns in every temple.",
+      "audio": "data/audio/may-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "id": "culture_m03",
+  "kind": "culture",
+  "title": "Culture · March · St. Patrick's Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m03"
+  ],
+  "wordAudio": "data/audio/mar-words/",
+  "picDir": "assets/words/mar/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "성 패트릭 데이"
+      },
+      "choices": [
+        "luck",
+        "St. Patrick's Day",
+        "jig",
+        "four-leaf clover"
+      ],
+      "answer": "St. Patrick's Day"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "아일랜드"
+      },
+      "choices": [
+        "drum",
+        "parade",
+        "rainbow",
+        "Ireland"
+      ],
+      "answer": "Ireland"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "샴록 (세잎클로버)"
+      },
+      "choices": [
+        "pot of gold",
+        "coin",
+        "shamrock",
+        "leprechaun"
+      ],
+      "answer": "shamrock"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "네잎클로버"
+      },
+      "choices": [
+        "four-leaf clover",
+        "hat",
+        "St. Patrick's Day",
+        "parade"
+      ],
+      "answer": "four-leaf clover"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "레프러콘 (요정)"
+      },
+      "choices": [
+        "jig",
+        "leprechaun",
+        "coin",
+        "parade"
+      ],
+      "answer": "leprechaun"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "금 항아리"
+      },
+      "choices": [
+        "parade",
+        "luck",
+        "terrier",
+        "pot of gold"
+      ],
+      "answer": "pot of gold"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "무지개"
+      },
+      "choices": [
+        "leprechaun",
+        "soda bread",
+        "rainbow",
+        "parade"
+      ],
+      "answer": "rainbow"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "초록색"
+      },
+      "choices": [
+        "coin",
+        "rainbow",
+        "Ireland",
+        "green"
+      ],
+      "answer": "green"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "행운"
+      },
+      "choices": [
+        "rainbow",
+        "four-leaf clover",
+        "luck",
+        "drum"
+      ],
+      "answer": "luck"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "퍼레이드"
+      },
+      "choices": [
+        "hat",
+        "parade",
+        "coin",
+        "Ireland"
+      ],
+      "answer": "parade"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "지그 (아일랜드 춤)"
+      },
+      "choices": [
+        "leprechaun",
+        "coin",
+        "shamrock",
+        "jig"
+      ],
+      "answer": "jig"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "북"
+      },
+      "choices": [
+        "shamrock",
+        "drum",
+        "rainbow",
+        "green"
+      ],
+      "answer": "drum"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "소다빵"
+      },
+      "choices": [
+        "pot of gold",
+        "rainbow",
+        "luck",
+        "soda bread"
+      ],
+      "answer": "soda bread"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "모자"
+      },
+      "choices": [
+        "hat",
+        "Ireland",
+        "pot of gold",
+        "drum"
+      ],
+      "answer": "hat"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "테리어 (개)"
+      },
+      "choices": [
+        "terrier",
+        "hat",
+        "green",
+        "luck"
+      ],
+      "answer": "terrier"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "동전"
+      },
+      "choices": [
+        "parade",
+        "leprechaun",
+        "coin",
+        "luck"
+      ],
+      "answer": "coin"
+    }
+  ]
+}

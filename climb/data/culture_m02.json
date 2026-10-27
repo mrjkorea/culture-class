@@ -1,0 +1,259 @@
+{
+  "id": "culture_m02",
+  "kind": "culture",
+  "title": "Culture · February · Valentine's Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m02"
+  ],
+  "wordAudio": "data/audio/feb-words/",
+  "picDir": "assets/words/feb/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "발렌타인데이"
+      },
+      "choices": [
+        "chocolate",
+        "Valentine's Day",
+        "envelope",
+        "rose"
+      ],
+      "answer": "Valentine's Day"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "하트"
+      },
+      "choices": [
+        "heart",
+        "card",
+        "cupid",
+        "Valentine's Day"
+      ],
+      "answer": "heart"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "카드"
+      },
+      "choices": [
+        "Valentine's Day",
+        "cupid",
+        "card",
+        "friend"
+      ],
+      "answer": "card"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "초콜릿"
+      },
+      "choices": [
+        "card",
+        "arrow",
+        "chocolate",
+        "love"
+      ],
+      "answer": "chocolate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "장미"
+      },
+      "choices": [
+        "envelope",
+        "sticker",
+        "heart",
+        "rose"
+      ],
+      "answer": "rose"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "사랑"
+      },
+      "choices": [
+        "heart",
+        "love",
+        "envelope",
+        "rose"
+      ],
+      "answer": "love"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "친구"
+      },
+      "choices": [
+        "friend",
+        "gift",
+        "envelope",
+        "rose"
+      ],
+      "answer": "friend"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "하트 사탕"
+      },
+      "choices": [
+        "candy hearts",
+        "chocolate",
+        "love",
+        "mailbox"
+      ],
+      "answer": "candy hearts"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "봉투"
+      },
+      "choices": [
+        "envelope",
+        "mailbox",
+        "rose",
+        "hug"
+      ],
+      "answer": "envelope"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "우편함"
+      },
+      "choices": [
+        "mailbox",
+        "love",
+        "envelope",
+        "card"
+      ],
+      "answer": "mailbox"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "큐피드"
+      },
+      "choices": [
+        "mailbox",
+        "cupid",
+        "arrow",
+        "chocolate"
+      ],
+      "answer": "cupid"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "화살"
+      },
+      "choices": [
+        "gift",
+        "arrow",
+        "chocolate",
+        "hug"
+      ],
+      "answer": "arrow"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "선물"
+      },
+      "choices": [
+        "gift",
+        "Valentine's Day",
+        "arrow",
+        "love"
+      ],
+      "answer": "gift"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "포옹"
+      },
+      "choices": [
+        "rose",
+        "hug",
+        "chocolate",
+        "arrow"
+      ],
+      "answer": "hug"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "스티커"
+      },
+      "choices": [
+        "chocolate",
+        "heart",
+        "sticker",
+        "love"
+      ],
+      "answer": "sticker"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "빨간색"
+      },
+      "choices": [
+        "love",
+        "chocolate",
+        "sticker",
+        "red"
+      ],
+      "answer": "red"
+    }
+  ]
+}

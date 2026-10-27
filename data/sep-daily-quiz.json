@@ -1,0 +1,156 @@
+{
+  "id": "culture_m09_daily_quiz",
+  "monthId": "09",
+  "title": "Earth Day — after Daily video",
+  "source": "Saving Our Planet — Earth Day (15:48)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What day is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "Canada Day",
+          "ko": "캐나다 데이"
+        },
+        {
+          "en": "Christmas",
+          "ko": "크리스마스"
+        },
+        {
+          "en": "Earth Day",
+          "ko": "지구의 날",
+          "correct": true
+        },
+        {
+          "en": "Thanksgiving",
+          "ko": "추수감사절"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "\"Saving Our Planet\" is about Earth Day.",
+        "ko": "\"Saving Our Planet\"은 지구의 날에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "When is Earth Day?",
+      "ko": "지구의 날은 언제인가요?",
+      "choices": [
+        {
+          "en": "December 25",
+          "ko": "12월 25일"
+        },
+        {
+          "en": "September 1",
+          "ko": "9월 1일"
+        },
+        {
+          "en": "July 1",
+          "ko": "7월 1일"
+        },
+        {
+          "en": "April 22",
+          "ko": "4월 22일",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Earth Day is on April 22 every year.",
+        "ko": "지구의 날은 매년 4월 22일이에요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What does \"recycle\" mean?",
+      "ko": "\"recycle\"은 무슨 뜻인가요?",
+      "choices": [
+        {
+          "en": "Throw everything away",
+          "ko": "모두 버리다"
+        },
+        {
+          "en": "Buy new things",
+          "ko": "새 물건을 사다"
+        },
+        {
+          "en": "Burn trash",
+          "ko": "쓰레기를 태우다"
+        },
+        {
+          "en": "Use old things again",
+          "ko": "헌 물건을 다시 사용하다",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Recycling turns old things into new things.",
+        "ko": "재활용은 헌 물건을 새 물건으로 만드는 거예요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "How long do plastic bottles take to break down?",
+      "ko": "플라스틱 병은 분해되는 데 얼마나 걸리나요?",
+      "choices": [
+        {
+          "en": "About 1 year",
+          "ko": "약 1년"
+        },
+        {
+          "en": "About 1 week",
+          "ko": "약 1주"
+        },
+        {
+          "en": "About 450 years",
+          "ko": "약 450년",
+          "correct": true
+        },
+        {
+          "en": "About 10 years",
+          "ko": "약 10년"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Plastic bottles take about 450 years.",
+        "ko": "플라스틱 병은 약 450년이 걸려요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "Which is a good way to help the Earth?",
+      "ko": "지구를 돕는 좋은 방법은 무엇인가요?",
+      "choices": [
+        {
+          "en": "Drive everywhere",
+          "ko": "어디든 차 타기"
+        },
+        {
+          "en": "Leave the water running",
+          "ko": "물 계속 틀어놓기"
+        },
+        {
+          "en": "Turn off lights you don't use",
+          "ko": "안 쓰는 전등 끄기",
+          "correct": true
+        },
+        {
+          "en": "Drop trash in the river",
+          "ko": "강에 쓰레기 버리기"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Saving energy helps the planet.",
+        "ko": "에너지를 아끼면 지구에 도움이 돼요."
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "id": "culture_m03_show",
+  "kind": "culture",
+  "title": "Culture · March · St. Patrick's Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m03_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "New Year's Day",
+        "Easter",
+        "Halloween",
+        "St. Patrick's Day"
+      ],
+      "answer": "St. Patrick's Day",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "성 패트릭 데이는 언제인가요?"
+      },
+      "choices": [
+        "March 1",
+        "February 17",
+        "March 17",
+        "April 17"
+      ],
+      "answer": "March 17",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "성 패트릭 데이는 어느 나라에서 왔나요?"
+      },
+      "choices": [
+        "France",
+        "Canada",
+        "Ireland",
+        "Japan"
+      ],
+      "answer": "Ireland",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 무슨 색 옷을 입나요?"
+      },
+      "choices": [
+        "Purple",
+        "Green",
+        "Red",
+        "Black"
+      ],
+      "answer": "Green",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이날의 상징 식물은 무엇인가요?"
+      },
+      "choices": [
+        "The shamrock",
+        "The rose",
+        "The lotus",
+        "The maple tree"
+      ],
+      "answer": "The shamrock",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "세인트 패트릭 데이는 3월 17일이에요."
+      },
+      "choices": [
+        "Saint Patrick loved to teach people.",
+        "It came from Ireland long ago.",
+        "Saint Patrick's Day is March 17.",
+        "People wear green on this day."
+      ],
+      "answer": "Saint Patrick's Day is March 17.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "아주 오래전 아일랜드에서 시작됐어요."
+      },
+      "choices": [
+        "Saint Patrick's Day is March 17.",
+        "It came from Ireland long ago.",
+        "A shamrock is a lucky plant.",
+        "Saint Patrick loved to teach people."
+      ],
+      "answer": "It came from Ireland long ago.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이날 사람들은 초록색 옷을 입어요."
+      },
+      "choices": [
+        "Saint Patrick loved to teach people.",
+        "It came from Ireland long ago.",
+        "Saint Patrick's Day is March 17.",
+        "People wear green on this day."
+      ],
+      "answer": "People wear green on this day.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "샴록은 행운의 식물이에요."
+      },
+      "choices": [
+        "It came from Ireland long ago.",
+        "A shamrock is a lucky plant.",
+        "Saint Patrick's Day is March 17.",
+        "Saint Patrick loved to teach people."
+      ],
+      "answer": "A shamrock is a lucky plant.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "세인트 패트릭은 사람들을 가르치는 걸 좋아했어요."
+      },
+      "choices": [
+        "A shamrock is a lucky plant.",
+        "It came from Ireland long ago.",
+        "Saint Patrick loved to teach people.",
+        "Saint Patrick's Day is March 17."
+      ],
+      "answer": "Saint Patrick loved to teach people.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}
