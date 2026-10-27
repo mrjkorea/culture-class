@@ -104,8 +104,8 @@ function paintLang() {
   soundBtn.classList.toggle("is-muted", !speech.enabled);
 }
 
-function showLines(block, index) {
-  lineState = { block, index };
+function showLines(block, index, alert = false) {
+  lineState = { block, index, alert };
   paintLines();
 }
 
@@ -119,6 +119,8 @@ function paintLines() {
   a.lang = order[0];
   b.textContent = lineState.block[order[1]][lineState.index] || "";
   b.lang = order[1];
+  a.classList.toggle("is-alert", Boolean(lineState.alert));
+  b.classList.toggle("is-alert", Boolean(lineState.alert));
   const live = document.getElementById("live");
   if (live) live.textContent = a.textContent;
 }
@@ -330,12 +332,12 @@ function playStage(stage, index) {
         paintMisses();
         if (stage.type !== "luck_hunt") return;
         const token = ++lineToken;
-        showLines(stage.lines, 1);
+        showLines(stage.lines, 1, true);
         speech.speak(spoken(stage.lines)[1], { miss: true });
         window.setTimeout(() => {
           if (token !== lineToken || state.phase !== "play") return;
           showLines(stage.lines, 0);
-        }, 1100);
+        }, 2400);
       },
       onComplete() {
         if (state.phase === "success") return;
