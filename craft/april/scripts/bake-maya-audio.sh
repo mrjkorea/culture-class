@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-VOICE_ID="${MAYA_VOICE_ID:-ca3007f96ae7499ab87d27ea3599956a}"
+VOICE_ID="${MAYA_VOICE_ID:-fe4921e56ebf4fcba53b09b0d73c2052}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/assets/audio/maya"
 LINES="$OUT/LINES.md"
