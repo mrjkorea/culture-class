@@ -1,0 +1,156 @@
+{
+  "id": "culture_m01_show",
+  "kind": "culture",
+  "title": "Culture · January · New Year's Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m01_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상에서 어떤 날을 기념하나요?"
+      },
+      "choices": [
+        "Halloween",
+        "Christmas",
+        "New Year's Day",
+        "Easter"
+      ],
+      "answer": "New Year's Day",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "새해는 언제 시작하나요?"
+      },
+      "choices": [
+        "At noon",
+        "At dinner",
+        "At midnight",
+        "At sunrise"
+      ],
+      "answer": "At midnight",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "뉴욕 타임스스퀘어에서 무엇이 떨어지나요?"
+      },
+      "choices": [
+        "A big apple tree",
+        "Snow",
+        "A big ball",
+        "A balloon"
+      ],
+      "answer": "A big ball",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "스페인에서는 자정에 무엇을 먹나요?"
+      },
+      "choices": [
+        "12 cookies",
+        "Pizza",
+        "12 grapes",
+        "Rice cake soup"
+      ],
+      "answer": "12 grapes",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "새해 결심이란 무엇인가요?"
+      },
+      "choices": [
+        "A promise to do better",
+        "A party hat",
+        "A kind of firework",
+        "A holiday song"
+      ],
+      "answer": "A promise to do better",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 자정에 키스를 합니다."
+      },
+      "choices": [
+        "Fireworks light up the sky.",
+        "People make resolutions every year.",
+        "Some cultures eat 12 grapes.",
+        "People kiss at midnight."
+      ],
+      "answer": "People kiss at midnight.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "불꽃놀이가 하늘을 밝힙니다."
+      },
+      "choices": [
+        "Some cultures eat 12 grapes.",
+        "The ball drops in New York.",
+        "People make resolutions every year.",
+        "Fireworks light up the sky."
+      ],
+      "answer": "Fireworks light up the sky.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "몇몇 문화에서는 12개의 포도를 먹습니다."
+      },
+      "choices": [
+        "Some cultures eat 12 grapes.",
+        "The ball drops in New York.",
+        "Fireworks light up the sky.",
+        "People kiss at midnight."
+      ],
+      "answer": "Some cultures eat 12 grapes.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "뉴욕에서는 공이 떨어집니다."
+      },
+      "choices": [
+        "Fireworks light up the sky.",
+        "People make resolutions every year.",
+        "The ball drops in New York.",
+        "People kiss at midnight."
+      ],
+      "answer": "The ball drops in New York.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들은 매년 결심을 합니다."
+      },
+      "choices": [
+        "People kiss at midnight.",
+        "The ball drops in New York.",
+        "People make resolutions every year.",
+        "Fireworks light up the sky."
+      ],
+      "answer": "People make resolutions every year.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

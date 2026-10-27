@@ -1,0 +1,156 @@
+{
+  "id": "culture_m02_show",
+  "kind": "culture",
+  "title": "Culture · February · Valentine's Day Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m02_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "Valentine's Day",
+        "Thanksgiving",
+        "Earth Day",
+        "Canada Day"
+      ],
+      "answer": "Valentine's Day",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "발렌타인데이는 몇 월 며칠인가요?"
+      },
+      "choices": [
+        "February 4",
+        "January 14",
+        "March 14",
+        "February 14"
+      ],
+      "answer": "February 14",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "발렌타인데이의 상징 모양은 무엇인가요?"
+      },
+      "choices": [
+        "A star",
+        "A heart",
+        "A circle",
+        "A tree"
+      ],
+      "answer": "A heart",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "사람들이 사랑에 빠지도록 화살을 쏘는 것은 누구인가요?"
+      },
+      "choices": [
+        "The Easter Bunny",
+        "Santa",
+        "Cupid",
+        "A leprechaun"
+      ],
+      "answer": "Cupid",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "발렌타인데이에 사람들은 무엇을 자주 주나요?"
+      },
+      "choices": [
+        "Christmas trees",
+        "Pumpkins",
+        "Cards and chocolate",
+        "Fireworks"
+      ],
+      "answer": "Cards and chocolate",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "첫 발렌타인 편지는 감옥에서 왔어요."
+      },
+      "choices": [
+        "The first Valentine's note was from jail.",
+        "Over 36 million heart-shaped chocolates are sold.",
+        "Valentine's Day started as a Roman festival.",
+        "Teachers get the most Valentine's cards."
+      ],
+      "answer": "The first Valentine's note was from jail.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "3천6백만 개의 하트 초콜릿이 팔려요."
+      },
+      "choices": [
+        "The first Valentine's note was from jail.",
+        "Over 36 million heart-shaped chocolates are sold.",
+        "Teachers get the most Valentine's cards.",
+        "Valentine's Day started as a Roman festival."
+      ],
+      "answer": "Over 36 million heart-shaped chocolates are sold.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "선생님들이 가장 많은 발렌타인 카드를 받아요."
+      },
+      "choices": [
+        "The first Valentine's note was from jail.",
+        "Valentine's Day started as a Roman festival.",
+        "Teachers get the most Valentine's cards.",
+        "In Japan, girls give boys chocolate."
+      ],
+      "answer": "Teachers get the most Valentine's cards.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "일본에서는 여자들이 남자들에게 초콜릿을 줘요."
+      },
+      "choices": [
+        "The first Valentine's note was from jail.",
+        "In Japan, girls give boys chocolate.",
+        "Over 36 million heart-shaped chocolates are sold.",
+        "Valentine's Day started as a Roman festival."
+      ],
+      "answer": "In Japan, girls give boys chocolate.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "발렌타인데이는 로마 축제로 시작되었어요."
+      },
+      "choices": [
+        "Over 36 million heart-shaped chocolates are sold.",
+        "Valentine's Day started as a Roman festival.",
+        "In Japan, girls give boys chocolate.",
+        "The first Valentine's note was from jail."
+      ],
+      "answer": "Valentine's Day started as a Roman festival.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

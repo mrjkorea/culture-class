@@ -1,0 +1,259 @@
+{
+  "id": "culture_m01",
+  "kind": "culture",
+  "title": "Culture · January · New Year's Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m01"
+  ],
+  "wordAudio": "data/audio/jan-words/",
+  "picDir": "assets/words/jan/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "새해"
+      },
+      "choices": [
+        "countdown",
+        "resolution",
+        "balloon",
+        "New Year"
+      ],
+      "answer": "New Year"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "자정"
+      },
+      "choices": [
+        "midnight",
+        "toast",
+        "celebrate",
+        "balloon"
+      ],
+      "answer": "midnight"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "카운트다운"
+      },
+      "choices": [
+        "New Year",
+        "wish",
+        "countdown",
+        "balloon"
+      ],
+      "answer": "countdown"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "불꽃놀이"
+      },
+      "choices": [
+        "resolution",
+        "countdown",
+        "fireworks",
+        "midnight"
+      ],
+      "answer": "fireworks"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "풍선"
+      },
+      "choices": [
+        "celebrate",
+        "midnight",
+        "balloon",
+        "ball drop"
+      ],
+      "answer": "balloon"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "파티 모자"
+      },
+      "choices": [
+        "grapes",
+        "party hat",
+        "midnight",
+        "resolution"
+      ],
+      "answer": "party hat"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "나팔 / 소리 장난감"
+      },
+      "choices": [
+        "calendar",
+        "resolution",
+        "toast",
+        "noisemaker"
+      ],
+      "answer": "noisemaker"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "색종이 조각"
+      },
+      "choices": [
+        "calendar",
+        "confetti",
+        "ball drop",
+        "party hat"
+      ],
+      "answer": "confetti"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "달력"
+      },
+      "choices": [
+        "calendar",
+        "clock",
+        "fireworks",
+        "grapes"
+      ],
+      "answer": "calendar"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "새해 결심"
+      },
+      "choices": [
+        "party hat",
+        "calendar",
+        "confetti",
+        "resolution"
+      ],
+      "answer": "resolution"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "볼 드롭"
+      },
+      "choices": [
+        "noisemaker",
+        "midnight",
+        "ball drop",
+        "calendar"
+      ],
+      "answer": "ball drop"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "건배"
+      },
+      "choices": [
+        "confetti",
+        "toast",
+        "noisemaker",
+        "wish"
+      ],
+      "answer": "toast"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "포도"
+      },
+      "choices": [
+        "clock",
+        "grapes",
+        "calendar",
+        "resolution"
+      ],
+      "answer": "grapes"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "시계"
+      },
+      "choices": [
+        "confetti",
+        "wish",
+        "resolution",
+        "clock"
+      ],
+      "answer": "clock"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "축하하다"
+      },
+      "choices": [
+        "toast",
+        "confetti",
+        "celebrate",
+        "balloon"
+      ],
+      "answer": "celebrate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "소원"
+      },
+      "choices": [
+        "ball drop",
+        "celebrate",
+        "resolution",
+        "wish"
+      ],
+      "answer": "wish"
+    }
+  ]
+}

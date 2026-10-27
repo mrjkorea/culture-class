@@ -1,0 +1,169 @@
+{
+  "id": "culture_m12",
+  "title": "December · Christmas vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "harper",
+  "words": [
+    {
+      "id": "dec_01",
+      "en": "Christmas",
+      "ko": "크리스마스",
+      "audio": "data/audio/dec-words/christmas.mp3",
+      "pic": "assets/words/dec/christmas.jpg",
+      "image": "assets/words/dec/christmas.jpg",
+      "term": "Christmas",
+      "definition": "크리스마스"
+    },
+    {
+      "id": "dec_02",
+      "en": "Santa Claus",
+      "ko": "산타클로스",
+      "audio": "data/audio/dec-words/santa_claus.mp3",
+      "pic": "assets/words/dec/santa_claus.jpg",
+      "image": "assets/words/dec/santa_claus.jpg",
+      "term": "Santa Claus",
+      "definition": "산타클로스"
+    },
+    {
+      "id": "dec_03",
+      "en": "tree",
+      "ko": "트리",
+      "audio": "data/audio/dec-words/tree.mp3",
+      "pic": "assets/words/dec/tree.jpg",
+      "image": "assets/words/dec/tree.jpg",
+      "term": "tree",
+      "definition": "트리"
+    },
+    {
+      "id": "dec_04",
+      "en": "lights",
+      "ko": "전구 / 불빛",
+      "audio": "data/audio/dec-words/lights.mp3",
+      "pic": "assets/words/dec/lights.jpg",
+      "image": "assets/words/dec/lights.jpg",
+      "term": "lights",
+      "definition": "전구 / 불빛"
+    },
+    {
+      "id": "dec_05",
+      "en": "ornament",
+      "ko": "장식품",
+      "audio": "data/audio/dec-words/ornament.mp3",
+      "pic": "assets/words/dec/ornament.jpg",
+      "image": "assets/words/dec/ornament.jpg",
+      "term": "ornament",
+      "definition": "장식품"
+    },
+    {
+      "id": "dec_06",
+      "en": "present",
+      "ko": "선물",
+      "audio": "data/audio/dec-words/present.mp3",
+      "pic": "assets/words/dec/present.jpg",
+      "image": "assets/words/dec/present.jpg",
+      "term": "present",
+      "definition": "선물"
+    },
+    {
+      "id": "dec_07",
+      "en": "stocking",
+      "ko": "양말",
+      "audio": "data/audio/dec-words/stocking.mp3",
+      "pic": "assets/words/dec/stocking.jpg",
+      "image": "assets/words/dec/stocking.jpg",
+      "term": "stocking",
+      "definition": "양말"
+    },
+    {
+      "id": "dec_08",
+      "en": "reindeer",
+      "ko": "순록",
+      "audio": "data/audio/dec-words/reindeer.mp3",
+      "pic": "assets/words/dec/reindeer.jpg",
+      "image": "assets/words/dec/reindeer.jpg",
+      "term": "reindeer",
+      "definition": "순록"
+    },
+    {
+      "id": "dec_09",
+      "en": "sleigh",
+      "ko": "썰매",
+      "audio": "data/audio/dec-words/sleigh.mp3",
+      "pic": "assets/words/dec/sleigh.jpg",
+      "image": "assets/words/dec/sleigh.jpg",
+      "term": "sleigh",
+      "definition": "썰매"
+    },
+    {
+      "id": "dec_10",
+      "en": "snowman",
+      "ko": "눈사람",
+      "audio": "data/audio/dec-words/snowman.mp3",
+      "pic": "assets/words/dec/snowman.jpg",
+      "image": "assets/words/dec/snowman.jpg",
+      "term": "snowman",
+      "definition": "눈사람"
+    },
+    {
+      "id": "dec_11",
+      "en": "cookies",
+      "ko": "쿠키",
+      "audio": "data/audio/dec-words/cookies.mp3",
+      "pic": "assets/words/dec/cookies.jpg",
+      "image": "assets/words/dec/cookies.jpg",
+      "term": "cookies",
+      "definition": "쿠키"
+    },
+    {
+      "id": "dec_12",
+      "en": "milk",
+      "ko": "우유",
+      "audio": "data/audio/dec-words/milk.mp3",
+      "pic": "assets/words/dec/milk.jpg",
+      "image": "assets/words/dec/milk.jpg",
+      "term": "milk",
+      "definition": "우유"
+    },
+    {
+      "id": "dec_13",
+      "en": "star",
+      "ko": "별",
+      "audio": "data/audio/dec-words/star.mp3",
+      "pic": "assets/words/dec/star.jpg",
+      "image": "assets/words/dec/star.jpg",
+      "term": "star",
+      "definition": "별"
+    },
+    {
+      "id": "dec_14",
+      "en": "bell",
+      "ko": "종",
+      "audio": "data/audio/dec-words/bell.mp3",
+      "pic": "assets/words/dec/bell.jpg",
+      "image": "assets/words/dec/bell.jpg",
+      "term": "bell",
+      "definition": "종"
+    },
+    {
+      "id": "dec_15",
+      "en": "wrap",
+      "ko": "포장하다",
+      "audio": "data/audio/dec-words/wrap.mp3",
+      "pic": "assets/words/dec/wrap.jpg",
+      "image": "assets/words/dec/wrap.jpg",
+      "term": "wrap",
+      "definition": "포장하다"
+    },
+    {
+      "id": "dec_16",
+      "en": "chimney",
+      "ko": "굴뚝",
+      "audio": "data/audio/dec-words/chimney.mp3",
+      "pic": "assets/words/dec/chimney.jpg",
+      "image": "assets/words/dec/chimney.jpg",
+      "term": "chimney",
+      "definition": "굴뚝"
+    }
+  ]
+}

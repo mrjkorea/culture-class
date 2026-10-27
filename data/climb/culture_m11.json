@@ -1,0 +1,259 @@
+{
+  "id": "culture_m11",
+  "kind": "culture",
+  "title": "Culture · November · Thanksgiving Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m11"
+  ],
+  "wordAudio": "data/audio/nov-words/",
+  "picDir": "assets/words/nov/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "추수감사절"
+      },
+      "choices": [
+        "feast",
+        "fork",
+        "family",
+        "Thanksgiving"
+      ],
+      "answer": "Thanksgiving"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "칠면조"
+      },
+      "choices": [
+        "corn",
+        "Pilgrim",
+        "turkey",
+        "pie"
+      ],
+      "answer": "turkey"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "파이"
+      },
+      "choices": [
+        "turkey",
+        "stuffing",
+        "fork",
+        "pie"
+      ],
+      "answer": "pie"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "호박 파이"
+      },
+      "choices": [
+        "pumpkin pie",
+        "oven",
+        "pie",
+        "Thanksgiving"
+      ],
+      "answer": "pumpkin pie"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "으깬 감자"
+      },
+      "choices": [
+        "thankful",
+        "plate",
+        "mashed potatoes",
+        "fork"
+      ],
+      "answer": "mashed potatoes"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "그레이비 소스"
+      },
+      "choices": [
+        "fork",
+        "pie",
+        "gravy",
+        "oven"
+      ],
+      "answer": "gravy"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "스터핑 (속 재료)"
+      },
+      "choices": [
+        "pie",
+        "stuffing",
+        "pumpkin pie",
+        "family"
+      ],
+      "answer": "stuffing"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "옥수수"
+      },
+      "choices": [
+        "corn",
+        "Pilgrim",
+        "turkey",
+        "gravy"
+      ],
+      "answer": "corn"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "가족"
+      },
+      "choices": [
+        "mashed potatoes",
+        "feast",
+        "harvest",
+        "family"
+      ],
+      "answer": "family"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "감사하는"
+      },
+      "choices": [
+        "corn",
+        "family",
+        "thankful",
+        "pumpkin pie"
+      ],
+      "answer": "thankful"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "잔치"
+      },
+      "choices": [
+        "Thanksgiving",
+        "feast",
+        "gravy",
+        "harvest"
+      ],
+      "answer": "feast"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "오븐"
+      },
+      "choices": [
+        "oven",
+        "pie",
+        "feast",
+        "mashed potatoes"
+      ],
+      "answer": "oven"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "접시"
+      },
+      "choices": [
+        "harvest",
+        "plate",
+        "mashed potatoes",
+        "fork"
+      ],
+      "answer": "plate"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "포크"
+      },
+      "choices": [
+        "Pilgrim",
+        "feast",
+        "gravy",
+        "fork"
+      ],
+      "answer": "fork"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "청교도"
+      },
+      "choices": [
+        "mashed potatoes",
+        "family",
+        "feast",
+        "Pilgrim"
+      ],
+      "answer": "Pilgrim"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "수확"
+      },
+      "choices": [
+        "mashed potatoes",
+        "gravy",
+        "harvest",
+        "stuffing"
+      ],
+      "answer": "harvest"
+    }
+  ]
+}

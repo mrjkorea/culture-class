@@ -1,0 +1,259 @@
+{
+  "id": "culture_m04",
+  "kind": "culture",
+  "title": "Culture · April · Easter Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m04"
+  ],
+  "wordAudio": "data/audio/apr-words/",
+  "picDir": "assets/words/apr/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "부활절"
+      },
+      "choices": [
+        "bunny",
+        "dye",
+        "paint",
+        "Easter"
+      ],
+      "answer": "Easter"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "달걀"
+      },
+      "choices": [
+        "find",
+        "dye",
+        "paint",
+        "egg"
+      ],
+      "answer": "egg"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "달걀 찾기"
+      },
+      "choices": [
+        "bunny",
+        "egg hunt",
+        "chocolate egg",
+        "church"
+      ],
+      "answer": "egg hunt"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "바구니"
+      },
+      "choices": [
+        "basket",
+        "Easter",
+        "flower",
+        "spring"
+      ],
+      "answer": "basket"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "토끼"
+      },
+      "choices": [
+        "chocolate egg",
+        "chick",
+        "find",
+        "bunny"
+      ],
+      "answer": "bunny"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "병아리"
+      },
+      "choices": [
+        "find",
+        "egg",
+        "chick",
+        "flower"
+      ],
+      "answer": "chick"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "봄"
+      },
+      "choices": [
+        "bunny",
+        "Easter",
+        "chocolate egg",
+        "spring"
+      ],
+      "answer": "spring"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "꽃"
+      },
+      "choices": [
+        "bunny",
+        "flower",
+        "dye",
+        "Easter"
+      ],
+      "answer": "flower"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "염색하다"
+      },
+      "choices": [
+        "basket",
+        "dye",
+        "chick",
+        "paint"
+      ],
+      "answer": "dye"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "칠하다"
+      },
+      "choices": [
+        "paint",
+        "chick",
+        "egg hunt",
+        "Easter"
+      ],
+      "answer": "paint"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "숨기다"
+      },
+      "choices": [
+        "hide",
+        "dye",
+        "flower",
+        "bunny"
+      ],
+      "answer": "hide"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "찾다"
+      },
+      "choices": [
+        "Sunday",
+        "egg",
+        "find",
+        "bunny"
+      ],
+      "answer": "find"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "초콜릿 달걀"
+      },
+      "choices": [
+        "Easter",
+        "spring",
+        "chocolate egg",
+        "bunny"
+      ],
+      "answer": "chocolate egg"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "어린 양"
+      },
+      "choices": [
+        "egg",
+        "lamb",
+        "dye",
+        "paint"
+      ],
+      "answer": "lamb"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "교회"
+      },
+      "choices": [
+        "find",
+        "chick",
+        "chocolate egg",
+        "church"
+      ],
+      "answer": "church"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "일요일"
+      },
+      "choices": [
+        "hide",
+        "Sunday",
+        "find",
+        "paint"
+      ],
+      "answer": "Sunday"
+    }
+  ]
+}

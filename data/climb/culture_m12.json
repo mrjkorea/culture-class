@@ -1,0 +1,259 @@
+{
+  "id": "culture_m12",
+  "kind": "culture",
+  "title": "Culture · December · Christmas Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m12"
+  ],
+  "wordAudio": "data/audio/dec-words/",
+  "picDir": "assets/words/dec/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "크리스마스"
+      },
+      "choices": [
+        "cookies",
+        "milk",
+        "chimney",
+        "Christmas"
+      ],
+      "answer": "Christmas"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "산타클로스"
+      },
+      "choices": [
+        "lights",
+        "Christmas",
+        "Santa Claus",
+        "ornament"
+      ],
+      "answer": "Santa Claus"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "트리"
+      },
+      "choices": [
+        "tree",
+        "ornament",
+        "reindeer",
+        "lights"
+      ],
+      "answer": "tree"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "전구 / 불빛"
+      },
+      "choices": [
+        "snowman",
+        "lights",
+        "Christmas",
+        "cookies"
+      ],
+      "answer": "lights"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "장식품"
+      },
+      "choices": [
+        "snowman",
+        "lights",
+        "cookies",
+        "ornament"
+      ],
+      "answer": "ornament"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "선물"
+      },
+      "choices": [
+        "ornament",
+        "snowman",
+        "present",
+        "Santa Claus"
+      ],
+      "answer": "present"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "양말"
+      },
+      "choices": [
+        "star",
+        "chimney",
+        "bell",
+        "stocking"
+      ],
+      "answer": "stocking"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "순록"
+      },
+      "choices": [
+        "chimney",
+        "wrap",
+        "stocking",
+        "reindeer"
+      ],
+      "answer": "reindeer"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "썰매"
+      },
+      "choices": [
+        "lights",
+        "sleigh",
+        "tree",
+        "Santa Claus"
+      ],
+      "answer": "sleigh"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "눈사람"
+      },
+      "choices": [
+        "present",
+        "Santa Claus",
+        "snowman",
+        "star"
+      ],
+      "answer": "snowman"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "쿠키"
+      },
+      "choices": [
+        "ornament",
+        "milk",
+        "sleigh",
+        "cookies"
+      ],
+      "answer": "cookies"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "우유"
+      },
+      "choices": [
+        "cookies",
+        "milk",
+        "lights",
+        "ornament"
+      ],
+      "answer": "milk"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "별"
+      },
+      "choices": [
+        "lights",
+        "star",
+        "tree",
+        "ornament"
+      ],
+      "answer": "star"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "종"
+      },
+      "choices": [
+        "lights",
+        "present",
+        "bell",
+        "stocking"
+      ],
+      "answer": "bell"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "포장하다"
+      },
+      "choices": [
+        "sleigh",
+        "bell",
+        "wrap",
+        "reindeer"
+      ],
+      "answer": "wrap"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "굴뚝"
+      },
+      "choices": [
+        "chimney",
+        "lights",
+        "milk",
+        "snowman"
+      ],
+      "answer": "chimney"
+    }
+  ]
+}

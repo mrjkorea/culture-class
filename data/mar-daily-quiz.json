@@ -1,0 +1,156 @@
+{
+  "id": "culture_m03_daily_quiz",
+  "monthId": "03",
+  "title": "St. Patrick's Day — after Daily video",
+  "source": "St. Patrick's Day culture intro",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What day is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "New Year's Day",
+          "ko": "새해 첫날"
+        },
+        {
+          "en": "Halloween",
+          "ko": "할로윈"
+        },
+        {
+          "en": "St. Patrick's Day",
+          "ko": "성 패트릭 데이",
+          "correct": true
+        },
+        {
+          "en": "Easter",
+          "ko": "부활절"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "The video is about St. Patrick's Day.",
+        "ko": "영상은 성 패트릭 데이에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What date is St. Patrick's Day?",
+      "ko": "성 패트릭 데이는 언제인가요?",
+      "choices": [
+        {
+          "en": "March 17",
+          "ko": "3월 17일",
+          "correct": true
+        },
+        {
+          "en": "March 1",
+          "ko": "3월 1일"
+        },
+        {
+          "en": "April 17",
+          "ko": "4월 17일"
+        },
+        {
+          "en": "February 17",
+          "ko": "2월 17일"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "St. Patrick's Day is on March 17.",
+        "ko": "성 패트릭 데이는 3월 17일이에요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "Which country does St. Patrick's Day come from?",
+      "ko": "성 패트릭 데이는 어느 나라에서 왔나요?",
+      "choices": [
+        {
+          "en": "France",
+          "ko": "프랑스"
+        },
+        {
+          "en": "Ireland",
+          "ko": "아일랜드",
+          "correct": true
+        },
+        {
+          "en": "Japan",
+          "ko": "일본"
+        },
+        {
+          "en": "Canada",
+          "ko": "캐나다"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "It comes from Ireland.",
+        "ko": "아일랜드에서 시작됐어요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "What color do people wear?",
+      "ko": "사람들은 무슨 색 옷을 입나요?",
+      "choices": [
+        {
+          "en": "Black",
+          "ko": "검은색"
+        },
+        {
+          "en": "Purple",
+          "ko": "보라색"
+        },
+        {
+          "en": "Red",
+          "ko": "빨간색"
+        },
+        {
+          "en": "Green",
+          "ko": "초록색",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "People wear green for Ireland and luck.",
+        "ko": "사람들은 아일랜드와 행운을 위해 초록색을 입어요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What plant is a symbol of the day?",
+      "ko": "이날의 상징 식물은 무엇인가요?",
+      "choices": [
+        {
+          "en": "The rose",
+          "ko": "장미"
+        },
+        {
+          "en": "The lotus",
+          "ko": "연꽃"
+        },
+        {
+          "en": "The maple tree",
+          "ko": "단풍나무"
+        },
+        {
+          "en": "The shamrock",
+          "ko": "샴록 (세잎클로버)",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "The three-leaf shamrock is the symbol.",
+        "ko": "세잎클로버 샴록이 상징이에요."
+      }
+    }
+  ]
+}

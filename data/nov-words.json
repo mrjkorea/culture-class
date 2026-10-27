@@ -1,0 +1,169 @@
+{
+  "id": "culture_m11",
+  "title": "November · Thanksgiving vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "june",
+  "words": [
+    {
+      "id": "nov_01",
+      "en": "Thanksgiving",
+      "ko": "추수감사절",
+      "audio": "data/audio/nov-words/thanksgiving.mp3",
+      "pic": "assets/words/nov/thanksgiving.jpg",
+      "image": "assets/words/nov/thanksgiving.jpg",
+      "term": "Thanksgiving",
+      "definition": "추수감사절"
+    },
+    {
+      "id": "nov_02",
+      "en": "turkey",
+      "ko": "칠면조",
+      "audio": "data/audio/nov-words/turkey.mp3",
+      "pic": "assets/words/nov/turkey.jpg",
+      "image": "assets/words/nov/turkey.jpg",
+      "term": "turkey",
+      "definition": "칠면조"
+    },
+    {
+      "id": "nov_03",
+      "en": "pie",
+      "ko": "파이",
+      "audio": "data/audio/nov-words/pie.mp3",
+      "pic": "assets/words/nov/pie.jpg",
+      "image": "assets/words/nov/pie.jpg",
+      "term": "pie",
+      "definition": "파이"
+    },
+    {
+      "id": "nov_04",
+      "en": "pumpkin pie",
+      "ko": "호박 파이",
+      "audio": "data/audio/nov-words/pumpkin_pie.mp3",
+      "pic": "assets/words/nov/pumpkin_pie.jpg",
+      "image": "assets/words/nov/pumpkin_pie.jpg",
+      "term": "pumpkin pie",
+      "definition": "호박 파이"
+    },
+    {
+      "id": "nov_05",
+      "en": "mashed potatoes",
+      "ko": "으깬 감자",
+      "audio": "data/audio/nov-words/mashed_potatoes.mp3",
+      "pic": "assets/words/nov/mashed_potatoes.jpg",
+      "image": "assets/words/nov/mashed_potatoes.jpg",
+      "term": "mashed potatoes",
+      "definition": "으깬 감자"
+    },
+    {
+      "id": "nov_06",
+      "en": "gravy",
+      "ko": "그레이비 소스",
+      "audio": "data/audio/nov-words/gravy.mp3",
+      "pic": "assets/words/nov/gravy.jpg",
+      "image": "assets/words/nov/gravy.jpg",
+      "term": "gravy",
+      "definition": "그레이비 소스"
+    },
+    {
+      "id": "nov_07",
+      "en": "stuffing",
+      "ko": "스터핑 (속 재료)",
+      "audio": "data/audio/nov-words/stuffing.mp3",
+      "pic": "assets/words/nov/stuffing.jpg",
+      "image": "assets/words/nov/stuffing.jpg",
+      "term": "stuffing",
+      "definition": "스터핑 (속 재료)"
+    },
+    {
+      "id": "nov_08",
+      "en": "corn",
+      "ko": "옥수수",
+      "audio": "data/audio/nov-words/corn.mp3",
+      "pic": "assets/words/nov/corn.jpg",
+      "image": "assets/words/nov/corn.jpg",
+      "term": "corn",
+      "definition": "옥수수"
+    },
+    {
+      "id": "nov_09",
+      "en": "family",
+      "ko": "가족",
+      "audio": "data/audio/nov-words/family.mp3",
+      "pic": "assets/words/nov/family.jpg",
+      "image": "assets/words/nov/family.jpg",
+      "term": "family",
+      "definition": "가족"
+    },
+    {
+      "id": "nov_10",
+      "en": "thankful",
+      "ko": "감사하는",
+      "audio": "data/audio/nov-words/thankful.mp3",
+      "pic": "assets/words/nov/thankful.jpg",
+      "image": "assets/words/nov/thankful.jpg",
+      "term": "thankful",
+      "definition": "감사하는"
+    },
+    {
+      "id": "nov_11",
+      "en": "feast",
+      "ko": "잔치",
+      "audio": "data/audio/nov-words/feast.mp3",
+      "pic": "assets/words/nov/feast.jpg",
+      "image": "assets/words/nov/feast.jpg",
+      "term": "feast",
+      "definition": "잔치"
+    },
+    {
+      "id": "nov_12",
+      "en": "oven",
+      "ko": "오븐",
+      "audio": "data/audio/nov-words/oven.mp3",
+      "pic": "assets/words/nov/oven.jpg",
+      "image": "assets/words/nov/oven.jpg",
+      "term": "oven",
+      "definition": "오븐"
+    },
+    {
+      "id": "nov_13",
+      "en": "plate",
+      "ko": "접시",
+      "audio": "data/audio/nov-words/plate.mp3",
+      "pic": "assets/words/nov/plate.jpg",
+      "image": "assets/words/nov/plate.jpg",
+      "term": "plate",
+      "definition": "접시"
+    },
+    {
+      "id": "nov_14",
+      "en": "fork",
+      "ko": "포크",
+      "audio": "data/audio/nov-words/fork.mp3",
+      "pic": "assets/words/nov/fork.jpg",
+      "image": "assets/words/nov/fork.jpg",
+      "term": "fork",
+      "definition": "포크"
+    },
+    {
+      "id": "nov_15",
+      "en": "Pilgrim",
+      "ko": "청교도",
+      "audio": "data/audio/nov-words/pilgrim.mp3",
+      "pic": "assets/words/nov/pilgrim.jpg",
+      "image": "assets/words/nov/pilgrim.jpg",
+      "term": "Pilgrim",
+      "definition": "청교도"
+    },
+    {
+      "id": "nov_16",
+      "en": "harvest",
+      "ko": "수확",
+      "audio": "data/audio/nov-words/harvest.mp3",
+      "pic": "assets/words/nov/harvest.jpg",
+      "image": "assets/words/nov/harvest.jpg",
+      "term": "harvest",
+      "definition": "수확"
+    }
+  ]
+}

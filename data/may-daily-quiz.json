@@ -1,0 +1,156 @@
+{
+  "id": "culture_m05_daily_quiz",
+  "monthId": "05",
+  "title": "Buddhism — after Daily video",
+  "source": "Buddha — Journey to Enlightenment (8:40)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "Who is this video about?",
+      "ko": "이 영상은 누구에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "The Buddha",
+          "ko": "부처님",
+          "correct": true
+        },
+        {
+          "en": "King Sejong",
+          "ko": "세종대왕"
+        },
+        {
+          "en": "Santa Claus",
+          "ko": "산타클로스"
+        },
+        {
+          "en": "Saint Patrick",
+          "ko": "성 패트릭"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "The video tells the Buddha's journey to enlightenment.",
+        "ko": "영상은 부처님의 깨달음의 여정을 이야기해요."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "Where did the Buddha come from?",
+      "ko": "부처님은 어디에서 오셨나요?",
+      "choices": [
+        {
+          "en": "Canada",
+          "ko": "캐나다"
+        },
+        {
+          "en": "Ireland",
+          "ko": "아일랜드"
+        },
+        {
+          "en": "India / Nepal area",
+          "ko": "인도 / 네팔 지역",
+          "correct": true
+        },
+        {
+          "en": "Korea",
+          "ko": "한국"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "He was born a prince near India, in today's Nepal.",
+        "ko": "그는 인도 근처, 오늘날의 네팔에서 왕자로 태어났어요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What was the Buddha before he left home?",
+      "ko": "부처님은 집을 떠나기 전 무엇이었나요?",
+      "choices": [
+        {
+          "en": "A fisherman",
+          "ko": "어부"
+        },
+        {
+          "en": "A soldier",
+          "ko": "군인"
+        },
+        {
+          "en": "A farmer",
+          "ko": "농부"
+        },
+        {
+          "en": "A prince",
+          "ko": "왕자",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Siddhartha was a rich prince.",
+        "ko": "싯다르타는 부유한 왕자였어요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Where did he meditate to find the truth?",
+      "ko": "그는 진리를 찾기 위해 어디에서 명상했나요?",
+      "choices": [
+        {
+          "en": "On a boat",
+          "ko": "배 위에서"
+        },
+        {
+          "en": "On a mountain of snow",
+          "ko": "눈 덮인 산 위에서"
+        },
+        {
+          "en": "In a castle",
+          "ko": "성 안에서"
+        },
+        {
+          "en": "Under a big tree",
+          "ko": "큰 나무 아래",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "He meditated under the Bodhi tree.",
+        "ko": "그는 보리수 나무 아래에서 명상했어요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What does Buddhism teach?",
+      "ko": "불교는 무엇을 가르치나요?",
+      "choices": [
+        {
+          "en": "Calm and kindness",
+          "ko": "차분함과 친절함",
+          "correct": true
+        },
+        {
+          "en": "Getting rich",
+          "ko": "부자 되기"
+        },
+        {
+          "en": "Fighting",
+          "ko": "싸움"
+        },
+        {
+          "en": "Scaring ghosts",
+          "ko": "유령 겁주기"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Buddhism teaches calm minds and kindness.",
+        "ko": "불교는 차분한 마음과 친절을 가르쳐요."
+      }
+    }
+  ]
+}

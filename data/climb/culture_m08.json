@@ -1,0 +1,379 @@
+{
+  "id": "culture_m08",
+  "kind": "culture",
+  "title": "Culture · August · Korean History Day Words",
+  "passPercent": 70,
+  "units": [
+    "culture_m08"
+  ],
+  "wordAudio": "data/audio/aug-words/",
+  "picDir": "assets/words/aug/",
+  "lineAudio": "",
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "이순신 — 왜군을 물리친 장군"
+      },
+      "choices": [
+        "Jang Yeong-sil",
+        "Yeongjo",
+        "Mun Ikjeom",
+        "Yi Sun-sin"
+      ],
+      "answer": "Yi Sun-sin"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "세종대왕 — 조선의 위대한 왕 (세종)"
+      },
+      "choices": [
+        "Sejong the Great",
+        "Lee Wan-yong",
+        "Kim Gu",
+        "Kim Jeong-ho"
+      ],
+      "answer": "Sejong the Great"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "허준 — 한방의학을 발전한 의학자"
+      },
+      "choices": [
+        "Yi Sun-sin",
+        "Dae Joyeong",
+        "Heo Jun",
+        "Sin Saimdang"
+      ],
+      "answer": "Heo Jun"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "김홍도 — 조선시대의 최고의 화가"
+      },
+      "choices": [
+        "Yun Dong-ju",
+        "Gim Hongdo",
+        "Mun Ikjeom",
+        "Yi Sun-sin"
+      ],
+      "answer": "Gim Hongdo"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "장영실 — 세계 최초 측우기를 만든 과학자"
+      },
+      "choices": [
+        "Lee Wan-yong",
+        "Yun Dong-ju",
+        "Jang Yeong-sil",
+        "Mun Ikjeom"
+      ],
+      "answer": "Jang Yeong-sil"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "단군 — 고조선의 1대 왕"
+      },
+      "choices": [
+        "Gojong",
+        "An Jung-geun",
+        "Dangun",
+        "Kim Gu"
+      ],
+      "answer": "Dangun"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "대조영 — 발해를 세운 사람"
+      },
+      "choices": [
+        "Ahn Yong-Bok",
+        "Gim Hongdo",
+        "Heo Jun",
+        "Dae Joyeong"
+      ],
+      "answer": "Dae Joyeong"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "김구 — 일제강점기 독립운동가"
+      },
+      "choices": [
+        "Kim Gu",
+        "Mun Ikjeom",
+        "Bang Jeong-hwan",
+        "Ahn Yong-Bok"
+      ],
+      "answer": "Kim Gu"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "유관순 — 3·1운동을 주도한 독립운동가"
+      },
+      "choices": [
+        "Ahn Yong-Bok",
+        "Yu-Gwansun",
+        "Sin Saimdang",
+        "Heo Jun"
+      ],
+      "answer": "Yu-Gwansun"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "왕건 — 후삼국을 통일한 임금"
+      },
+      "choices": [
+        "Sin Saimdang",
+        "An Jung-geun",
+        "Wang Geon",
+        "Yu-Gwansun"
+      ],
+      "answer": "Wang Geon"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "안중근 — 이토 히로부미를 죽인 독립운동가"
+      },
+      "choices": [
+        "An Jung-geun",
+        "Kim Jeong-ho",
+        "Jang Yeong-sil",
+        "Han Seok-bong"
+      ],
+      "answer": "An Jung-geun"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "방정환 — 어린이 날을 만든 사람"
+      },
+      "choices": [
+        "Bang Jeong-hwan",
+        "Jang Yeong-sil",
+        "Yeongjo",
+        "Han Seok-bong"
+      ],
+      "answer": "Bang Jeong-hwan"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "문익점 — 국내로 목화를 들여온 사람"
+      },
+      "choices": [
+        "Yu-Gwansun",
+        "Mun Ikjeom",
+        "Han Seok-bong",
+        "Gojong"
+      ],
+      "answer": "Mun Ikjeom"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "윤봉길 — 행사장에 폭탄을 던진 독립 운동가"
+      },
+      "choices": [
+        "Yun Bong-gil",
+        "Han Seok-bong",
+        "Gojong",
+        "Ahn Yong-Bok"
+      ],
+      "answer": "Yun Bong-gil"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "신사임당 — 조선의 화가"
+      },
+      "choices": [
+        "Sin Saimdang",
+        "Yu-Gwansun",
+        "Gojong",
+        "Wang Geon"
+      ],
+      "answer": "Sin Saimdang"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "한석봉 — 최고의 명필가"
+      },
+      "choices": [
+        "An Jung-geun",
+        "Han Seok-bong",
+        "Kim Gu",
+        "Hwang Jini"
+      ],
+      "answer": "Han Seok-bong"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "윤동주 — 일제 시기의 유명한 시인"
+      },
+      "choices": [
+        "Dae Joyeong",
+        "Yu-Gwansun",
+        "Yun Dong-ju",
+        "An Jung-geun"
+      ],
+      "answer": "Yun Dong-ju"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "신문고를 만든 왕"
+      },
+      "choices": [
+        "Dae Joyeong",
+        "Jang Yeong-sil",
+        "Yeongjo",
+        "Mun Ikjeom"
+      ],
+      "answer": "Yeongjo"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "김정호 — 정확한 지도를 만든 학자"
+      },
+      "choices": [
+        "Yu-Gwansun",
+        "Kim Jeong-ho",
+        "Dae Joyeong",
+        "Yun Bong-gil"
+      ],
+      "answer": "Kim Jeong-ho"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "이완용 — 나라를 팔아먹은 매국노"
+      },
+      "choices": [
+        "Dae Joyeong",
+        "Mun Ikjeom",
+        "Yu-Gwansun",
+        "Lee Wan-yong"
+      ],
+      "answer": "Lee Wan-yong"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "황진이 — 조선을 대표하는 시조예술가"
+      },
+      "choices": [
+        "Mun Ikjeom",
+        "Hwang Jini",
+        "Gojong",
+        "Yun Bong-gil"
+      ],
+      "answer": "Hwang Jini"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "안용복 — 울릉도와 독도를 지킨 어부"
+      },
+      "choices": [
+        "Sin Saimdang",
+        "Yi Sun-sin",
+        "Ahn Yong-Bok",
+        "Jang Yeong-sil"
+      ],
+      "answer": "Ahn Yong-Bok"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "이황 — 한국을 대표하는 성리학자"
+      },
+      "choices": [
+        "Kim Gu",
+        "Yun Bong-gil",
+        "Yi Sun-sin",
+        "Yi Hwang"
+      ],
+      "answer": "Yi Hwang"
+    },
+    {
+      "type": "dialogue",
+      "skill": "culture",
+      "prompt": "Choose the English word.",
+      "q": {
+        "text": "고종 — 조선의 마지막 왕"
+      },
+      "choices": [
+        "Gojong",
+        "Hwang Jini",
+        "Dangun",
+        "Ahn Yong-Bok"
+      ],
+      "answer": "Gojong"
+    }
+  ]
+}

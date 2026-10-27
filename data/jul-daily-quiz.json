@@ -1,0 +1,156 @@
+{
+  "id": "culture_m07_daily_quiz",
+  "monthId": "07",
+  "title": "Canada Day — after Daily video",
+  "source": "Exploring Canada — Part 1 (4:34)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What country is this video about?",
+      "ko": "이 영상은 어느 나라에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "India",
+          "ko": "인도"
+        },
+        {
+          "en": "Ireland",
+          "ko": "아일랜드"
+        },
+        {
+          "en": "Japan",
+          "ko": "일본"
+        },
+        {
+          "en": "Canada",
+          "ko": "캐나다",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "\"Exploring Canada\" is about Canada.",
+        "ko": "\"Exploring Canada\"는 캐나다에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What is Canada's capital city?",
+      "ko": "캐나다의 수도는 어디인가요?",
+      "choices": [
+        {
+          "en": "Vancouver",
+          "ko": "밴쿠버"
+        },
+        {
+          "en": "New York",
+          "ko": "뉴욕"
+        },
+        {
+          "en": "Ottawa",
+          "ko": "오타와",
+          "correct": true
+        },
+        {
+          "en": "Toronto",
+          "ko": "토론토"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Ottawa is the capital of Canada.",
+        "ko": "오타와가 캐나다의 수도예요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "Which leaf is on Canada's flag?",
+      "ko": "캐나다 국기에는 어떤 잎이 있나요?",
+      "choices": [
+        {
+          "en": "A lotus leaf",
+          "ko": "연잎"
+        },
+        {
+          "en": "A palm leaf",
+          "ko": "야자 잎"
+        },
+        {
+          "en": "A shamrock",
+          "ko": "샴록"
+        },
+        {
+          "en": "A maple leaf",
+          "ko": "단풍잎",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "A red maple leaf is on the flag.",
+        "ko": "국기에는 빨간 단풍잎이 있어요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "What two languages does Canada use?",
+      "ko": "캐나다는 어떤 두 언어를 사용하나요?",
+      "choices": [
+        {
+          "en": "English and French",
+          "ko": "영어와 프랑스어",
+          "correct": true
+        },
+        {
+          "en": "English and Korean",
+          "ko": "영어와 한국어"
+        },
+        {
+          "en": "English and Spanish",
+          "ko": "영어와 스페인어"
+        },
+        {
+          "en": "French and German",
+          "ko": "프랑스어와 독일어"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Canada's official languages are English and French.",
+        "ko": "캐나다의 공용어는 영어와 프랑스어예요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "How big is Canada?",
+      "ko": "캐나다는 얼마나 큰가요?",
+      "choices": [
+        {
+          "en": "Smaller than Korea",
+          "ko": "한국보다 작은 나라"
+        },
+        {
+          "en": "The tenth-largest country",
+          "ko": "열 번째로 큰 나라"
+        },
+        {
+          "en": "The second-largest country",
+          "ko": "두 번째로 큰 나라",
+          "correct": true
+        },
+        {
+          "en": "The smallest country",
+          "ko": "가장 작은 나라"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Canada is the second-largest country in the world.",
+        "ko": "캐나다는 세계에서 두 번째로 큰 나라예요."
+      }
+    }
+  ]
+}

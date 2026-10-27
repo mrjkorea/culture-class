@@ -1,0 +1,156 @@
+{
+  "id": "culture_m08_daily_quiz",
+  "monthId": "08",
+  "title": "Korean History Day — after Daily video",
+  "source": "MRJ Daily TWO — 5000 Years of Korean History (11:45)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "How long is Korean history in the video?",
+      "ko": "영상에서 한국 역사는 얼마나 긴가요?",
+      "choices": [
+        {
+          "en": "About 5,000 years",
+          "ko": "약 5,000년",
+          "correct": true
+        },
+        {
+          "en": "About 50,000 years",
+          "ko": "약 50,000년"
+        },
+        {
+          "en": "About 500 years",
+          "ko": "약 500년"
+        },
+        {
+          "en": "About 50 years",
+          "ko": "약 50년"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "The video covers 5,000 years of Korean history.",
+        "ko": "영상은 5,000년 한국 역사를 다뤄요."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "Who founded Gojoseon, the first Korean kingdom?",
+      "ko": "최초의 한국 나라 고조선을 세운 사람은?",
+      "choices": [
+        {
+          "en": "Gojong",
+          "ko": "고종"
+        },
+        {
+          "en": "King Sejong",
+          "ko": "세종대왕"
+        },
+        {
+          "en": "Wang Geon",
+          "ko": "왕건"
+        },
+        {
+          "en": "Dangun",
+          "ko": "단군",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Dangun is said to have founded Gojoseon.",
+        "ko": "단군이 고조선을 세웠다고 전해져요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "Who created Hangeul?",
+      "ko": "한글을 만든 사람은 누구인가요?",
+      "choices": [
+        {
+          "en": "King Sejong",
+          "ko": "세종대왕",
+          "correct": true
+        },
+        {
+          "en": "Yi Sun-sin",
+          "ko": "이순신"
+        },
+        {
+          "en": "Heo Jun",
+          "ko": "허준"
+        },
+        {
+          "en": "Kim Gu",
+          "ko": "김구"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "King Sejong created Hangeul in the 1400s.",
+        "ko": "세종대왕이 1400년대에 한글을 만들었어요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Who led the turtle ships against Japan?",
+      "ko": "거북선을 이끌고 왜군과 싸운 사람은?",
+      "choices": [
+        {
+          "en": "Dae Joyeong",
+          "ko": "대조영"
+        },
+        {
+          "en": "Admiral Yi Sun-sin",
+          "ko": "이순신 장군",
+          "correct": true
+        },
+        {
+          "en": "Jang Yeong-sil",
+          "ko": "장영실"
+        },
+        {
+          "en": "Yun Dong-ju",
+          "ko": "윤동주"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "Admiral Yi Sun-sin used turtle ships to win sea battles.",
+        "ko": "이순신 장군은 거북선으로 해전에서 이겼어요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "Which kingdoms were the Three Kingdoms?",
+      "ko": "삼국은 어느 나라들인가요?",
+      "choices": [
+        {
+          "en": "Korea, Japan, China",
+          "ko": "한국, 일본, 중국"
+        },
+        {
+          "en": "Joseon, Goryeo, Balhae",
+          "ko": "조선, 고려, 발해"
+        },
+        {
+          "en": "Goguryeo, Baekje, Silla",
+          "ko": "고구려, 백제, 신라",
+          "correct": true
+        },
+        {
+          "en": "Seoul, Busan, Incheon",
+          "ko": "서울, 부산, 인천"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "The Three Kingdoms were Goguryeo, Baekje, and Silla.",
+        "ko": "삼국은 고구려, 백제, 신라예요."
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "id": "culture_m12_daily_quiz",
+  "monthId": "12",
+  "title": "Christmas — after Daily video",
+  "source": "No intro video in months.json — general theme facts",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What holiday is on December 25?",
+      "ko": "12월 25일은 어떤 날인가요?",
+      "choices": [
+        {
+          "en": "New Year's Day",
+          "ko": "새해 첫날"
+        },
+        {
+          "en": "Thanksgiving",
+          "ko": "추수감사절"
+        },
+        {
+          "en": "Easter",
+          "ko": "부활절"
+        },
+        {
+          "en": "Christmas",
+          "ko": "크리스마스",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Christmas is on December 25.",
+        "ko": "크리스마스는 12월 25일이에요."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "Who brings presents on Christmas Eve?",
+      "ko": "크리스마스이브에 선물을 가져오는 사람은?",
+      "choices": [
+        {
+          "en": "The Easter Bunny",
+          "ko": "부활절 토끼"
+        },
+        {
+          "en": "Cupid",
+          "ko": "큐피드"
+        },
+        {
+          "en": "Santa Claus",
+          "ko": "산타클로스",
+          "correct": true
+        },
+        {
+          "en": "A leprechaun",
+          "ko": "레프러콘"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Santa Claus brings presents.",
+        "ko": "산타클로스가 선물을 가져와요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "What animals pull Santa's sleigh?",
+      "ko": "산타의 썰매를 끄는 동물은?",
+      "choices": [
+        {
+          "en": "Reindeer",
+          "ko": "순록",
+          "correct": true
+        },
+        {
+          "en": "Turkeys",
+          "ko": "칠면조"
+        },
+        {
+          "en": "Dogs",
+          "ko": "개"
+        },
+        {
+          "en": "Horses",
+          "ko": "말"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Reindeer pull Santa's sleigh.",
+        "ko": "순록이 산타의 썰매를 끌어요."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "What do children leave for Santa?",
+      "ko": "아이들은 산타를 위해 무엇을 남겨두나요?",
+      "choices": [
+        {
+          "en": "Rice and kimchi",
+          "ko": "밥과 김치"
+        },
+        {
+          "en": "Cookies and milk",
+          "ko": "쿠키와 우유",
+          "correct": true
+        },
+        {
+          "en": "Pizza and soda",
+          "ko": "피자와 탄산음료"
+        },
+        {
+          "en": "Candy corn",
+          "ko": "캔디콘"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "Kids leave cookies and milk.",
+        "ko": "아이들은 쿠키와 우유를 남겨둬요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What do people decorate with lights and ornaments?",
+      "ko": "사람들은 무엇을 불빛과 장식으로 꾸미나요?",
+      "choices": [
+        {
+          "en": "A lotus",
+          "ko": "연꽃"
+        },
+        {
+          "en": "A pumpkin",
+          "ko": "호박"
+        },
+        {
+          "en": "A maple tree",
+          "ko": "단풍나무"
+        },
+        {
+          "en": "A Christmas tree",
+          "ko": "크리스마스트리",
+          "correct": true
+        }
+      ],
+      "correctIndex": 3,
+      "explain": {
+        "en": "Families decorate a Christmas tree.",
+        "ko": "가족들은 크리스마스트리를 꾸며요."
+      }
+    }
+  ]
+}

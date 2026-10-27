@@ -1,0 +1,169 @@
+{
+  "id": "culture_m07",
+  "title": "July · Canada Day vocabulary",
+  "source": "Culture Class word pack (overnight 2026-10-28)",
+  "note": "Meet → Learn → Memory. Tap pictures to hear English.",
+  "voice": "ray",
+  "words": [
+    {
+      "id": "jul_01",
+      "en": "Canada",
+      "ko": "캐나다",
+      "audio": "data/audio/jul-words/canada.mp3",
+      "pic": "assets/words/jul/canada.jpg",
+      "image": "assets/words/jul/canada.jpg",
+      "term": "Canada",
+      "definition": "캐나다"
+    },
+    {
+      "id": "jul_02",
+      "en": "maple leaf",
+      "ko": "단풍잎",
+      "audio": "data/audio/jul-words/maple_leaf.mp3",
+      "pic": "assets/words/jul/maple_leaf.jpg",
+      "image": "assets/words/jul/maple_leaf.jpg",
+      "term": "maple leaf",
+      "definition": "단풍잎"
+    },
+    {
+      "id": "jul_03",
+      "en": "maple syrup",
+      "ko": "메이플 시럽",
+      "audio": "data/audio/jul-words/maple_syrup.mp3",
+      "pic": "assets/words/jul/maple_syrup.jpg",
+      "image": "assets/words/jul/maple_syrup.jpg",
+      "term": "maple syrup",
+      "definition": "메이플 시럽"
+    },
+    {
+      "id": "jul_04",
+      "en": "hockey",
+      "ko": "하키",
+      "audio": "data/audio/jul-words/hockey.mp3",
+      "pic": "assets/words/jul/hockey.jpg",
+      "image": "assets/words/jul/hockey.jpg",
+      "term": "hockey",
+      "definition": "하키"
+    },
+    {
+      "id": "jul_05",
+      "en": "skate",
+      "ko": "스케이트",
+      "audio": "data/audio/jul-words/skate.mp3",
+      "pic": "assets/words/jul/skate.jpg",
+      "image": "assets/words/jul/skate.jpg",
+      "term": "skate",
+      "definition": "스케이트"
+    },
+    {
+      "id": "jul_06",
+      "en": "ice fishing",
+      "ko": "얼음 낚시",
+      "audio": "data/audio/jul-words/ice_fishing.mp3",
+      "pic": "assets/words/jul/ice_fishing.jpg",
+      "image": "assets/words/jul/ice_fishing.jpg",
+      "term": "ice fishing",
+      "definition": "얼음 낚시"
+    },
+    {
+      "id": "jul_07",
+      "en": "moose",
+      "ko": "무스 (말코손바닥사슴)",
+      "audio": "data/audio/jul-words/moose.mp3",
+      "pic": "assets/words/jul/moose.jpg",
+      "image": "assets/words/jul/moose.jpg",
+      "term": "moose",
+      "definition": "무스 (말코손바닥사슴)"
+    },
+    {
+      "id": "jul_08",
+      "en": "beaver",
+      "ko": "비버",
+      "audio": "data/audio/jul-words/beaver.mp3",
+      "pic": "assets/words/jul/beaver.jpg",
+      "image": "assets/words/jul/beaver.jpg",
+      "term": "beaver",
+      "definition": "비버"
+    },
+    {
+      "id": "jul_09",
+      "en": "flag",
+      "ko": "국기",
+      "audio": "data/audio/jul-words/flag.mp3",
+      "pic": "assets/words/jul/flag.jpg",
+      "image": "assets/words/jul/flag.jpg",
+      "term": "flag",
+      "definition": "국기"
+    },
+    {
+      "id": "jul_10",
+      "en": "Ottawa",
+      "ko": "오타와",
+      "audio": "data/audio/jul-words/ottawa.mp3",
+      "pic": "assets/words/jul/ottawa.jpg",
+      "image": "assets/words/jul/ottawa.jpg",
+      "term": "Ottawa",
+      "definition": "오타와"
+    },
+    {
+      "id": "jul_11",
+      "en": "lake",
+      "ko": "호수",
+      "audio": "data/audio/jul-words/lake.mp3",
+      "pic": "assets/words/jul/lake.jpg",
+      "image": "assets/words/jul/lake.jpg",
+      "term": "lake",
+      "definition": "호수"
+    },
+    {
+      "id": "jul_12",
+      "en": "snow",
+      "ko": "눈",
+      "audio": "data/audio/jul-words/snow.mp3",
+      "pic": "assets/words/jul/snow.jpg",
+      "image": "assets/words/jul/snow.jpg",
+      "term": "snow",
+      "definition": "눈"
+    },
+    {
+      "id": "jul_13",
+      "en": "fireworks",
+      "ko": "불꽃놀이",
+      "audio": "data/audio/jul-words/fireworks.mp3",
+      "pic": "assets/words/jul/fireworks.jpg",
+      "image": "assets/words/jul/fireworks.jpg",
+      "term": "fireworks",
+      "definition": "불꽃놀이"
+    },
+    {
+      "id": "jul_14",
+      "en": "canoe",
+      "ko": "카누",
+      "audio": "data/audio/jul-words/canoe.mp3",
+      "pic": "assets/words/jul/canoe.jpg",
+      "image": "assets/words/jul/canoe.jpg",
+      "term": "canoe",
+      "definition": "카누"
+    },
+    {
+      "id": "jul_15",
+      "en": "pancake",
+      "ko": "팬케이크",
+      "audio": "data/audio/jul-words/pancake.mp3",
+      "pic": "assets/words/jul/pancake.jpg",
+      "image": "assets/words/jul/pancake.jpg",
+      "term": "pancake",
+      "definition": "팬케이크"
+    },
+    {
+      "id": "jul_16",
+      "en": "Mountie",
+      "ko": "캐나다 기마경찰",
+      "audio": "data/audio/jul-words/mountie.mp3",
+      "pic": "assets/words/jul/mountie.jpg",
+      "image": "assets/words/jul/mountie.jpg",
+      "term": "Mountie",
+      "definition": "캐나다 기마경찰"
+    }
+  ]
+}

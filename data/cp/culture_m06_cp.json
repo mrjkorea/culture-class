@@ -1,0 +1,39 @@
+{
+  "monthId": "06",
+  "title": "June Remembrance Day CP",
+  "format": "day4-speak",
+  "passPercent": 60,
+  "source": "https://docs.google.com/document/d/1Bv1cE5fvhLQEajYtokFnWmttDuOUAJGua30aR0egLRE/edit",
+  "items": [
+    {
+      "korean": "한국 전쟁은 1950년 6월 25일에 시작되었습니다.",
+      "english": "The Korean War began on June 25th, 1950.",
+      "audio": "data/audio/jun-cp/01.mp3",
+      "image": ""
+    },
+    {
+      "korean": "한국 전쟁에서 300만 명이 사망했습니다.",
+      "english": "3 million people died in the Korean War.",
+      "audio": "data/audio/jun-cp/02.mp3",
+      "image": ""
+    },
+    {
+      "korean": "23개국이 유엔 깃발 아래 참전했습니다.",
+      "english": "23 countries fought under UN flags.",
+      "audio": "data/audio/jun-cp/03.mp3",
+      "image": ""
+    },
+    {
+      "korean": "11월 11일도 현충일입니다.",
+      "english": "November 11th is Remembrance Day too.",
+      "audio": "data/audio/jun-cp/04.mp3",
+      "image": ""
+    },
+    {
+      "korean": "DMZ는 폭이 4킬로미터입니다.",
+      "english": "The DMZ is four kilometers wide.",
+      "audio": "data/audio/jun-cp/05.mp3",
+      "image": ""
+    }
+  ]
+}

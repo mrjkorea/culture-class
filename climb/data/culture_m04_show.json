@@ -1,0 +1,156 @@
+{
+  "id": "culture_m04_show",
+  "kind": "culture",
+  "title": "Culture · April · Easter Culture",
+  "passPercent": 70,
+  "units": [
+    "culture_m04_show"
+  ],
+  "video": {
+    "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
+    "slip": "https://mrjkorea.github.io/day2-words/day3/video/climb_slip.mp4",
+    "top": "https://mrjkorea.github.io/day2-words/day3/video/climb_top.mp4"
+  },
+  "questions": [
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이 영상은 어떤 날에 관한 것인가요?"
+      },
+      "choices": [
+        "Halloween",
+        "Easter",
+        "Valentine's Day",
+        "Christmas"
+      ],
+      "answer": "Easter",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부활절은 무슨 요일인가요?"
+      },
+      "choices": [
+        "Saturday",
+        "Friday",
+        "Sunday",
+        "Monday"
+      ],
+      "answer": "Sunday",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부활절에 아이들은 무엇을 찾나요?"
+      },
+      "choices": [
+        "Presents under a tree",
+        "Pumpkins",
+        "Gold coins",
+        "Eggs"
+      ],
+      "answer": "Eggs",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "어떤 동물이 부활절 달걀을 가져오나요?"
+      },
+      "choices": [
+        "A black cat",
+        "A turkey",
+        "A reindeer",
+        "The Easter Bunny"
+      ],
+      "answer": "The Easter Bunny",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "부활절 달걀은 무엇을 의미하나요?"
+      },
+      "choices": [
+        "Bad luck",
+        "Money",
+        "Winter",
+        "New life"
+      ],
+      "answer": "New life",
+      "prompt": "Choose the best answer."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이스터는 항상 일요일이에요."
+      },
+      "choices": [
+        "Many kids get Easter baskets.",
+        "Easter is always on Sunday.",
+        "Easter eggs mean new life.",
+        "Easter colors are pink and yellow."
+      ],
+      "answer": "Easter is always on Sunday.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이스터는 예수님의 귀환을 기념해요."
+      },
+      "choices": [
+        "Easter eggs mean new life.",
+        "Easter is always on Sunday.",
+        "Many kids get Easter baskets.",
+        "Easter celebrates Jesus's return."
+      ],
+      "answer": "Easter celebrates Jesus's return.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이스터 색은 분홍과 노랑이에요."
+      },
+      "choices": [
+        "Many kids get Easter baskets.",
+        "Easter colors are pink and yellow.",
+        "Easter eggs mean new life.",
+        "Easter is always on Sunday."
+      ],
+      "answer": "Easter colors are pink and yellow.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "많은 아이들이 이스터 바구니를 받아요."
+      },
+      "choices": [
+        "Easter eggs mean new life.",
+        "Easter celebrates Jesus's return.",
+        "Easter is always on Sunday.",
+        "Many kids get Easter baskets."
+      ],
+      "answer": "Many kids get Easter baskets.",
+      "prompt": "Choose the English sentence."
+    },
+    {
+      "type": "dialogue",
+      "q": {
+        "text": "이스터 에그는 새 생명을 의미해요."
+      },
+      "choices": [
+        "Easter colors are pink and yellow.",
+        "Easter eggs mean new life.",
+        "Many kids get Easter baskets.",
+        "Easter is always on Sunday."
+      ],
+      "answer": "Easter eggs mean new life.",
+      "prompt": "Choose the English sentence."
+    }
+  ]
+}

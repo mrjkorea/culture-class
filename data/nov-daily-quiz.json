@@ -1,0 +1,156 @@
+{
+  "id": "culture_m11_daily_quiz",
+  "monthId": "11",
+  "title": "Thanksgiving — after Daily video",
+  "source": "Thanksgiving culture intro (6:55)",
+  "passScore": 5,
+  "allowRetake": true,
+  "languageToggleIfNotPerfect": true,
+  "questions": [
+    {
+      "id": "q1",
+      "en": "What holiday is this video about?",
+      "ko": "이 영상은 어떤 날에 관한 것인가요?",
+      "choices": [
+        {
+          "en": "Easter",
+          "ko": "부활절"
+        },
+        {
+          "en": "Thanksgiving",
+          "ko": "추수감사절",
+          "correct": true
+        },
+        {
+          "en": "Halloween",
+          "ko": "할로윈"
+        },
+        {
+          "en": "Valentine's Day",
+          "ko": "발렌타인데이"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "The video is about Thanksgiving.",
+        "ko": "영상은 추수감사절에 관한 것입니다."
+      }
+    },
+    {
+      "id": "q2",
+      "en": "What big bird do families often eat?",
+      "ko": "가족들은 어떤 큰 새를 자주 먹나요?",
+      "choices": [
+        {
+          "en": "Turkey",
+          "ko": "칠면조",
+          "correct": true
+        },
+        {
+          "en": "Duck soup",
+          "ko": "오리탕"
+        },
+        {
+          "en": "Chicken nuggets",
+          "ko": "치킨너겟"
+        },
+        {
+          "en": "Eagle",
+          "ko": "독수리"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "Roast turkey is the main Thanksgiving food.",
+        "ko": "구운 칠면조가 추수감사절의 대표 음식이에요."
+      }
+    },
+    {
+      "id": "q3",
+      "en": "When is American Thanksgiving?",
+      "ko": "미국의 추수감사절은 언제인가요?",
+      "choices": [
+        {
+          "en": "The 4th Thursday of November",
+          "ko": "11월 넷째 목요일",
+          "correct": true
+        },
+        {
+          "en": "December 25",
+          "ko": "12월 25일"
+        },
+        {
+          "en": "July 4",
+          "ko": "7월 4일"
+        },
+        {
+          "en": "The first Monday of May",
+          "ko": "5월 첫째 월요일"
+        }
+      ],
+      "correctIndex": 0,
+      "explain": {
+        "en": "U.S. Thanksgiving is the fourth Thursday in November (Canada: October).",
+        "ko": "미국은 11월 넷째 목요일이에요 (캐나다는 10월)."
+      }
+    },
+    {
+      "id": "q4",
+      "en": "Who shared the first Thanksgiving meal?",
+      "ko": "첫 추수감사절 식사를 함께 나눈 사람들은?",
+      "choices": [
+        {
+          "en": "Astronauts",
+          "ko": "우주비행사"
+        },
+        {
+          "en": "Pirates",
+          "ko": "해적"
+        },
+        {
+          "en": "Pilgrims and Native Americans",
+          "ko": "청교도와 원주민",
+          "correct": true
+        },
+        {
+          "en": "Kings and queens",
+          "ko": "왕과 왕비"
+        }
+      ],
+      "correctIndex": 2,
+      "explain": {
+        "en": "Pilgrims and Native Americans shared a harvest feast in 1621.",
+        "ko": "1621년 청교도와 원주민이 수확 잔치를 함께했어요."
+      }
+    },
+    {
+      "id": "q5",
+      "en": "What do people say on Thanksgiving?",
+      "ko": "추수감사절에 사람들은 무엇을 말하나요?",
+      "choices": [
+        {
+          "en": "Happy New Year",
+          "ko": "새해 복 많이 받으세요"
+        },
+        {
+          "en": "What they are thankful for",
+          "ko": "감사한 것",
+          "correct": true
+        },
+        {
+          "en": "Trick or treat",
+          "ko": "트릭 오어 트릿"
+        },
+        {
+          "en": "Be my Valentine",
+          "ko": "내 발렌타인이 되어줘"
+        }
+      ],
+      "correctIndex": 1,
+      "explain": {
+        "en": "Families share what they are thankful for.",
+        "ko": "가족들은 감사한 것을 서로 이야기해요."
+      }
+    }
+  ]
+}
