@@ -1,0 +1,39 @@
+/* December / Christmas themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-christmas {
+  background: radial-gradient(ellipse at 50% 0%, #e3f2fd 0%, #1b5e20 40%, #0d1b2a 100%);
+  color: #e8f5e9;
+}
+
+.theme-christmas .site-footer,
+.theme-christmas .hint {
+  color: rgba(232, 245, 233, 0.78);
+}
+
+.theme-christmas .map-title h1 {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.75);
+}
+
+.theme-christmas .map-title p {
+  color: #c8e6c9;
+}
+
+.theme-christmas .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 0 60px rgba(255, 213, 79, 0.25);
+}
+
+.theme-christmas .map-node-emoji {
+  background: linear-gradient(145deg, #c62828, #2e7d32);
+  border-color: #fff;
+  box-shadow: 0 0 16px rgba(255, 213, 79, 0.35);
+}
+
+.theme-christmas .map-back {
+  color: #e8f5e9;
+}
+
+.theme-christmas .themed-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(46, 125, 50, 0.35);
+}

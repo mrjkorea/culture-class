@@ -337,18 +337,19 @@
       "showUnitId": "culture_m12_show",
       "cpDocUrl": "https://docs.google.com/document/d/1ZfiXZS-Oln5WyxzEhASuT_weXqGoseHu_ANVVkUqHJ0/edit",
       "wordMasterLearnUrl": "#",
-      "featureLabel": "Play the Christmas craft",
-      "featureDetail": "Tree to Santa visit (coming soon).",
-      "notes": "Christmas culture, vocabulary, and year-end review games including bingo and Mountain Climb quizzes.",
+      "featureTitle": "Christmas Tree Quest Craft",
+      "featureLabel": "Play the Christmas craft (replaces the feature video)",
+      "featureDetail": "Open the Christmas tree mini-game. Eleven stages, Nature narrator, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
+      "notes": "Christmas culture, vocabulary, and year-end review. Play the Christmas Tree Quest Craft from this page.",
       "monthLayout": "christmas",
       "craftPath": "craft/december/",
-      "craftTitle": "Christmas Craft",
-      "craftButton": "Play December Craft",
-      "craftBlurb": "Tree to Santa visit (coming soon).",
+      "craftTitle": "Christmas Tree Quest Craft",
+      "craftButton": "Play Christmas Tree Quest",
+      "craftBlurb": "Forest tree hunt, decorate at home, stockings, cookies and milk for Santa — fastest time on this device.",
+      "craftEmoji": "🎄",
       "wordsPreviewFile": "dec-words.json",
       "dailyQuizFile": "dec-daily-quiz.json",
-      "cpPackFile": "cp/culture_m12_cp.json",
-      "wordMasterMatchUrl": "#"
+      "cpPackFile": "cp/culture_m12_cp.json"
     }
   ]
 }
