@@ -1,0 +1,39 @@
+/* May / Buddhism themed month */
+@import url("./month-theme-shell.css");
+
+body.theme-buddhism {
+  background: radial-gradient(ellipse at 50% 0%, #5c4a2a 0%, #2d2416 50%, #141008 100%);
+  color: #fff8e7;
+}
+
+.theme-buddhism .site-footer,
+.theme-buddhism .hint {
+  color: rgba(255, 240, 210, 0.78);
+}
+
+.theme-buddhism .map-title h1 {
+  text-shadow: 0 0 24px rgba(233, 196, 106, 0.45);
+}
+
+.theme-buddhism .map-title p {
+  color: #e9c46a;
+}
+
+.theme-buddhism .map-canvas {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 0 80px rgba(180, 140, 60, 0.15);
+}
+
+.theme-buddhism .map-node-emoji {
+  background: linear-gradient(145deg, #e9c46a, #c9a227);
+  border-color: #fff3bf;
+  box-shadow: 0 0 18px rgba(233, 196, 106, 0.45);
+}
+
+.theme-buddhism .map-back {
+  color: rgba(255, 240, 210, 0.9);
+}
+
+.theme-buddhism .themed-panel {
+  background: rgba(45, 36, 22, 0.75);
+  border-color: rgba(233, 196, 106, 0.35);
+}

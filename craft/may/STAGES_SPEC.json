@@ -1,0 +1,12 @@
+{
+  "id": "craft_may_buddhism_path",
+  "title": "Path to Enlightenment",
+  "month": "05",
+  "narrator": "Grandpa Walt (see bake-walt-audio.sh)",
+  "audioDir": "assets/audio/walt/",
+  "leaderboard": { "key": "culture_craft_may_buddhism_v1" },
+  "stages": [
+    "gate", "fog", "lamp", "speech", "offering",
+    "sweep", "walk", "breathe", "bell", "lotus"
+  ]
+}

@@ -65,7 +65,7 @@ const THEMES = {
   },
   buddhism: {
     bodyClass: "theme-buddhism",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/buddhism.css",
     mapImage: "assets/covers/05-may-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(255,220,150,0.5)",

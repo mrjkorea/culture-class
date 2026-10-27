@@ -1,0 +1,200 @@
+{
+  "id": "craft_may_buddhism_path",
+  "title": "Path to Enlightenment",
+  "month": "05",
+  "targetMinutes": [10, 14],
+  "leaderboard": {
+    "key": "culture_craft_may_buddhism_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · May",
+      "play": "Begin the path",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Walk the Eightfold Path in ten calm steps — clear fog, kind speech, mindful breath, and a quiet bow. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Walk again",
+      "doneTitle": "Peace on your path",
+      "doneBody": "The lotus opens. Namaste.",
+      "watch": "Breathe",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "May",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 5월",
+      "play": "길 시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "열 가지 고요한 단계로 팔정도의 길을 걸어요. 안개를 걷고, 따뜻한 말과 호흡으로 마음을 가다듬어요.",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 걷기",
+      "doneTitle": "평화로운 길",
+      "doneBody": "연꽃이 피었습니다.",
+      "watch": "호흡",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "5월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "gate",
+      "title": "Begin the path",
+      "titleKo": "길의 시작",
+      "type": "gate",
+      "lines": {
+        "en": ["Step through the temple gate.", "Take the first step.", "The path begins."],
+        "ko": ["사찰 문을 지나요.", "첫 걸음.", "길이 시작됩니다."]
+      }
+    },
+    {
+      "id": 2,
+      "key": "fog",
+      "title": "Right view",
+      "titleKo": "정견",
+      "type": "fog",
+      "poolSize": 12,
+      "goodCount": 4,
+      "lines": {
+        "en": ["Clear the fog — see the path clearly.", "Click the clouds away.", "Your view is clear."],
+        "ko": ["안개를 걷어 길을 봐요.", "구름을 없애요.", "길이 보입니다."]
+      }
+    },
+    {
+      "id": 3,
+      "key": "lamp",
+      "title": "Right intention",
+      "titleKo": "정사",
+      "type": "lamp",
+      "clicks": 25,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Light your intention lamp.", "A warm, steady glow.", "Your intention shines."],
+        "ko": ["마음의 등불을 켜요.", "따뜻한 빛.", "마음이 빛납니다."]
+      }
+    },
+    {
+      "id": 4,
+      "key": "speech",
+      "title": "Right speech",
+      "titleKo": "정어",
+      "type": "kind_words",
+      "poolSize": 10,
+      "goodCount": 4,
+      "lines": {
+        "en": ["Choose kind words, not mean ones.", "Gentle speech.", "Kind words chosen."],
+        "ko": ["다정한 말을 골라요.", "부드러운 말.", "좋은 말을 골랐어요."]
+      }
+    },
+    {
+      "id": 5,
+      "key": "offering",
+      "title": "Right action",
+      "titleKo": "정업",
+      "type": "offering",
+      "clicks": 5,
+      "lines": {
+        "en": ["Place food offerings with care.", "One by one.", "Offering complete."],
+        "ko": ["공양을 올려요.", "하나씩.", "공양을 마쳤어요."]
+      }
+    },
+    {
+      "id": 6,
+      "key": "sweep",
+      "title": "Right livelihood",
+      "titleKo": "정업(생계)",
+      "type": "sweep",
+      "clicks": 40,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Sweep the temple path.", "Slow and steady.", "The path is clean."],
+        "ko": ["길을 쓸어요.", "천천히.", "길이 깨끗해요."]
+      }
+    },
+    {
+      "id": 7,
+      "key": "walk",
+      "title": "Right effort",
+      "titleKo": "정진",
+      "type": "walk",
+      "clicks": 45,
+      "midAt": 0.55,
+      "lines": {
+        "en": ["Keep walking the path.", "Don't stop.", "Steady effort."],
+        "ko": ["길을 걸어요.", "멈추지 마요.", "꾸준한 노력."]
+      }
+    },
+    {
+      "id": 8,
+      "key": "breathe",
+      "title": "Right mindfulness",
+      "titleKo": "정념",
+      "type": "breathe",
+      "holdMs": 2200,
+      "cycles": 4,
+      "lines": {
+        "en": ["Breathe with the lotus.", "Hold calm…", "Mindful breath."],
+        "ko": ["연꽃과 함께 호흡.", "고요히…", "마음챙김."]
+      }
+    },
+    {
+      "id": 9,
+      "key": "bell",
+      "title": "Right concentration",
+      "titleKo": "정정",
+      "type": "bell",
+      "clicks": 1,
+      "lines": {
+        "en": ["Ring the soft bell once.", "Listen…", "Concentration deepens."],
+        "ko": ["종을 한 번 울려요.", "들어요…", "집중이 깊어집니다."]
+      }
+    },
+    {
+      "id": 10,
+      "key": "lotus",
+      "title": "Enlightenment",
+      "titleKo": "깨달음",
+      "type": "lotus",
+      "clicks": 20,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["The lotus opens.", "Quiet bow.", "Peace on your path. You did it!"],
+        "ko": ["연꽃이 핍니다.", "고요히 인사.", "평화로운 길. 해냈어요!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_gate", "durationSec": 3, "caption": { "en": "The gate", "ko": "문" } },
+    { "id": "t02_fog", "durationSec": 3, "caption": { "en": "Clear view", "ko": "정견" } },
+    { "id": "t03_lamp", "durationSec": 3, "caption": { "en": "Intention", "ko": "정사" } },
+    { "id": "t04_speech", "durationSec": 3, "caption": { "en": "Kind speech", "ko": "정어" } },
+    { "id": "t05_offering", "durationSec": 3, "caption": { "en": "Offering", "ko": "정업" } },
+    { "id": "t06_sweep", "durationSec": 3, "caption": { "en": "Sweep", "ko": "쓸기" } },
+    { "id": "t07_walk", "durationSec": 3, "caption": { "en": "Effort", "ko": "정진" } },
+    { "id": "t08_breathe", "durationSec": 3, "caption": { "en": "Mindfulness", "ko": "정념" } },
+    { "id": "t09_bell", "durationSec": 3, "caption": { "en": "Bell", "ko": "종" } },
+    { "id": "t10_lotus", "durationSec": 3, "caption": { "en": "Lotus", "ko": "연꽃" } }
+  ]
+}
