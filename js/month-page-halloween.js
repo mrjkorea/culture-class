@@ -6,7 +6,6 @@ import {
   monthPageUrl,
   repoRoot,
   wordsLearnUrl,
-  wordsMatchUrl,
   wordsMeetUrl,
   wordsMemoryUrl,
 } from "./paths.js";
@@ -36,8 +35,6 @@ function stepHref(month, step) {
       return dailyQuizUrl(month.id);
     case "meet":
       return wordsMeetUrl(month.id);
-    case "match":
-      return wordsMatchUrl(month.id);
     case "learn":
       return wordsLearnUrl(month.id);
     case "memory":
@@ -108,7 +105,7 @@ export function renderOctoberHalloweenMonth(month) {
       </header>
       <div class="map-canvas" style="background-image:url('${mapBg}')">
         <svg class="map-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M10,92 C18,84 24,80 22,78 C28,74 34,86 38,88 C46,82 52,76 55,72 C62,66 68,60 72,58 C78,52 84,48 88,44 C86,36 82,30 78,26 C70,20 62,16 58,14 C50,12 42,10 36,10 C28,12 20,16 14,22" fill="none" stroke="rgba(255,220,120,0.55)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M10,92 C18,84 24,80 22,78 C28,74 34,86 38,88 C46,80 52,74 58,68 C64,62 70,56 76,50 C82,44 86,38 88,34 C84,28 78,22 72,18 C62,14 52,11 48,10 C38,12 28,14 22,18" fill="none" stroke="rgba(255,220,120,0.55)" stroke-width="1.4" stroke-linecap="round"/>
         </svg>
         ${nodes}
       </div>

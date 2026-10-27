@@ -10,8 +10,7 @@ export function repoRoot() {
   if (
     path.endsWith("/words/learn.html") ||
     path.endsWith("/words/memory.html") ||
-    path.endsWith("/words/meet.html") ||
-    path.endsWith("/words/match.html")
+    path.endsWith("/words/meet.html")
   ) {
     return path.replace(/\/words\/[^/]+$/, "");
   }
@@ -45,10 +44,6 @@ export function bingoUrl(which) {
 
 export function wordsMeetUrl(monthId) {
   return `${repoRoot()}/words/meet.html?month=${encodeURIComponent(monthId)}`;
-}
-
-export function wordsMatchUrl(monthId) {
-  return `${repoRoot()}/words/match.html?month=${encodeURIComponent(monthId)}`;
 }
 
 export function wordsLearnUrl(monthId) {
