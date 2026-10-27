@@ -1,6 +1,7 @@
 import { bingoUrl, climbUrl, cpSpeakUrl, dataUrl, repoRoot, wordsLearnUrl, wordsMemoryUrl } from "./paths.js";
 import { isLearnDone, monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
+import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
@@ -205,6 +206,7 @@ function renderMonth(month, wordsPreview) {
     </div>`;
 
   document.title = `Culture Class — ${month.name}: ${month.theme}`;
+  void initFeatureYoutubePlayers(document.getElementById("app"));
 }
 
 async function init() {

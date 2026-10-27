@@ -84,12 +84,31 @@ function normalizeIntroSlots(month) {
   return [];
 }
 
+function featureYoutubeCreditHtml(month, videoId) {
+  if (month.featureYoutubeCredit) {
+    return month.featureYoutubeCredit;
+  }
+  const watch = `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+  return `Plays from <a href="${watch}" target="_blank" rel="noopener">YouTube</a> (embedded in-page). Not from <a href="https://www.youtube.com/@mrjenglishnews" target="_blank" rel="noopener">@mrjenglishnews</a>.`;
+}
+
 export function renderFeatureVideoHtml(month) {
   if (month.featureYoutubeId) {
     const title = month.featureTitle || month.featureLabel || "Feature video";
+    const videoId = String(month.featureYoutubeId).trim();
+    const mountId = `yt-feature-${month.id || videoId}`;
+    const label = escapeHtml(title);
     return `
-      ${youtubeEmbedHtml(month.featureYoutubeId, title)}
-      ${youtubeAttribution()}`;
+      <div class="video-feature" data-youtube-feature-id="${escapeHtml(videoId)}" data-player-mount-id="${escapeHtml(mountId)}">
+        <p class="video-slot-label">${label}</p>
+        <div class="video-embed youtube-feature-mount" id="${escapeHtml(mountId)}"></div>
+        <div class="video-toolbar">
+          <button type="button" class="btn btn-green-subtitles" data-green-subtitles aria-pressed="false">
+            Green subtitles
+          </button>
+        </div>
+        <p class="hint video-attribution">${featureYoutubeCreditHtml(month, videoId)}</p>
+      </div>`;
   }
 
   const featureTitle = month.featureTitle || "Feature show";
