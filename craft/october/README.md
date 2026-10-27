@@ -1,10 +1,25 @@
-# Jack-o'-Lantern Craft (V2)
+# Jack-o'-Lantern Craft (V3)
 
 October mini-game for Mr. Jay's Culture Class. Students open the page, type a nickname, and play all 10 stages. Fastest time on that device wins.
 
-**Pages path:** [/craft/october/](https://mrjkorea.github.io/culture-class/craft/october/)
+**Play:** [/craft/october/](https://mrjkorea.github.io/culture-class/craft/october/)
 
 The October month page links here (`months/10-october/`).
+
+## Graphics (for Jay)
+
+| Era | In-game look | Between stages / end |
+|-----|----------------|----------------------|
+| **V1/V2** | Mostly flat **CSS/SVG** pumpkins, house, pan, kids | **AI photoreal stills** (JPG) — 8–12s each |
+| **V3** | **3D-style AI scene art** (`assets/scenes3d/*.jpg`) with large props (~75–85% of the screen) | **3s countdown** only; after the run, **10 highlight clips** (`assets/transitions/video/t01…t10.mp4`) |
+
+Chrome (HUD, titles) is minimized. One short Frank line on screen. EN mode shows **English only** until the player switches to KO.
+
+## Voice (Fish Audio)
+
+Frank uses pre-baked **Fish Monster (clear words)** MP3s in `assets/audio/frank/` — no Web Speech during play. Kid **“Trick or treat!”** clips are meshed from `assets/audio/kids/*_tot.mp3` (staggered) when the candy stage starts.
+
+Clip paths are wired in `assets/manifest.json` → `audio`. Game code passes `clipKey` (for example `wash_start`, `roast_ouch`). The mute button silences Frank **and** SFX.
 
 ## What plays
 
@@ -14,90 +29,40 @@ The October month page links here (`months/10-october/`).
 | 2 Wash | mash | 50 clicks |
 | 3 Cut the top | mash | 80 clicks, knife bob |
 | 4 Scoop | mash | 150 clicks |
-| 5 Roast seeds | mash | 60 clicks |
-| 6 Pin the face | guided mash | 80 clicks, 4 faces |
-| 7 Carve | guided mash | 120 clicks, same face |
+| 5 Roast seeds | mash | 60 clicks (handle only; fire/pan = ouch) |
+| 6 Pin the face | guided mash | 80 clicks, push-pin tool, 4 faces |
+| 7 Carve | guided mash | 120 clicks, knife tool, same face |
 | 8 Light the candle | mash | 25 clicks |
 | 9 Front of the house | luck hunt | 20 spots, 1 good |
 | 10 Give candy | mash | 50 clicks |
 
-A **photoreal still** (JPG) plays **before** each stage for 8–12 seconds. There is no skip button. Play time pauses during those pictures. The leaderboard sorts by fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
+Before each stage: **3-second countdown** (optional `countdown.mp3`). Play time pauses during countdowns and the end reel. Leaderboard: fastest play time, then fewer misses (`localStorage` key `culture_craft_oct_pumpkin_v1`).
 
-Stages 1 and 9 are pure luck. Spoken lines must stay the generic lines in `stages.json`. Do not add words that point at a side, size, color, window, door, or step.
-
-**V2 feel:** larger stage props (CSS/SVG), scoop spoon arcs + seeds into a bowl, roast pan flip + sizzle, sponge splash on wash, Web Audio SFX every stage, Frankenstein host voice with talking-head mouth flap, EN speech + EN/KO on screen.
+Stages 1 and 9 are pure luck. Spoken lines stay generic in `stages.json` (no hints about side, size, color, window, door, or step).
 
 ## Swap lines
 
-Edit `stages.json`.
+Edit `stages.json` — same as V2 for budgets, `uiCopy`, and stage lines. `STAGES_SPEC.json` remains the build contract.
 
-- `stages[].lines.en` and `stages[].lines.ko` — three lines each: start, middle (or miss, on luck hunts), done.
-- `stages[].title` / `titleKo` — HUD title.
-- `transitions[].caption` — words on the still. Spoken in English.
-- `transitions[].durationSec` — keep each value from 8 to 12 until Jay approves animation.
-- `uiCopy` — buttons, nickname screen, results.
-- Click budgets: `clicks`, `poolSize`, `goodCount`. Pin and carve stay equal for every face (`sameClicksAllFaces`).
+## Swap art / audio
 
-`STAGES_SPEC.json` is the build contract. If you change a budget or a stage line, update both files.
+- **3D scenes:** `assets/manifest.json` → `scenes3d`
+- **Frank + kids:** `manifest.json` → `audio`
+- **End reel:** `manifest.json` → `transitionVideos`
+- **Transition thumbs (optional):** `manifest.json` → `transitions` (JPG stills)
 
-## Swap TTS / Frank voice
-
-In `stages.json` → `tts`:
-
-- `pitch` — monster Frank is about `0.35`–`0.55` (default `0.42`)
-- `rate` — slightly slow, about `0.85`–`0.95`
-- `lang` — `en-US` while `languages.listeningPrimary` is `en`
-- `missDebounceMs` — how often a wrong pumpkin can talk
-- `maxMs` — safety cap for long lines (default `5200`)
-
-**Talking head:** `assets/manifest.json` → `frank.closed` / `frank.open` (JPG paths). The HUD shows Frank while lines play; mouth toggles open/closed during speech.
-
-**Pre-recorded clips (Fish Audio, etc.):** add entries under `manifest.json` → `audio`, for example:
-
-```json
-"audio": {
-  "stage4_start": "audio/scoop_start.mp3"
-}
-```
-
-Then pass `clipKey: "stage4_start"` from game code when you wire a line to a file. If the key is missing, Web Speech is used.
-
-To speak Korean later, set `languages.listeningPrimary` to `ko`. The game then uses `ko-KR` and the Korean line.
-
-The Sound button mutes speech **and** SFX for this tab.
-
-## Swap SFX
-
-Stage clicks use `js/sfx.js` (Web Audio). To replace a sound with a short file, extend `sfx.js` or load from `assets/sfx/` (add paths in manifest if you want them data-driven).
-
-Distinct cues: miss, win, per-stage click (splash, scrape, flip/sizzle, pin, carve, strike, candy, patch, cut).
-
-## Swap art
-
-`assets/manifest.json` maps every transition id to a file under `assets/`:
-
-```json
-"t01_enter_patch": "transitions/t01_enter_patch.jpg"
-```
-
-Drop in a new JPG/PNG/SVG and change that path. **Stills only** until Jay picks which get motion; then swap the same id to a video or animated asset without renaming ids.
-
-Built-in pumpkin, house, pan, candle, spoon, and kids are SVG in `js/art.js`. Face shapes are `assets/faces.json` (four presets).
-
-Photoreal stills live in `assets/transitions/t01_enter_patch.jpg` … `t10_trick_or_treat.jpg`. Frank host: `assets/frank/frank_talk_closed.jpg` / `frank_talk_open.jpg`.
+Face shapes: `assets/faces.json`. Frank talking head: `assets/frank/frank_talk_*.jpg`.
 
 ## Files
 
 | File | Role |
 |------|------|
 | `index.html` | Game page |
-| `stages.json` | Budgets, lines, TTS, still timing |
-| `STAGES_SPEC.json` | Original 10-stage contract |
-| `CRAFT_BUILD.md` | Build brief |
-| `assets/manifest.json` | Art, Frank, optional audio clip paths |
-| `assets/faces.json` | Four face presets |
-| `assets/transitions/*.jpg` | Photoreal still slots |
-| `assets/frank/*.jpg` | Talking head |
-| `js/sfx.js` | Web Audio SFX |
-| `js/` | Game, scenes, speech, leaderboard |
-| `css/game.css` | Layout and colors |
+| `stages.json` | Budgets, lines, UI copy |
+| `assets/manifest.json` | Scenes3d, audio, videos, stills |
+| `assets/audio/` | Fish Frank + kid TOT MP3s |
+| `assets/scenes3d/` | Large stage backdrops |
+| `assets/transitions/video/` | End-of-run highlight reel |
+| `js/speech.js` | Fish MP3 playback + Frank flap |
+| `js/scenes.js` | Stage UI (roast handle, pin vs knife carve, etc.) |
+| `js/game.js` | Flow, countdown, reel, single-language HUD |

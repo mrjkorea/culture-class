@@ -1,36 +1,17 @@
 /**
- * Frankenstein host voice: deep Web Speech + talking head.
- * Optional pre-recorded clips via manifest.audio[clipKey] → path under assets/.
+ * Frank host voice: Fish Audio pre-baked MP3s only (no Web Speech).
+ * manifest.audio[clipKey] → path under assets/.
  */
 
 export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
   let enabled = true;
-  let voice = null;
   let lastMiss = 0;
-  let kick = 0;
   let flapTimer = 0;
   let frankImg = null;
   let frankOpenUrl = "";
   let frankClosedUrl = "";
   let speaking = false;
-
-  function pickVoice() {
-    const synth = window.speechSynthesis;
-    if (!synth) return;
-    const voices = synth.getVoices() || [];
-    const lang = String(tts.lang || "en-US").toLowerCase().replace("_", "-");
-    const prefix = lang.slice(0, 2);
-    const deepMale = /david|daniel|james|mark|aaron|guy|fred|ralph|richard|thomas|male|paul|george|lee/i;
-    const avoid = /female|child|zira|samantha|karen|serena|moira|google.*english.*female/i;
-    const inLang = voices.filter((v) => v.lang.toLowerCase().replace("_", "-").startsWith(lang));
-    const pool = inLang.length ? inLang : voices.filter((v) => v.lang.toLowerCase().replace("_", "-").startsWith(prefix));
-    voice =
-      pool.find((v) => deepMale.test(v.name) && !avoid.test(v.name)) ||
-      pool.find((v) => deepMale.test(v.name)) ||
-      pool.find((v) => !avoid.test(v.name)) ||
-      pool[0] ||
-      null;
-  }
+  let activeAudio = null;
 
   function setFrank(img, urls) {
     frankImg = img || null;
@@ -62,37 +43,35 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
     frankImg?.closest(".frank-host")?.classList.remove("is-talking");
   }
 
-  function armKick() {
-    clearInterval(kick);
-    if (!window.speechSynthesis) return;
-    kick = window.setInterval(() => {
-      const synth = window.speechSynthesis;
-      if (!synth || !synth.speaking) {
-        clearInterval(kick);
-        return;
-      }
-      synth.resume();
-    }, 1200);
-  }
-
   function clipUrl(clipKey) {
     const rel = manifest?.audio?.[clipKey];
     if (!rel || !assetBase) return "";
     return new URL(rel, assetBase).href;
   }
 
-  function playClip(clipKey) {
+  function playClip(clipKey, { overlap = false } = {}) {
     const url = clipUrl(clipKey);
     if (!url) return Promise.resolve(false);
     return new Promise((resolve) => {
       const audio = new Audio(url);
       audio.volume = Number(tts.volume ?? 1);
-      speaking = true;
-      startFlap();
+      if (!overlap) {
+        try {
+          activeAudio?.pause();
+        } catch {
+          /* ignore */
+        }
+        activeAudio = audio;
+        speaking = true;
+        startFlap();
+      }
       const done = () => {
         audio.removeEventListener("ended", done);
         audio.removeEventListener("error", done);
-        stopFlap();
+        if (!overlap && activeAudio === audio) {
+          stopFlap();
+          activeAudio = null;
+        }
         resolve(true);
       };
       audio.addEventListener("ended", done);
@@ -106,17 +85,11 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
   }
 
   function unlock() {
-    pickVoice();
-    window.speechSynthesis?.addEventListener?.("voiceschanged", pickVoice);
-    try {
-      window.speechSynthesis?.resume();
-    } catch {
-      /* ignore */
-    }
+    /* gesture unlock for HTMLAudioElement */
   }
 
-  function speak(text, opts = {}) {
-    if (!enabled || !text) return Promise.resolve();
+  function speak(_text, opts = {}) {
+    if (!enabled) return Promise.resolve();
     if (opts.miss) {
       const now = performance.now();
       if (now - lastMiss < (tts.missDebounceMs || 1200)) return Promise.resolve();
@@ -126,75 +99,49 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
     if (clipKey && manifest?.audio?.[clipKey]) {
       return playClip(clipKey);
     }
-    if (!window.speechSynthesis) return Promise.resolve();
+    return Promise.resolve();
+  }
 
-    return new Promise((resolve) => {
-      let settled = false;
-      const finish = () => {
-        if (settled) return;
-        settled = true;
-        stopFlap();
-        clearInterval(kick);
-        resolve();
-      };
-      try {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = tts.lang || "en-US";
-        utter.pitch = Number(tts.pitch ?? 0.45);
-        utter.rate = Number(tts.rate ?? 0.9);
-        utter.volume = Number(tts.volume ?? 1);
-        if (voice) utter.voice = voice;
-        utter.onstart = () => {
-          speaking = true;
-          startFlap();
-          armKick();
-        };
-        utter.onend = finish;
-        utter.onerror = finish;
-        window.setTimeout(() => {
-          if (settled || !enabled) {
-            finish();
-            return;
-          }
-          try {
-            window.speechSynthesis.speak(utter);
-          } catch {
-            finish();
-          }
-        }, 30);
-        window.setTimeout(finish, Number(tts.maxMs || 5200));
-      } catch {
-        finish();
-      }
+  function playKidTrickOrTreat() {
+    const keys = [
+      "kid_maya_tot",
+      "kid_leo_tot",
+      "kid_little_boy_tot",
+      "kid_little_girl_tot",
+      "kid_teen_boy_tot",
+    ];
+    keys.forEach((key, i) => {
+      window.setTimeout(() => playClip(key, { overlap: true }), i * 220);
     });
   }
 
   function setEnabled(next) {
     enabled = Boolean(next);
     if (!enabled) {
-      clearInterval(kick);
-      stopFlap();
       try {
-        window.speechSynthesis?.cancel();
+        activeAudio?.pause();
       } catch {
         /* ignore */
       }
+      activeAudio = null;
+      stopFlap();
     }
   }
 
   function stop() {
-    clearInterval(kick);
-    stopFlap();
     try {
-      window.speechSynthesis?.cancel();
+      activeAudio?.pause();
     } catch {
       /* ignore */
     }
+    activeAudio = null;
+    stopFlap();
   }
 
   return {
     speak,
+    playClip,
+    playKidTrickOrTreat,
     unlock,
     stop,
     setEnabled,

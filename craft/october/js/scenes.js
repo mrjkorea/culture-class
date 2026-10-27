@@ -3,17 +3,17 @@
  * Luck stages never mark the correct choice in the DOM.
  */
 
+import { scene3dUrl } from "./assets.js";
 import {
   HOUSE_SPOTS,
   bowlSvg,
   spoonSvg,
   candleSvg,
   faceBoxStyle,
-  houseSvg,
-  kidsSvg,
   knifeSvg,
   mixHex,
   panSvg,
+  pinSvg,
   pumpkinIcon,
   pumpkinSvg,
 } from "./art.js";
@@ -47,7 +47,7 @@ function mountLuck(root, stage, ctx) {
   }
   let found = 0;
   let finished = false;
-  root.innerHTML = stage.key === "house" ? houseMarkup(pool) : patchMarkup(pool);
+  root.innerHTML = stage.key === "house" ? houseMarkup(pool, ctx) : patchMarkup(pool, ctx);
   const buttons = [...root.querySelectorAll("[data-choice]")];
 
   function settle(btn, ok) {
@@ -96,7 +96,8 @@ function mountLuck(root, stage, ctx) {
   };
 }
 
-function patchMarkup(count) {
+function patchMarkup(count, ctx) {
+  const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "patch");
   const cols = Math.ceil(Math.sqrt(count));
   const buttons = Array.from({ length: count }, (_, i) => {
     const scale = (0.9 + vary(i) * 0.18).toFixed(3);
@@ -105,13 +106,14 @@ function patchMarkup(count) {
       <span class="pumpkin-tilt" style="--s:${scale};--r:${rot}deg">${pumpkinSvg(`patch${i}`)}</span>
     </button>`;
   }).join("");
-  return `<div class="patch" data-play>
-    <div class="fence" aria-hidden="true"></div>
+  const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
+  return `<div class="patch scene-3d" data-play${bgStyle}>
     <div class="patch-grid" style="grid-template-columns:repeat(${cols}, minmax(0, 1fr))">${buttons}</div>
   </div>`;
 }
 
-function houseMarkup(count) {
+function houseMarkup(count, ctx) {
+  const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "house");
   const spots = count === HOUSE_SPOTS.length ? HOUSE_SPOTS : fallbackSpots(count);
   const buttons = spots
     .map(
@@ -119,8 +121,8 @@ function houseMarkup(count) {
         `<button type="button" class="spot" data-choice="${i}" style="left:${x}%;top:${y}%" aria-label="Spot">${pumpkinIcon()}</button>`
     )
     .join("");
-  return `<div class="house-scene" data-play>
-    ${houseSvg()}
+  const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
+  return `<div class="house-scene scene-3d" data-play${bgStyle}>
     <div class="spots">${buttons}</div>
   </div>`;
 }
@@ -169,8 +171,35 @@ function mountMash(root, stage, ctx) {
     }
   }
 
+  function roastOuch() {
+    const toast = root.querySelector("[data-ouch-toast]");
+    if (toast) {
+      toast.hidden = false;
+      toast.classList.remove("pop");
+      void toast.offsetWidth;
+      toast.classList.add("pop");
+      window.setTimeout(() => {
+        toast.hidden = true;
+      }, 900);
+    }
+    ctx.speech?.speak("Ouch!", { clipKey: "roast_ouch", miss: true });
+    ctx.sfx?.miss?.();
+  }
+
   function onPointer(e) {
     if (e.button !== undefined && e.button !== 0) return;
+    if (stage.key === "roast") {
+      if (e.target.closest("[data-hit-handle]")) {
+        if (e.cancelable) e.preventDefault();
+        step(e.clientX, e.clientY);
+        return;
+      }
+      if (e.target.closest("[data-hit-ouch]")) {
+        if (e.cancelable) e.preventDefault();
+        roastOuch();
+      }
+      return;
+    }
     if (!e.target.closest("[data-hit]")) return;
     if (e.cancelable) e.preventDefault();
     step(e.clientX, e.clientY);
@@ -178,6 +207,15 @@ function mountMash(root, stage, ctx) {
 
   function onKey(e) {
     if (e.key !== "Enter" && e.key !== " ") return;
+    if (stage.key === "roast") {
+      if (e.target.closest("[data-hit-handle]")) {
+        e.preventDefault();
+        const btn = root.querySelector("[data-hit-handle]");
+        const rect = btn.getBoundingClientRect();
+        step(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }
+      return;
+    }
     if (!e.target.closest("[data-hit]")) return;
     e.preventDefault();
     const rect = hit.getBoundingClientRect();
@@ -186,6 +224,9 @@ function mountMash(root, stage, ctx) {
 
   root.addEventListener("pointerdown", onPointer);
   root.addEventListener("keydown", onKey);
+  if (stage.key === "candy") {
+    window.setTimeout(() => ctx.speech?.playKidTrickOrTreat?.(), 400);
+  }
   return {
     destroy() {
       root.removeEventListener("pointerdown", onPointer);
@@ -219,16 +260,22 @@ function mashMarkup(stage, ctx) {
     </div>`;
   }
   if (stage.key === "roast") {
-    return `<div class="scene scene-roast" data-play>
+    const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "roast");
+    const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
+    return `<div class="scene scene-roast scene-3d roast-stage" data-play${bgStyle}>
       <div class="pan-wrap" data-pan>
         ${panSvg()}
-        <button type="button" class="mash-hit" data-hit aria-label="${esc(stage.title)}"></button>
+        <button type="button" class="roast-hit roast-hit-ouch" data-hit-ouch aria-label="Hot"></button>
+        <button type="button" class="roast-hit roast-hit-pan" data-hit-ouch aria-label="Pan"></button>
+        <button type="button" class="roast-hit roast-hit-handle" data-hit-handle aria-label="${esc(stage.title)}"></button>
       </div>
+      <p class="ouch-toast" data-ouch-toast hidden>Ouch!</p>
     </div>`;
   }
   if (stage.key === "candy") {
-    return `<div class="scene scene-candy" data-play>
-      ${kidsSvg()}
+    const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "candy");
+    const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
+    return `<div class="scene scene-candy scene-3d candy-stage" data-play${bgStyle}>
       <button type="button" class="bowl-hit" data-hit aria-label="${esc(stage.title)}">
         ${bowlSvg()}
         <span class="bowl-count" data-count>0 / ${stage.clicks}</span>
@@ -448,8 +495,7 @@ function mountPin(root, stage, ctx) {
         .map(
           (face) => `<button type="button" class="face-choice" data-face="${esc(face.id)}">
             <span class="mini-stack">${pumpkinSvg(`pick${face.id}`)}<span class="face-layer" style="${faceBoxStyle()}">${faceSvgMarkup(face)}</span></span>
-            <span class="face-name">${esc(face.label.en)}</span>
-            <span class="face-name ko" lang="ko">${esc(face.label.ko)}</span>
+            <span class="face-name">${esc(ctx.uiLang === "ko" ? face.label.ko : face.label.en)}</span>
           </button>`
         )
         .join("")}
@@ -484,12 +530,18 @@ function mountGuided(root, stage, ctx) {
   const slop = Number(stage.hitSlop ?? 20);
   let index = 0;
   let finished = false;
-  root.innerHTML = `<div class="scene scene-${esc(stage.key)}" data-play>
-    <div class="pumpkin-stack">
+  const carveBg = stage.key === "carve" ? scene3dUrl(ctx.assetBase, ctx.manifest, "carve") : "";
+  const bgStyle = carveBg ? ` style="--scene3d:url('${carveBg}')"` : "";
+  const tool =
+    stage.key === "carve"
+      ? `<div class="carve-knife" data-carve-knife aria-hidden="true">${knifeSvg()}</div>`
+      : `<button type="button" class="dot tool-pin" data-active-dot aria-label="Pin">${pinSvg()}</button>`;
+  root.innerHTML = `<div class="scene scene-${esc(stage.key)} scene-guided ${stage.key === "carve" ? "scene-3d scene-carve-board" : ""}" data-play${bgStyle}>
+    <div class="pumpkin-stack ${stage.key === "carve" ? "carve-stack" : "pin-stack"}">
       ${pumpkinSvg(stage.key)}
       <div class="face-layer" data-face-layer style="${faceBoxStyle()}">
         ${faceSvgMarkup(face)}
-        <button type="button" class="dot" data-active-dot aria-label="${stage.key === "carve" ? "Carve" : "Pin"}"></button>
+        ${tool}
       </div>
     </div>
   </div>`;
@@ -499,6 +551,7 @@ function mountGuided(root, stage, ctx) {
   const ghosts = root.querySelector("[data-ghosts]");
   const done = root.querySelector("[data-done]");
   const dot = root.querySelector("[data-active-dot]");
+  const knife = root.querySelector("[data-carve-knife]");
   const mark = stage.key === "carve" ? "mark-carve" : "mark-pin";
 
   function renderMarks() {
@@ -508,16 +561,34 @@ function mountGuided(root, stage, ctx) {
       .join("");
     done.innerHTML = points
       .slice(0, index)
-      .map((p) => `<circle class="${mark}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="1.8"/>`)
+      .map((p) => {
+        if (stage.key === "carve") {
+          return `<circle class="${mark}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="3.2"/><circle class="carve-hole" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="5.5"/>`;
+        }
+        return `<circle class="${mark}" cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="1.8"/>`;
+      })
       .join("");
     if (index >= points.length) {
-      dot.hidden = true;
+      if (dot) dot.hidden = true;
+      if (knife) knife.hidden = true;
       if (stage.key === "carve") layer.classList.add("is-lit");
       return;
     }
-    dot.hidden = false;
-    dot.style.left = `${points[index].x}%`;
-    dot.style.top = `${points[index].y}%`;
+    const px = points[index].x;
+    const py = points[index].y;
+    if (dot) {
+      dot.hidden = false;
+      dot.style.left = `${px}%`;
+      dot.style.top = `${py}%`;
+    }
+    if (knife) {
+      knife.hidden = false;
+      knife.style.left = `${px}%`;
+      knife.style.top = `${py}%`;
+      knife.classList.remove("chop");
+      void knife.offsetWidth;
+      knife.classList.add("chop");
+    }
   }
 
   function advance() {
@@ -542,7 +613,7 @@ function mountGuided(root, stage, ctx) {
   function onPointer(e) {
     if (finished || (e.button !== undefined && e.button !== 0)) return;
     if (!e.target.closest("[data-play]")) return;
-    if (e.target.closest("[data-active-dot]")) {
+    if (e.target.closest("[data-active-dot]") || (stage.key === "carve" && e.target.closest("[data-carve-knife]"))) {
       if (e.cancelable) e.preventDefault();
       advance();
       return;
@@ -568,7 +639,7 @@ function mountGuided(root, stage, ctx) {
   function onKey(e) {
     if (finished) return;
     if (e.key !== "Enter" && e.key !== " ") return;
-    if (!e.target.closest("[data-active-dot]")) return;
+    if (!e.target.closest("[data-active-dot]") && !e.target.closest("[data-carve-knife]")) return;
     e.preventDefault();
     advance();
   }

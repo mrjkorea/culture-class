@@ -89,6 +89,14 @@ export function pumpkinIcon() {
   </svg>`;
 }
 
+export function pinSvg() {
+  return `<svg class="pin-svg" viewBox="0 0 48 64" aria-hidden="true">
+    <ellipse cx="24" cy="14" rx="14" ry="10" fill="#ff4d8d" stroke="#fff" stroke-width="2"/>
+    <rect x="22" y="22" width="4" height="34" rx="2" fill="#c0c8d4"/>
+    <path d="M18 56 l12 6 l-12 6 z" fill="#8d97a8"/>
+  </svg>`;
+}
+
 export function knifeSvg() {
   return `<svg viewBox="0 0 48 84" aria-hidden="true">
     <path d="M20 8 h8 l4 40 h-16z" fill="#eef6ff" stroke="#8aa4b8" stroke-width="2"/>
@@ -112,7 +120,14 @@ export function candleSvg() {
 }
 
 export function panSvg() {
-  return `<svg class="pan" viewBox="0 0 280 160" aria-hidden="true">
+  return `<svg class="pan" viewBox="0 0 280 200" aria-hidden="true">
+    <g class="roast-fire" data-roast-fire aria-hidden="true">
+      <ellipse cx="118" cy="168" rx="72" ry="14" fill="#ff6b1a" opacity=".85"/>
+      <ellipse cx="98" cy="158" rx="22" ry="28" fill="#ff8a1e"/>
+      <ellipse cx="118" cy="152" rx="26" ry="34" fill="#ffb703"/>
+      <ellipse cx="140" cy="158" rx="20" ry="26" fill="#ff8a1e"/>
+      <ellipse cx="118" cy="148" rx="14" ry="20" fill="#ffe56a" opacity=".9"/>
+    </g>
     <ellipse cx="118" cy="128" rx="90" ry="12" fill="rgba(70,20,60,.18)"/>
     <rect x="176" y="78" width="86" height="16" rx="8" fill="#8d97a8"/>
     <ellipse cx="118" cy="86" rx="92" ry="36" fill="#5c6778"/>
