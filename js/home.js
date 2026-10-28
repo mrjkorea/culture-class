@@ -23,8 +23,11 @@ function renderHome(data) {
 
   grid.innerHTML = data.months
     .map((m) => {
+      const hasCover = Boolean(m.cardCover || m.coverImage);
       const halloween = m.monthLayout === "halloween" || m.id === "10";
-      const cls = halloween ? "month-card month-card-cover" : "month-card";
+      const cls = hasCover
+        ? `month-card month-card-cover${halloween ? " month-card-cover-halloween" : ""}`
+        : "month-card";
       return `
     <a class="${cls}" href="${monthUrl(m.slug)}"${coverStyle(m)}>
       <div class="num">Month ${m.id}</div>

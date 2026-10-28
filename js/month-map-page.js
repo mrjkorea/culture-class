@@ -44,6 +44,7 @@ function stepHref(month, step) {
     case "cp":
       return cpSpeakUrl(month.id);
     case "craft":
+      if (!month.craftPath) return monthPageUrl(month.slug);
       return `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
     case "bingo":
       return `${bingoUrl("student")}?month=${month.id}`;
@@ -76,7 +77,9 @@ export function renderThemedMapMonth(month) {
 
   const root = repoRoot();
   const mapBg = `${root}/${theme.mapImage.replace(/^\/+/, "")}`;
-  const steps = themedMapSteps(month, theme);
+  const steps = themedMapSteps(month, theme).filter(
+    (step) => step.id !== "craft" || month.craftPath
+  );
   const current = firstIncompleteStep(month.id, steps);
   const nextAfterCurrent = nextStepAfter(month.id, current.id, steps);
 
