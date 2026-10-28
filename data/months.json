@@ -1,6 +1,6 @@
 {
   "siteTitle": "Culture Class",
-  "siteSubtitle": "MRJ ENGLISH \u2014 12 monthly culture units",
+  "siteSubtitle": "MRJ ENGLISH — 12 monthly culture units",
   "months": [
     {
       "id": "01",
@@ -27,11 +27,12 @@
       "craftPath": "craft/january/",
       "craftTitle": "New Year's Party Craft",
       "craftButton": "Play New Year's Craft",
-      "craftBlurb": "Balloons, countdown, confetti, and a resolution \u2014 fastest time on this device.",
+      "craftBlurb": "Balloons, countdown, confetti, and a resolution — fastest time on this device.",
       "featureTitle": "New Year's Party Craft",
-      "craftEmoji": "\ud83c\udf89",
+      "craftEmoji": "🎉",
       "hideNotes": true,
-      "wordMasterMatchUrl": "#"
+      "wordMasterMatchUrl": "#",
+      "cardCover": "assets/covers/01-january.jpg"
     },
     {
       "id": "02",
@@ -60,7 +61,8 @@
       "craftButton": "Play Valentine Craft",
       "craftBlurb": "Card color, fold, hearts, mailbox, and candy hearts — fastest time on this device.",
       "featureTitle": "Valentine Card Craft",
-      "craftEmoji": "💌"
+      "craftEmoji": "💌",
+      "cardCover": "assets/covers/02-february.jpg"
     },
     {
       "id": "03",
@@ -87,9 +89,10 @@
       "craftPath": "craft/march/",
       "craftTitle": "St. Patrick's & Wheaten Craft",
       "craftButton": "Play March Craft",
-      "craftBlurb": "Shamrocks, jig, leprechaun chase, bodhrán, and Jay's Wheaten — fastest time on this device.",
+      "craftBlurb": "Shamrocks, jig, leprechaun chase, bodhrán, and the Wheaten terrier — fastest time on this device.",
       "featureTitle": "St. Patrick's & Wheaten Craft",
-      "craftEmoji": "☘️"
+      "craftEmoji": "☘️",
+      "cardCover": "assets/covers/03-march.jpg"
     },
     {
       "id": "04",
@@ -118,7 +121,8 @@
       "craftButton": "Play Easter Craft",
       "craftBlurb": "Five hunt levels, wash–dye–decorate, then roll downhill — fastest time on this device.",
       "featureTitle": "Easter Egg Craft",
-      "craftEmoji": "🥚"
+      "craftEmoji": "🥚",
+      "cardCover": "assets/covers/04-april.jpg"
     },
     {
       "id": "05",
@@ -132,7 +136,7 @@
       "introYoutube": [
         {
           "id": "krh4hu-hGPc",
-          "title": "Buddha \u2014 Journey to Enlightenment (8:40)"
+          "title": "Buddha — Journey to Enlightenment (8:40)"
         }
       ],
       "featureLabel": "Play the Buddhism craft",
@@ -147,7 +151,8 @@
       "craftButton": "Play May Craft",
       "craftBlurb": "Gate, fog, lamp, kind speech, offering, sweep, walk, breathe, bell, lotus — fastest time on this device.",
       "featureTitle": "Path to Enlightenment",
-      "craftEmoji": "🪷"
+      "craftEmoji": "🪷",
+      "cardCover": "assets/covers/05-may.jpg"
     },
     {
       "id": "06",
@@ -176,7 +181,8 @@
       "craftEmoji": "🌺",
       "wordsPreviewFile": "jun-words.json",
       "dailyQuizFile": "jun-daily-quiz.json",
-      "cpPackFile": "cp/culture_m06_cp.json"
+      "cpPackFile": "cp/culture_m06_cp.json",
+      "cardCover": "assets/covers/06-june.jpg"
     },
     {
       "id": "07",
@@ -190,7 +196,7 @@
       "introYoutube": [
         {
           "id": "bzZUUL34cKg",
-          "title": "Exploring Canada \u2014 Part 1 (4:34)"
+          "title": "Exploring Canada — Part 1 (4:34)"
         }
       ],
       "featureLabel": "Play the Canada Day craft",
@@ -205,7 +211,8 @@
       "craftEmoji": "🍁",
       "wordsPreviewFile": "jul-words.json",
       "dailyQuizFile": "jul-daily-quiz.json",
-      "cpPackFile": "cp/culture_m07_cp.json"
+      "cpPackFile": "cp/culture_m07_cp.json",
+      "cardCover": "assets/covers/07-july.jpg"
     },
     {
       "id": "08",
@@ -221,22 +228,22 @@
       "introYoutube": [
         {
           "placeholder": true,
-          "title": "MRJ Daily ONE \u2014 coming soon",
-          "note": "Korean History intro part 1 (~8:20) \u2014 not matched on @mrjenglishnews yet."
+          "title": "MRJ Daily ONE — coming soon",
+          "note": "World history intro part 1 (~8:20) — not matched on @mrjenglishnews yet."
         },
         {
           "id": "njECVX72TbY",
-          "title": "MRJ Daily TWO \u2014 5000 Years of Korean History (11:45)"
+          "title": "MRJ Daily TWO — 5000 Years of Korean History (11:45)"
         }
       ],
       "featureTitle": "History Day Timeline Craft",
       "featureLabel": "Play the History Day craft",
       "featureDetail": "Ten interactive stages with Sage Fish narration — world civilizations from Egypt to today, stage movies, and a local fastest-time board.",
-      "featureYoutubeId": "6qsTgptIhlw",
-      "notes": "August focuses on History Day and world civilizations. Play the timeline craft from this page, then vocabulary, comprehension, and quiz games.",
-      "monthLayout": "koreanhistory",
+      "notes": "Students explore History Day — world civilizations, timelines, and how we learn from the past. Play the timeline craft from this page, then vocabulary, comprehension, and quiz games.",
       "dailyQuizFile": "aug-daily-quiz.json",
       "wordMasterMatchUrl": "#",
+      "cardCover": "assets/covers/08-august.jpg",
+      "monthLayout": "historyday",
       "craftPath": "craft/august/",
       "craftTitle": "History Day Timeline",
       "craftButton": "Play August Craft",
@@ -255,7 +262,7 @@
       "introYoutube": [
         {
           "id": "Jx5Pxlc85G8",
-          "title": "Saving Our Planet \u2014 Earth Day (15:48)"
+          "title": "Saving Our Planet — Earth Day (15:48)"
         }
       ],
       "featureLabel": "Play the Earth Day craft",
@@ -270,7 +277,8 @@
       "craftEmoji": "🌍",
       "wordsPreviewFile": "sep-words.json",
       "dailyQuizFile": "sep-daily-quiz.json",
-      "cpPackFile": "cp/culture_m09_cp.json"
+      "cpPackFile": "cp/culture_m09_cp.json",
+      "cardCover": "assets/covers/09-september.jpg"
     },
     {
       "id": "10",
@@ -298,7 +306,8 @@
       "featureTitle": "Jack-o'-Lantern Craft",
       "featureLabel": "Play the pumpkin craft (replaces the feature video)",
       "featureDetail": "Open the Halloween craft mini-game. Ten stages, English speech, Korean on screen, and a fastest-time leaderboard on this device.",
-      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here \u2014 watch in class from licensed sources."
+      "notes": "Halloween customs, spooky vocabulary, and class games. Play the Jack-o'-Lantern Craft from this page. Cartoons are not hosted here — watch in class from licensed sources.",
+      "cardCover": "assets/covers/10-october.jpg"
     },
     {
       "id": "11",
@@ -312,7 +321,7 @@
       "introYoutube": [
         {
           "placeholder": true,
-          "title": "MRJ Daily ONE \u2014 coming soon",
+          "title": "MRJ Daily ONE — coming soon",
           "note": "First Thanksgiving intro slot not matched on @mrjenglishnews yet."
         },
         {
@@ -332,7 +341,8 @@
       "craftEmoji": "🦃",
       "wordsPreviewFile": "nov-words.json",
       "dailyQuizFile": "nov-daily-quiz.json",
-      "cpPackFile": "cp/culture_m11_cp.json"
+      "cpPackFile": "cp/culture_m11_cp.json",
+      "cardCover": "assets/covers/11-november.jpg"
     },
     {
       "id": "12",
@@ -355,7 +365,8 @@
       "craftEmoji": "🎄",
       "wordsPreviewFile": "dec-words.json",
       "dailyQuizFile": "dec-daily-quiz.json",
-      "cpPackFile": "cp/culture_m12_cp.json"
+      "cpPackFile": "cp/culture_m12_cp.json",
+      "cardCover": "assets/covers/12-december.jpg"
     }
   ]
 }

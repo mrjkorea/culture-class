@@ -884,8 +884,12 @@ body.theme-halloween {
   min-height: 118px;
   padding-top: 4.5rem;
   overflow: hidden;
-  border-color: #ff8a1e;
+  border-color: rgba(255, 255, 255, 0.22);
   background: var(--surface);
+}
+
+.month-card-cover-halloween {
+  border-color: #ff8a1e;
 }
 
 .month-card-cover::before {
