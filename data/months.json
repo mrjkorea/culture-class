@@ -236,16 +236,19 @@
           "title": "MRJ Daily TWO — 5000 Years of Korean History (11:45)"
         }
       ],
-      "featureYoutubeId": "6qsTgptIhlw",
-      "featureTitle": "Why Is Korea Divided in Two?",
-      "featureLabel": "Watch in class",
-      "featureDetail": "Why Is Korea Divided in Two? — A Kid Explains History (~5 min). Tap Green subtitles for English captions.",
-      "notes": "Students explore History Day — world civilizations, timelines, and how we learn from the past. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review. (Craft coming in a later update.)",
+      "featureTitle": "History Day Timeline Craft",
+      "featureLabel": "Play the History Day craft",
+      "featureDetail": "Ten interactive stages with Sage Fish narration — world civilizations from Egypt to today, stage movies, and a local fastest-time board.",
+      "notes": "Students explore History Day — world civilizations, timelines, and how we learn from the past. Play the timeline craft from this page, then vocabulary, comprehension, and quiz games.",
       "dailyQuizFile": "aug-daily-quiz.json",
       "wordMasterMatchUrl": "#",
       "cardCover": "assets/covers/08-august.jpg",
       "monthLayout": "historyday",
-      "craftPath": null
+      "craftPath": "craft/august/",
+      "craftTitle": "History Day Timeline",
+      "craftButton": "Play August Craft",
+      "craftBlurb": "Pyramids, clay tablets, Great Wall, Rome, Maya, Mali, Inca, and a lit globe — fastest time on this device.",
+      "craftEmoji": "\ud83c\udfdb\ufe0f"
     },
     {
       "id": "09",
