@@ -90,14 +90,14 @@ const THEMES = {
     craftEmoji: "🍁",
     memoryCardBack: "canada",
   },
-  koreanhistory: {
-    bodyClass: "theme-koreanhistory",
+  historyday: {
+    bodyClass: "theme-historyday",
     cssHref: "assets/css/month-theme-shell.css",
     mapImage: "assets/covers/08-august-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
-    pathStroke: "rgba(100,160,255,0.55)",
-    craftEmoji: "🏯",
-    memoryCardBack: "koreanhistory",
+    pathStroke: "rgba(210,180,120,0.55)",
+    craftEmoji: "📜",
+    memoryCardBack: "historyday",
   },
   earthday: {
     bodyClass: "theme-earthday",
@@ -138,7 +138,7 @@ const MONTH_LAYOUT = {
   buddhism: "buddhism",
   remembrance: "remembrance",
   canada: "canada",
-  koreanhistory: "koreanhistory",
+  historyday: "historyday",
   earthday: "earthday",
   thanksgiving: "thanksgiving",
   christmas: "christmas",

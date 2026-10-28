@@ -18,7 +18,7 @@ Eleven-stage Culture Class craft for month 03. **Leo** Fish voice (`a60e9fc6e78c
 
 ## Wheaten photos
 
-`assets/wheaten/` uses **stock stand-in** JPEGs (labeled placeholders). Jay’s own Wheaten photo can replace `wheaten_portrait.jpg`, walk frames, and `parade.jpg` when uploaded.
+`assets/wheaten/` uses **stock stand-in** JPEGs (`wheaten-hero.jpg` from the covers pack). Jay’s own Wheaten photo can replace `wheaten-hero.jpg`, walk frames, and `parade.jpg` when uploaded.
 
 ## Flow
 
