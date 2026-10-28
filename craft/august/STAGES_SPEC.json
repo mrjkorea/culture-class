@@ -1,0 +1,8 @@
+{
+  "id": "craft_august_history_v1",
+  "title": "History Day Timeline",
+  "month": "08",
+  "narrator": "Sage Fish ca3007f96ae7499ab87d27ea3599956a",
+  "stages": 10,
+  "pattern": "still 3s + mp4 after each stage; Fish MP3 only"
+}

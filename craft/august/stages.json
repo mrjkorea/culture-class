@@ -1,0 +1,201 @@
+{
+  "id": "craft_august_history_v1",
+  "title": "History Day Timeline",
+  "month": "08",
+  "targetMinutes": [12, 18],
+  "leaderboard": {
+    "key": "culture_craft_august_history_v1",
+    "sort": "fastestTime",
+    "tieBreak": "misses"
+  },
+  "betweenStage": { "stillSec": 3, "movieAfterStage": true },
+  "uiCopy": {
+    "en": {
+      "classTag": "Mr. Jay's Culture Class · August",
+      "play": "Start the timeline",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Ten world civilizations — Egypt to today. Stack pyramids, stamp tablets, build walls, and light the modern globe. Fastest time wins.",
+      "beatNote": "After each stage: a short still, then a stage movie.",
+      "timeNote": "Timer runs during play only — not during movies or the finale.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Travel again",
+      "doneTitle": "History hero",
+      "doneBody": "Happy History Day!",
+      "watch": "Timeline",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "August",
+      "loadError": "Could not load the craft. Reload the page."
+    },
+    "ko": {
+      "classTag": "제이 선생님 문화 수업 · 8월",
+      "play": "시작",
+      "nickname": "닉네임",
+      "namePlaceholder": "이름",
+      "needName": "플레이하려면 닉네임을 입력하세요.",
+      "how": "열 번의 문명 여행 — 이집트부터 오늘까지. 피라미드, 점토판, 만리장성, 현대 지구까지!",
+      "beatNote": "단계 후 짧은 사진, 그다음 영상이 나옵니다.",
+      "timeNote": "시간은 플레이 중에만 흐릅니다.",
+      "board": "최고 기록",
+      "empty": "아직 기록이 없어요!",
+      "misses": "실수",
+      "yourTime": "내 시간",
+      "rank": "순위",
+      "playAgain": "다시 여행",
+      "doneTitle": "역사 히어로",
+      "doneBody": "즐거운 역사의 날!",
+      "watch": "연표",
+      "soundOn": "소리 켜짐",
+      "soundOff": "소리 꺼짐",
+      "back": "8월",
+      "loadError": "불러오지 못했어요."
+    }
+  },
+  "stages": [
+    {
+      "id": 1,
+      "key": "egypt",
+      "title": "Ancient Egypt",
+      "titleKo": "고대 이집트",
+      "type": "pyramid_stack",
+      "clicks": 12,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Stack pyramid blocks — Egypt is famous for pyramids.", "Keep building upward.", "The pyramid stands tall."],
+        "ko": ["피라미드 블록을 쌓아요.", "계속 올려요.", "피라미드가 완성됐어요."]
+      }
+    },
+    {
+      "id": 2,
+      "key": "mesopotamia",
+      "title": "Mesopotamia",
+      "titleKo": "메소포타미아",
+      "type": "tablet_stamp",
+      "clicks": 10,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Press the seal into wet clay.", "Stamp the cuneiform tablet.", "Tablet sealed — writing begins."],
+        "ko": ["점토에 인장을 눌러요.", "쐐기 문자 판을 찍어요.", "글씨가 시작됐어요."]
+      }
+    },
+    {
+      "id": 3,
+      "key": "indus",
+      "title": "Indus Valley",
+      "titleKo": "인더스 문명",
+      "type": "settlement_place",
+      "clicks": 8,
+      "lines": {
+        "en": ["Place houses along the river.", "Early cities need planners.", "Settlement grows."],
+        "ko": ["강가에 집을 놓아요.", "도시를 계획해요.", "마을이 커졌어요."]
+      }
+    },
+    {
+      "id": 4,
+      "key": "china",
+      "title": "Ancient China",
+      "titleKo": "고대 중국",
+      "type": "wall_stones",
+      "clicks": 14,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Lay Great Wall stones along the ridge.", "Stone by stone.", "The wall stretches on."],
+        "ko": ["만리장성 돌을 놓아요.", "돌 하나씩.", "장성이 이어져요."]
+      }
+    },
+    {
+      "id": 5,
+      "key": "greece",
+      "title": "Ancient Greece",
+      "titleKo": "고대 그리스",
+      "type": "column_rebuild",
+      "clicks": 6,
+      "lines": {
+        "en": ["Rebuild the broken temple column.", "Marble pieces click into place.", "The temple stands again."],
+        "ko": ["무너진 기둥을 고쳐요.", "대리석을 맞춰요.", "신전이 다시 섰어요."]
+      }
+    },
+    {
+      "id": 6,
+      "key": "rome",
+      "title": "Ancient Rome",
+      "titleKo": "고대 로마",
+      "type": "road_pave",
+      "clicks": 16,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Pave the Roman road — all roads lead to Rome.", "Lay cobblestones.", "Road and aqueduct arches rise."],
+        "ko": ["로마 길을 포장해요.", "돌길을 깔아요.", "길과 수도교 아치가 생겨요."]
+      }
+    },
+    {
+      "id": 7,
+      "key": "maya",
+      "title": "Maya",
+      "titleKo": "마야",
+      "type": "maya_steps",
+      "clicks": 10,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Add steps to the jungle pyramid.", "Spin the calendar stone.", "Maya timekeepers mark the sky."],
+        "ko": ["피라미드 계단을 놓아요.", "달력 돌을 돌려요.", "마야는 하늘을 봤어요."]
+      }
+    },
+    {
+      "id": 8,
+      "key": "mali",
+      "title": "Mali & West Africa",
+      "titleKo": "말리",
+      "type": "gold_weigh",
+      "weighCount": 6,
+      "lines": {
+        "en": ["Weigh gold on the trade scales.", "Balance the weights.", "Camel caravan packs up."],
+        "ko": ["금을 저울에 올려요.", "균형을 맞춰요.", "낙타 caravan이 준비됐어요."]
+      }
+    },
+    {
+      "id": 9,
+      "key": "inca",
+      "title": "Inca",
+      "titleKo": "잉카",
+      "type": "terrace_build",
+      "clicks": 12,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Build terrace steps on the mountain.", "Hold the rope bridge steady.", "Inca paths connect the peaks."],
+        "ko": ["산에 계단식 밭을 만들어요.", "로프 다리를 잡아요.", "잉카 길이 이어져요."]
+      }
+    },
+    {
+      "id": 10,
+      "key": "modern",
+      "title": "Modern world",
+      "titleKo": "현대",
+      "type": "modern_finale",
+      "clicks": 10,
+      "midAt": 0.5,
+      "lines": {
+        "en": ["Light the globe — our connected world.", "Place modern city landmarks.", "Happy History Day!"],
+        "ko": ["지구본에 불을 켜요.", "현대 도시 랜드마크를 놓아요.", "즐거운 역사의 날!"]
+      }
+    }
+  ],
+  "transitions": [
+    { "id": "t01_egypt", "durationSec": 3, "caption": { "en": "Egypt", "ko": "이집트" } },
+    { "id": "t02_meso", "durationSec": 3, "caption": { "en": "Mesopotamia", "ko": "메소포타미아" } },
+    { "id": "t03_indus", "durationSec": 3, "caption": { "en": "Indus", "ko": "인더스" } },
+    { "id": "t04_china", "durationSec": 3, "caption": { "en": "China", "ko": "중국" } },
+    { "id": "t05_greece", "durationSec": 3, "caption": { "en": "Greece", "ko": "그리스" } },
+    { "id": "t06_rome", "durationSec": 3, "caption": { "en": "Rome", "ko": "로마" } },
+    { "id": "t07_maya", "durationSec": 3, "caption": { "en": "Maya", "ko": "마야" } },
+    { "id": "t08_mali", "durationSec": 3, "caption": { "en": "Mali", "ko": "말리" } },
+    { "id": "t09_inca", "durationSec": 3, "caption": { "en": "Inca", "ko": "잉카" } },
+    { "id": "t10_modern", "durationSec": 3, "caption": { "en": "Today", "ko": "오늘" } }
+  ]
+}

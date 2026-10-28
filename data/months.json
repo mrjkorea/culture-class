@@ -211,7 +211,7 @@
       "id": "08",
       "slug": "08-august",
       "name": "August",
-      "theme": "Korean History Day",
+      "theme": "History Day",
       "unitId": "culture_m08",
       "showUnitId": "culture_m08_show",
       "cpDocUrl": "https://docs.google.com/document/d/1IpHw5NeUjRo6RaRNbj6khLVr4dyowaUq9m0qeDA87EU/edit",
@@ -229,13 +229,19 @@
           "title": "MRJ Daily TWO \u2014 5000 Years of Korean History (11:45)"
         }
       ],
+      "featureTitle": "History Day Timeline Craft",
+      "featureLabel": "Play the History Day craft",
+      "featureDetail": "Ten interactive stages with Sage Fish narration — world civilizations from Egypt to today, stage movies, and a local fastest-time board.",
       "featureYoutubeId": "6qsTgptIhlw",
-      "featureTitle": "Why Is Korea Divided in Two?",
-      "featureLabel": "Watch in class",
-      "featureDetail": "Why Is Korea Divided in Two? \u2014 A Kid Explains History (~5 min). Tap Green subtitles for English captions.",
-      "notes": "Students learn about Korean History Day: what it is, why it matters, and how people celebrate or remember it. The lesson combines teaching videos, vocabulary, comprehension, a feature video, and quiz games, ending with bingo and review.",
+      "notes": "August focuses on History Day and world civilizations. Play the timeline craft from this page, then vocabulary, comprehension, and quiz games.",
+      "monthLayout": "koreanhistory",
       "dailyQuizFile": "aug-daily-quiz.json",
-      "wordMasterMatchUrl": "#"
+      "wordMasterMatchUrl": "#",
+      "craftPath": "craft/august/",
+      "craftTitle": "History Day Timeline",
+      "craftButton": "Play August Craft",
+      "craftBlurb": "Pyramids, clay tablets, Great Wall, Rome, Maya, Mali, Inca, and a lit globe — fastest time on this device.",
+      "craftEmoji": "\ud83c\udfdb\ufe0f"
     },
     {
       "id": "09",
