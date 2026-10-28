@@ -1,11 +1,9 @@
-# August craft · Sage Fish (wise storyteller)
+# August craft · Sage Fish (ca3007f96ae7499ab87d27ea3599956a)
 
-Fish voice **`ca3007f96ae7499ab87d27ea3599956a`** — calm clear English storyteller (distinct from Frank, Coach, Harper, Leo, Walt, June, Robot, Nia, Cowboy, Nature).
+Baked 2026-10-29 02:54 KST via make_voice.py
 
-Bake: `FISH_API_KEY=… ./scripts/bake-sage-audio.sh`
-
-| File | English line |
-|------|----------------|
+| file | line |
+|---|---|
 | intro.mp3 | Welcome, time traveler! Ten stops on our world timeline — from pyramids to the modern globe. |
 | finale.mp3 | Happy History Day! Check the board for your time. |
 | miss.mp3 | Not quite — try the gold side of the scale. |
