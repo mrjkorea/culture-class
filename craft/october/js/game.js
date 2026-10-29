@@ -5,7 +5,7 @@ import { mountStage } from "./scenes.js";
 import { pumpkinSvg } from "./art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
-import { getLang, studentDisplayName } from "../../../js/i18n.js";
+import { getLang, LANGS, pickLines, pickLocalized, studentDisplayName } from "../../../js/i18n.js";
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
@@ -78,10 +78,18 @@ function fill(template) {
   return String(template || "").split("{candies}").join(String(candyCount()));
 }
 
-function spoken(block) {
-  return uiLang === "ko" ? block.ko : block.en;
+function spokenLine(block, lineIndex) {
+  return block?.en?.[lineIndex] ?? pickLines(block, lineIndex, "en");
 }
 
+function pickBlock() {
+  const block = {};
+  for (const { code } of LANGS) {
+    const copy = spec.uiCopy?.[code] || spec.uiCopy?.en || {};
+    block[code] = [copy.pickFace || spec.uiCopy.en.pickFace || ""];
+  }
+  return block;
+}
 function clipKeyFor(stage, lineIndex) {
   if (!stage) return "";
   const key = stage.key;
@@ -91,16 +99,9 @@ function clipKeyFor(stage, lineIndex) {
 }
 
 function speakLine(stage, block, lineIndex, opts = {}) {
-  const text = spoken(block)[lineIndex] || "";
+  const text = spokenLine(block, lineIndex);
   const clipKey = opts.clipKey || (stage ? clipKeyFor(stage, lineIndex) : "pin_start");
   return speech.speak(text, { ...opts, clipKey });
-}
-
-function pickBlock() {
-  return {
-    en: [spec.uiCopy.en.pickFace],
-    ko: [spec.uiCopy.ko.pickFace],
-  };
 }
 
 function frankUrls() {
@@ -118,7 +119,7 @@ function wireFrank() {
 }
 
 function paintLang() {
-  uiLang = getLang() === "ko" ? "ko" : "en";
+  uiLang = getLang();
   backLink.textContent = t("back");
   soundBtn.setAttribute("aria-label", speech.enabled ? t("soundOn") : t("soundOff"));
   soundBtn.classList.toggle("is-muted", !speech.enabled);
@@ -131,12 +132,11 @@ function showLines(block, index, alert = false) {
 
 function paintLines() {
   if (!lineState) return;
-  const lang = uiLang === "ko" ? "ko" : "en";
   const a = document.getElementById("line-a");
   const b = document.getElementById("line-b");
   if (!a || !b) return;
-  a.textContent = lineState.block[lang][lineState.index] || lineState.block.en?.[lineState.index] || "";
-  a.lang = lang;
+  a.textContent = pickLines(lineState.block, lineState.index, uiLang);
+  a.lang = uiLang === "zh-Hans" ? "zh" : uiLang.split("-")[0];
   b.textContent = "";
   b.hidden = true;
   a.classList.toggle("is-alert", Boolean(lineState.alert));
@@ -262,7 +262,7 @@ function stageShell(stage, index) {
     <div class="hud">
       <div class="hud-row">
         <div class="pips" aria-hidden="true">${pips}</div>
-        <h2 id="stage-label">${esc(`${index + 1}/${spec.stages.length} ${uiLang === "ko" ? stage.titleKo || stage.title : stage.title}`)}</h2>
+        <h2 id="stage-label">${esc(`${index + 1}/${spec.stages.length} ${pickLocalized(stage.titles || { en: stage.title }, uiLang)}`)}</h2>
         <div class="stats">
           <span id="timer">${esc(formatTime(timer.read()))}</span>
           <span id="misses"></span>
@@ -398,8 +398,8 @@ function playStageMovie(transition, index) {
   const src = transitionVideoUrl(assetBase, manifest, id);
   if (!src) return Promise.resolve();
   const poster = transitionUrl(assetBase, manifest, id);
-  const caption = transition?.caption || { en: "", ko: "" };
-  const title = uiLang === "ko" ? caption.ko : caption.en;
+  const caption = transition?.caption || { en: "" };
+  const title = pickLocalized(caption, uiLang);
   return new Promise((resolve) => {
     view.dataset.screen = "stage-movie";
     view.dataset.phase = "stage-movie";
@@ -487,7 +487,7 @@ function renderResults() {
   view.dataset.screen = "results";
   view.dataset.stageKey = "";
   view.dataset.phase = "results";
-  const faceLabel = face ? (uiLang === "ko" ? face.label.ko : face.label.en) : "";
+  const faceLabel = face ? pickLocalized(face.label, uiLang) : "";
   view.innerHTML = `<section class="card results-card" id="results">
     <div class="confetti" aria-hidden="true"></div>
     <p class="kicker">${esc(t("doneTitle"))}</p>
@@ -521,10 +521,12 @@ function renderResults() {
       box.append(bit);
     }
   }
-  showLines(
-    { en: [spec.uiCopy.en.doneBody], ko: [spec.uiCopy.ko.doneBody] },
-    0
-  );
+  const doneBlock = {};
+  for (const { code } of LANGS) {
+    const body = spec.uiCopy?.[code]?.doneBody || spec.uiCopy.en.doneBody;
+    doneBlock[code] = [body];
+  }
+  showLines(doneBlock, 0);
   document.getElementById("again-btn").addEventListener("click", () => {
     state = null;
     renderTitle(false);
@@ -539,8 +541,8 @@ function validate(next, faceList) {
     throw new Error("Each stage needs a transition still");
   }
   next.stages.forEach((stage, index) => {
-    if (!stage.lines?.en || stage.lines.en.length < 3 || !stage.lines?.ko || stage.lines.ko.length < 3) {
-      throw new Error(`Stage ${stage.id} needs 3 English and 3 Korean lines`);
+    if (!stage.lines?.en || stage.lines.en.length < 3) {
+      throw new Error(`Stage ${stage.id} needs 3 English lines`);
     }
     if (stage.type === "luck_hunt") {
       if (!(stage.poolSize > 0) || !(stage.goodCount >= 1) || stage.goodCount > stage.poolSize) {
@@ -586,7 +588,14 @@ function bindChrome() {
 
 async function init() {
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  uiLang = getLang() === "ko" ? "ko" : "en";
+  uiLang = getLang();
+  window.addEventListener("storage", (e) => {
+    if (e.key === "culture-class-lang") {
+      uiLang = getLang();
+      paintLang();
+      paintLines();
+    }
+  });
   try {
     const loaded = await loadCraft();
     spec = loaded.spec;

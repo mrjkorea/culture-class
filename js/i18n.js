@@ -45,6 +45,20 @@ export function pickLocalized(block, lang = getLang()) {
   return block.en ?? "";
 }
 
+/** Localized string from a per-lang array block (craft stage lines). */
+export function pickLines(block, index, lang = getLang()) {
+  if (!block || typeof block !== "object") return "";
+  const primary = block[lang];
+  if (Array.isArray(primary) && primary[index] != null && primary[index] !== "") {
+    return primary[index];
+  }
+  const en = block.en;
+  if (Array.isArray(en) && en[index] != null) return en[index];
+  const ko = block.ko;
+  if (Array.isArray(ko) && ko[index] != null) return ko[index];
+  return "";
+}
+
 export function applyI18n(root = document) {
   root.querySelectorAll("[data-i18n]").forEach((el) => {
     el.textContent = t(el.getAttribute("data-i18n"));

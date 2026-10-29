@@ -10,10 +10,24 @@
   "languages": {
     "ui": [
       "en",
-      "ko"
+      "ko",
+      "zh-Hans",
+      "ja",
+      "es",
+      "hi",
+      "de",
+      "vi",
+      "pt-BR",
+      "id",
+      "fr",
+      "ar",
+      "tr",
+      "it",
+      "pl"
     ],
     "default": "en",
-    "listeningPrimary": "en"
+    "listeningPrimary": "en",
+    "storageKey": "culture-class-lang"
   },
   "leaderboard": {
     "key": "culture_craft_oct_pumpkin_v1",
@@ -82,6 +96,318 @@
       "soundOff": "소리 꺼짐",
       "back": "10월",
       "loadError": "문제가 생겼어요. 페이지를 다시 불러오세요."
+    },
+    "zh-Hans": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "ja": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "es": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "hi": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "de": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "vi": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "pt-BR": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "id": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "fr": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "ar": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "tr": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "it": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
+    },
+    "pl": {
+      "classTag": "Mr. Jay's Culture Class · October",
+      "play": "Play",
+      "nickname": "Nickname",
+      "namePlaceholder": "Your name",
+      "needName": "Type a nickname to play.",
+      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
+      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
+      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
+      "board": "Fastest times",
+      "empty": "No times yet. Be the first!",
+      "misses": "Misses",
+      "yourTime": "Your time",
+      "rank": "Rank",
+      "playAgain": "Play again",
+      "doneTitle": "You did it!",
+      "doneBody": "Happy Halloween!",
+      "pickFace": "Pick a face",
+      "watch": "Get ready",
+      "soundOn": "Sound on",
+      "soundOff": "Sound off",
+      "back": "October",
+      "loadError": "Something went wrong. Reload the page."
     }
   },
   "stages": [
@@ -89,7 +415,6 @@
       "id": 1,
       "key": "patch",
       "title": "Pumpkin patch",
-      "titleKo": "호박밭",
       "type": "luck_hunt",
       "poolSize": 36,
       "goodCount": 1,
@@ -111,14 +436,95 @@
           "좋은 호박을 찾으세요!",
           "앗! 다른 걸 찾아보세요!",
           "좋은 호박이에요!"
+        ],
+        "zh-Hans": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "ja": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "es": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "hi": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "de": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "vi": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "pt-BR": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "id": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "fr": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "ar": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "tr": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "it": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
+        ],
+        "pl": [
+          "Find a good pumpkin!",
+          "Oh no! Try another!",
+          "That's a good one!"
         ]
+      },
+      "titles": {
+        "en": "Pumpkin patch",
+        "ko": "호박밭",
+        "zh-Hans": "Pumpkin patch",
+        "ja": "Pumpkin patch",
+        "es": "Pumpkin patch",
+        "hi": "Pumpkin patch",
+        "de": "Pumpkin patch",
+        "vi": "Pumpkin patch",
+        "pt-BR": "Pumpkin patch",
+        "id": "Pumpkin patch",
+        "fr": "Pumpkin patch",
+        "ar": "Pumpkin patch",
+        "tr": "Pumpkin patch",
+        "it": "Pumpkin patch",
+        "pl": "Pumpkin patch"
       }
     },
     {
       "id": 2,
       "key": "wash",
       "title": "Wash",
-      "titleKo": "씻기",
       "type": "mash",
       "clicks": 50,
       "midAt": 0.72,
@@ -136,14 +542,95 @@
           "호박을 씻으세요. 계속 문지르세요!",
           "깨끗해졌어요!",
           "잘했어요!"
+        ],
+        "zh-Hans": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "ja": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "es": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "hi": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "de": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "vi": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "pt-BR": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "id": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "fr": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "ar": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "tr": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "it": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
+        ],
+        "pl": [
+          "Wash the pumpkin. Keep scrubbing!",
+          "Nice and clean!",
+          "Good job!"
         ]
+      },
+      "titles": {
+        "en": "Wash",
+        "ko": "씻기",
+        "zh-Hans": "Wash",
+        "ja": "Wash",
+        "es": "Wash",
+        "hi": "Wash",
+        "de": "Wash",
+        "vi": "Wash",
+        "pt-BR": "Wash",
+        "id": "Wash",
+        "fr": "Wash",
+        "ar": "Wash",
+        "tr": "Wash",
+        "it": "Wash",
+        "pl": "Wash"
       }
     },
     {
       "id": 3,
       "key": "cut",
       "title": "Cut the top",
-      "titleKo": "윗부분 자르기",
       "type": "mash",
       "clicks": 80,
       "midAt": 0.4,
@@ -162,14 +649,95 @@
           "위를 자르세요. 멈추지 마세요!",
           "계속 자르세요!",
           "뚜껑이 열렸어요!"
+        ],
+        "zh-Hans": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "ja": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "es": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "hi": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "de": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "vi": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "pt-BR": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "id": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "fr": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "ar": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "tr": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "it": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
+        ],
+        "pl": [
+          "Cut open the top. Don't stop!",
+          "Keep cutting!",
+          "The lid is off!"
         ]
+      },
+      "titles": {
+        "en": "Cut the top",
+        "ko": "윗부분 자르기",
+        "zh-Hans": "Cut the top",
+        "ja": "Cut the top",
+        "es": "Cut the top",
+        "hi": "Cut the top",
+        "de": "Cut the top",
+        "vi": "Cut the top",
+        "pt-BR": "Cut the top",
+        "id": "Cut the top",
+        "fr": "Cut the top",
+        "ar": "Cut the top",
+        "tr": "Cut the top",
+        "it": "Cut the top",
+        "pl": "Cut the top"
       }
     },
     {
       "id": 4,
       "key": "scoop",
       "title": "Scoop",
-      "titleKo": "씨 퍼내기",
       "type": "mash",
       "clicks": 150,
       "midAt": 0.82,
@@ -187,14 +755,95 @@
           "씨를 모두 퍼내세요.",
           "거의 다 됐어요!",
           "다 퍼냈어요!"
+        ],
+        "zh-Hans": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "ja": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "es": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "hi": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "de": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "vi": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "pt-BR": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "id": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "fr": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "ar": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "tr": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "it": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
+        ],
+        "pl": [
+          "Scoop out all the seeds.",
+          "Almost empty!",
+          "All scooped!"
         ]
+      },
+      "titles": {
+        "en": "Scoop",
+        "ko": "씨 퍼내기",
+        "zh-Hans": "Scoop",
+        "ja": "Scoop",
+        "es": "Scoop",
+        "hi": "Scoop",
+        "de": "Scoop",
+        "vi": "Scoop",
+        "pt-BR": "Scoop",
+        "id": "Scoop",
+        "fr": "Scoop",
+        "ar": "Scoop",
+        "tr": "Scoop",
+        "it": "Scoop",
+        "pl": "Scoop"
       }
     },
     {
       "id": 5,
       "key": "roast",
       "title": "Roast seeds",
-      "titleKo": "씨 볶기",
       "type": "mash",
       "clicks": 60,
       "midAt": 0.5,
@@ -212,14 +861,95 @@
           "호박씨를 볶으세요.",
           "팬을 흔드세요!",
           "맛있는 씨예요!"
+        ],
+        "zh-Hans": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "ja": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "es": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "hi": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "de": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "vi": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "pt-BR": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "id": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "fr": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "ar": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "tr": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "it": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
+        ],
+        "pl": [
+          "Roast the pumpkin seeds.",
+          "Shake the pan!",
+          "Yummy seeds!"
         ]
+      },
+      "titles": {
+        "en": "Roast seeds",
+        "ko": "씨 볶기",
+        "zh-Hans": "Roast seeds",
+        "ja": "Roast seeds",
+        "es": "Roast seeds",
+        "hi": "Roast seeds",
+        "de": "Roast seeds",
+        "vi": "Roast seeds",
+        "pt-BR": "Roast seeds",
+        "id": "Roast seeds",
+        "fr": "Roast seeds",
+        "ar": "Roast seeds",
+        "tr": "Roast seeds",
+        "it": "Roast seeds",
+        "pl": "Roast seeds"
       }
     },
     {
       "id": 6,
       "key": "pin",
       "title": "Pin the face",
-      "titleKo": "얼굴 핀으로 찍기",
       "type": "guided_mash",
       "clicks": 80,
       "midAt": 0.5,
@@ -240,14 +970,95 @@
           "호박에 구멍을 뚫어 얼굴 모양을 따라 하세요.",
           "계속 구멍을 뚫으세요!",
           "얼굴이 준비됐어요!"
+        ],
+        "zh-Hans": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "ja": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "es": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "hi": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "de": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "vi": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "pt-BR": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "id": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "fr": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "ar": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "tr": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "it": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
+        ],
+        "pl": [
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
+          "Face is ready!"
         ]
+      },
+      "titles": {
+        "en": "Pin the face",
+        "ko": "얼굴 핀으로 찍기",
+        "zh-Hans": "Pin the face",
+        "ja": "Pin the face",
+        "es": "Pin the face",
+        "hi": "Pin the face",
+        "de": "Pin the face",
+        "vi": "Pin the face",
+        "pt-BR": "Pin the face",
+        "id": "Pin the face",
+        "fr": "Pin the face",
+        "ar": "Pin the face",
+        "tr": "Pin the face",
+        "it": "Pin the face",
+        "pl": "Pin the face"
       }
     },
     {
       "id": 7,
       "key": "carve",
       "title": "Carve",
-      "titleKo": "조각하기",
       "type": "guided_mash",
       "clicks": 120,
       "midAt": 0.5,
@@ -266,14 +1077,95 @@
           "선을 따라 새기세요.",
           "계속 새기세요!",
           "무서운 얼굴이에요!"
+        ],
+        "zh-Hans": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "ja": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "es": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "hi": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "de": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "vi": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "pt-BR": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "id": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "fr": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "ar": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "tr": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "it": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
+        ],
+        "pl": [
+          "Carve along the lines.",
+          "Keep carving!",
+          "Spooky face!"
         ]
+      },
+      "titles": {
+        "en": "Carve",
+        "ko": "조각하기",
+        "zh-Hans": "Carve",
+        "ja": "Carve",
+        "es": "Carve",
+        "hi": "Carve",
+        "de": "Carve",
+        "vi": "Carve",
+        "pt-BR": "Carve",
+        "id": "Carve",
+        "fr": "Carve",
+        "ar": "Carve",
+        "tr": "Carve",
+        "it": "Carve",
+        "pl": "Carve"
       }
     },
     {
       "id": 8,
       "key": "light",
       "title": "Light the candle",
-      "titleKo": "촛불 켜기",
       "type": "mash",
       "clicks": 25,
       "midAt": 0.45,
@@ -291,14 +1183,95 @@
           "촛불을 넣고 켜세요!",
           "빛나요!",
           "멋져요!"
+        ],
+        "zh-Hans": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "ja": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "es": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "hi": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "de": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "vi": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "pt-BR": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "id": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "fr": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "ar": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "tr": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "it": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
+        ],
+        "pl": [
+          "Put in the candle. Light it!",
+          "Glow!",
+          "Beautiful!"
         ]
+      },
+      "titles": {
+        "en": "Light the candle",
+        "ko": "촛불 켜기",
+        "zh-Hans": "Light the candle",
+        "ja": "Light the candle",
+        "es": "Light the candle",
+        "hi": "Light the candle",
+        "de": "Light the candle",
+        "vi": "Light the candle",
+        "pt-BR": "Light the candle",
+        "id": "Light the candle",
+        "fr": "Light the candle",
+        "ar": "Light the candle",
+        "tr": "Light the candle",
+        "it": "Light the candle",
+        "pl": "Light the candle"
       }
     },
     {
       "id": 9,
       "key": "house",
       "title": "Front of the house",
-      "titleKo": "집 앞",
       "type": "luck_hunt",
       "poolSize": 20,
       "goodCount": 1,
@@ -320,14 +1293,95 @@
           "집 앞에 두세요!",
           "앗! 떨어졌어요!",
           "딱 좋은 자리예요!"
+        ],
+        "zh-Hans": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "ja": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "es": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "hi": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "de": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "vi": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "pt-BR": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "id": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "fr": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "ar": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "tr": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "it": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
+        ],
+        "pl": [
+          "Put it by the house!",
+          "Oh no! It fell!",
+          "Perfect spot!"
         ]
+      },
+      "titles": {
+        "en": "Front of the house",
+        "ko": "집 앞",
+        "zh-Hans": "Front of the house",
+        "ja": "Front of the house",
+        "es": "Front of the house",
+        "hi": "Front of the house",
+        "de": "Front of the house",
+        "vi": "Front of the house",
+        "pt-BR": "Front of the house",
+        "id": "Front of the house",
+        "fr": "Front of the house",
+        "ar": "Front of the house",
+        "tr": "Front of the house",
+        "it": "Front of the house",
+        "pl": "Front of the house"
       }
     },
     {
       "id": 10,
       "key": "candy",
       "title": "Give candy",
-      "titleKo": "사탕 주기",
       "type": "mash",
       "clicks": 50,
       "midAt": 0.7,
@@ -346,7 +1400,89 @@
           "아이들에게 사탕을 주세요!",
           "해피 할로윈!",
           "끝났어요! 잘했어요!"
+        ],
+        "zh-Hans": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "ja": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "es": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "hi": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "de": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "vi": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "pt-BR": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "id": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "fr": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "ar": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "tr": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "it": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
+        ],
+        "pl": [
+          "Give candy to the kids!",
+          "Happy Halloween!",
+          "You're done! Great job!"
         ]
+      },
+      "titles": {
+        "en": "Give candy",
+        "ko": "사탕 주기",
+        "zh-Hans": "Give candy",
+        "ja": "Give candy",
+        "es": "Give candy",
+        "hi": "Give candy",
+        "de": "Give candy",
+        "vi": "Give candy",
+        "pt-BR": "Give candy",
+        "id": "Give candy",
+        "fr": "Give candy",
+        "ar": "Give candy",
+        "tr": "Give candy",
+        "it": "Give candy",
+        "pl": "Give candy"
       }
     }
   ],
@@ -356,7 +1492,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Into the patch!",
-        "ko": "호박밭으로!"
+        "ko": "호박밭으로!",
+        "zh-Hans": "Into the patch!",
+        "ja": "Into the patch!",
+        "es": "Into the patch!",
+        "hi": "Into the patch!",
+        "de": "Into the patch!",
+        "vi": "Into the patch!",
+        "pt-BR": "Into the patch!",
+        "id": "Into the patch!",
+        "fr": "Into the patch!",
+        "ar": "Into the patch!",
+        "tr": "Into the patch!",
+        "it": "Into the patch!",
+        "pl": "Into the patch!"
       }
     },
     {
@@ -364,7 +1513,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Splish splash!",
-        "ko": "첨벙첨벙!"
+        "ko": "첨벙첨벙!",
+        "zh-Hans": "Splish splash!",
+        "ja": "Splish splash!",
+        "es": "Splish splash!",
+        "hi": "Splish splash!",
+        "de": "Splish splash!",
+        "vi": "Splish splash!",
+        "pt-BR": "Splish splash!",
+        "id": "Splish splash!",
+        "fr": "Splish splash!",
+        "ar": "Splish splash!",
+        "tr": "Splish splash!",
+        "it": "Splish splash!",
+        "pl": "Splish splash!"
       }
     },
     {
@@ -372,7 +1534,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Knife ready!",
-        "ko": "칼 준비!"
+        "ko": "칼 준비!",
+        "zh-Hans": "Knife ready!",
+        "ja": "Knife ready!",
+        "es": "Knife ready!",
+        "hi": "Knife ready!",
+        "de": "Knife ready!",
+        "vi": "Knife ready!",
+        "pt-BR": "Knife ready!",
+        "id": "Knife ready!",
+        "fr": "Knife ready!",
+        "ar": "Knife ready!",
+        "tr": "Knife ready!",
+        "it": "Knife ready!",
+        "pl": "Knife ready!"
       }
     },
     {
@@ -380,7 +1555,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Seed time!",
-        "ko": "씨 시간!"
+        "ko": "씨 시간!",
+        "zh-Hans": "Seed time!",
+        "ja": "Seed time!",
+        "es": "Seed time!",
+        "hi": "Seed time!",
+        "de": "Seed time!",
+        "vi": "Seed time!",
+        "pt-BR": "Seed time!",
+        "id": "Seed time!",
+        "fr": "Seed time!",
+        "ar": "Seed time!",
+        "tr": "Seed time!",
+        "it": "Seed time!",
+        "pl": "Seed time!"
       }
     },
     {
@@ -388,7 +1576,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Into the pan!",
-        "ko": "팬에 넣어요!"
+        "ko": "팬에 넣어요!",
+        "zh-Hans": "Into the pan!",
+        "ja": "Into the pan!",
+        "es": "Into the pan!",
+        "hi": "Into the pan!",
+        "de": "Into the pan!",
+        "vi": "Into the pan!",
+        "pt-BR": "Into the pan!",
+        "id": "Into the pan!",
+        "fr": "Into the pan!",
+        "ar": "Into the pan!",
+        "tr": "Into the pan!",
+        "it": "Into the pan!",
+        "pl": "Into the pan!"
       }
     },
     {
@@ -396,7 +1597,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Pins ready!",
-        "ko": "핀 준비!"
+        "ko": "핀 준비!",
+        "zh-Hans": "Pins ready!",
+        "ja": "Pins ready!",
+        "es": "Pins ready!",
+        "hi": "Pins ready!",
+        "de": "Pins ready!",
+        "vi": "Pins ready!",
+        "pt-BR": "Pins ready!",
+        "id": "Pins ready!",
+        "fr": "Pins ready!",
+        "ar": "Pins ready!",
+        "tr": "Pins ready!",
+        "it": "Pins ready!",
+        "pl": "Pins ready!"
       }
     },
     {
@@ -404,7 +1618,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Carve time!",
-        "ko": "조각 시간!"
+        "ko": "조각 시간!",
+        "zh-Hans": "Carve time!",
+        "ja": "Carve time!",
+        "es": "Carve time!",
+        "hi": "Carve time!",
+        "de": "Carve time!",
+        "vi": "Carve time!",
+        "pt-BR": "Carve time!",
+        "id": "Carve time!",
+        "fr": "Carve time!",
+        "ar": "Carve time!",
+        "tr": "Carve time!",
+        "it": "Carve time!",
+        "pl": "Carve time!"
       }
     },
     {
@@ -412,7 +1639,20 @@
       "durationSec": 3,
       "caption": {
         "en": "A little spark!",
-        "ko": "작은 불꽃!"
+        "ko": "작은 불꽃!",
+        "zh-Hans": "A little spark!",
+        "ja": "A little spark!",
+        "es": "A little spark!",
+        "hi": "A little spark!",
+        "de": "A little spark!",
+        "vi": "A little spark!",
+        "pt-BR": "A little spark!",
+        "id": "A little spark!",
+        "fr": "A little spark!",
+        "ar": "A little spark!",
+        "tr": "A little spark!",
+        "it": "A little spark!",
+        "pl": "A little spark!"
       }
     },
     {
@@ -420,7 +1660,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Night at the house!",
-        "ko": "밤의 집 앞!"
+        "ko": "밤의 집 앞!",
+        "zh-Hans": "Night at the house!",
+        "ja": "Night at the house!",
+        "es": "Night at the house!",
+        "hi": "Night at the house!",
+        "de": "Night at the house!",
+        "vi": "Night at the house!",
+        "pt-BR": "Night at the house!",
+        "id": "Night at the house!",
+        "fr": "Night at the house!",
+        "ar": "Night at the house!",
+        "tr": "Night at the house!",
+        "it": "Night at the house!",
+        "pl": "Night at the house!"
       }
     },
     {
@@ -428,7 +1681,20 @@
       "durationSec": 3,
       "caption": {
         "en": "Trick or treat!",
-        "ko": "트릭 오어 트릿!"
+        "ko": "트릭 오어 트릿!",
+        "zh-Hans": "Trick or treat!",
+        "ja": "Trick or treat!",
+        "es": "Trick or treat!",
+        "hi": "Trick or treat!",
+        "de": "Trick or treat!",
+        "vi": "Trick or treat!",
+        "pt-BR": "Trick or treat!",
+        "id": "Trick or treat!",
+        "fr": "Trick or treat!",
+        "ar": "Trick or treat!",
+        "tr": "Trick or treat!",
+        "it": "Trick or treat!",
+        "pl": "Trick or treat!"
       }
     }
   ],
