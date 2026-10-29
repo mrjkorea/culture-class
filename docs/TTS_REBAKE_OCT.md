@@ -1,18 +1,18 @@
-# October word TTS rebake (Fish Monster Frank / word pack voice)
+# October TTS rebake — **baked** (2026-10-29)
 
-No `FISH_API_KEY` in the Cloud Agent environment — these clips still need a proper Fish bake:
+Fish MP3s are committed in-repo. Playback is pre-baked files only (`Audio` / manifest paths) — **no `SpeechSynthesis`**.
 
-| Word | File | Synthesis text (display stays unchanged) |
-|------|------|------------------------------------------|
-| werewolf | `data/audio/oct-words/werewolf-wearwolf.mp3` | **wear-wolf** (or wair-wolf) |
-| vampire | `data/audio/oct-words/vampire-vampier.mp3` | **vamp-ire** / **vam-pire** |
+| CoS | Asset | Path | Voice (Fish reference) |
+|-----|--------|------|-------------------------|
+| MEET-01 | werewolf (phonetic) | `data/audio/oct-words/werewolf-wearwolf.mp3` | Pirate `b70214e5a3644d748956c81677e09ecc` |
+| MEET-01 | vampire (phonetic) | `data/audio/oct-words/vampire-vampier.mp3` | Pirate `b70214e5a3644d748956c81677e09ecc` |
+| QUIZ-02 | Daily quiz stems q1–q5 | `data/audio/oct-quiz/q1_stem.mp3` … `q5_stem.mp3` | Frank `a1895a46a08d48578b8a679a035d79fe` |
+| CRAFT-06 / pin | Pin stage start | `craft/october/assets/audio/frank/pin_start.mp3` | Frank — line: **“Poke holes into the pumpkin.”** |
 
-`js/words-audio.js` routes playback through the phonetic filenames above when the term slug is `werewolf` or `vampire`.
+Wiring:
 
-## Daily quiz (Frank `a1895a46a08d48578b8a679a035d79fe`)
+- Meet / words: `js/words-audio.js` → phonetic filenames for `werewolf` / `vampire`.
+- Quiz: `data/oct-quiz/MANIFEST.json` + `js/daily-quiz.js` `playQuizClip()` on each question (`{id}_stem`, e.g. `q1_stem`).
+- Craft: `craft/october/assets/manifest.json` → `pin_start`; stage copy in `craft/october/stages.json`.
 
-Bake under `data/audio/oct-quiz/` (see `data/oct-quiz/MANIFEST.json`) — one MP3 per question stem + choice where needed. Wire only pre-baked files in `js/daily-quiz.js` (no SpeechSynthesis).
-
-## Craft pin stage
-
-Rebake `craft/october/assets/audio/frank/pin_start.mp3` (and mid if needed) with line **“Poke holes into the pumpkin.”** — not “pierce”. Copy in `craft/october/stages.json` is updated; audio must match.
+Quiz choice feedback SFX uses `assets/sfx/match.mp3` / `miss.mp3` (not Fish TTS).
