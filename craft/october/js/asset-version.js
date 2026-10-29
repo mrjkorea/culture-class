@@ -1,2 +1,2 @@
 /** Bump when craft CSS/JS changes (GitHub Pages cache bust). */
-export const CRAFT_ASSET_V = "72dbd42";
+export const CRAFT_ASSET_V = "d81cf07";
