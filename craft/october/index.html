@@ -6,7 +6,7 @@
   <meta name="description" content="Jack-o'-Lantern Craft — Mr. Jay's Culture Class October mini-game">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='18' r='11' fill='%23ff8c1a'/%3E%3Cpath d='M16 6c1-4 6-5 7-2' fill='none' stroke='%232f9e3a' stroke-width='2'/%3E%3C/svg%3E">
   <title>Jack-o'-Lantern Craft — Culture Class</title>
-  <link rel="stylesheet" href="css/game.css">
+  <link rel="stylesheet" href="css/game.css" id="craft-game-css">
   <script type="importmap">
   {
     "imports": {
@@ -19,7 +19,7 @@
   <div class="sky">
     <header class="topbar">
       <a class="top-link" id="back-link" href="../../months/10-october/">October</a>
-      <p class="top-title">Pumpkin Craft</p>
+      <p class="top-title" id="top-game-title">Pumpkin Craft</p>
       <div class="top-actions">
         <label class="lang-wrap craft-lang-wrap">
           <span class="sr-only" id="lang-label">Language</span>
@@ -37,6 +37,11 @@
   </div>
   <p id="live" class="sr-only" aria-live="polite"></p>
   <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js"></script>
-  <script type="module" src="js/game.js"></script>
+  <script type="module">
+    import { CRAFT_ASSET_V } from "./js/asset-version.js";
+    const css = document.getElementById("craft-game-css");
+    if (css) css.href = `css/game.css?v=${CRAFT_ASSET_V}`;
+    import(`./js/game.js?v=${CRAFT_ASSET_V}`);
+  </script>
 </body>
 </html>

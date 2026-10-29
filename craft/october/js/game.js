@@ -122,8 +122,10 @@ function wireFrank() {
 function paintLang() {
   uiLang = getLang();
   backLink.textContent = t("back");
-  soundBtn.setAttribute("aria-label", speech.enabled ? t("soundOn") : t("soundOff"));
-  soundBtn.classList.toggle("is-muted", !speech.enabled);
+  const topTitle = document.getElementById("top-game-title");
+  if (topTitle && spec) topTitle.textContent = t("gameTitle");
+  soundBtn.setAttribute("aria-label", speech?.enabled ? t("soundOn") : t("soundOff"));
+  soundBtn.classList.toggle("is-muted", speech && !speech.enabled);
 }
 
 function showLines(block, index, alert = false) {
@@ -187,7 +189,7 @@ function renderTitle(keepName) {
   view.dataset.phase = "title";
   view.innerHTML = `<section class="card title-card">
     <div class="title-art">${pumpkinSvg("title")}</div>
-    <h1>${esc(spec.title)}</h1>
+    <h1>${esc(t("gameTitle"))}</h1>
     <p class="brand">${esc(t("classTag"))}</p>
     <p class="how">${esc(fill(t("how")))}</p>
     <p class="hint">${esc(t("beatNote"))}</p>
@@ -319,6 +321,7 @@ function playStage(stage, index) {
       assetBase,
       manifest,
       uiLang,
+      uiCopy: spec.uiCopy,
       setFace(id) {
         state.faceId = id;
         state.face = faces.find((face) => face.id === id) || null;
@@ -585,6 +588,20 @@ function onLangChange() {
     renderTitle(true);
     return;
   }
+  if (screen === "results" && spec && state?.entry) {
+    const kicker = view.querySelector(".kicker");
+    if (kicker) kicker.textContent = t("doneTitle");
+    const again = view.getElementById("again-btn");
+    if (again) again.textContent = t("playAgain");
+    const hintEl = view.querySelector(".results-card .hint");
+    if (hintEl) hintEl.textContent = t("timeNote");
+    const doneBlock = {};
+    for (const { code } of LANGS) {
+      doneBlock[code] = [spec.uiCopy?.[code]?.doneBody || spec.uiCopy.en.doneBody];
+    }
+    showLines(doneBlock, 0);
+    return;
+  }
   if (screen === "stage" && spec) {
     const idx = spec.stages.findIndex((s) => s.key === view.dataset.stageKey);
     const stage = spec.stages[idx];
@@ -616,11 +633,7 @@ async function init() {
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   uiLang = getLang();
   window.addEventListener("storage", (e) => {
-    if (e.key === "culture-class-lang") {
-      uiLang = getLang();
-      paintLang();
-      paintLines();
-    }
+    if (e.key === "culture-class-lang") onLangChange();
   });
   try {
     const loaded = await loadCraft();
