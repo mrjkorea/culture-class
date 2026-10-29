@@ -22,7 +22,7 @@ function findPumpkinIndex(hit) {
 export function mountPatch3D(root, stage, ctx) {
   root.innerHTML = hostMarkup(stage.title);
   const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 50, fog: true });
+  const gl = createGlStage(container, { fov: 54, fog: true });
   if (!gl) {
     return null;
   }
@@ -43,23 +43,37 @@ export function mountPatch3D(root, stage, ctx) {
   const pickRoots = [];
   let found = 0;
   let finished = false;
+  const spacing = pool > 24 ? 1.05 : 1.25;
+  const pumpScale = pool > 24 ? 0.78 : 0.92;
 
   for (let i = 0; i < pool; i += 1) {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const px = (col - (cols - 1) / 2) * 1.35;
-    const pz = (row - (rows - 1) / 2) * 1.25 + 1;
-    const pump = buildPumpkin(i + 7, 0.55);
+    const px = (col - (cols - 1) / 2) * spacing;
+    const pz = (row - (rows - 1) / 2) * (spacing * 0.95) + 0.6;
+    const pump = buildPumpkin(i + 7, pumpScale);
     pump.position.set(px, 0, pz);
     pump.userData.pumpkinIndex = i;
     pump.userData.alive = true;
     pumpkins.push(pump);
-    pickRoots.push(pump);
     gl.scene.add(pump);
+
+    const pick = new THREE.Mesh(
+      new THREE.SphereGeometry(0.42 + pumpScale * 0.35, 10, 8),
+      new THREE.MeshBasicMaterial({ visible: false })
+    );
+    pick.position.set(px, 0.38 * pumpScale, pz);
+    pick.userData.pumpkinIndex = i;
+    pick.userData.alive = true;
+    pickRoots.push(pick);
+    gl.scene.add(pick);
   }
 
-  gl.camera.position.set(0, 5.5, 10);
-  gl.camera.lookAt(0, 0.4, 0);
+  const span = Math.max(cols, rows) * spacing * 0.55 + 2.2;
+  gl.camera.position.set(0, span * 0.85, span * 1.35);
+  gl.camera.lookAt(0, 0.35, 0);
+  gl.resize();
+  requestAnimationFrame(() => gl.resize());
 
   let orbitT = 0;
   gl.setFrame((t) => {
@@ -76,6 +90,11 @@ export function mountPatch3D(root, stage, ctx) {
 
   function squash(pump) {
     pump.userData.alive = false;
+    const pi = pump.userData.pumpkinIndex;
+    if (pi !== undefined) {
+      const pick = pickRoots[pi];
+      if (pick) pick.userData.alive = false;
+    }
     const start = performance.now();
     const fromY = pump.scale.y;
     const tick = () => {
@@ -129,7 +148,16 @@ export function mountPatch3D(root, stage, ctx) {
     if (finished || (e.button !== undefined && e.button !== 0)) return;
     const hits = gl.pick(pickRoots, e.clientX, e.clientY);
     if (!hits.length) return;
-    const idx = findPumpkinIndex(hits[0]);
+    const hit = hits.find((h) => {
+      let o = h.object;
+      while (o) {
+        if (o.userData?.pumpkinIndex !== undefined && o.userData.alive !== false) return true;
+        o = o.parent;
+      }
+      return false;
+    });
+    if (!hit) return;
+    const idx = findPumpkinIndex(hit);
     if (idx >= 0) settle(idx);
   }
 
