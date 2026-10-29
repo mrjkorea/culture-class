@@ -10,7 +10,8 @@ import { playWordAudio, resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { climbUrl, repoRoot } from "./paths.js";
 import { applyMonthUiTheme, memoryLbKey } from "./month-ui-theme.js";
-import { getLang, mountLangSelect, studentDisplayName, t } from "./i18n.js";
+import { getLang, mountLangSelect, t } from "./i18n.js";
+import { leaderboardDisplayName, syncDisplayNameFromAuth } from "./student-signin.js";
 import { termGloss } from "./word-gloss.js";
 
 const PAIRS_PER_ROUND = 6;
@@ -97,15 +98,7 @@ function loadLb() {
 
 function saveLb(seconds) {
   const list = loadLb();
-  let name = studentDisplayName();
-  if (!name) {
-    name = prompt(t("cc_student_lb"), "Student") || "Student";
-    try {
-      localStorage.setItem("culture-class-display-name", name.slice(0, 24));
-    } catch {
-      /* ignore */
-    }
-  }
+  const name = leaderboardDisplayName();
   list.push({ name: name.slice(0, 24), sec, at: Date.now() });
   list.sort((a, b) => a.sec - b.sec);
   localStorage.setItem(LB_KEY, JSON.stringify(list.slice(0, 8)));
@@ -252,6 +245,8 @@ function renderAllDone() {
 }
 
 async function init() {
+  syncDisplayNameFromAuth();
+  window.addEventListener("mrj-auth-ready", syncDisplayNameFromAuth);
   const monthId = getMonthIdFromQuery();
   if (!monthId) {
     renderShell("Memory", `<p class="placeholder-box">Open Memory from your month map.</p>`);

@@ -1,5 +1,5 @@
 /**
- * Culture Class CP speak — Decodables-style board (all sentences + word bands).
+ * Culture Class CP speak — Day 4 Speak sheet + cue card (October content).
  */
 import {
   bootShared,
@@ -15,6 +15,7 @@ import {
 } from "./cp-data.js";
 import { resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
+import { syncDisplayNameFromAuth } from "./student-signin.js";
 
 const app = document.getElementById("app");
 let pack = null;
@@ -40,6 +41,12 @@ function bandFor(pct) {
   return pct >= THRESHOLDS.green ? "green" : pct >= THRESHOLDS.yellow ? "yellow" : "red";
 }
 
+function chipClass(band) {
+  if (band === "green") return "word-chip good green";
+  if (band === "yellow") return "word-chip yellow";
+  return "word-chip bad red";
+}
+
 function setCheckerProgress(frac, text) {
   const label = el("modelLabel");
   const fill = el("modelFill");
@@ -51,11 +58,11 @@ function renderEmpty(message) {
   app.innerHTML = `<p class="placeholder-box">${escapeHtml(message)}</p>`;
 }
 
-function englishWordsColored(item, result) {
+function englishWordChips(item, result) {
   const doorFail = result?.doorFail;
   const rawWords = doorFail ? [] : result?.words || [];
   if (!rawWords.length) {
-    return escapeHtml(item.english);
+    return `<p class="part-text">${escapeHtml(item.english)}</p>`;
   }
   const byWord = new Map();
   for (const w of rawWords) {
@@ -64,18 +71,25 @@ function englishWordsColored(item, result) {
     byWord.set(key, w.band || bandFor(pct));
   }
   const tokens = item.english.split(/(\s+)/);
-  return tokens
+  const chips = tokens
     .map((tok) => {
-      if (!tok.trim()) return tok;
+      if (!tok.trim()) return "";
       const clean = tok.replace(/[^\w'-]/g, "").toLowerCase();
       const band = byWord.get(clean);
-      if (!band) return escapeHtml(tok);
-      return `<span class="cp-word cp-word-${band}">${escapeHtml(tok)}</span>`;
+      if (!band) {
+        return `<span class="word-chip-wrap"><span class="word-chip">${escapeHtml(tok)}</span></span>`;
+      }
+      return `<span class="word-chip-wrap"><span class="${chipClass(band)}">${escapeHtml(tok)}</span></span>`;
     })
     .join("");
+  return `<div class="chips">${chips}</div>`;
 }
 
-function renderBoard() {
+function passedCount() {
+  return Object.values(rowResults).filter((r) => r && r.pass).length;
+}
+
+function renderSheet() {
   const rows = pack.items
     .map((item, i) => {
       const res = rowResults[i];
@@ -88,25 +102,30 @@ function renderBoard() {
         : i === index
           ? "active"
           : "";
-      const scoreLine = res && !res.doorFail
-        ? `<span class="cp-row-score">${res.pass ? "✓" : "·"} ${res.scorePct}%</span>`
-        : "";
       const enHtml = res
-        ? `<p class="cp-row-en">${englishWordsColored(item, res)}</p>`
-        : `<p class="cp-row-en cp-row-en-muted">${escapeHtml(item.english)}</p>`;
+        ? englishWordChips(item, res)
+        : `<p class="part-text en-muted">${escapeHtml(item.english)}</p>`;
+      const scoreLine =
+        res && !res.doorFail
+          ? `<span class="tile-saved">${res.pass ? "✓" : "·"} ${res.scorePct}%</span>`
+          : "";
       return `
-        <article class="cp-row ${status}" data-i="${i}">
-          <div class="cp-row-head">
-            <span class="cp-row-num">${i + 1}</span>
-            ${scoreLine}
+        <article class="row ${status}" data-i="${i}">
+          <div class="num">${i + 1}</div>
+          <div class="row-main">
+            <div class="ko-wrap">
+              <div class="ko-text">
+                <div class="ko">${escapeHtml(item.korean)}</div>
+                ${scoreLine}
+                ${enHtml}
+              </div>
+            </div>
           </div>
-          <p class="cp-row-ko">${escapeHtml(item.korean)}</p>
-          ${enHtml}
         </article>`;
     })
     .join("");
 
-  return `<div class="cp-board" aria-label="All CP sentences">${rows}</div>`;
+  return `<div class="sheet cp-day4-sheet" aria-label="All CP sentences">${rows}</div>`;
 }
 
 function renderDone() {
@@ -114,48 +133,19 @@ function renderDone() {
   const total = pack.items.length;
   const craft = month?.craftPath ? `../${month.craftPath}` : monthPageUrl(month.slug);
   app.innerHTML = `
-    <div class="sheet-row cp-done">
+    <div class="done-card cp-done">
       <h1>All done!</h1>
       <p>You finished all <strong>${total}</strong> CP sentences.</p>
-      ${renderBoard()}
-      <p class="cp-actions-row">
-        <a class="hear" href="${escapeHtml(craft)}">Next: Craft →</a>
-        <a class="hear" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
-      </p>
+      ${renderSheet()}
+      <div class="actions">
+        <a class="primary" href="${escapeHtml(craft)}">Next: Craft →</a>
+        <a class="secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
+      </div>
     </div>`;
 }
 
-function renderPractice() {
-  const item = pack.items[index];
-  const total = pack.items.length;
-  const pic = item.image
-    ? `<img class="row-pic" src="${escapeHtml(resolveSrc(item.image))}" alt="">`
-    : "";
-
-  app.innerHTML = `
-    ${renderBoard()}
-    <div class="sheet-row cp-active-panel">
-      <p class="hint">Sentence ${index + 1} / ${total} · pass at ${passPct}% (word colors like Decodables)</p>
-      <p class="ko-line">${escapeHtml(item.korean)}</p>
-      ${pic}
-      <p class="en-line" id="englishReveal" hidden>${escapeHtml(item.english)}</p>
-      <div class="cp-actions" style="display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.75rem 0">
-        <button type="button" class="hear" id="btnHear">Hear English</button>
-        <button type="button" class="mic" id="btnSpeak">Speak</button>
-      </div>
-      <p class="cp-status" id="micStatus">Tap Hear English first.</p>
-      <div class="result" id="resultBox" hidden>
-        <p class="big-score" id="resultScore"></p>
-        <p class="hint" id="resultDetail"></p>
-        <p class="cp-graded-line" id="gradedLine"></p>
-      </div>
-      <div class="cp-nav-row">
-        <button type="button" class="hear" id="btnSkip">Skip</button>
-        <button type="button" class="hear" id="btnNext" hidden>Next</button>
-      </div>
-    </div>`;
-
-  app.querySelectorAll(".cp-row").forEach((row) => {
+function bindSheetNavigation() {
+  app.querySelectorAll(".cp-day4-sheet .row").forEach((row) => {
     row.addEventListener("click", () => {
       const i = Number(row.dataset.i);
       if (Number.isFinite(i) && i !== index) {
@@ -166,11 +156,52 @@ function renderPractice() {
       }
     });
   });
+}
 
+function renderPractice() {
+  const item = pack.items[index];
+  const total = pack.items.length;
+  const pic = item.image
+    ? `<img class="cue-pic" id="cuePic" src="${escapeHtml(resolveSrc(item.image))}" alt="">`
+    : `<img class="cue-pic" id="cuePic" hidden alt="">`;
+
+  app.innerHTML = `
+    <a class="back" href="${escapeHtml(monthPageUrl(month.slug))}">← ${escapeHtml(month.name)} map</a>
+    <h1>${escapeHtml(pack.title || "CP Speak")}</h1>
+    <div class="progress-wrap">
+      <span id="progressText">${index + 1} / ${total}</span>
+      <span class="badge score-badge" id="scoreBadge">${passedCount()} / ${total}</span>
+      <div class="progress" id="progressBar" style="--pct: ${Math.round((index / total) * 100)}%"></div>
+    </div>
+    ${renderSheet()}
+    <div class="cue-card">
+      <p class="hint">Sentence ${index + 1} · pass at ${passPct}% · tap Korean to hear, then Speak</p>
+      <button type="button" class="cue-btn" id="btnCue"><span class="korean" id="koreanCue">${escapeHtml(item.korean)}</span></button>
+      ${pic}
+      <p class="english" id="englishReveal" hidden>${escapeHtml(item.english)}</p>
+      <div class="actions">
+        <button type="button" class="secondary" id="btnHear">🔊 Hear English</button>
+        <button type="button" class="primary mic" id="btnSpeak">🎤 Speak</button>
+      </div>
+      <p class="status" id="micStatus">Tap Korean or Hear English first.</p>
+      <div class="result" id="resultBox" hidden>
+        <p class="big-score" id="resultScore"></p>
+        <p class="hint" id="resultDetail"></p>
+        <div class="chips" id="gradedLine"></div>
+      </div>
+      <div class="nav-row">
+        <button type="button" class="ghost" id="btnSkip">Skip</button>
+        <button type="button" class="primary" id="btnNext" hidden>Next →</button>
+      </div>
+    </div>`;
+
+  bindSheetNavigation();
+  el("btnCue").addEventListener("click", () => playAudio());
   el("btnHear").addEventListener("click", () => playAudio());
   el("btnSpeak").addEventListener("click", () => toggleMic());
   el("btnNext").addEventListener("click", () => nextItem());
   el("btnSkip").addEventListener("click", () => nextItem(true));
+  bindSheetNavigation();
   syncMicButton();
 }
 
@@ -216,8 +247,8 @@ function syncMicButton() {
   const btn = el("btnSpeak");
   if (!btn) return;
   const listening = isCapturing();
-  btn.classList.toggle("live", listening);
-  btn.textContent = listening ? "Listening…" : "Speak";
+  btn.classList.toggle("listening", listening);
+  btn.textContent = listening ? "Listening…" : "🎤 Speak";
   btn.disabled = !checkerReady || grading || listening || (!heard && !listening);
 }
 
@@ -264,7 +295,10 @@ function showGradeResult(result, target, itemIndex) {
   box.className = "result " + (pass ? "pass" : "fail");
   const graded = el("gradedLine");
   if (graded) {
-    graded.innerHTML = englishWordsColored(pack.items[itemIndex], page);
+    const chipHtml = englishWordChips(pack.items[itemIndex], page);
+    graded.innerHTML = chipHtml.startsWith("<div")
+      ? chipHtml.replace(/^<div class="chips">/, "").replace(/<\/div>\s*$/, "")
+      : chipHtml;
   }
   if (doorFail) {
     el("resultScore").textContent = "Try again";
@@ -281,9 +315,13 @@ function showGradeResult(result, target, itemIndex) {
     ? "Passed! Tap Next."
     : doorFail
       ? DOOR_FAIL_TEXT
-      : `Under ${passPct}% — Hear English, then Speak again.`;
-  const board = app.querySelector(".cp-board");
-  if (board) board.outerHTML = renderBoard();
+      : `Under ${passPct}% — hear English, then Speak again.`;
+  el("scoreBadge").textContent = `${passedCount()} / ${pack.items.length}`;
+  const sheet = app.querySelector(".cp-day4-sheet");
+  if (sheet) {
+    sheet.outerHTML = renderSheet();
+    bindSheetNavigation();
+  }
   if (pass) {
     passedCurrent = true;
     el("btnNext").hidden = false;
@@ -362,6 +400,7 @@ async function bootChecker() {
     setCheckerProgress(1, "Sound checker ready");
     const track = el("modelTrack");
     if (track) track.classList.add("done");
+    syncMicButton();
   } catch (err) {
     console.error(err);
     checkerError = err.message || "boot failed";
@@ -370,6 +409,8 @@ async function bootChecker() {
 }
 
 async function init() {
+  syncDisplayNameFromAuth();
+  window.addEventListener("mrj-auth-ready", syncDisplayNameFromAuth);
   bindVoiceToggle();
   const monthId = getMonthIdFromQuery();
   if (!monthId) {

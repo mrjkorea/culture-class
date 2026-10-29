@@ -266,40 +266,44 @@ body.halloween-theme {
 }
 
 /* Memory */
-.memory-halloween .memory-grid {
+.halloween-theme .memory-grid {
   max-width: min(520px, 96vw);
   gap: 0.55rem;
 }
 
-.memory-halloween .memory-card {
+.halloween-theme .memory-card {
   border-radius: 14px;
   border: 3px solid #7048e8;
   background: url("../memory/card-back-pumpkin.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
-.memory-halloween .memory-card.memory-flipped,
-.memory-halloween .memory-card.memory-matched {
+.halloween-theme .memory-card.memory-flipped,
+.halloween-theme .memory-card.memory-matched {
   background: linear-gradient(145deg, #2b0a4a, #12031f);
   border-color: #ffd43b;
 }
 
-.memory-halloween .memory-card.memory-pic-card .memory-card-inner {
+.halloween-theme .memory-card.memory-pic-card .memory-card-inner {
   opacity: 0;
   padding: 0.25rem;
 }
 
-.memory-halloween .memory-card.memory-pic-card.memory-flipped .memory-card-inner,
-.memory-halloween .memory-card.memory-pic-card.memory-matched .memory-card-inner {
+.halloween-theme .memory-card.memory-pic-card.memory-flipped .memory-card-inner,
+.halloween-theme .memory-card.memory-pic-card.memory-matched .memory-card-inner {
   opacity: 1;
 }
 
-.memory-halloween .memory-card.memory-pic-card:not(.memory-flipped):not(.memory-matched)::after {
+.halloween-theme .memory-card.memory-pic-card:not(.memory-flipped):not(.memory-matched)::after {
   content: none;
 }
 
-.memory-halloween .memory-card:not(.memory-flipped):not(.memory-matched) .memory-card-inner,
-.memory-halloween .memory-card:not(.memory-flipped):not(.memory-matched) .memory-pic-inner {
+.halloween-theme .memory-card:not(.memory-flipped):not(.memory-matched)::after {
+  content: none;
+}
+
+.halloween-theme .memory-card:not(.memory-flipped):not(.memory-matched) .memory-card-inner,
+.halloween-theme .memory-card:not(.memory-flipped):not(.memory-matched) .memory-pic-inner {
   opacity: 0;
   visibility: hidden;
 }

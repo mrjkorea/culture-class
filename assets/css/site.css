@@ -618,6 +618,12 @@ a:hover {
   hyphens: auto;
 }
 
+.memory-card:not(.memory-flipped):not(.memory-matched) .memory-pic-inner {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .memory-card.memory-flipped .memory-card-inner,
 .memory-card.memory-matched .memory-card-inner {
   opacity: 1;
