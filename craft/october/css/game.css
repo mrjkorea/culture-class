@@ -188,8 +188,7 @@ input { font: inherit; }
   background: #fff;
 }
 
-
-.scene-candy {
+.boot,
 .boot-error {
   margin: 2rem auto;
   width: min(420px, 92vw);
