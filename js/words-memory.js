@@ -150,11 +150,19 @@ function renderRound() {
     .map((c) => {
       const matched = matchedIds.has(c.pairKey);
       const classes = ["memory-card", matched ? "memory-matched" : "", c.kind === "pic" ? "memory-pic-card" : "memory-mean-card"];
-      const inner =
-        c.kind === "pic" && c.img
-          ? `<img class="memory-pic-inner" data-src="${escapeHtml(c.img)}" alt="" decoding="async">`
-          : `<span class="memory-card-inner">${escapeHtml(c.label)}</span>`;
-      return `<button type="button" class="${classes.join(" ")}" data-pair="${escapeHtml(c.pairKey)}" data-kind="${c.kind}" ${matched ? "disabled" : ""}>${inner}</button>`;
+      let inner;
+      if (c.kind === "pic" && c.img) {
+        if (matched) {
+          inner = `<img class="memory-pic-inner" src="${escapeHtml(c.img)}" alt="" decoding="async">`;
+        } else {
+          inner = `<span class="memory-card-back" aria-hidden="true"></span>`;
+        }
+      } else {
+        inner = `<span class="memory-card-inner">${escapeHtml(c.label)}</span>`;
+      }
+      const dataImg =
+        c.kind === "pic" && c.img && !matched ? ` data-img="${escapeHtml(c.img)}"` : "";
+      return `<button type="button" class="${classes.join(" ")}" data-pair="${escapeHtml(c.pairKey)}" data-kind="${c.kind}"${dataImg} ${matched ? "disabled" : ""}>${inner}</button>`;
     })
     .join("");
 
@@ -179,10 +187,19 @@ function renderRound() {
 }
 
 function revealPicFace(btn) {
-  const img = btn.querySelector(".memory-pic-inner");
-  if (!img || img.src) return;
-  const src = img.getAttribute("data-src");
-  if (src) img.src = src;
+  if (btn.dataset.kind !== "pic" || !btn.dataset.img) return;
+  if (btn.querySelector(".memory-pic-inner")) return;
+  const img = document.createElement("img");
+  img.className = "memory-pic-inner";
+  img.alt = "";
+  img.decoding = "async";
+  img.src = btn.dataset.img;
+  btn.appendChild(img);
+}
+
+function hidePicFace(btn) {
+  if (btn.dataset.kind !== "pic") return;
+  btn.querySelector(".memory-pic-inner")?.remove();
 }
 
 function onCardClick(btn) {
@@ -216,6 +233,8 @@ function onCardClick(btn) {
   } else {
     playSfx("miss");
     setTimeout(() => {
+      hidePicFace(a.btn);
+      hidePicFace(b.btn);
       a.btn.classList.remove("memory-flipped");
       b.btn.classList.remove("memory-flipped");
       flipped = [];
