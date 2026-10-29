@@ -89,7 +89,7 @@ export function renderThemedMapMonth(month) {
   if (!theme) throw new Error("renderThemedMapMonth: missing theme");
 
   const root = repoRoot();
-  const mapBg = `${root}/${theme.mapImage.replace(/^\/+/, "")}`;
+  const mapBg = withLinkVersion(`${root}/${theme.mapImage.replace(/^\/+/, "")}`);
   const steps = themedMapSteps(month, theme).filter(
     (step) => step.id !== "craft" || month.craftPath
   );

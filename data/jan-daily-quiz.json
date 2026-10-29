@@ -2,7 +2,7 @@
   "id": "culture_m01_daily_quiz",
   "monthId": "01",
   "title": "New Year's Day — after Daily video",
-  "source": "January culture intro",
+  "source": "January culture intro + New Year vocabulary",
   "passScore": 5,
   "allowRetake": true,
   "languageToggleIfNotPerfect": true,
@@ -31,8 +31,8 @@
         }
       ],
       "explain": {
-        "en": "January celebrates New Year's Day.",
-        "ko": "1월은 새해를 주제로 합니다."
+        "en": "January celebrates New Year's Day—the start of a fresh calendar year when people reflect, set goals, and celebrate with family and friends.",
+        "ko": "1월은 새해 첫날을 주제로 합니다. 새 달력의 시작으로, 사람들은 돌아보고 목표를 세우며 가족·친구와 함께 축하합니다."
       }
     },
     {
@@ -59,8 +59,8 @@
         }
       ],
       "explain": {
-        "en": "A New Year's resolution is a goal for the year.",
-        "ko": "새해 결심은 올해의 목표입니다."
+        "en": "A New Year's resolution is a personal goal or promise—like reading more, exercising, or being kinder—that you hope to keep all year.",
+        "ko": "새해 결심은 올해 지키고 싶은 개인 목표나 약속입니다. 책을 더 읽기, 운동하기, 친절하기처럼 말이에요."
       }
     },
     {
@@ -87,8 +87,8 @@
         }
       ],
       "explain": {
-        "en": "Happy New Year is the classic midnight cheer.",
-        "ko": "새해 복 많이 받으세요!가 대표적인 자정 인사입니다."
+        "en": "\"Happy New Year!\" is the classic cheer when the clock strikes twelve—often with hugs, noisemakers, and fireworks.",
+        "ko": "시계가 12시를 가리키면 \"새해 복 많이 받으세요!\"라고 외치는 것이 전통입니다. 포옹, 떠들썩한 소리, 불꽃놀이와 함께하기도 해요."
       }
     },
     {
@@ -115,8 +115,8 @@
         }
       ],
       "explain": {
-        "en": "Confetti is tossed to celebrate.",
-        "ko": "색종이는 축하할 때 뿌립니다."
+        "en": "Confetti is tiny bits of colored paper tossed in the air to celebrate; it makes parties feel festive when the new year arrives.",
+        "ko": "색종이(confetti)는 축하할 때 공중에 뿌리는 작은 색종이 조각입니다. 새해가 되면 파티 분위기를 더해 줍니다."
       }
     },
     {
@@ -143,8 +143,204 @@
         }
       ],
       "explain": {
-        "en": "A countdown goes 10, 9, 8… to midnight.",
-        "ko": "카운트다운은 10, 9, 8… 자정까지 셉니다."
+        "en": "A countdown goes \"10, 9, 8…\" until midnight. Big cities sometimes drop a glowing ball as the final seconds tick away.",
+        "ko": "카운트다운은 \"10, 9, 8…\"처럼 자정까지 초를 셉니다. 큰 도시에서는 마지막 순간에 빛나는 공을 내리기도 합니다."
+      }
+    },
+    {
+      "id": "q6",
+      "en": "New Year's Day is on January ___.",
+      "ko": "새해 첫날은 1월 ___일입니다.",
+      "choices": [
+        {
+          "en": "1",
+          "ko": "1",
+          "correct": true
+        },
+        {
+          "en": "31",
+          "ko": "31"
+        },
+        {
+          "en": "15",
+          "ko": "15"
+        },
+        {
+          "en": "4",
+          "ko": "4"
+        }
+      ],
+      "explain": {
+        "en": "January 1 is New Year's Day in many countries—the first page of a brand-new calendar after the countdown ends.",
+        "ko": "많은 나라에서 1월 1일이 새해 첫날입니다. 카운트다운이 끝난 뒤 새 달력의 첫 페이지가 되는 날이에요."
+      }
+    },
+    {
+      "id": "q7",
+      "en": "Bright explosions of color in the sky on New Year's Eve are called…",
+      "ko": "새해 전야에 하늘에서 터지는 알록달록한 불꽃을 뭐라고 하나요?",
+      "choices": [
+        {
+          "en": "fireworks",
+          "ko": "불꽃놀이",
+          "correct": true
+        },
+        {
+          "en": "snowflakes",
+          "ko": "눈송이"
+        },
+        {
+          "en": "balloons",
+          "ko": "풍선"
+        },
+        {
+          "en": "confetti",
+          "ko": "색종이"
+        }
+      ],
+      "explain": {
+        "en": "Fireworks light up the night with bangs and colors. Cities and families use them to mark the moment the new year begins.",
+        "ko": "불꽃놀이는 큰 소리와 색으로 밤하늘을 밝힙니다. 도시와 가족들이 새해가 시작되는 순간을 표시할 때 사용합니다."
+      }
+    },
+    {
+      "id": "q8",
+      "en": "Twelve o'clock at night—the start of a new day—is called…",
+      "ko": "밤 12시, 하루가 바뀌는 그 순간을 뭐라고 하나요?",
+      "choices": [
+        {
+          "en": "midnight",
+          "ko": "자정",
+          "correct": true
+        },
+        {
+          "en": "noon",
+          "ko": "정오"
+        },
+        {
+          "en": "sunrise",
+          "ko": "일출"
+        },
+        {
+          "en": "sunset",
+          "ko": "일몰"
+        }
+      ],
+      "explain": {
+        "en": "Midnight is 12:00 a.m.—when December 31 turns into January 1 and people cheer for the new year.",
+        "ko": "자정(midnight)은 밤 12시(12:00 a.m.)입니다. 12월 31일이 1월 1일로 바뀌며 사람들이 새해를 환호하는 순간이에요."
+      }
+    },
+    {
+      "id": "q9",
+      "en": "Colorful ___ float at many New Year parties.",
+      "ko": "알록달록한 ___이(가) 많은 새해 파티에서 떠다닙니다.",
+      "choices": [
+        {
+          "en": "balloons",
+          "ko": "풍선",
+          "correct": true
+        },
+        {
+          "en": "books",
+          "ko": "책"
+        },
+        {
+          "en": "leaves",
+          "ko": "나뭇잎"
+        },
+        {
+          "en": "coins",
+          "ko": "동전"
+        }
+      ],
+      "explain": {
+        "en": "Balloons are light, air-filled decorations. They add fun color to rooms and sometimes drop when the countdown hits zero.",
+        "ko": "풍선은 공기를 넣은 가벼운 장식입니다. 방을 알록달록하게 꾸미고, 카운트다운이 0이 되면 떨어뜨리기도 합니다."
+      }
+    },
+    {
+      "id": "q10",
+      "en": "A cone-shaped hat worn at celebrations is a ___ hat.",
+      "ko": "축하할 때 쓰는 원뿔 모양 모자는 ___ 모자입니다.",
+      "choices": [
+        {
+          "en": "party",
+          "ko": "파티",
+          "correct": true
+        },
+        {
+          "en": "baseball",
+          "ko": "야구"
+        },
+        {
+          "en": "winter",
+          "ko": "겨울"
+        },
+        {
+          "en": "cowboy",
+          "ko": "카우보이"
+        }
+      ],
+      "explain": {
+        "en": "Party hats are shiny paper cones with elastic strings—kids and adults wear them for photos and countdown fun.",
+        "ko": "파티 모자는 반짝이는 종이 원뿔에 고무줄이 달린 모자입니다. 사진과 카운트다운 놀이에 아이와 어른이 함께 씁니다."
+      }
+    },
+    {
+      "id": "q11",
+      "en": "Raising glasses and saying cheers to celebrate is called a ___.",
+      "ko": "잔을 들어 올리며 축하하는 것을 ___라고 합니다.",
+      "choices": [
+        {
+          "en": "toast",
+          "ko": "건배",
+          "correct": true
+        },
+        {
+          "en": "quiz",
+          "ko": "퀴즈"
+        },
+        {
+          "en": "match",
+          "ko": "시합"
+        },
+        {
+          "en": "climb",
+          "ko": "등반"
+        }
+      ],
+      "explain": {
+        "en": "A toast is a short speech or cheer before sipping a drink—\"To the new year!\" is a common one at midnight.",
+        "ko": "건배(toast)는 마시기 전 짧은 말이나 축하입니다. \"새해를 위해!\"처럼 자정에 자주 하는 말이에요."
+      }
+    },
+    {
+      "id": "q12",
+      "en": "A ___ shows all the months and helps us track the new year.",
+      "ko": "___은(는) 모든 달을 보여 주며 새해를 따라가게 도와줍니다.",
+      "choices": [
+        {
+          "en": "calendar",
+          "ko": "달력",
+          "correct": true
+        },
+        {
+          "en": "clock",
+          "ko": "시계"
+        },
+        {
+          "en": "map",
+          "ko": "지도"
+        },
+        {
+          "en": "recipe",
+          "ko": "레시피"
+        }
+      ],
+      "explain": {
+        "en": "Calendars hang on walls or live on phones—they flip from December to January when the new year starts.",
+        "ko": "달력은 벽에 걸거나 휴대폰에 있습니다. 새해가 시작되면 12월에서 1월로 넘어갑니다."
       }
     }
   ]
