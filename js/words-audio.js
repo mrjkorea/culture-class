@@ -27,7 +27,6 @@ function resolveSrc(path) {
 
 /** Optional phonetic rebakes (MEET-01). Prefer explicit `audio` on the term when set. */
 const PHONETIC_AUDIO = {
-  werewolf: "data/audio/oct-words/werewolf-wearwolf.mp3",
   vampire: "data/audio/oct-words/vampire-vampier.mp3",
 };
 
