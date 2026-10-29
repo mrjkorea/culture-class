@@ -149,16 +149,16 @@ export function mountCut3D(root, stage, ctx) {
   const gl = createGlStage(container, { fov: 46, fog: false });
   if (!gl) return null;
   container.querySelector(".gl-loading")?.remove();
-  gl.renderer.setClearColor(0x2a1240);
+  gl.renderer.setClearColor(0xffffff);
 
   const table = new THREE.Mesh(
-    new THREE.CylinderGeometry(2.2, 2.4, 0.2, 16),
-    new THREE.MeshLambertMaterial({ color: 0x5c3d2e, flatShading: true })
+    new THREE.CylinderGeometry(2.2, 2.4, 0.08, 16),
+    new THREE.MeshLambertMaterial({ color: 0xf2f2f2, flatShading: true })
   );
   table.position.y = -0.05;
   gl.scene.add(table);
 
-  const pumpkin = buildPumpkin(42, 1.35, { withLid: true });
+  const pumpkin = buildPumpkin(42, 1.85, { withLid: true });
   pumpkin.position.y = 0.05;
   gl.scene.add(pumpkin);
 
@@ -241,19 +241,19 @@ export function mountCut3D(root, stage, ctx) {
 export function mountWash3D(root, stage, ctx) {
   root.innerHTML = hostMarkup(stage.title);
   const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 48, fog: true });
+  const gl = createGlStage(container, { fov: 48, fog: false });
   if (!gl) return null;
   container.querySelector(".gl-loading")?.remove();
-  gl.renderer.setClearColor(0x6ec8ff);
+  gl.renderer.setClearColor(0xffffff);
 
   const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(8, 8),
-    new THREE.MeshLambertMaterial({ color: 0x4a90c4, flatShading: true })
+    new THREE.MeshLambertMaterial({ color: 0xf5f5f5, flatShading: true })
   );
   floor.rotation.x = -Math.PI / 2;
   gl.scene.add(floor);
 
-  const pumpkin = buildPumpkin(11, 1.1);
+  const pumpkin = buildPumpkin(11, 1.35);
   pumpkin.position.y = 0.1;
   gl.scene.add(pumpkin);
 

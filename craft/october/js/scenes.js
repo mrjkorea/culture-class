@@ -8,6 +8,7 @@ import { mountCut3D, mountPatch3D, mountWash3D } from "./stage3d.js";
 import {
   HOUSE_SPOTS,
   bowlSvg,
+  kidsSvg,
   spoonSvg,
   candleSvg,
   faceBoxStyle,
@@ -47,6 +48,7 @@ export function mountStage(root, stage, ctx) {
     if (gl) return gl;
   }
   if (stage.type === "luck_hunt") return mountLuck(root, stage, ctx);
+  if (stage.key === "candy") return mountCandy(root, stage, ctx);
   if (stage.type === "guided_mash" && (stage.key === "pin" || !ctx.face)) return mountPin(root, stage, ctx);
   if (stage.type === "guided_mash") return mountGuided(root, stage, ctx);
   return mountMash(root, stage, ctx);
@@ -237,9 +239,6 @@ function mountMash(root, stage, ctx) {
 
   root.addEventListener("pointerdown", onPointer);
   root.addEventListener("keydown", onKey);
-  if (stage.key === "candy") {
-    window.setTimeout(() => ctx.speech?.playKidTrickOrTreat?.(), 400);
-  }
   return {
     destroy() {
       root.removeEventListener("pointerdown", onPointer);
@@ -273,9 +272,7 @@ function mashMarkup(stage, ctx) {
     </div>`;
   }
   if (stage.key === "roast") {
-    const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "roast");
-    const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
-    return `<div class="scene scene-roast scene-3d roast-stage" data-play${bgStyle}>
+    return `<div class="scene scene-roast roast-stage roast-stage-3d" data-play>
       <div class="pan-wrap" data-pan>
         ${panSvg()}
         <button type="button" class="roast-hit roast-hit-ouch" data-hit-ouch aria-label="Hot"></button>
@@ -286,20 +283,13 @@ function mashMarkup(stage, ctx) {
     </div>`;
   }
   if (stage.key === "candy") {
-    const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "candy");
-    const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
-    return `<div class="scene scene-candy scene-3d candy-stage" data-play${bgStyle}>
-      <button type="button" class="bowl-hit" data-hit aria-label="${esc(stage.title)}">
-        ${bowlSvg()}
-        <span class="bowl-count" data-count>0 / ${stage.clicks}</span>
-      </button>
-    </div>`;
+    return `<div class="scene scene-candy candy-stage" data-play>${kidsSvg()}${bowlSvg()}</div>`;
   }
   const face =
     stage.key === "light" && ctx.face
       ? `<div class="face-layer" data-face style="${faceBoxStyle()}">${faceSvgMarkup(ctx.face)}</div>`
       : "";
-  return `<div class="scene scene-${esc(stage.key)}" data-play>
+  return `<div class="scene scene-${esc(stage.key)}${stage.key === "carve" ? " scene-carve-big" : ""}" data-play>
     <div class="pumpkin-stack">
       ${pumpkinSvg(stage.key)}
       <div class="cut-orbit" data-orbit><div class="knife ${stage.fx === "knife_bob" ? "knife-bob" : ""}">${knifeSvg()}</div></div>
@@ -665,6 +655,101 @@ function mountGuided(root, stage, ctx) {
       finished = true;
       root.removeEventListener("pointerdown", onPointer);
       root.removeEventListener("keydown", onKey);
+    },
+  };
+}
+
+/** Give candy: pick a kid (trick or treat) → then one candy click → repeat. */
+function mountCandy(root, stage, ctx) {
+  let done = 0;
+  let finished = false;
+  let phase = "kid";
+  let activeKid = null;
+  const total = stage.clicks;
+  const kidClips = [0, 1, 2, 3, 4];
+  let kidRotate = 0;
+
+  root.innerHTML = `<div class="candy-play" data-play>
+    ${kidsSvg()}
+    <button type="button" class="candy-bowl" data-candy aria-disabled="true" aria-label="${esc(stage.title)}">
+      ${bowlSvg()}
+      <span class="bowl-count" data-count>0 / ${total}</span>
+    </button>
+    <p class="candy-hint" data-hint></p>
+  </div>`;
+
+  const hint = root.querySelector("[data-hint]");
+  const bowl = root.querySelector("[data-candy]");
+  const countEl = root.querySelector("[data-count]");
+
+  function paintHint() {
+    if (!hint) return;
+    hint.textContent =
+      phase === "kid"
+        ? "Tap a kid — wait for trick or treat!"
+        : "Now tap the candy bowl once.";
+  }
+
+  function setKidActive(index) {
+    root.querySelectorAll("[data-kid]").forEach((g, i) => {
+      g.classList.toggle("is-active", i === index);
+    });
+  }
+
+  paintHint();
+
+  function giveCandy() {
+    if (finished || phase !== "candy") return;
+    done += 1;
+    ctx.sfx?.candy?.();
+    if (countEl) countEl.textContent = `${done} / ${total}`;
+    ctx.onProgress(done, total);
+    phase = "kid";
+    activeKid = null;
+    if (bowl) bowl.setAttribute("aria-disabled", "true");
+    setKidActive(-1);
+    paintHint();
+    if (done >= total) {
+      finished = true;
+      ctx.onComplete();
+    }
+  }
+
+  function onKid(kidIndex) {
+    if (finished || phase !== "kid") return;
+    activeKid = kidIndex;
+    setKidActive(kidIndex);
+    const bob = root.querySelector(`[data-kid="${kidIndex}"] .kid-bob`);
+    if (bob) {
+      bob.classList.remove("hop");
+      void bob.offsetWidth;
+      bob.classList.add("hop");
+    }
+    ctx.speech?.playKidTot?.(kidClips[kidRotate % kidClips.length]);
+    kidRotate += 1;
+    phase = "candy";
+    if (bowl) bowl.removeAttribute("aria-disabled");
+    paintHint();
+  }
+
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const kidBtn = e.target.closest("[data-kid]");
+    if (kidBtn && phase === "kid") {
+      e.preventDefault();
+      onKid(Number(kidBtn.dataset.kid));
+      return;
+    }
+    if (e.target.closest("[data-candy]") && phase === "candy") {
+      e.preventDefault();
+      giveCandy();
+    }
+  }
+
+  root.addEventListener("pointerdown", onPointer);
+  return {
+    destroy() {
+      root.removeEventListener("pointerdown", onPointer);
     },
   };
 }

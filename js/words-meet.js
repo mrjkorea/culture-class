@@ -9,6 +9,8 @@ import { setStepDone } from "./month-progress.js";
 import { repoRoot, wordsLearnUrl } from "./paths.js";
 import { applyMonthUiTheme } from "./month-ui-theme.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
+import { getLang, mountLangSelect, t } from "./i18n.js";
+import { termGloss } from "./word-gloss.js";
 
 const app = document.getElementById("app");
 let terms = [];
@@ -18,52 +20,64 @@ let seen = new Set();
 
 function renderShell(body) {
   const back = month
-    ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← ${escapeHtml(month.name)} map</a>`
+    ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← ${t("cc_map")}</a>`
     : "";
   app.innerHTML = `
     <div class="wrap words-flow themed-words-flow">
       ${back}
       <header class="themed-words-hero">
-        <h2>${month ? escapeHtml(month.name) + " — Meet the Words" : "Meet"}</h2>
-        <p>Tap the picture to hear English. Check each word when you know it.</p>
+        <div class="words-hero-row">
+          <h2>${month ? escapeHtml(month.name) + " — " + t("cc_meet_title") : t("cc_meet_title")}</h2>
+          <label class="lang-wrap cc-lang-wrap">
+            <span class="sr-only">${t("lang_label")}</span>
+            <select id="lang-select" aria-label="${escapeHtml(t("lang_label"))}"></select>
+          </label>
+        </div>
+        <p>${t("cc_meet_sub")}</p>
       </header>
       ${body}
-      <footer class="site-footer">Culture Class · No sign-in</footer>
+      <footer class="site-footer">${t("cc_footer")}</footer>
     </div>`;
+  mountLangSelect(document.getElementById("lang-select"), () => renderCard());
 }
 
 function renderCard() {
-  const t = terms[index];
+  const term = terms[index];
   const total = terms.length;
-  const checked = seen.has(t.term);
-  const imgSrc = t.image ? `${repoRoot()}/${t.image.replace(/^\/+/, "")}` : "";
-  const img = t.image
+  const checked = seen.has(term.term);
+  const lang = getLang();
+  const gloss = termGloss(term, lang);
+  const imgSrc = term.image ? `${repoRoot()}/${term.image.replace(/^\/+/, "")}` : "";
+  const img = term.image
     ? `<img class="meet-pic" src="${escapeHtml(imgSrc)}" alt="">`
-    : `<div class="meet-pic meet-pic-fallback">${escapeHtml(t.term)}</div>`;
+    : `<div class="meet-pic meet-pic-fallback">${escapeHtml(term.term)}</div>`;
+  const glossHtml = gloss
+    ? `<span class="meet-gloss">${escapeHtml(gloss)}</span>`
+    : `<span class="meet-gloss meet-gloss-empty" aria-hidden="true"></span>`;
 
   renderShell(`
     <p class="meet-progress">${index + 1} / ${total}</p>
-    <button type="button" class="meet-card" id="meetCard" aria-label="Hear ${escapeHtml(t.term)}">
+    <button type="button" class="meet-card" id="meetCard" aria-label="Hear ${escapeHtml(term.term)}">
       ${img}
-      <span class="meet-en">${escapeHtml(t.term)}</span>
-      <span class="meet-ko">${escapeHtml(t.definition)}</span>
-      <span class="meet-hear-hint">🔊 Tap to hear English</span>
+      <span class="meet-en">${escapeHtml(term.term)}</span>
+      ${glossHtml}
+      <span class="meet-hear-hint">🔊 ${t("cc_meet_hear")}</span>
     </button>
     <label class="meet-check">
       <input type="checkbox" id="meetCheck" ${checked ? "checked" : ""}>
-      I heard this word
+      ${t("cc_meet_check")}
     </label>
     <div class="step-actions meet-nav">
-      <button type="button" class="btn btn-glow-secondary" id="btnPrev" ${index === 0 ? "disabled" : ""}>Previous</button>
-      <button type="button" class="btn btn-glow" id="btnNext">${index >= total - 1 ? "Finish Meet" : "Next word"}</button>
+      <button type="button" class="btn btn-glow-secondary" id="btnPrev" ${index === 0 ? "disabled" : ""}>${t("cc_meet_prev")}</button>
+      <button type="button" class="btn btn-glow" id="btnNext">${index >= total - 1 ? t("cc_meet_finish") : t("cc_meet_next")}</button>
     </div>`);
 
   document.getElementById("meetCard").addEventListener("click", () => {
-    void playWordAudio(t.term, t.audio);
+    void playWordAudio(term.term, term.audio);
   });
   document.getElementById("meetCheck").addEventListener("change", (e) => {
-    if (e.target.checked) seen.add(t.term);
-    else seen.delete(t.term);
+    if (e.target.checked) seen.add(term.term);
+    else seen.delete(term.term);
   });
   document.getElementById("btnPrev").addEventListener("click", () => {
     if (index > 0) {
@@ -72,12 +86,12 @@ function renderCard() {
     }
   });
   document.getElementById("btnNext").addEventListener("click", onNext);
-  void playWordAudio(t.term, t.audio);
+  void playWordAudio(term.term, term.audio);
 }
 
 function onNext() {
-  const t = terms[index];
-  seen.add(t.term);
+  const term = terms[index];
+  seen.add(term.term);
   if (index < terms.length - 1) {
     index += 1;
     renderCard();
@@ -91,10 +105,10 @@ function finish() {
   const next = month ? wordsLearnUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete themed-panel">
-      <p class="words-complete-lead">You met all <strong>${terms.length}</strong> words!</p>
+      <p class="words-complete-lead">${t("cc_meet_done", { n: terms.length })}</p>
       <div class="step-actions">
-        <a class="btn btn-glow" href="${escapeHtml(next)}">Next: Learn →</a>
-        <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
+        <a class="btn btn-glow" href="${escapeHtml(next)}">${t("cc_next_learn")}</a>
+        <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">${t("cc_back_map")}</a>
       </div>
     </div>`);
 }

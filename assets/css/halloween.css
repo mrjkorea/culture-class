@@ -285,8 +285,13 @@ body.halloween-theme {
 }
 
 .memory-halloween .memory-card.memory-pic-card .memory-card-inner {
-  opacity: 1;
+  opacity: 0;
   padding: 0.25rem;
+}
+
+.memory-halloween .memory-card.memory-pic-card.memory-flipped .memory-card-inner,
+.memory-halloween .memory-card.memory-pic-card.memory-matched .memory-card-inner {
+  opacity: 1;
 }
 
 .memory-halloween .memory-card.memory-pic-card:not(.memory-flipped):not(.memory-matched)::after {

@@ -463,6 +463,47 @@ a:hover {
   font-weight: 500;
 }
 
+.words-hero-row,
+.culture-home-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.cc-lang-wrap select {
+  font: inherit;
+  font-size: 0.88rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: inherit;
+  max-width: 11rem;
+}
+
+.meet-gloss {
+  display: block;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-top: 0.35rem;
+}
+
+.meet-gloss-empty {
+  display: none;
+}
+
+.quiz-choice-ok {
+  border-color: #2f9e44 !important;
+  background: rgba(47, 158, 68, 0.15) !important;
+}
+
+.quiz-choice-bad {
+  border-color: #c92a2a !important;
+  background: rgba(201, 42, 42, 0.12) !important;
+}
+
 .flashcard {
   background: var(--surface);
   border: 1px solid var(--border);

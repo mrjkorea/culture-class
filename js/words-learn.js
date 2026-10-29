@@ -13,14 +13,16 @@ import { repoRoot } from "./paths.js";
 import * as Algo from "./word-factory-algo.js";
 import { applyMonthUiTheme } from "./month-ui-theme.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
+import { getLang, mountLangSelect, t } from "./i18n.js";
+import { termGloss } from "./word-gloss.js";
 
 const WINS_KEY_PREFIX = "culture-class-factory-wins-";
 const app = document.getElementById("app");
 
 let terms = [];
 let month = null;
-let winsState = Algo.emptyWins();
-/** @type {{ mode: string, queue: object[], cur: object|null, typed: string, locking: boolean, mustCopy: boolean, pendingNxt: object|null, startedAt: number }} */
+/** @type {{ winsA: Record<string, number> }} */
+let winsState = { winsA: {} };
 let learn = null;
 
 function winsKey(monthId) {
@@ -30,11 +32,14 @@ function winsKey(monthId) {
 function loadWins(monthId) {
   try {
     const raw = localStorage.getItem(winsKey(monthId));
-    if (raw) return { ...Algo.emptyWins(), ...JSON.parse(raw) };
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { winsA: parsed.winsA || {} };
+    }
   } catch {
     /* ignore */
   }
-  return Algo.emptyWins();
+  return { winsA: {} };
 }
 
 function saveWins(monthId) {
@@ -45,32 +50,42 @@ function saveWins(monthId) {
   }
 }
 
-function norm(s) {
-  return String(s || "")
-    .trim()
-    .toLowerCase()
-    .replace(/['']/g, "'");
-}
-
 function renderShell(body) {
   const back = month
-    ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← Map</a>`
+    ? `<a class="back-link halloween-back" href="${escapeHtml(monthPageUrl(month.slug))}">← ${t("cc_map")}</a>`
     : "";
   app.innerHTML = `
     <div class="wrap words-flow themed-words-flow learn-factory">
       ${back}
       <header class="themed-words-hero">
-        <h2>${month ? escapeHtml(month.name) + " — Learn" : "Learn"}</h2>
-        <p>Word Master factory — listen, meaning, spelling, then write.</p>
+        <div class="words-hero-row">
+          <h2>${month ? escapeHtml(month.name) + " — " + t("part_a") : t("part_a")}</h2>
+          <label class="lang-wrap cc-lang-wrap">
+            <span class="sr-only">${t("lang_label")}</span>
+            <select id="lang-select" aria-label="${escapeHtml(t("lang_label"))}"></select>
+          </label>
+        </div>
+        <p>${t("cc_learn_sub")}</p>
       </header>
       ${body}
-      <footer class="site-footer">Culture Class · Learn</footer>
+      <footer class="site-footer">${t("cc_footer")}</footer>
     </div>`;
+  mountLangSelect(document.getElementById("lang-select"), () => {
+    if (learn?.cur) renderLearn(false);
+    else if (month) initFlow();
+  });
 }
 
 function distractors(cur, n) {
+  const lang = getLang();
   const others = terms.filter((t) => t.id !== cur.id);
-  return shuffle(others).slice(0, n);
+  const labels = [];
+  for (const w of shuffle(others)) {
+    const g = termGloss(w, lang);
+    if (g && !labels.includes(g)) labels.push(g);
+    if (labels.length >= n) break;
+  }
+  return labels;
 }
 
 function picHtml(t) {
@@ -81,22 +96,23 @@ function picHtml(t) {
 
 function renderLearn(doSpeak) {
   if (!learn?.cur) return;
-  const meta = Algo.MODE_META[learn.mode];
-  const wins = Algo.bucket(winsState, learn.mode);
+  const wins = winsState.winsA;
   const rem = Algo.remaining(terms, wins).length;
   const streak = wins[learn.cur.id] || 0;
-  const pct = Algo.factoryProgress(terms, winsState);
-  const t = learn.cur;
+  const pct = Algo.learnPartProgress(terms, wins);
+  const cur = learn.cur;
+  const lang = getLang();
+  const gloss = termGloss(cur, lang);
 
   let body = `
     <div class="learn-hud themed-panel">
-      <span class="learn-mode-badge">Part ${learn.mode}</span>
-      <strong>${escapeHtml(meta.ko)}</strong>
-      <span class="hint">${escapeHtml(meta.hint)}</span>
-      <p class="learn-prog">${pct}% factory · ${rem} words left in part · streak ${streak}/${Algo.NEED}</p>
+      <span class="learn-mode-badge">${t("part_a")}</span>
+      <strong>${t("two_clean")}</strong>
+      <span class="hint">${t("hint_a")}</span>
+      <p class="learn-prog">${t("cc_learn_prog", { pct, left: rem, streak })}</p>
     </div>
     <div class="learn-card themed-panel" id="learn-card">
-      ${picHtml(t)}
+      ${picHtml(cur)}
       <div id="learn-prompt"></div>
       <div id="learn-input"></div>
       <div id="learn-choices" class="learn-choices"></div>
@@ -108,56 +124,37 @@ function renderLearn(doSpeak) {
   const inputWrap = document.getElementById("learn-input");
   const choices = document.getElementById("learn-choices");
 
-  if (learn.mode === "A") {
-    prompt.innerHTML = `<p class="learn-en">${escapeHtml(t.term)}</p>`;
-    inputWrap.innerHTML = `<button type="button" class="btn btn-glow-secondary" id="btn-hear">🔊 Hear again</button>`;
-    const opts = distractors(t, 3);
-    opts.push(t);
-    shuffle(opts).forEach((w) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "btn btn-glow-secondary learn-choice";
-      btn.textContent = w.definition;
-      btn.addEventListener("click", () => onChoice(w, btn));
-      choices.appendChild(btn);
-    });
-    document.getElementById("btn-hear")?.addEventListener("click", () => {
-      void playWordAudio(t.term, t.audio);
-    });
-    if (doSpeak) void playWordAudio(t.term, t.audio);
-  } else if (learn.mode === "B") {
-    prompt.innerHTML = `<p class="hint">Listen and type the English word.</p>`;
-    inputWrap.innerHTML = `
-      <input type="text" class="learn-type" id="learn-type" autocomplete="off" autocapitalize="off" spellcheck="false" />
-      <button type="button" class="btn btn-glow" id="btn-check">Check</button>
-      <button type="button" class="btn btn-glow-secondary" id="btn-hear">🔊 Hear</button>`;
-    choices.innerHTML = "";
-    bindTypeHandlers();
-    if (doSpeak) void playWordAudio(t.term, t.audio);
-  } else {
-    prompt.innerHTML = `<p class="learn-ko-prompt">${escapeHtml(t.definition)}</p>`;
-    inputWrap.innerHTML = `
-      <input type="text" class="learn-type" id="learn-type" autocomplete="off" autocapitalize="off" spellcheck="false" />
-      <button type="button" class="btn btn-glow" id="btn-check">Check</button>`;
-    choices.innerHTML = "";
-    bindTypeHandlers();
+  prompt.innerHTML = `<p class="learn-en">${escapeHtml(cur.term)}</p>`;
+  inputWrap.innerHTML = `<button type="button" class="btn btn-glow-secondary" id="btn-hear">🔊 ${t("speak_word")}</button>`;
+
+  const opts = distractors(cur, 3);
+  if (gloss) opts.push(gloss);
+  const choiceWords = [];
+  shuffle([...new Set(opts)]).slice(0, 4).forEach((label) => {
+    const match = terms.find((w) => termGloss(w, lang) === label);
+    if (match) choiceWords.push(match);
+  });
+  if (!choiceWords.some((w) => w.id === cur.id) && gloss) {
+    choiceWords.push(cur);
   }
+  shuffle(choiceWords).forEach((w) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn-glow-secondary learn-choice";
+    btn.textContent = termGloss(w, lang) || w.term;
+    btn.addEventListener("click", () => onChoice(w, btn));
+    choices.appendChild(btn);
+  });
+
+  document.getElementById("btn-hear")?.addEventListener("click", () => {
+    void playWordAudio(cur.term, cur.audio);
+  });
+  if (doSpeak) void playWordAudio(cur.term, cur.audio);
   learn.startedAt = Date.now();
 }
 
-function bindTypeHandlers() {
-  document.getElementById("btn-hear")?.addEventListener("click", () => {
-    void playWordAudio(learn.cur.term, learn.cur.audio);
-  });
-  document.getElementById("btn-check")?.addEventListener("click", () => onCheck());
-  document.getElementById("learn-type")?.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") onCheck();
-  });
-  document.getElementById("learn-type")?.focus();
-}
-
 function onChoice(word, btn) {
-  if (learn.locking || learn.mode !== "A") return;
+  if (learn.locking) return;
   const ok = word.id === learn.cur.id;
   app.querySelectorAll(".learn-choice").forEach((b) => {
     b.disabled = true;
@@ -165,68 +162,21 @@ function onChoice(word, btn) {
     b.classList.toggle("bad", b === btn && !ok);
   });
   if (!ok) {
+    const lang = getLang();
+    const correctGloss = termGloss(learn.cur, lang);
     app.querySelectorAll(".learn-choice").forEach((b) => {
-      if (b.textContent === learn.cur.definition) b.classList.add("ok");
+      if (b.textContent === correctGloss) b.classList.add("ok");
     });
   }
   void gradeLearn(ok);
 }
 
-function onCheck() {
-  if (learn.locking || learn.mode === "A") return;
-  const typed = document.getElementById("learn-type")?.value || "";
-  if (!typed && !learn.mustCopy) return;
-  if (learn.mustCopy) {
-    if (norm(typed) !== norm(learn.cur.term)) {
-      document.getElementById("learn-card")?.classList.add("shake");
-      setTimeout(() => document.getElementById("learn-card")?.classList.remove("shake"), 400);
-      return;
-    }
-    learn.mustCopy = false;
-    const nxt = learn.pendingNxt;
-    learn.pendingNxt = null;
-    learn.typed = "";
-    advanceLearn(nxt, false);
-    return;
-  }
-  const ok = norm(typed) === norm(learn.cur.term);
-  void gradeLearn(ok, typed);
-}
-
-async function gradeLearn(ok, response = "") {
+async function gradeLearn(ok) {
   if (learn.locking) return;
   learn.locking = true;
-  const wins = Algo.bucket(winsState, learn.mode);
+  const wins = winsState.winsA;
   const before = wins[learn.cur.id] || 0;
   const cur = learn.cur;
-
-  if (learn.mode === "B" && !ok) {
-    wins[cur.id] = 0;
-    saveWins(month.id);
-    document.getElementById("learn-card")?.classList.add("shake");
-    const teach = document.getElementById("learn-prompt");
-    if (teach) teach.innerHTML = `<p class="learn-en">${escapeHtml(cur.term)}</p><p class="hint">Spell it like this, then try again.</p>`;
-    learn.typed = "";
-    learn.locking = false;
-    learn.startedAt = Date.now();
-    setTimeout(() => document.getElementById("learn-card")?.classList.remove("shake"), 400);
-    return;
-  }
-
-  if (learn.mode === "C" && !ok) {
-    const nxt = Algo.applyGrade(learn.queue, terms, wins, cur, false);
-    saveWins(month.id);
-    document.getElementById("learn-card")?.classList.add("shake");
-    void playWordAudio(cur.term, cur.audio);
-    learn.mustCopy = true;
-    learn.pendingNxt = nxt;
-    learn.typed = "";
-    const prompt = document.getElementById("learn-prompt");
-    if (prompt) prompt.innerHTML = `<p class="learn-en">${escapeHtml(cur.term)}</p><p class="hint">Type the word exactly to continue.</p>`;
-    learn.locking = false;
-    return;
-  }
-
   const hitTwo = ok && before + 1 >= Algo.NEED;
   const nxt = Algo.applyGrade(learn.queue, terms, wins, cur, ok);
   saveWins(month.id);
@@ -235,39 +185,26 @@ async function gradeLearn(ok, response = "") {
 
 async function advanceLearn(nxt, hitTwo) {
   if (!nxt || typeof nxt !== "object") {
-    const wins = Algo.bucket(winsState, learn.mode);
-    nxt = Algo.nextWord([], terms, wins);
+    nxt = Algo.nextWord([], terms, winsState.winsA);
     hitTwo = false;
   }
   if (nxt.partDone) {
-    const nextMode = Algo.nextMode(learn.mode);
-    if (nextMode) {
-      beginPart(nextMode);
-      return;
-    }
     finishLearn();
     return;
   }
   await new Promise((r) => setTimeout(r, hitTwo ? 280 : 200));
   learn.queue = nxt.queue;
   learn.cur = nxt.cur;
-  learn.typed = "";
   learn.locking = false;
-  learn.mustCopy = false;
-  learn.pendingNxt = null;
   renderLearn(true);
 }
 
-function beginPart(mode) {
-  const wins = Algo.bucket(winsState, mode);
+function beginLearn() {
+  const wins = winsState.winsA;
   learn = {
-    mode,
     queue: Algo.makeQueue(terms, wins),
     cur: null,
-    typed: "",
     locking: false,
-    mustCopy: false,
-    pendingNxt: null,
     startedAt: Date.now(),
   };
   const nxt = Algo.nextWord(learn.queue, terms, wins);
@@ -284,12 +221,20 @@ function finishLearn() {
   const memoryHref = month ? wordsMemoryUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete themed-panel">
-      <p class="words-complete-lead">Factory complete — all <strong>${terms.length}</strong> words practiced.</p>
+      <p class="words-complete-lead">${t("cc_learn_done")} <strong>${terms.length}</strong></p>
       <div class="step-actions">
-        <a class="btn btn-glow" href="${escapeHtml(memoryHref)}">Next: Memory →</a>
-        <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">Back to map</a>
+        <a class="btn btn-glow" href="${escapeHtml(memoryHref)}">${t("cc_next_memory")}</a>
+        <a class="btn btn-glow-secondary" href="${escapeHtml(monthPageUrl(month.slug))}">${t("cc_back_map")}</a>
       </div>
     </div>`);
+}
+
+function initFlow() {
+  if (Algo.learnPartDone(terms, winsState.winsA)) {
+    finishLearn();
+    return;
+  }
+  beginLearn();
 }
 
 async function init() {
@@ -305,16 +250,11 @@ async function init() {
     renderShell(`<p class="placeholder-box">Words not ready.</p>`);
     return;
   }
-  document.title = `Culture Class — ${month.name} Learn`;
+  document.title = `Culture Class — ${month.name} ${t("part_a")}`;
   applyMonthUiTheme(month);
   ensureThemeStylesheet(month);
-  winsState = loadWins(month.id);
-  const mode = Algo.startMode(terms, winsState);
-  if (!mode) {
-    finishLearn();
-    return;
-  }
-  beginPart(mode);
+  winsState = loadWins(monthId);
+  initFlow();
 }
 
 init().catch(console.error);
