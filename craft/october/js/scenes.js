@@ -20,6 +20,7 @@ import {
   pumpkinSvg,
 } from "./art.js";
 import { faceSvgMarkup } from "./faces.js";
+import { pickLocalized } from "../../../js/i18n.js";
 
 function esc(s) {
   return String(s)
@@ -498,7 +499,7 @@ function mountPin(root, stage, ctx) {
         .map(
           (face) => `<button type="button" class="face-choice" data-face="${esc(face.id)}">
             <span class="mini-stack">${pumpkinSvg(`pick${face.id}`)}<span class="face-layer" style="${faceBoxStyle()}">${faceSvgMarkup(face)}</span></span>
-            <span class="face-name">${esc(ctx.uiLang === "ko" ? face.label.ko : face.label.en)}</span>
+            <span class="face-name">${esc(pickLocalized(face.label, ctx.uiLang))}</span>
           </button>`
         )
         .join("")}
