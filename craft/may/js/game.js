@@ -63,10 +63,14 @@ function createTimer() {
   };
 }
 
-function t(key) {
+function t(key, vars = {}) {
   const pack = spec.uiCopy?.[uiLang] || {};
   const en = spec.uiCopy?.en || {};
-  return pack[key] || en[key] || "";
+  let s = pack[key] || en[key] || "";
+  for (const [k, v] of Object.entries(vars)) {
+    s = s.split(`{${k}}`).join(String(v));
+  }
+  return s;
 }
 
 function stageTotal(stage) {
@@ -306,6 +310,7 @@ function playStage(stage, index) {
     const craft = state.craft;
     const ctx = {
       uiLang,
+      t,
       speech,
       sfx,
       reducedMotion,
