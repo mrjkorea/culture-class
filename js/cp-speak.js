@@ -33,6 +33,12 @@ let rowResults = {};
 
 const THRESHOLDS = { green: 75, yellow: 50 };
 
+const layoutOnlyParams = new URLSearchParams(location.search);
+const layoutOnlyMode =
+  layoutOnlyParams.get("cos") === "1" ||
+  layoutOnlyParams.get("guest") === "1" ||
+  layoutOnlyParams.get("demo") === "1";
+
 function el(id) {
   return document.getElementById(id);
 }
@@ -246,6 +252,12 @@ function playAudio() {
 function syncMicButton() {
   const btn = el("btnSpeak");
   if (!btn) return;
+  if (layoutOnlyMode) {
+    btn.classList.remove("live");
+    btn.textContent = "Speak (CoS layout only)";
+    btn.disabled = true;
+    return;
+  }
   const listening = isCapturing();
   btn.classList.toggle("listening", listening);
   btn.textContent = listening ? "Listening…" : "🎤 Speak";
@@ -392,6 +404,7 @@ function nextItem() {
 }
 
 async function bootChecker() {
+  if (layoutOnlyMode) return;
   try {
     await bootShared({
       onProgress: (frac, text) => setCheckerProgress(frac, text),
@@ -406,6 +419,20 @@ async function bootChecker() {
     checkerError = err.message || "boot failed";
     setCheckerProgress(0, "Sound checker failed to load");
   }
+}
+
+function applyLayoutOnlyCheckerUi() {
+  checkerReady = false;
+  checkerError = "";
+  setCheckerProgress(1, "CoS: layout only — sound checker skipped");
+  const track = el("modelTrack");
+  if (track) {
+    track.classList.add("done");
+    track.hidden = true;
+  }
+  syncMicButton();
+  const status = el("micStatus");
+  if (status) status.textContent = "CoS verify: Day 4 sheet layout (mic disabled).";
 }
 
 async function init() {
@@ -439,7 +466,11 @@ async function init() {
   index = 0;
   rowResults = {};
   renderPractice();
-  void bootChecker();
+  if (layoutOnlyMode) {
+    applyLayoutOnlyCheckerUi();
+  } else {
+    void bootChecker();
+  }
 }
 
 init().catch((err) => {

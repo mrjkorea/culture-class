@@ -1,15 +1,13 @@
 // Day 3 virtual workbook engine: shared helpers. Everything reads data/<unit>.json.
 const WB={};
 WB.qs=new URLSearchParams(location.search);
-WB.unit=WB.qs.get('unit')||'';
-if(!WB.unit){
-  const monthRaw=WB.qs.get('month');
-  const monthNum=monthRaw!=null?parseInt(String(monthRaw).trim(),10):NaN;
-  if(Number.isFinite(monthNum)&&monthNum>=1&&monthNum<=12){
-    WB.unit='culture_m'+String(monthNum).padStart(2,'0');
-  }
+const _monthRaw=WB.qs.get('month');
+const _monthNum=_monthRaw!=null?parseInt(String(_monthRaw).trim(),10):NaN;
+if(Number.isFinite(_monthNum)&&_monthNum>=1&&_monthNum<=12){
+  WB.unit='culture_m'+String(_monthNum).padStart(2,'0');
+}else{
+  WB.unit=WB.qs.get('unit')||'basic_a_u06';
 }
-if(!WB.unit)WB.unit='basic_a_u06';
 WB.test=WB.qs.get('test')==='1';
 WB.steps=[['match','Matching Columns','🔗'],['map','Map Quiz','🗺️'],['odd','Odd One Out','🤔'],['search','Word Search','🔍'],['hangman','Hangman','🎈'],['cross','Crossword','✏️'],['unscramble','Unscramble Words','🧩'],['dialogue','Complete the Dialogue','💬'],['climb','Mountain Quiz (Final Test)','🏔️']];
 WB.key=()=> 'mrj_day3_'+WB.unit;

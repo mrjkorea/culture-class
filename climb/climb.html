@@ -34,7 +34,7 @@
  </svg><video id="vid" muted playsinline preload="auto"></video></div>
  <div id="card"></div>
 </div>
-<script src="wb.js?v=20261027-teacher-chip"></script>
+<script src="wb.js?v=20261029-month-wins"></script>
 <script>
 let D,i=0,right=0,pos=0,locked=false,N=0;const card=document.getElementById('card'),vid=document.getElementById('vid');
 const sh=WB.sh,word=w=>{const x=WB.w(w);const src=x&&x.audio?x.audio:(D.wordAudio?D.wordAudio+w.split(' ')[0]+'.mp3':'');return src?WB.play(src):Promise.resolve()},line=f=>{if(!f)return Promise.resolve();return WB.play(String(f).includes('/')?f:D.lineAudio+f)};
@@ -89,6 +89,7 @@ async function end(){const p=Math.round(right/N*100),ps=p>=D.passPercent;WB.save
  <button id="again">🔁 Play again</button> <button onclick="location.href=HOME()">🏠 Map</button>${ps?` <button class="ok" onclick="location.href='${nextHref}'">${nextLbl}</button>`:''}`;
  document.getElementById('again').onclick=start;WB.cheer(ps?'top':'retry');if(ps){pos=N;move();await clip('top')}}
 function start(){i=0;right=0;pos=0;WB._nl=null;move();show()}
+if(WB.qs.get('cos')==='1'){const _cd=document.createElement('p');_cd.className='hint';_cd.style.cssText='position:fixed;bottom:4px;left:4px;z-index:99;font-size:12px;margin:0;background:#fff8;padding:4px 8px;border-radius:8px';_cd.textContent='CoS unit='+WB.unit;document.body.appendChild(_cd)}
 WB.load().then(d=>{D=d;WB.voiceBtn();N=d.questions.length;drawSteps();
  if(D.kind!=='review'&&D.kind!=='culture'&&!WB.unlocked('climb')){card.innerHTML=`<h1>🔒 Locked</h1><p class="p">Finish step 8 first.</p><button onclick="location.href=WB.link('index.html')">🏠 Steps</button>`;return}
  if(WB.test)WB.skipBtn(()=>{if(!locked&&i<N)check(true,null)});start()}).catch(e=>card.innerHTML='<h1>Oops</h1><p>'+e.message+'</p>');
