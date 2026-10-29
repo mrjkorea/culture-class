@@ -1,8 +1,10 @@
 import {
-  bingoUrl,
+  bingoStudentUrl,
   climbUrl,
   cpSpeakUrl,
+  craftUrl,
   dailyQuizUrl,
+  homeUrl,
   monthPageUrl,
   repoRoot,
   wordsLearnUrl,
@@ -29,7 +31,6 @@ function escapeHtml(s) {
 import { withLinkVersion } from "./site-version.js";
 
 function stepHref(month, step) {
-  const root = repoRoot();
   let href;
   switch (step.id) {
     case "video":
@@ -54,16 +55,15 @@ function stepHref(month, step) {
       href = cpSpeakUrl(month.id);
       break;
     case "craft":
-      if (!month.craftPath) href = monthPageUrl(month.slug);
-      else href = `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
+      href = month.craftPath ? craftUrl(month.craftPath) : monthPageUrl(month.slug);
       break;
     case "bingo":
-      href = `${bingoUrl("student")}?month=${month.id}`;
+      href = bingoStudentUrl(month.id);
       break;
     default:
       href = monthPageUrl(month.slug);
   }
-  return withLinkVersion(href);
+  return href;
 }
 
 function renderVideoBlock(month) {
@@ -123,7 +123,7 @@ export function renderThemedMapMonth(month) {
 
   document.getElementById("app").innerHTML = `
     <div class="themed-map-page">
-      <a class="back-link map-back" href="${root}/">← All months</a>
+      <a class="back-link map-back" href="${escapeHtml(homeUrl())}">← All months</a>
       <header class="map-title">
         <h1>${escapeHtml(month.name)}</h1>
         <p>${escapeHtml(month.theme)} adventure map</p>

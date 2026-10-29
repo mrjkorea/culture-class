@@ -1,4 +1,4 @@
-import { dataUrl, repoRoot } from "./paths.js";
+import { dataUrl, monthPageUrl, repoRoot } from "./paths.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { playWordAudio, playTermAudioFromPack } from "./word-audio.js";
 
@@ -57,10 +57,9 @@ export function shuffle(arr) {
 }
 
 export function backToMonthLink(monthId, data) {
-  const root = repoRoot();
   const month = data?.months?.find((m) => m.id === monthId);
   const slug = month?.slug || "08-august";
-  return `${root}/months/${slug}/`;
+  return monthPageUrl(slug);
 }
 
 export async function loadMonthsMeta() {
