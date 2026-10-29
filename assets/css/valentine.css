@@ -318,8 +318,8 @@ body.theme-valentine {
 
 .theme-valentine .memory-card {
   border-radius: 14px;
-  border: 3px solid #6b1d45;
-  background: radial-gradient(circle at 30% 30%, #ff8fab 0%, #6b1d45 45%, #120810 100%);
+  border: 3px solid #e64980;
+  background: url("../memory/card-back-valentine.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 

@@ -6,7 +6,7 @@
   <meta name="description" content="Valentine Card Craft — Mr. Jay's Culture Class February mini-game">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 26 C8 18 4 14 4 10 C4 6 7 4 10 4 C12 4 14 5 16 8 C18 5 20 4 22 4 C25 4 28 6 28 10 C28 14 24 18 16 26Z' fill='%23ff6b9d'/%3E%3C/svg%3E">
   <title>Valentine Card Craft — Culture Class</title>
-  <link rel="stylesheet" href="css/game.css">
+  <link rel="stylesheet" href="css/game.css" id="craft-game-css">
   <script type="importmap">
   {
     "imports": {
@@ -36,6 +36,11 @@
     </main>
   </div>
   <p id="live" class="sr-only" aria-live="polite"></p>
-  <script type="module" src="js/game.js"></script>
+  <script type="module">
+    import { CRAFT_ASSET_V } from "./js/asset-version.js";
+    const css = document.getElementById("craft-game-css");
+    if (css) css.href = `css/game.css?v=${CRAFT_ASSET_V}`;
+    import(`./js/game.js?v=${CRAFT_ASSET_V}`);
+  </script>
 </body>
 </html>
