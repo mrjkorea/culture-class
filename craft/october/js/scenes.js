@@ -279,7 +279,7 @@ function mashMarkup(stage, ctx) {
     </div>`;
   }
   if (stage.key === "candy") {
-    return `<div class="scene scene-candy candy-stage" data-play>${kidsSvg()}${bowlSvg()}</div>`;
+    return `<div class="scene scene-candy candy-stage scene-3d" data-play>${kidsSvg()}${bowlSvg()}</div>`;
   }
   const face =
     stage.key === "light" && ctx.face

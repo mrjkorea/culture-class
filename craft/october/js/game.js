@@ -5,10 +5,11 @@ import { mountStage } from "./scenes.js";
 import { pumpkinSvg } from "./art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
-import { getLang, LANGS, pickLines, pickLocalized, studentDisplayName } from "../../../js/i18n.js";
+import { getLang, LANGS, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
+const langSelect = document.getElementById("lang-select");
 const soundBtn = document.getElementById("sound-btn");
 
 let spec;
@@ -575,7 +576,32 @@ function preload() {
   });
 }
 
+function onLangChange() {
+  uiLang = getLang();
+  paintLang();
+  paintLines();
+  const screen = view.dataset.screen;
+  if (screen === "title") {
+    renderTitle(true);
+    return;
+  }
+  if (screen === "stage" && spec) {
+    const idx = spec.stages.findIndex((s) => s.key === view.dataset.stageKey);
+    const stage = spec.stages[idx];
+    const label = document.getElementById("stage-label");
+    if (label && stage && idx >= 0) {
+      label.textContent = `${idx + 1}/${spec.stages.length} ${pickLocalized(stage.titles || { en: stage.title }, uiLang)}`;
+    }
+    if (stage?.key === "pin" && state?.phase === "pick") {
+      showLines(pickBlock(), 0);
+    }
+  }
+}
+
 function bindChrome() {
+  mountLangSelect(langSelect, onLangChange);
+  const langLabel = document.getElementById("lang-label");
+  if (langLabel) langLabel.textContent = i18nT("lang_label");
   soundBtn.addEventListener("click", () => {
     speech.unlock();
     sfx?.unlock?.();

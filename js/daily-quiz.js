@@ -71,8 +71,9 @@ function playSfx(name) {
   a.play().catch(() => {});
 }
 
-function quizClipKey(q, part = "stem") {
-  return `${q.id || `q${qIndex + 1}`}_${part}`;
+function quizClipKey(q, index, part = "stem") {
+  const qid = q.qid || (typeof q.id === "string" && /^q\d+$/i.test(q.id) ? q.id : null) || `q${index + 1}`;
+  return `${qid}_${part}`;
 }
 
 function playQuizClip(key) {
@@ -151,7 +152,7 @@ function renderQuestion() {
       ${histHtml}
     </div>`);
 
-  playQuizClip(quizClipKey(q, "stem"));
+  playQuizClip(quizClipKey(q, qIndex, "stem"));
 
   app.querySelectorAll(".quiz-choice").forEach((btn) => {
     btn.addEventListener("click", () => {

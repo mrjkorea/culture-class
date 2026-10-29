@@ -575,15 +575,16 @@ function expandQuiz() {
   const quizPath = path.join(ROOT, "data/oct-daily-quiz.json");
   const quiz = JSON.parse(fs.readFileSync(quizPath, "utf8"));
   quiz.languageToggleIfNotPerfect = false;
-  for (const q of quiz.questions) {
-    const qmap = QUIZ_Q[q.id];
+  quiz.questions.forEach((q, i) => {
+    q.qid = `q${i + 1}`;
+    const qmap = QUIZ_Q[q.qid];
     if (qmap) {
       for (const lang of LANGS) {
         if (qmap[lang]) q[lang] = qmap[lang];
       }
     }
     if (q.explain) {
-      const em = EXPLAIN_MAPS[q.id];
+      const em = EXPLAIN_MAPS[q.qid];
       if (em) {
         for (const lang of LANGS) {
           if (em[lang]) q.explain[lang] = em[lang];
@@ -595,16 +596,190 @@ function expandQuiz() {
         }
       }
     }
-    const table = CHOICE_TABLES[q.id];
-    q.choices.forEach((c, i) => {
-      applyChoiceTable(c, table?.[i]);
+    const table = CHOICE_TABLES[q.qid];
+    q.choices.forEach((c, ci) => {
+      applyChoiceTable(c, table?.[ci]);
       for (const lang of LANGS) {
         if (!c[lang] && c.en) c[lang] = c.en;
       }
     });
-  }
+  });
   fs.writeFileSync(quizPath, JSON.stringify(quiz, null, 2) + "\n");
 }
+
+/** Stage HUD titles by stage.key (LANG-02). */
+const STAGE_TITLES = {
+  patch: {
+    en: "Pumpkin patch",
+    ko: "호박밭",
+    "zh-Hans": "南瓜田",
+    ja: "かぼちゃ畑",
+    es: "Calabazar",
+    hi: "कद्दू का खेत",
+    de: "Kürbisfeld",
+    vi: "Ruộng bí",
+    "pt-BR": "Plantação de abóboras",
+    id: "Kebun labu",
+    fr: "Champ de citrouilles",
+    ar: "حقل اليقطين",
+    tr: "Balkabağı tarlası",
+    it: "Campo di zucche",
+    pl: "Pole dyni",
+  },
+  wash: {
+    en: "Wash",
+    ko: "씻기",
+    "zh-Hans": "清洗",
+    ja: "洗う",
+    es: "Lavar",
+    hi: "धोना",
+    de: "Waschen",
+    vi: "Rửa",
+    "pt-BR": "Lavar",
+    id: "Cuci",
+    fr: "Laver",
+    ar: "غسل",
+    tr: "Yıka",
+    it: "Lavare",
+    pl: "Myj",
+  },
+  cut: {
+    en: "Cut the top",
+    ko: "윗부분 자르기",
+    "zh-Hans": "切顶部",
+    ja: "上部を切る",
+    es: "Cortar la tapa",
+    hi: "ऊपर काटें",
+    de: "Deckel abschneiden",
+    vi: "Cắt nắp",
+    "pt-BR": "Cortar a tampa",
+    id: "Potong bagian atas",
+    fr: "Couper le couvercle",
+    ar: "قص السطح",
+    tr: "Üstü kes",
+    it: "Taglia il coperchio",
+    pl: "Odcięcie wieczka",
+  },
+  scoop: {
+    en: "Scoop seeds",
+    ko: "씨 제거",
+    "zh-Hans": "挖籽",
+    ja: "種をすくう",
+    es: "Sacar semillas",
+    hi: "बीज निकालें",
+    de: "Kerne ausschaben",
+    vi: "Xúc hạt",
+    "pt-BR": "Retirar sementes",
+    id: "Keruk biji",
+    fr: "Évider les graines",
+    ar: "أخرج البذور",
+    tr: "Çekirdekleri oy",
+    it: "Rimuovi i semi",
+    pl: "Wydrąż nasiona",
+  },
+  roast: {
+    en: "Roast seeds",
+    ko: "씨 볶기",
+    "zh-Hans": "烤籽",
+    ja: "種を炒る",
+    es: "Tostar semillas",
+    hi: "बीज भूनें",
+    de: "Kerne rösten",
+    vi: "Rang hạt",
+    "pt-BR": "Torrar sementes",
+    id: "Sangrai biji",
+    fr: "Griller les graines",
+    ar: "حمّص البذور",
+    tr: "Çekirdek kavur",
+    it: "Tosta i semi",
+    pl: "Praż nasiona",
+  },
+  pin: {
+    en: "Pin the face",
+    ko: "얼굴 꽂기",
+    "zh-Hans": "钉脸",
+    ja: "顔を留める",
+    es: "Fijar la cara",
+    hi: "चेहरा लगाएँ",
+    de: "Gesicht stecken",
+    vi: "Gắn mặt",
+    "pt-BR": "Prender o rosto",
+    id: "Pasang wajah",
+    fr: "Fixer le visage",
+    ar: "ثبّت الوجه",
+    tr: "Yüzü sabitle",
+    it: "Fissa la faccia",
+    pl: "Przypnij twarz",
+  },
+  carve: {
+    en: "Carve",
+    ko: "조각하기",
+    "zh-Hans": "雕刻",
+    ja: "彫る",
+    es: "Tallar",
+    hi: "तराशें",
+    de: "Schnitzen",
+    vi: "Khắc",
+    "pt-BR": "Esculpir",
+    id: "Ukir",
+    fr: "Sculpter",
+    ar: "انحت",
+    tr: "Oy",
+    it: "Scolpire",
+    pl: "Rzeźb",
+  },
+  light: {
+    en: "Light the candle",
+    ko: "초 켜기",
+    "zh-Hans": "点蜡烛",
+    ja: "ろうそくを点ける",
+    es: "Encender la vela",
+    hi: "मोमबत्ती जलाएँ",
+    de: "Kerze anzünden",
+    vi: "Thắp nến",
+    "pt-BR": "Acender a vela",
+    id: "Nyalakan lilin",
+    fr: "Allumer la bougie",
+    ar: "أشعل الشمع",
+    tr: "Mumu yak",
+    it: "Accendi la candela",
+    pl: "Zapal świeczkę",
+  },
+  house: {
+    en: "Porch spots",
+    ko: "현관 자리",
+    "zh-Hans": "门廊位置",
+    ja: "ポーチの場所",
+    es: "Sitios en el porche",
+    hi: "बरामदे के स्थान",
+    de: "Veranda-Plätze",
+    vi: "Chỗ trên hiên",
+    "pt-BR": "Lugares na varanda",
+    id: "Tempat di teras",
+    fr: "Places sur le porche",
+    ar: "أماكن على الشرفة",
+    tr: "Veranda noktaları",
+    it: "Posti sul portico",
+    pl: "Miejsca na ganku",
+  },
+  candy: {
+    en: "Give candy",
+    ko: "사탕 주기",
+    "zh-Hans": "分糖果",
+    ja: "お菓子を配る",
+    es: "Dar dulces",
+    hi: "मिठाई दें",
+    de: "Süßigkeiten geben",
+    vi: "Phát kẹo",
+    "pt-BR": "Dar doces",
+    id: "Bagi permen",
+    fr: "Donner des bonbons",
+    ar: "وزّع الحلوى",
+    tr: "Şeker ver",
+    it: "Dare dolci",
+    pl: "Rozdaj cukierki",
+  },
+};
 
 function expandLinesBlock(lines) {
   if (!lines?.en) return lines;
@@ -629,7 +804,10 @@ function expandCraft() {
     if (!spec.uiCopy[lang]) spec.uiCopy[lang] = lang === "ko" && spec.uiCopy.ko ? spec.uiCopy.ko : { ...enCopy };
   }
   for (const stage of spec.stages) {
-    if (stage.titleKo) {
+    const titleMap = STAGE_TITLES[stage.key];
+    if (titleMap) {
+      stage.titles = expandBlock({ en: stage.title, ko: stage.titles?.ko || stage.titleKo || stage.title }, titleMap);
+    } else if (stage.titleKo) {
       stage.titles = expandBlock({ en: stage.title, ko: stage.titleKo }, {});
       delete stage.titleKo;
     } else if (!stage.titles) {
