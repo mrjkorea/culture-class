@@ -6,6 +6,7 @@ import { pumpkinSvg } from "./art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
 import { getLang, LANGS, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
+import { rememberDisplayName, syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
@@ -199,6 +200,7 @@ function renderTitle(keepName) {
   speech.stop();
   const signed = studentDisplayName();
   const previous = keepName ? document.getElementById("nick")?.value || signed || "" : signed || "";
+  const skipNick = Boolean(signed);
   view.dataset.screen = "title";
   view.dataset.stageKey = "";
   view.dataset.phase = "title";
@@ -214,8 +216,9 @@ function renderTitle(keepName) {
     <p class="hint">${esc(t("beatNote"))}</p>
     ${cosNote}
     <form id="nick-form">
-      <label for="nick">${esc(t("nickname"))}</label>
-      <input id="nick" name="nick" maxlength="16" autocomplete="off" autocapitalize="words" required placeholder="${esc(t("namePlaceholder"))}"${signed ? " readonly" : ""}>
+      ${skipNick ? "" : `<label for="nick">${esc(t("nickname"))}</label>
+      <input id="nick" name="nick" maxlength="16" autocomplete="off" autocapitalize="words" required placeholder="${esc(t("namePlaceholder"))}">`}
+      ${skipNick ? `<p class="hint signed-as">Playing as <strong>${esc(signed)}</strong></p>` : ""}
       <p id="form-error" class="form-error" role="alert"></p>
       <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>
     </form>
@@ -224,7 +227,7 @@ function renderTitle(keepName) {
   </section>`;
   view.querySelector("#board-slot").append(boardList());
   const input = document.getElementById("nick");
-  if (previous) input.value = previous;
+  if (input && previous) input.value = previous;
   document.getElementById("nick-form").addEventListener("submit", onStart);
 }
 
@@ -243,13 +246,14 @@ async function onStart(event) {
   if (starting) return;
   const input = document.getElementById("nick");
   const signed = studentDisplayName();
-  const name = cleanName(signed || input.value);
+  const name = cleanName(signed || input?.value);
   const error = document.getElementById("form-error");
   if (!name) {
     error.textContent = t("needName");
-    input.focus();
+    input?.focus();
     return;
   }
+  if (!signed) rememberDisplayName(name);
   error.textContent = "";
   starting = true;
   speech.unlock();
@@ -655,6 +659,11 @@ function bindChrome() {
 }
 
 async function init() {
+  syncDisplayNameFromAuth();
+  window.addEventListener("mrj-auth-ready", () => {
+    syncDisplayNameFromAuth();
+    if (studentDisplayName() && view.dataset.screen === "title") renderTitle(true);
+  });
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   uiLang = getLang();
   window.addEventListener("storage", (e) => {

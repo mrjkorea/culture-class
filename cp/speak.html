@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Culture Class — CP Speak</title>
+  <link rel="stylesheet" href="https://mrjkorea.github.io/mrj-signin/mrj-auth.css">
   <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/src/styles.css">
   <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/preview-assets/mrj-theme.css">
   <link rel="stylesheet" href="https://mrjkorea.github.io/pronounce/preview-assets/pronounce-preview.css">
@@ -12,10 +13,13 @@
   <link rel="stylesheet" href="../assets/css/cp-day4-speak.css">
   <script src="https://mrjkorea.github.io/pronounce/vendor/ort/ort.wasm.min.js"></script>
 </head>
-<body class="cp-pronounce cp-day4-layout">
+<body class="cp-pronounce cp-day4-layout auth-wait">
   <header class="top">
     <div class="top-row">
       <a class="brand" id="cpBrand" href="../months/10-october/">CP Speak · Halloween</a>
+      <div class="topbar-controls" id="mrjTopChrome">
+        <button type="button" class="student-pill" data-mrj-name-pill hidden></button>
+      </div>
     </div>
     <div class="voice-toggle" role="group" aria-label="Voice">
       <button type="button" class="voice-btn on" data-voice="ray" aria-pressed="true">👨‍🏫 Coach Ray</button>
@@ -25,6 +29,13 @@
     <div class="checker-track track" id="modelTrack" aria-hidden="true"><div id="modelFill"></div></div>
   </header>
   <main id="app"><p class="hint">Loading…</p></main>
-  <script src="../js/cp-speak.js" type="module"></script>
+  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js"></script>
+  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js" data-mrj-app="culture-class"></script>
+  <script>
+    window.addEventListener("mrj-auth-ready", function () {
+      document.body.classList.remove("auth-wait");
+    });
+  </script>
+  <script src="../js/cp-speak.js?v=3811c6b" type="module"></script>
 </body>
 </html>

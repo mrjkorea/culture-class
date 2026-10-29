@@ -26,31 +26,44 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+import { withLinkVersion } from "./site-version.js";
+
 function stepHref(month, step) {
   const root = repoRoot();
+  let href;
   switch (step.id) {
     case "video":
-      return `${monthPageUrl(month.slug)}#video`;
+      href = `${monthPageUrl(month.slug)}#video`;
+      break;
     case "quiz":
-      return dailyQuizUrl(month.id);
+      href = dailyQuizUrl(month.id);
+      break;
     case "meet":
-      return wordsMeetUrl(month.id);
+      href = wordsMeetUrl(month.id);
+      break;
     case "learn":
-      return wordsLearnUrl(month.id);
+      href = wordsLearnUrl(month.id);
+      break;
     case "memory":
-      return wordsMemoryUrl(month.id);
+      href = wordsMemoryUrl(month.id);
+      break;
     case "climb":
-      return climbUrl(month.unitId);
+      href = climbUrl(month.unitId);
+      break;
     case "cp":
-      return cpSpeakUrl(month.id);
+      href = cpSpeakUrl(month.id);
+      break;
     case "craft":
-      if (!month.craftPath) return monthPageUrl(month.slug);
-      return `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
+      if (!month.craftPath) href = monthPageUrl(month.slug);
+      else href = `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
+      break;
     case "bingo":
-      return `${bingoUrl("student")}?month=${month.id}`;
+      href = `${bingoUrl("student")}?month=${month.id}`;
+      break;
     default:
-      return monthPageUrl(month.slug);
+      href = monthPageUrl(month.slug);
   }
+  return withLinkVersion(href);
 }
 
 function renderVideoBlock(month) {
