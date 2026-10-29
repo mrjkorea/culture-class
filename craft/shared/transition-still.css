@@ -1,0 +1,16 @@
+/* Shared craft between-stage photoreal still (imported by transition-still.js). */
+.reel-still {
+  display: block;
+  width: min(960px, calc(100vw - 24px));
+  max-height: min(540px, calc(100dvh - 130px));
+  border-radius: 16px;
+  object-fit: cover;
+  background: #1a0a20;
+  opacity: 0;
+}
+.reel-still.reel-still-ready {
+  opacity: 1;
+}
+.reel-label.reel-label-pending {
+  visibility: hidden;
+}

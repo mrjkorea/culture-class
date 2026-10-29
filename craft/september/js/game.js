@@ -4,6 +4,7 @@ import { mountStage } from "./scenes.js";
 import { titleArtSvg } from "./earth-art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js";
 
 const LANG_KEY = "culture_craft_september_earth_v1_ui";
 const MISS_STAGE_TYPES = new Set(["sort_plastic", "sort_paper", "sort_cans"]);
@@ -24,6 +25,7 @@ let lineState = null;
 let lineToken = 0;
 let state = null;
 let reducedMotion = false;
+let stillPlayer;
 
 const timer = createTimer();
 
@@ -242,21 +244,11 @@ async function runGame(name) {
 }
 
 function playTransitionStill(transition, index) {
-  const id = transition?.id;
-  const src = transitionUrl(assetBase, manifest, id);
-  if (!src) return Promise.resolve();
-  const caption = transition?.caption || { en: "", ko: "" };
-  const title = uiLang === "ko" ? caption.ko : caption.en;
-  return new Promise((resolve) => {
-    timer.pause();
-    view.dataset.screen = "still";
-    view.innerHTML = `<section class="reel-screen still-screen" aria-live="polite">
-      <p class="still-time"><span id="timer">${esc(formatTime(timer.read()))}</span></p>
-      <img class="reel-still" src="${esc(src)}" alt="">
-      <p class="reel-label">${esc(`${index + 1}/${spec.stages.length}`)} · ${esc(title)}</p>
-    </section>`;
-    window.setTimeout(resolve, (transition.durationSec || 3) * 1000);
-  });
+  return stillPlayer.play(
+    { view, timer, esc, formatTime, spec, uiLang },
+    transition,
+    index,
+  );
 }
 
 function stageShell(stage, index) {
@@ -453,12 +445,6 @@ function validate(next) {
   }
 }
 
-function preload() {
-  Object.values(manifest.transitions || {}).forEach((rel) => {
-    const img = new Image();
-    img.src = new URL(rel, assetBase).href;
-  });
-}
 
 function bindChrome() {
   langEn?.addEventListener("click", () => setLang("en"));
@@ -497,7 +483,8 @@ async function init() {
     validate(spec);
     sfx = createSfx();
     speech = createSpeech(manifest, assetBase);
-    preload();
+    stillPlayer = createTransitionStillPlayer({ assetBase, manifest, transitionUrl });
+    stillPlayer.preloadAll();
     bindChrome();
     paintLang();
     renderTitle(false);
