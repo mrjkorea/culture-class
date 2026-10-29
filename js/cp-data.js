@@ -1,4 +1,4 @@
-import { dataUrl, monthPageUrl } from "./paths.js";
+import { dataUrl, craftUrl, monthPageUrl } from "./paths.js";
 
 export function getMonthIdFromQuery() {
   const params = new URLSearchParams(window.location.search);
@@ -44,4 +44,4 @@ export function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-export { monthPageUrl };
+export { craftUrl, monthPageUrl };

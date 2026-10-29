@@ -8,6 +8,7 @@ import {
 } from "https://mrjkorea.github.io/pronounce/src/shared.js";
 import { beginMicTake, cancelMicTake, isCapturing } from "./cp/mic-capture.js";
 import {
+  craftUrl,
   escapeHtml,
   getMonthIdFromQuery,
   loadCpPackForMonth,
@@ -137,7 +138,7 @@ function renderSheet() {
 function renderDone() {
   if (month) setStepDone(month.id, "cp");
   const total = pack.items.length;
-  const craft = month?.craftPath ? `../${month.craftPath}` : monthPageUrl(month.slug);
+  const craft = month?.craftPath ? craftUrl(month.craftPath) : monthPageUrl(month.slug);
   app.innerHTML = `
     <div class="done-card cp-done">
       <h1>All done!</h1>

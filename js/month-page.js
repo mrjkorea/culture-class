@@ -1,9 +1,12 @@
 import {
-  bingoUrl,
+  bingoTeacherUrl,
+  bingoStudentUrl,
   climbUrl,
   cpSpeakUrl,
+  craftUrl,
   dailyQuizUrl,
   dataUrl,
+  homeUrl,
   monthPageUrl,
   repoRoot,
   wordsLearnUrl,
@@ -64,8 +67,8 @@ function renderDefaultMonth(month, wordsPreview) {
   const root = repoRoot();
   const climbWords = climbHref(month, month.unitId);
   const climbShow = climbHref(month, month.showUnitId);
-  const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
-  const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
+  const bingoTeacher = bingoTeacherUrl(month.id);
+  const bingoStudent = bingoStudentUrl(month.id);
 
   const pilotBadge = "";
 
@@ -125,9 +128,7 @@ function renderDefaultMonth(month, wordsPreview) {
       <p class="hint">Picture ↔ Korean pairs under the clock. Hear English on picture flips.</p>`
     : `<p class="hint">Memory opens when the month word pack is published.</p>`;
 
-  const craftHref = month.craftPath
-    ? `${root}/${String(month.craftPath).replace(/^\/+/, "")}`
-    : "";
+  const craftHref = month.craftPath ? craftUrl(month.craftPath) : "";
   const featureTitle = month.craftPath
     ? month.craftTitle || month.featureTitle || "Craft"
     : month.featureTitle || "Feature show";
@@ -238,9 +239,9 @@ function renderDefaultMonth(month, wordsPreview) {
 function renderHalloweenMonth(month) {
   const root = repoRoot();
   const climbWords = climbHref(month, month.unitId);
-  const bingoTeacher = `${bingoUrl("teacher")}?month=${month.id}`;
-  const bingoStudent = `${bingoUrl("student")}?month=${month.id}`;
-  const craftHref = `${root}/${String(month.craftPath).replace(/^\/+/, "")}`;
+  const bingoTeacher = bingoTeacherUrl(month.id);
+  const bingoStudent = bingoStudentUrl(month.id);
+  const craftHref = craftUrl(month.craftPath);
   const cover = month.coverImage
     ? `${root}/${month.coverImage.replace(/^\/+/, "")}`
     : "";
@@ -358,7 +359,7 @@ function renderMonth(month, wordsPreview) {
 
   document.getElementById("app").innerHTML = `
     <div class="wrap ${isHalloween ? "wrap-halloween" : ""}">
-      <a class="back-link" href="${root}/">← All months</a>
+      <a class="back-link" href="${escapeHtml(homeUrl())}">← All months</a>
       ${heroCover || ""}
       <header class="site-header month-hero ${isHalloween ? "month-hero-halloween" : ""}">
         <h2>${escapeHtml(month.name)}</h2>
