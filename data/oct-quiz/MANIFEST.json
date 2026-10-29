@@ -1,13 +1,12 @@
 {
   "voiceId": "a1895a46a08d48578b8a679a035d79fe",
-  "note": "Frank Monster — Halloween daily quiz step 2. Bake with Fish; paths relative to repo root.",
+  "bakedAt": "2026-10-29",
+  "note": "Frank Monster — Halloween daily quiz stems (q1–q5). Pre-baked MP3s committed; js/daily-quiz.js plays via clips map.",
   "clips": {
     "q1_stem": "data/audio/oct-quiz/q1_stem.mp3",
     "q2_stem": "data/audio/oct-quiz/q2_stem.mp3",
     "q3_stem": "data/audio/oct-quiz/q3_stem.mp3",
     "q4_stem": "data/audio/oct-quiz/q4_stem.mp3",
-    "q5_stem": "data/audio/oct-quiz/q5_stem.mp3",
-    "sfx_correct": "assets/sfx/quiz-correct.mp3",
-    "sfx_wrong": "assets/sfx/quiz-wrong.mp3"
+    "q5_stem": "data/audio/oct-quiz/q5_stem.mp3"
   }
 }
