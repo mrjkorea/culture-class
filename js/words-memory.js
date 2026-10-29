@@ -152,7 +152,7 @@ function renderRound() {
       const classes = ["memory-card", matched ? "memory-matched" : "", c.kind === "pic" ? "memory-pic-card" : "memory-mean-card"];
       const inner =
         c.kind === "pic" && c.img
-          ? `<img class="memory-pic-inner" src="${escapeHtml(c.img)}" alt="">`
+          ? `<img class="memory-pic-inner" data-src="${escapeHtml(c.img)}" alt="" decoding="async">`
           : `<span class="memory-card-inner">${escapeHtml(c.label)}</span>`;
       return `<button type="button" class="${classes.join(" ")}" data-pair="${escapeHtml(c.pairKey)}" data-kind="${c.kind}" ${matched ? "disabled" : ""}>${inner}</button>`;
     })
@@ -178,9 +178,17 @@ function renderRound() {
   });
 }
 
+function revealPicFace(btn) {
+  const img = btn.querySelector(".memory-pic-inner");
+  if (!img || img.src) return;
+  const src = img.getAttribute("data-src");
+  if (src) img.src = src;
+}
+
 function onCardClick(btn) {
   if (lockBoard || btn.disabled || btn.classList.contains("memory-flipped")) return;
   playSfx("flip");
+  revealPicFace(btn);
   btn.classList.add("memory-flipped");
   const pairKey = btn.dataset.pair;
   const term = termForPair(pairKey);
