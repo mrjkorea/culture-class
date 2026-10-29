@@ -319,7 +319,7 @@ body.theme-easter {
 .theme-easter .memory-card {
   border-radius: 14px;
   border: 3px solid #5f3dc4;
-  background: radial-gradient(circle at 30% 30%, #fcc2d7 0%, #5f3dc4 45%, #12081f 100%);
+  background: url("../memory/card-back-easter.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
