@@ -319,7 +319,7 @@ body.theme-stpatricks {
 .theme-stpatricks .memory-card {
   border-radius: 14px;
   border: 3px solid #1b5e2a;
-  background: radial-gradient(circle at 30% 30%, #8ce99a 0%, #1b5e2a 45%, #041208 100%);
+  background: url("../memory/card-back-stpatricks.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
