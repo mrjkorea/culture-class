@@ -72,7 +72,9 @@ const LOCAL_CLIMB_UNITS = new Set(
 
 export function climbUrl(unitId) {
   if (LOCAL_CLIMB_UNITS.has(unitId)) {
-    return `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}&test=1`;
+    const m = /^culture_m(\d{2})(?:_show)?$/.exec(unitId || "");
+    const monthQ = m ? `&month=${parseInt(m[1], 10)}` : "";
+    return `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}${monthQ}&test=1`;
   }
   return `${CLIMB_BASE}?unit=${encodeURIComponent(unitId)}`;
 }

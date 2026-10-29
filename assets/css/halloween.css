@@ -308,6 +308,21 @@ body.halloween-theme {
   visibility: hidden;
 }
 
+.halloween-theme .memory-card.memory-flipped .memory-pic-inner,
+.halloween-theme .memory-card.memory-matched .memory-pic-inner {
+  opacity: 1;
+  visibility: visible;
+}
+
+.halloween-theme .memory-grid.memory-all-down .memory-card:not(.memory-flipped):not(.memory-matched) .memory-pic-inner {
+  display: none;
+}
+
+.halloween-theme .memory-grid.memory-all-down .memory-card.memory-flipped .memory-pic-inner,
+.halloween-theme .memory-grid.memory-all-down .memory-card.memory-matched .memory-pic-inner {
+  display: block;
+}
+
 .memory-pic-inner {
   width: 100%;
   height: 100%;
