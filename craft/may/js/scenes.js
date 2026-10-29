@@ -14,14 +14,25 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
+function gateHintText(step, ctx) {
+  const left = 3 - step;
+  if (left <= 0) return "";
+  if (step === 0) return ctx.t?.("gateTapHint") || "Tap 3 times";
+  return ctx.t?.("gateTapLeft", { left }) || `Tap ${left} more`;
+}
+
 function mountGate(root, stage, ctx) {
   let step = 0;
-  root.innerHTML = `<div class="gate-stage">${gateSvg(0)}<button type="button" class="calm-btn" id="gate-btn">Enter the path</button></div>`;
+  const btnLabel = esc(ctx.t?.("gateBtn") || "Enter the path");
+  const hint = esc(gateHintText(0, ctx));
+  root.innerHTML = `<div class="gate-stage">${gateSvg(0)}<button type="button" class="calm-btn" id="gate-btn">${btnLabel}</button><p class="hint gate-hint" id="gate-hint">${hint}</p></div>`;
   const box = root.querySelector(".gate-stage");
+  const hintEl = root.querySelector("#gate-hint");
   root.querySelector("#gate-btn").addEventListener("click", () => {
     step += 1;
     ctx.sfx?.stage?.(stage.key);
     box.querySelector(".gate-svg").outerHTML = gateSvg(step / 3);
+    if (hintEl) hintEl.textContent = gateHintText(step, ctx);
     if (step >= 3) ctx.onComplete();
   });
   return { destroy() {} };

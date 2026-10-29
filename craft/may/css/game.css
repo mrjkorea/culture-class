@@ -1302,3 +1302,11 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 .lamp-stage {
   text-align: center;
 }
+
+.gate-stage .gate-hint {
+  margin: 0.25rem auto 0;
+  max-width: min(100%, 320px);
+  color: #e9c46a;
+  font-weight: 800;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
