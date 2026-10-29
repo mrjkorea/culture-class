@@ -5,7 +5,7 @@
   "source": "HALLOWEEN NOTES Easy + CP TEST facts",
   "passScore": 5,
   "allowRetake": true,
-  "languageToggleIfNotPerfect": true,
+  "languageToggleIfNotPerfect": false,
   "questions": [
     {
       "id": "q1",

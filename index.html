@@ -5,20 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="MRJ ENGLISH Culture Class — 12 monthly culture units">
   <title>Culture Class — MRJ ENGLISH</title>
+  <link rel="stylesheet" href="https://mrjkorea.github.io/mrj-signin/mrj-auth.css">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="auth-wait culture-home">
   <div class="wrap">
-    <header class="site-header">
-      <h1 id="site-title">Culture Class</h1>
+    <header class="site-header culture-home-header">
+      <div class="culture-home-top">
+        <h1 id="site-title">Culture Class</h1>
+        <label class="lang-wrap cc-lang-wrap">
+          <span class="sr-only" data-i18n="lang_label">Language</span>
+          <select id="lang-select" aria-label="Language"></select>
+        </label>
+      </div>
       <p id="site-subtitle">Loading course…</p>
     </header>
     <nav class="month-grid" id="month-grid" aria-label="Monthly units"></nav>
     <footer class="site-footer">
       <a href="https://mrjkorea.github.io/culture-class/">mrjkorea.github.io/culture-class</a>
-      · No sign-in · Videos &amp; Word Master packs added over time
+      · Sign in once for craft leaderboards · Hard refresh after updates (Ctrl+Shift+R)
     </footer>
   </div>
+  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js"></script>
+  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js" data-mrj-app="culture-class"></script>
+  <script>
+    window.addEventListener("mrj-auth-ready", function () {
+      document.body.classList.remove("auth-wait");
+    });
+  </script>
   <script src="js/home.js" type="module"></script>
 </body>
 </html>

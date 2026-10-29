@@ -103,16 +103,20 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
   }
 
   function playKidTrickOrTreat() {
-    const keys = [
-      "kid_maya_tot",
-      "kid_leo_tot",
-      "kid_little_boy_tot",
-      "kid_little_girl_tot",
-      "kid_teen_boy_tot",
-    ];
-    keys.forEach((key, i) => {
-      window.setTimeout(() => playClip(key, { overlap: true }), i * 220);
-    });
+    return playKidTot(0);
+  }
+
+  const KID_CLIP_KEYS = [
+    "kid_maya_tot",
+    "kid_leo_tot",
+    "kid_little_boy_tot",
+    "kid_little_girl_tot",
+    "kid_teen_boy_tot",
+  ];
+
+  function playKidTot(index) {
+    const key = KID_CLIP_KEYS[((index % KID_CLIP_KEYS.length) + KID_CLIP_KEYS.length) % KID_CLIP_KEYS.length];
+    return playClip(key);
   }
 
   function setEnabled(next) {
@@ -142,6 +146,7 @@ export function createSpeech(tts = {}, manifest = {}, assetBase = "") {
     speak,
     playClip,
     playKidTrickOrTreat,
+    playKidTot,
     unlock,
     stop,
     setEnabled,

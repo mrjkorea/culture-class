@@ -196,7 +196,7 @@ export function kidsSvg() {
         kid.hat === "ghost"
           ? `<circle cx="-8" cy="6" r="4" fill="#3a1458"/><circle cx="10" cy="6" r="4" fill="#3a1458"/>`
           : `<circle cx="-8" cy="-8" r="3" fill="#3a1458"/><circle cx="8" cy="-8" r="3" fill="#3a1458"/><path d="M-8 2 q8 8 16 0" fill="none" stroke="#3a1458" stroke-width="2"/>`;
-      return `<g data-kid="${i}" transform="translate(${kid.x} 150)">
+      return `<g data-kid="${i}" role="button" tabindex="0" style="cursor:pointer" transform="translate(${kid.x} 150)">
         <g class="kid-bob">
           ${kid.hat === "cape" ? hat : ""}
           <rect x="-26" y="-6" width="52" height="58" rx="16" fill="${kid.body}"/>

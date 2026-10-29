@@ -5,13 +5,10 @@ import { mountStage } from "./scenes.js";
 import { pumpkinSvg } from "./art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
-
-const LANG_KEY = "culture_craft_oct_pumpkin_v1_ui";
+import { getLang, studentDisplayName } from "../../../js/i18n.js";
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
-const langEn = document.getElementById("lang-en");
-const langKo = document.getElementById("lang-ko");
 const soundBtn = document.getElementById("sound-btn");
 
 let spec;
@@ -20,7 +17,7 @@ let assetBase;
 let faces = [];
 let speech;
 let sfx;
-let uiLang = "en";
+let uiLang = getLang();
 let lineState = null;
 let lineToken = 0;
 let state = null;
@@ -67,7 +64,7 @@ function createTimer() {
 }
 
 function t(key) {
-  const pack = spec.uiCopy?.[uiLang] || {};
+  const pack = spec.uiCopy?.[uiLang] || spec.uiCopy?.en || {};
   const en = spec.uiCopy?.en || {};
   return pack[key] || en[key] || "";
 }
@@ -121,10 +118,7 @@ function wireFrank() {
 }
 
 function paintLang() {
-  langEn.setAttribute("aria-pressed", uiLang === "en" ? "true" : "false");
-  langKo.setAttribute("aria-pressed", uiLang === "ko" ? "true" : "false");
-  langEn.classList.toggle("on", uiLang === "en");
-  langKo.classList.toggle("on", uiLang === "ko");
+  uiLang = getLang() === "ko" ? "ko" : "en";
   backLink.textContent = t("back");
   soundBtn.setAttribute("aria-label", speech.enabled ? t("soundOn") : t("soundOff"));
   soundBtn.classList.toggle("is-muted", !speech.enabled);
@@ -141,7 +135,7 @@ function paintLines() {
   const a = document.getElementById("line-a");
   const b = document.getElementById("line-b");
   if (!a || !b) return;
-  a.textContent = lineState.block[lang][lineState.index] || "";
+  a.textContent = lineState.block[lang][lineState.index] || lineState.block.en?.[lineState.index] || "";
   a.lang = lang;
   b.textContent = "";
   b.hidden = true;
@@ -153,25 +147,6 @@ function paintLines() {
 function paintMisses() {
   const el = document.getElementById("misses");
   if (el && state) el.textContent = `${t("misses")} ${state.misses}`;
-}
-
-function setLang(lang) {
-  uiLang = lang === "ko" ? "ko" : "en";
-  try {
-    localStorage.setItem(LANG_KEY, uiLang);
-  } catch {
-    /* ignore */
-  }
-  paintLang();
-  const screen = view.dataset.screen;
-  if (screen === "title") renderTitle(true);
-  else if (screen === "results") renderResults();
-  else {
-    paintLines();
-    paintMisses();
-    const watch = document.getElementById("watch");
-    if (watch) watch.textContent = t("watch");
-  }
 }
 
 function boardList(highlightAt, source) {
@@ -204,7 +179,8 @@ function boardList(highlightAt, source) {
 
 function renderTitle(keepName) {
   speech.stop();
-  const previous = keepName ? document.getElementById("nick")?.value || "" : "";
+  const signed = studentDisplayName();
+  const previous = keepName ? document.getElementById("nick")?.value || signed || "" : signed || "";
   view.dataset.screen = "title";
   view.dataset.stageKey = "";
   view.dataset.phase = "title";
@@ -216,7 +192,7 @@ function renderTitle(keepName) {
     <p class="hint">${esc(t("beatNote"))}</p>
     <form id="nick-form">
       <label for="nick">${esc(t("nickname"))}</label>
-      <input id="nick" name="nick" maxlength="16" autocomplete="off" autocapitalize="words" required placeholder="${esc(t("namePlaceholder"))}">
+      <input id="nick" name="nick" maxlength="16" autocomplete="off" autocapitalize="words" required placeholder="${esc(t("namePlaceholder"))}"${signed ? " readonly" : ""}>
       <p id="form-error" class="form-error" role="alert"></p>
       <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>
     </form>
@@ -243,7 +219,8 @@ async function onStart(event) {
   event.preventDefault();
   if (starting) return;
   const input = document.getElementById("nick");
-  const name = cleanName(input.value);
+  const signed = studentDisplayName();
+  const name = cleanName(signed || input.value);
   const error = document.getElementById("form-error");
   if (!name) {
     error.textContent = t("needName");
@@ -597,8 +574,6 @@ function preload() {
 }
 
 function bindChrome() {
-  langEn.addEventListener("click", () => setLang("en"));
-  langKo.addEventListener("click", () => setLang("ko"));
   soundBtn.addEventListener("click", () => {
     speech.unlock();
     sfx?.unlock?.();
@@ -611,11 +586,7 @@ function bindChrome() {
 
 async function init() {
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  try {
-    uiLang = localStorage.getItem(LANG_KEY) === "ko" ? "ko" : "en";
-  } catch {
-    uiLang = "en";
-  }
+  uiLang = getLang() === "ko" ? "ko" : "en";
   try {
     const loaded = await loadCraft();
     spec = loaded.spec;

@@ -1,4 +1,5 @@
 import { dataUrl, monthUrl, repoRoot } from "./paths.js";
+import { applyI18n, getLang, mountLangSelect, setLang, t } from "./i18n.js";
 
 async function loadMonths() {
   const res = await fetch(dataUrl("months.json"));
@@ -18,8 +19,8 @@ function renderHome(data) {
   const subEl = document.getElementById("site-subtitle");
   const grid = document.getElementById("month-grid");
 
-  if (titleEl) titleEl.textContent = data.siteTitle;
-  if (subEl) subEl.textContent = data.siteSubtitle;
+  if (titleEl) titleEl.textContent = data.siteTitle || "Culture Class";
+  if (subEl) subEl.textContent = data.siteSubtitle || t("cc_site_sub");
 
   grid.innerHTML = data.months
     .map((m) => {
@@ -36,7 +37,14 @@ function renderHome(data) {
     </a>`;
     })
     .join("");
+
+  applyI18n(document);
 }
+
+setLang(getLang());
+mountLangSelect(document.getElementById("lang-select"), () => {
+  loadMonths().then(renderHome).catch(console.error);
+});
 
 loadMonths().then(renderHome).catch((err) => {
   console.error(err);

@@ -10,6 +10,8 @@ import { playWordAudio, resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { climbUrl, repoRoot } from "./paths.js";
 import { applyMonthUiTheme, memoryLbKey } from "./month-ui-theme.js";
+import { getLang, mountLangSelect, studentDisplayName, t } from "./i18n.js";
+import { termGloss } from "./word-gloss.js";
 
 const PAIRS_PER_ROUND = 6;
 let LB_KEY = "culture-class-memory-lb-10";
@@ -50,12 +52,18 @@ function renderShell(title, bodyHtml) {
     <div class="wrap words-flow themed-words-flow memory-themed">
       ${back}
       <header class="themed-words-hero">
-        <h2>${escapeHtml(title)}</h2>
-        <p>Pair pictures with Korean — hear English when you flip a picture.</p>
+        <div class="words-hero-row">
+          <h2>${escapeHtml(title)}</h2>
+          <label class="lang-wrap cc-lang-wrap">
+            <span class="sr-only">${t("lang_label")}</span>
+            <select id="lang-select" aria-label="${escapeHtml(t("lang_label"))}"></select>
+          </label>
+        </div>
+        <p>${t("cc_memory_sub")}</p>
       </header>
       <p class="memory-timer" id="timer">0:00</p>
       ${bodyHtml}
-      <footer class="site-footer">Culture Class · Memory</footer>
+      <footer class="site-footer">${t("cc_footer")}</footer>
     </div>`;
 }
 
@@ -89,7 +97,15 @@ function loadLb() {
 
 function saveLb(seconds) {
   const list = loadLb();
-  const name = prompt("Great job! Enter your name for the leaderboard:", "Student") || "Student";
+  let name = studentDisplayName();
+  if (!name) {
+    name = prompt(t("cc_student_lb"), "Student") || "Student";
+    try {
+      localStorage.setItem("culture-class-display-name", name.slice(0, 24));
+    } catch {
+      /* ignore */
+    }
+  }
   list.push({ name: name.slice(0, 24), sec, at: Date.now() });
   list.sort((a, b) => a.sec - b.sec);
   localStorage.setItem(LB_KEY, JSON.stringify(list.slice(0, 8)));
@@ -109,21 +125,23 @@ function termForPair(key) {
 }
 
 function buildCardsForRound(roundTerms) {
+  const lang = getLang();
   const cards = [];
-  for (const t of roundTerms) {
-    const img = t.image ? resolveSrc(t.image) : "";
+  for (const term of roundTerms) {
+    const img = term.image ? resolveSrc(term.image) : "";
+    const gloss = termGloss(term, lang);
     cards.push({
-      id: `${t.term}::pic`,
-      pairKey: t.term,
+      id: `${term.term}::pic`,
+      pairKey: term.term,
       kind: "pic",
       img,
-      label: t.term,
+      label: term.term,
     });
     cards.push({
-      id: `${t.term}::ko`,
-      pairKey: t.term,
-      kind: "ko",
-      label: t.definition,
+      id: `${term.term}::mean`,
+      pairKey: term.term,
+      kind: "mean",
+      label: gloss || term.term,
     });
   }
   return shuffle(cards);
@@ -138,7 +156,7 @@ function renderRound() {
   const grid = cards
     .map((c) => {
       const matched = matchedIds.has(c.pairKey);
-      const classes = ["memory-card", matched ? "memory-matched" : "", c.kind === "pic" ? "memory-pic-card" : "memory-ko-card"];
+      const classes = ["memory-card", matched ? "memory-matched" : "", c.kind === "pic" ? "memory-pic-card" : "memory-mean-card"];
       const inner =
         c.kind === "pic" && c.img
           ? `<img class="memory-pic-inner" src="${escapeHtml(c.img)}" alt="">`
@@ -151,9 +169,11 @@ function renderRound() {
     `${month.name} — Memory`,
     `
     <p class="hint memory-round-label">${roundLabel}</p>
-    <div class="memory-grid" role="grid">${grid}</div>
+    <div class="memory-grid memory-all-down" role="grid">${grid}</div>
     ${lbHtml()}`
   );
+
+  mountLangSelect(document.getElementById("lang-select"), () => renderRound());
 
   matchedIds = new Set();
   flipped = [];

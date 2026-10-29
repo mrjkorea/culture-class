@@ -51,6 +51,20 @@ export function factoryProgress(words, state) {
   return need ? Math.round((got / need) * 100) : 0;
 }
 
+/** Learn-only progress (Part A wins) — Culture Class Meet → Learn path. */
+export function learnPartProgress(words, winsA) {
+  let got = 0;
+  const need = words.length * NEED;
+  for (const w of words) {
+    got += Math.min(NEED, winsA[w.id] || 0);
+  }
+  return need ? Math.round((got / need) * 100) : 0;
+}
+
+export function learnPartDone(words, winsA) {
+  return partDone(words, winsA);
+}
+
 export function shuffle(arr) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {

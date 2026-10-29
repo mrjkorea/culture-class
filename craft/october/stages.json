@@ -232,13 +232,13 @@
       "sameClicksAllFaces": true,
       "lines": {
         "en": [
-          "Trace the face with the pin.",
-          "Keep pinning!",
+          "Poke holes into the pumpkin to trace the face.",
+          "Keep poking holes!",
           "Face is ready!"
         ],
         "ko": [
-          "핀으로 얼굴을 따라 찍으세요.",
-          "계속 찍으세요!",
+          "호박에 구멍을 뚫어 얼굴 모양을 따라 하세요.",
+          "계속 구멍을 뚫으세요!",
           "얼굴이 준비됐어요!"
         ]
       }
