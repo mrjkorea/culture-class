@@ -319,7 +319,7 @@ body.theme-earthday {
 .theme-earthday .memory-card {
   border-radius: 14px;
   border: 3px solid #1b4332;
-  background: radial-gradient(circle at 30% 30%, #b7e4c7 0%, #1b4332 45%, #081810 100%);
+  background: url("../memory/card-back-earthday.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
