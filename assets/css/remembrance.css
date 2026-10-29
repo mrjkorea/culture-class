@@ -319,7 +319,7 @@ body.theme-remembrance {
 .theme-remembrance .memory-card {
   border-radius: 14px;
   border: 3px solid #4a1518;
-  background: radial-gradient(circle at 30% 30%, #f4a6a6 0%, #4a1518 45%, #0a0406 100%);
+  background: url("../memory/card-back-remembrance.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
