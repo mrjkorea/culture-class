@@ -319,7 +319,7 @@ body.theme-buddhism {
 .theme-buddhism .memory-card {
   border-radius: 14px;
   border: 3px solid #5c4a2a;
-  background: radial-gradient(circle at 30% 30%, #e9c46a 0%, #5c4a2a 45%, #141008 100%);
+  background: url("../memory/card-back-buddhism.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 
