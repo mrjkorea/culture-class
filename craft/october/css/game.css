@@ -123,86 +123,27 @@ input { font: inherit; }
   flex-direction: column;
 }
 
-/* CRAFT-06/07: white focus stages (wash → pin pipeline) */
-.sky:has(#view[data-stage-key="wash"]),
-.sky:has(#view[data-stage-key="cut"]),
-.sky:has(#view[data-stage-key="scoop"]),
-.sky:has(#view[data-stage-key="roast"]),
-.sky:has(#view[data-stage-key="pin"]),
-.sky:has(#view[data-stage-key="carve"]),
-.sky:has(#view[data-stage-key="light"]) {
+/* CRAFT-06/07: white focus while playing stages (title/results keep purple sky) */
+.sky:has(#view[data-screen="stage"]) {
   background: #fff;
 }
 
-.sky:has(#view[data-stage-key="wash"]) .topbar,
-.sky:has(#view[data-stage-key="cut"]) .topbar,
-.sky:has(#view[data-stage-key="scoop"]) .topbar,
-.sky:has(#view[data-stage-key="roast"]) .topbar,
-.sky:has(#view[data-stage-key="pin"]) .topbar,
-.sky:has(#view[data-stage-key="carve"]) .topbar,
-.sky:has(#view[data-stage-key="light"]) .topbar {
+.sky:has(#view[data-screen="stage"]) .topbar {
   color: var(--ink);
   background: rgba(58, 20, 88, 0.08);
 }
 
-.sky:has(#view[data-stage-key="wash"]) .top-link,
-.sky:has(#view[data-stage-key="cut"]) .top-link,
-.sky:has(#view[data-stage-key="scoop"]) .top-link,
-.sky:has(#view[data-stage-key="roast"]) .top-link,
-.sky:has(#view[data-stage-key="pin"]) .top-link,
-.sky:has(#view[data-stage-key="carve"]) .top-link,
-.sky:has(#view[data-stage-key="light"]) .top-link,
-.sky:has(#view[data-stage-key="wash"]) .top-title,
-.sky:has(#view[data-stage-key="cut"]) .top-title,
-.sky:has(#view[data-stage-key="scoop"]) .top-title,
-.sky:has(#view[data-stage-key="roast"]) .top-title,
-.sky:has(#view[data-stage-key="pin"]) .top-title,
-.sky:has(#view[data-stage-key="carve"]) .top-title,
-.sky:has(#view[data-stage-key="light"]) .top-title {
+.sky:has(#view[data-screen="stage"]) .top-link,
+.sky:has(#view[data-screen="stage"]) .top-title {
   color: var(--ink);
 }
 
-.sky:has(#view[data-stage-key="wash"]) #sound-btn,
-.sky:has(#view[data-stage-key="cut"]) #sound-btn,
-.sky:has(#view[data-stage-key="scoop"]) #sound-btn,
-.sky:has(#view[data-stage-key="roast"]) #sound-btn,
-.sky:has(#view[data-stage-key="pin"]) #sound-btn,
-.sky:has(#view[data-stage-key="carve"]) #sound-btn,
-.sky:has(#view[data-stage-key="light"]) #sound-btn {
+.sky:has(#view[data-screen="stage"]) #sound-btn {
   color: var(--ink);
   background: rgba(58, 20, 88, 0.1);
 }
 
-#view[data-stage-key="wash"] .play,
-#view[data-stage-key="cut"] .play,
-#view[data-stage-key="scoop"] .play,
-#view[data-stage-key="roast"] .play,
-#view[data-stage-key="pin"] .play,
-#view[data-stage-key="carve"] .play,
-#view[data-stage-key="light"] .play {
-  background: #fff;
-}
-
-#view[data-stage-key="wash"] .scene-3d,
-#view[data-stage-key="cut"] .scene-3d,
-#view[data-stage-key="scoop"] .scene-3d,
-#view[data-stage-key="roast"] .scene-3d,
-#view[data-stage-key="pin"] .scene-3d,
-#view[data-stage-key="carve"] .scene-3d,
-#view[data-stage-key="light"] .scene-3d,
-#view[data-stage-key="pin"] .picker {
-  background: #fff;
-  background-image: none;
-  box-shadow: 0 0 0 1px #ebe4f0;
-}
-
-#view[data-stage-key="wash"] .frank-host,
-#view[data-stage-key="cut"] .frank-host,
-#view[data-stage-key="scoop"] .frank-host,
-#view[data-stage-key="roast"] .frank-host,
-#view[data-stage-key="pin"] .frank-host,
-#view[data-stage-key="carve"] .frank-host,
-#view[data-stage-key="light"] .frank-host {
+#view[data-screen="stage"] .play {
   background: #fff;
 }
 
@@ -383,9 +324,8 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   height: min(78dvh, calc(100dvh - 110px));
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 12px 0 rgba(80, 16, 90, 0.18);
-  background: #2a1240 center / cover no-repeat;
-  background-image: var(--scene3d);
+  box-shadow: 0 0 0 1px #ebe4f0;
+  background: #fff;
 }
 .patch {
   display: flex;
@@ -754,7 +694,7 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   border-radius: 14px;
   overflow: hidden;
   border: 3px solid #ffd7a8;
-  background: #2a1240;
+  background: #fff;
   box-shadow: 0 4px 0 rgba(80, 16, 90, 0.2);
   line-height: 0;
 }
@@ -1074,8 +1014,8 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   height: min(78dvh, calc(100dvh - 110px));
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 12px 0 rgba(80, 16, 90, 0.18);
-  background: #2a1240;
+  box-shadow: 0 0 0 1px #ebe4f0;
+  background: #fff;
 }
 .gl-host .gl-stage {
   display: block;
@@ -1089,7 +1029,7 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   inset: 0;
   display: grid;
   place-items: center;
-  color: #fff;
+  color: var(--ink);
   font-weight: 900;
   z-index: 2;
 }
