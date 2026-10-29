@@ -3,7 +3,6 @@
  * Luck stages never mark the correct choice in the DOM.
  */
 
-import { scene3dUrl } from "./assets.js";
 import { mountCut3D, mountPatch3D, mountWash3D } from "./stage3d.js";
 import {
   HOUSE_SPOTS,
@@ -113,7 +112,6 @@ function mountLuck(root, stage, ctx) {
 }
 
 function patchMarkup(count, ctx) {
-  const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "patch");
   const cols = Math.ceil(Math.sqrt(count));
   const buttons = Array.from({ length: count }, (_, i) => {
     const scale = (0.9 + vary(i) * 0.18).toFixed(3);
@@ -122,14 +120,12 @@ function patchMarkup(count, ctx) {
       <span class="pumpkin-tilt" style="--s:${scale};--r:${rot}deg">${pumpkinSvg(`patch${i}`)}</span>
     </button>`;
   }).join("");
-  const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
-  return `<div class="patch scene-3d" data-play${bgStyle}>
+  return `<div class="patch scene-3d" data-play>
     <div class="patch-grid" style="grid-template-columns:repeat(${cols}, minmax(0, 1fr))">${buttons}</div>
   </div>`;
 }
 
 function houseMarkup(count, ctx) {
-  const bg = scene3dUrl(ctx.assetBase, ctx.manifest, "house");
   const spots = count === HOUSE_SPOTS.length ? HOUSE_SPOTS : fallbackSpots(count);
   const buttons = spots
     .map(
@@ -137,8 +133,7 @@ function houseMarkup(count, ctx) {
         `<button type="button" class="spot" data-choice="${i}" style="left:${x}%;top:${y}%" aria-label="Spot">${pumpkinIcon()}</button>`
     )
     .join("");
-  const bgStyle = bg ? ` style="--scene3d:url('${bg}')"` : "";
-  return `<div class="house-scene scene-3d" data-play${bgStyle}>
+  return `<div class="house-scene scene-3d" data-play>
     <div class="spots">${buttons}</div>
   </div>`;
 }
@@ -534,13 +529,11 @@ function mountGuided(root, stage, ctx) {
   const slop = Number(stage.hitSlop ?? 20);
   let index = 0;
   let finished = false;
-  const carveBg = stage.key === "carve" ? scene3dUrl(ctx.assetBase, ctx.manifest, "carve") : "";
-  const bgStyle = carveBg ? ` style="--scene3d:url('${carveBg}')"` : "";
   const tool =
     stage.key === "carve"
       ? `<div class="carve-knife" data-carve-knife aria-hidden="true">${knifeSvg()}</div>`
       : `<button type="button" class="dot tool-pin" data-active-dot aria-label="Pin">${pinSvg()}</button>`;
-  root.innerHTML = `<div class="scene scene-${esc(stage.key)} scene-guided ${stage.key === "carve" ? "scene-3d scene-carve-board" : ""}" data-play${bgStyle}>
+  root.innerHTML = `<div class="scene scene-${esc(stage.key)} scene-guided ${stage.key === "carve" ? "scene-3d scene-carve-board" : ""}" data-play>
     <div class="pumpkin-stack ${stage.key === "carve" ? "carve-stack" : "pin-stack"}">
       ${pumpkinSvg(stage.key)}
       <div class="face-layer" data-face-layer style="${faceBoxStyle()}">

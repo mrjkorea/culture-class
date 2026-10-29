@@ -43,7 +43,7 @@ function makeRenderer(container) {
   const dpr = Math.min(dpr0, weak ? 1 : 1.75);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.setPixelRatio(dpr);
-  renderer.setClearColor(0x87c55a);
+  renderer.setClearColor(0xffffff);
   renderer.domElement.className = "gl-stage";
   renderer.domElement.setAttribute("role", "img");
   container.appendChild(renderer.domElement);
@@ -55,7 +55,8 @@ export function createGlStage(container, { fov = 52, fog = true } = {}) {
   if (!built) return null;
   const { renderer, weak } = built;
   const scene = new THREE.Scene();
-  if (fog) scene.fog = new THREE.Fog(0x9fd2ff, 12, 42);
+  scene.background = new THREE.Color(0xffffff);
+  if (fog) scene.fog = new THREE.Fog(0xffffff, 18, 55);
   const camera = new THREE.PerspectiveCamera(fov, 1, 0.1, 120);
   scene.add(new THREE.HemisphereLight(0xfff0d0, 0x6a8f4a, 1.35));
   const sun = new THREE.DirectionalLight(0xfff6e8, 1.1);
