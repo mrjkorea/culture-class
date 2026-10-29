@@ -92,7 +92,7 @@ const THEMES = {
   },
   historyday: {
     bodyClass: "theme-historyday",
-    cssHref: "assets/css/month-theme-shell.css",
+    cssHref: "assets/css/historyday.css",
     mapImage: "assets/covers/08-august-map.jpg",
     pathD: MAP_LESSON_STEPS.map((s) => `${s.x},${100 - s.y}`).join(" L "),
     pathStroke: "rgba(210,180,120,0.55)",
