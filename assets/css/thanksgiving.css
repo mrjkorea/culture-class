@@ -319,7 +319,7 @@ body.theme-thanksgiving {
 .theme-thanksgiving .memory-card {
   border-radius: 14px;
   border: 3px solid #4a1c08;
-  background: radial-gradient(circle at 30% 30%, #6b2d0a 0%, #e07a2f 45%, #4a1c08 100%);
+  background: url("../memory/card-back-thanksgiving.jpg") center/cover no-repeat;
   min-height: 88px;
 }
 

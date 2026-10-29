@@ -1,5 +1,5 @@
 /** Bump or tie to deploy SHA for GitHub Pages cache bust on step links. */
-export const SITE_LINK_V = "20261030-jul-parity";
+export const SITE_LINK_V = "20261030-nov-parity";
 
 export function withLinkVersion(href) {
   if (!href || /^https?:\/\//i.test(href) || href.startsWith("#")) return href;
