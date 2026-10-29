@@ -21,6 +21,12 @@ import {
 import { faceSvgMarkup } from "./faces.js";
 import { pickLocalized } from "../../../js/i18n.js";
 
+function craftUi(ctx, key) {
+  const lang = ctx.uiLang || "en";
+  const pack = ctx.uiCopy?.[lang] || ctx.uiCopy?.en || {};
+  return pack[key] ?? ctx.uiCopy?.en?.[key] ?? "";
+}
+
 function esc(s) {
   return String(s)
     .replace(/&/g, "&amp;")
@@ -679,9 +685,7 @@ function mountCandy(root, stage, ctx) {
   function paintHint() {
     if (!hint) return;
     hint.textContent =
-      phase === "kid"
-        ? "Tap a kid — wait for trick or treat!"
-        : "Now tap the candy bowl once.";
+      phase === "kid" ? craftUi(ctx, "candyHintKid") : craftUi(ctx, "candyHintBowl");
   }
 
   function setKidActive(index) {

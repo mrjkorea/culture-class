@@ -25,17 +25,12 @@ function resolveSrc(path) {
   return dataUrl(clean);
 }
 
-/** Optional phonetic rebakes (MEET-01). Prefer explicit `audio` on the term when set. */
-const PHONETIC_AUDIO = {
-  vampire: "data/audio/oct-words/vampire-vampier.mp3",
-};
-
 /** Play English word audio (oct-words Fish TTS mp3 only — no browser TTS). */
 export function playWordAudio(term, explicitPath) {
   const slug = wordSlug(term);
   const src = explicitPath
     ? resolveSrc(explicitPath)
-    : resolveSrc(PHONETIC_AUDIO[slug] || `data/audio/oct-words/${slug}.mp3`);
+    : resolveSrc(`data/audio/oct-words/${slug}.mp3`);
   if (!src) return Promise.resolve();
   if (current) {
     current.pause();

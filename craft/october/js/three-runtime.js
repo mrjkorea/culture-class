@@ -70,8 +70,9 @@ export function createGlStage(container, { fov = 52, fog = true } = {}) {
   let onFrame = null;
 
   function resize() {
-    const w = container.clientWidth || 320;
-    const h = container.clientHeight || 240;
+    const rect = container.getBoundingClientRect();
+    const w = Math.max(1, Math.round(rect.width || container.clientWidth || 320));
+    const h = Math.max(1, Math.round(rect.height || container.clientHeight || Math.min(480, w * 0.75)));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -86,6 +87,7 @@ export function createGlStage(container, { fov = 52, fog = true } = {}) {
 
   resize();
   frame = requestAnimationFrame(loop);
+  requestAnimationFrame(() => resize());
   const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(() => resize()) : null;
   ro?.observe(container);
 

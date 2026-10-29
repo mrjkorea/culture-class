@@ -71,7 +71,10 @@
       "soundOn": "Sound on",
       "soundOff": "Sound off",
       "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "loadError": "Something went wrong. Reload the page.",
+      "gameTitle": "Jack-o'-Lantern Craft",
+      "candyHintKid": "Tap a kid — wait for trick or treat!",
+      "candyHintBowl": "Now tap the candy bowl once."
     },
     "ko": {
       "classTag": "제이 선생님 문화 수업 · 10월",
@@ -95,319 +98,361 @@
       "soundOn": "소리 켜짐",
       "soundOff": "소리 꺼짐",
       "back": "10월",
-      "loadError": "문제가 생겼어요. 페이지를 다시 불러오세요."
+      "loadError": "문제가 생겼어요. 페이지를 다시 불러오세요.",
+      "gameTitle": "잭오랜턴 만들기",
+      "candyHintKid": "아이를 탭하세요 — trick or treat!",
+      "candyHintBowl": "이제 사탕 그릇을 한 번 탭하세요."
     },
     "zh-Hans": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
-      "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "classTag": "Jay老师文化课 · 十月",
+      "play": "开始",
+      "nickname": "昵称",
+      "namePlaceholder": "你的名字",
+      "needName": "请输入昵称再玩。",
+      "how": "找南瓜、洗净、刻脸，再分 {candies} 颗糖。用时最短获胜。",
+      "beatNote": "每关结束后会播短视频，不能跳过。",
+      "timeNote": "计时只在游玩中。关卡视频和结尾幽灵不计时。",
+      "board": "最快记录",
+      "empty": "还没有记录，来做第一个吧！",
+      "misses": "失误",
+      "yourTime": "你的时间",
+      "rank": "名次",
+      "playAgain": "再玩一次",
+      "doneTitle": "完成了！",
+      "doneBody": "万圣节快乐！",
+      "pickFace": "选一张脸",
+      "watch": "准备好",
+      "soundOn": "声音开",
+      "soundOff": "声音关",
+      "back": "十月",
+      "loadError": "出错了，请刷新页面。",
+      "gameTitle": "杰克灯手工",
+      "candyHintKid": "点一个孩子——等 trick or treat！",
+      "candyHintBowl": "现在点一下糖碗。"
     },
     "ja": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Jay先生の文化クラス · 10月",
+      "play": "プレイ",
+      "nickname": "ニックネーム",
+      "namePlaceholder": "名前",
+      "needName": "ニックネームを入力してください。",
+      "how": "かぼちゃを見つけ、洗い、顔を彫り、{candies}個のお菓子を配ろう。最速が勝ち。",
+      "beatNote": "各ステージ後に短い動画。スキップ不可。",
+      "timeNote": "時間はプレイ中のみ。動画と最後のゴーストは含まない。",
+      "board": "ベストタイム",
+      "empty": "まだ記録がありません。",
+      "misses": "ミス",
+      "yourTime": "タイム",
+      "rank": "順位",
+      "playAgain": "もう一度",
+      "doneTitle": "できた！",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "顔を選ぶ",
+      "watch": "準備",
+      "soundOn": "音声オン",
+      "soundOff": "音声オフ",
+      "back": "10月",
+      "loadError": "読み込みに失敗しました。",
+      "gameTitle": "ジャック・オ・ランタン作り",
+      "candyHintKid": "子どもをタップ — trick or treat!",
+      "candyHintBowl": "今度はお菓子のボウルを1回タップ。"
     },
     "es": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
-      "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "classTag": "Clase de cultura del profe Jay · Octubre",
+      "play": "Jugar",
+      "nickname": "Apodo",
+      "namePlaceholder": "Tu nombre",
+      "needName": "Escribe un apodo para jugar.",
+      "how": "Encuentra una calabaza, lávala, talla una cara y reparte {candies} dulces. Gana el más rápido.",
+      "beatNote": "Tras cada etapa, un vídeo corto. Míralo — no se puede saltar.",
+      "timeNote": "El tiempo cuenta mientras juegas. Los vídeos y el fantasma final no cuentan.",
+      "board": "Mejores tiempos",
+      "empty": "Aún no hay tiempos. ¡Sé el primero!",
+      "misses": "Errores",
+      "yourTime": "Tu tiempo",
+      "rank": "Puesto",
+      "playAgain": "Jugar otra vez",
+      "doneTitle": "¡Lo lograste!",
+      "doneBody": "¡Feliz Halloween!",
+      "pickFace": "Elige una cara",
+      "watch": "Prepárate",
+      "soundOn": "Sonido activado",
+      "soundOff": "Sonido desactivado",
+      "back": "Octubre",
+      "loadError": "Algo salió mal. Recarga la página.",
+      "gameTitle": "Calabaza tallada",
+      "candyHintKid": "Toca a un niño — ¡espera trick or treat!",
+      "candyHintBowl": "Ahora toca el cuenco de dulces una vez."
     },
     "hi": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "मिस्टर Jay की संस्कृति कक्षा · अक्टूबर",
+      "play": "खेलें",
+      "nickname": "उपनाम",
+      "namePlaceholder": "आपका नाम",
+      "needName": "खेलने के लिए उपनाम लिखें।",
+      "how": "कद्दू ढूँढें, धोएँ, चेहरा तराशें और {candies} मिठाइयाँ बाँटें। सबसे तेज़ जीतता है।",
+      "beatNote": "हर चरण के बाद छोटा वीडियो — छोड़ें नहीं।",
+      "timeNote": "समय सिर्फ खेलते समय। वीडियो और अंत का भूत नहीं।",
+      "board": "सबसे तेज़ समय",
+      "empty": "अभी कोई समय नहीं।",
+      "misses": "गलतियाँ",
+      "yourTime": "आपका समय",
+      "rank": "स्थान",
+      "playAgain": "फिर खेलें",
+      "doneTitle": "हो गया!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "चेहरा चुनें",
+      "watch": "तैयार",
+      "soundOn": "आवाज़ चालू",
+      "soundOff": "आवाज़ बंद",
+      "back": "अक्टूबर",
+      "loadError": "त्रुटि — पृष्ठ फिर लोड करें।",
+      "gameTitle": "जैक-ओ'-लैंtern क्राफ्ट",
+      "candyHintKid": "बच्चे पर टैप करें — trick or treat!",
+      "candyHintBowl": "अब मिठाई का कटोरा एक बार टैप करें।"
     },
     "de": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Mr. Jays Kulturkurs · Oktober",
+      "play": "Spielen",
+      "nickname": "Spitzname",
+      "namePlaceholder": "Dein Name",
+      "needName": "Gib einen Spitznamen ein.",
+      "how": "Finde einen Kürbis, wasche ihn, schnitze ein Gesicht und verteile {candies} Süßigkeiten. Schnellste Zeit gewinnt.",
+      "beatNote": "Nach jeder Stufe ein kurzer Film — nicht überspringen.",
+      "timeNote": "Zeit läuft nur beim Spielen. Filme und Geist am Ende zählen nicht.",
+      "board": "Bestzeiten",
+      "empty": "Noch keine Zeiten.",
+      "misses": "Fehler",
+      "yourTime": "Deine Zeit",
+      "rank": "Rang",
+      "playAgain": "Nochmal",
+      "doneTitle": "Geschafft!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Gesicht wählen",
+      "watch": "Bereit",
+      "soundOn": "Ton an",
+      "soundOff": "Ton aus",
+      "back": "Oktober",
+      "loadError": "Fehler — Seite neu laden.",
+      "gameTitle": "Kürbis schnitzen",
+      "candyHintKid": "Tippe ein Kind — warte auf trick or treat!",
+      "candyHintBowl": "Tippe jetzt einmal auf die Süßigkeitenschale."
     },
     "vi": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Lớp văn hóa thầy Jay · Tháng 10",
+      "play": "Chơi",
+      "nickname": "Biệt danh",
+      "namePlaceholder": "Tên của bạn",
+      "needName": "Nhập biệt danh để chơi.",
+      "how": "Tìm bí, rửa, khắc mặt và phát {candies} kẹo. Ai nhanh nhất thắng.",
+      "beatNote": "Sau mỗi màn có video ngắn — không bỏ qua.",
+      "timeNote": "Thời gian chỉ tính khi chơi. Video và ma cuối không tính.",
+      "board": "Kỷ lục",
+      "empty": "Chưa có kỷ lục.",
+      "misses": "Lỗi",
+      "yourTime": "Thời gian",
+      "rank": "Hạng",
+      "playAgain": "Chơi lại",
+      "doneTitle": "Xong rồi!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Chọn mặt",
+      "watch": "Sẵn sàng",
+      "soundOn": "Bật tiếng",
+      "soundOff": "Tắt tiếng",
+      "back": "Tháng 10",
+      "loadError": "Lỗi — tải lại trang.",
+      "gameTitle": "Làm bí đèn",
+      "candyHintKid": "Chạm vào trẻ — chờ trick or treat!",
+      "candyHintBowl": "Giờ chạm vào bát kẹo một lần."
     },
     "pt-BR": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
-      "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "classTag": "Aula de cultura do prof. Jay · Outubro",
+      "play": "Jogar",
+      "nickname": "Apelido",
+      "namePlaceholder": "Seu nome",
+      "needName": "Digite um apelido para jogar.",
+      "how": "Ache uma abóbora, lave, esculpa um rosto e dê {candies} doces. O mais rápido vence.",
+      "beatNote": "Depois de cada fase, um vídeo curto — sem pular.",
+      "timeNote": "O tempo conta só jogando. Vídeos e fantasma final não contam.",
+      "board": "Melhores tempos",
+      "empty": "Ainda não há tempos.",
+      "misses": "Erros",
+      "yourTime": "Seu tempo",
+      "rank": "Posição",
+      "playAgain": "Jogar de novo",
+      "doneTitle": "Conseguiu!",
+      "doneBody": "Feliz Halloween!",
+      "pickFace": "Escolha um rosto",
+      "watch": "Pronto",
+      "soundOn": "Som ligado",
+      "soundOff": "Som desligado",
+      "back": "Outubro",
+      "loadError": "Erro — recarregue a página.",
+      "gameTitle": "Abóbora esculpida",
+      "candyHintKid": "Toque numa criança — espere trick or treat!",
+      "candyHintBowl": "Agora toque na tigela de doces uma vez."
     },
     "id": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Kelas budaya Pak Jay · Oktober",
+      "play": "Main",
+      "nickname": "Nama panggilan",
+      "namePlaceholder": "Namamu",
+      "needName": "Ketik nama panggilan untuk main.",
+      "how": "Cari labu, cuci, ukir wajah, bagikan {candies} permen. Tercepat menang.",
+      "beatNote": "Setelah setiap tahap, video pendek — tidak bisa skip.",
+      "timeNote": "Waktu hanya saat main. Video dan hantu akhir tidak dihitung.",
+      "board": "Rekor tercepat",
+      "empty": "Belum ada rekor.",
+      "misses": "Salah",
+      "yourTime": "Waktumu",
+      "rank": "Peringkat",
+      "playAgain": "Main lagi",
+      "doneTitle": "Berhasil!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Pilih wajah",
+      "watch": "Siap",
+      "soundOn": "Suara nyala",
+      "soundOff": "Suara mati",
+      "back": "Oktober",
+      "loadError": "Gagal — muat ulang halaman.",
+      "gameTitle": "Ukir labu",
+      "candyHintKid": "Ketuk anak — tunggu trick or treat!",
+      "candyHintBowl": "Sekarang ketuk mangkuk permen sekali."
     },
     "fr": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
-      "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "classTag": "Cours culture de M. Jay · Octobre",
+      "play": "Jouer",
+      "nickname": "Pseudo",
+      "namePlaceholder": "Ton nom",
+      "needName": "Entre un pseudo pour jouer.",
+      "how": "Trouve une citrouille, lave-la, sculpte un visage et donne {candies} bonbons. Le plus rapide gagne.",
+      "beatNote": "Après chaque étape, une courte vidéo — pas de skip.",
+      "timeNote": "Le chrono tourne seulement en jeu. Vidéos et fantôme final exclus.",
+      "board": "Meilleurs temps",
+      "empty": "Pas encore de temps.",
+      "misses": "Erreurs",
+      "yourTime": "Ton temps",
+      "rank": "Rang",
+      "playAgain": "Rejouer",
+      "doneTitle": "Bravo !",
+      "doneBody": "Joyeux Halloween !",
+      "pickFace": "Choisis un visage",
+      "watch": "Prêt",
+      "soundOn": "Son activé",
+      "soundOff": "Son coupé",
+      "back": "Octobre",
+      "loadError": "Erreur — recharge la page.",
+      "gameTitle": "Citrouille sculptée",
+      "candyHintKid": "Touche un enfant — attends trick or treat !",
+      "candyHintBowl": "Touche le bol de bonbons une fois."
     },
     "ar": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "حصة الثقافة مع Jay · أكتوبر",
+      "play": "العب",
+      "nickname": "اللقب",
+      "namePlaceholder": "اسمك",
+      "needName": "اكتب لقباً للعب.",
+      "how": "ابحث عن يقطين، اغسله، انحت وجهاً ووزّع {candies} حلوى. الأسرع يفوز.",
+      "beatNote": "بعد كل مرحلة فيديو قصير — لا تخطّ.",
+      "timeNote": "الوقت أثناء اللعب فقط. الفيديوهات والشبح الأخير لا تُحسب.",
+      "board": "أسرع الأوقات",
+      "empty": "لا أوقات بعد.",
+      "misses": "أخطاء",
+      "yourTime": "وقتك",
+      "rank": "الترتيب",
+      "playAgain": "العب مجدداً",
+      "doneTitle": "أنجزت!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "اختر وجهاً",
+      "watch": "استعد",
+      "soundOn": "الصوت مفعّل",
+      "soundOff": "الصوت متوقف",
+      "back": "أكتوبر",
+      "loadError": "خطأ — أعد تحميل الصفحة.",
+      "gameTitle": "نحت اليقطين",
+      "candyHintKid": "اضغط طفلاً — انتظر trick or treat!",
+      "candyHintBowl": "الآن اضغط وعاء الحلوى مرة."
     },
     "tr": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Bay Jay kültür sınıfı · Ekim",
+      "play": "Oyna",
+      "nickname": "Takma ad",
+      "namePlaceholder": "Adın",
+      "needName": "Oynamak için takma ad yaz.",
+      "how": "Balkabağı bul, yıka, yüz oy ve {candies} şeker ver. En hızlı kazanır.",
+      "beatNote": "Her aşamadan sonra kısa video — atlanmaz.",
+      "timeNote": "Süre sadece oynarken. Videolar ve son hayalet sayılmaz.",
+      "board": "En iyi süreler",
+      "empty": "Henüz süre yok.",
+      "misses": "Hatalar",
+      "yourTime": "Süren",
+      "rank": "Sıra",
+      "playAgain": "Tekrar oyna",
+      "doneTitle": "Başardın!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Yüz seç",
+      "watch": "Hazır",
+      "soundOn": "Ses açık",
+      "soundOff": "Ses kapalı",
+      "back": "Ekim",
+      "loadError": "Hata — sayfayı yenile.",
+      "gameTitle": "Balkabağı oyma",
+      "candyHintKid": "Bir çocuğa dokun — trick or treat bekle!",
+      "candyHintBowl": "Şimdi şeker kasesine bir kez dokun."
     },
     "it": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Lezione cultura del prof. Jay · Ottobre",
+      "play": "Gioca",
+      "nickname": "Soprannome",
+      "namePlaceholder": "Il tuo nome",
+      "needName": "Inserisci un soprannome.",
+      "how": "Trova una zucca, lavala, intaglia un viso e distribuisci {candies} dolci. Vince il più veloce.",
+      "beatNote": "Dopo ogni fase un video breve — niente skip.",
+      "timeNote": "Il tempo conta solo giocando. Video e fantasma finale esclusi.",
+      "board": "Migliori tempi",
+      "empty": "Nessun tempo ancora.",
+      "misses": "Errori",
+      "yourTime": "Il tuo tempo",
+      "rank": "Posizione",
+      "playAgain": "Gioca ancora",
+      "doneTitle": "Fatto!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Scegli un viso",
+      "watch": "Pronto",
+      "soundOn": "Audio on",
+      "soundOff": "Audio off",
+      "back": "Ottobre",
+      "loadError": "Errore — ricarica la pagina.",
+      "gameTitle": "Zucca intagliata",
+      "candyHintKid": "Tocca un bambino — aspetta trick or treat!",
+      "candyHintBowl": "Ora tocca la ciotola di dolci una volta."
     },
     "pl": {
-      "classTag": "Mr. Jay's Culture Class · October",
-      "play": "Play",
-      "nickname": "Nickname",
-      "namePlaceholder": "Your name",
-      "needName": "Type a nickname to play.",
-      "how": "Find a pumpkin, wash it, carve a face, and give out {candies} candies. Fastest time wins.",
-      "beatNote": "After each stage, a short movie plays. Watch it — no skip.",
-      "timeNote": "Time counts while you play. Stage movies and the end ghost are not timed.",
-      "board": "Fastest times",
-      "empty": "No times yet. Be the first!",
-      "misses": "Misses",
-      "yourTime": "Your time",
-      "rank": "Rank",
-      "playAgain": "Play again",
-      "doneTitle": "You did it!",
+      "classTag": "Lekcja kultury p. Jay · Październik",
+      "play": "Graj",
+      "nickname": "Pseudonim",
+      "namePlaceholder": "Twoje imię",
+      "needName": "Wpisz pseudonim, aby grać.",
+      "how": "Znajdź dynię, umyj, wyrzeźb twarz i rozdaj {candies} cukierków. Wygrywa najszybszy.",
+      "beatNote": "Po każdym etapie krótki film — bez pomijania.",
+      "timeNote": "Czas liczy się tylko w grze. Filmy i duch na końcu nie.",
+      "board": "Najlepsze czasy",
+      "empty": "Brak czasów.",
+      "misses": "Błędy",
+      "yourTime": "Twój czas",
+      "rank": "Miejsce",
+      "playAgain": "Graj ponownie",
+      "doneTitle": "Udało się!",
       "doneBody": "Happy Halloween!",
-      "pickFace": "Pick a face",
-      "watch": "Get ready",
-      "soundOn": "Sound on",
-      "soundOff": "Sound off",
-      "back": "October",
-      "loadError": "Something went wrong. Reload the page."
+      "pickFace": "Wybierz twarz",
+      "watch": "Gotowy",
+      "soundOn": "Dźwięk wł.",
+      "soundOff": "Dźwięk wył.",
+      "back": "Październik",
+      "loadError": "Błąd — odśwież stronę.",
+      "gameTitle": "Rzeźbiona dynia",
+      "candyHintKid": "Dotknij dziecka — czekaj na trick or treat!",
+      "candyHintBowl": "Teraz dotknij miski ze słodyczami raz."
     }
   },
   "stages": [
@@ -438,69 +483,69 @@
           "좋은 호박이에요!"
         ],
         "zh-Hans": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "找一个好南瓜！",
+          "哎呀！再找一个。",
+          "这个不错！"
         ],
         "ja": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "いいかぼちゃを見つけよう！",
+          "あら！別のを探して。",
+          "それがいいね！"
         ],
         "es": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "¡Encuentra una buena calabaza!",
+          "¡Oh no! Prueba otra.",
+          "¡Esa está bien!"
         ],
         "hi": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "अच्छा कद्दू ढूँढो!",
+          "अरे! दूसरा आज़माओ।",
+          "यह अच्छा है!"
         ],
         "de": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Finde einen guten Kürbis!",
+          "Oh nein! Versuch einen anderen.",
+          "Den nehmen wir!"
         ],
         "vi": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Tìm một quả bí ngon!",
+          "Ôi không! Thử quả khác.",
+          "Quả này được!"
         ],
         "pt-BR": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Ache uma boa abóbora!",
+          "Ops! Tente outra.",
+          "Essa serve!"
         ],
         "id": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Cari labu yang bagus!",
+          "Aduh! Coba yang lain.",
+          "Bagus itu!"
         ],
         "fr": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Trouve une belle citrouille !",
+          "Oh non ! Essaie une autre.",
+          "Celle-ci est parfaite !"
         ],
         "ar": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "ابحث عن يقطين جيد!",
+          "يا لا! جرّب آخر.",
+          "هذا جيد!"
         ],
         "tr": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "İyi bir balkabağı bul!",
+          "Hay aksi! Başka dene.",
+          "Bu iyi!"
         ],
         "it": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Trova una bella zucca!",
+          "Oh no! Prova un'altra.",
+          "Questa va bene!"
         ],
         "pl": [
-          "Find a good pumpkin!",
-          "Oh no! Try another!",
-          "That's a good one!"
+          "Znajdź dobrą dynię!",
+          "O nie! Spróbuj innej.",
+          "Ta jest dobra!"
         ]
       },
       "titles": {
@@ -544,69 +589,69 @@
           "잘했어요!"
         ],
         "zh-Hans": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "洗南瓜，继续刷！",
+          "很干净！",
+          "做得好！"
         ],
         "ja": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "かぼちゃを洗って。こすり続けて！",
+          "きれい！",
+          "よくできた！"
         ],
         "es": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Lava la calabaza. ¡Sigue frotando!",
+          "¡Queda limpia!",
+          "¡Buen trabajo!"
         ],
         "hi": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "कद्दू धोएँ। रगड़ते रहें!",
+          "साफ!",
+          "अच्छा काम!"
         ],
         "de": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Wasche den Kürbis. Weiter schrubben!",
+          "Schön sauber!",
+          "Gut gemacht!"
         ],
         "vi": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Rửa bí. Chà tiếp!",
+          "Sạch rồi!",
+          "Giỏi lắm!"
         ],
         "pt-BR": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Lave a abóbora. Continue esfregando!",
+          "Bem limpa!",
+          "Bom trabalho!"
         ],
         "id": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Cuci labu. Terus gosok!",
+          "Bersih!",
+          "Bagus!"
         ],
         "fr": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Lave la citrouille. Continue !",
+          "Bien propre !",
+          "Bon travail !"
         ],
         "ar": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "اغسل اليقطين. استمر!",
+          "نظيف!",
+          "أحسنت!"
         ],
         "tr": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Balkabağını yıka. Ovalamaya devam!",
+          "Temiz!",
+          "Aferin!"
         ],
         "it": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Lava la zucca. Continua a strofinare!",
+          "Pulita!",
+          "Bravo!"
         ],
         "pl": [
-          "Wash the pumpkin. Keep scrubbing!",
-          "Nice and clean!",
-          "Good job!"
+          "Myj dynię. Pocieraj dalej!",
+          "Czysto!",
+          "Dobra robota!"
         ]
       },
       "titles": {
@@ -651,69 +696,69 @@
           "뚜껑이 열렸어요!"
         ],
         "zh-Hans": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "切开顶部，别停！",
+          "继续切！",
+          "盖打开了！"
         ],
         "ja": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "上部を切って。止まらないで！",
+          "切り続けて！",
+          "フタが取れた！"
         ],
         "es": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Corta la tapa. ¡No pares!",
+          "¡Sigue cortando!",
+          "¡La tapa salió!"
         ],
         "hi": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "ऊपर काटें। रुकें नहीं!",
+          "काटते रहें!",
+          "ढक्कन खुल गया!"
         ],
         "de": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Schneide den Deckel ab. Nicht aufhören!",
+          "Weiter schneiden!",
+          "Deckel ist weg!"
         ],
         "vi": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Cắt nắp. Đừng dừng!",
+          "Cắt tiếp!",
+          "Nắp đã mở!"
         ],
         "pt-BR": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Corte a tampa. Não pare!",
+          "Continue cortando!",
+          "A tampa saiu!"
         ],
         "id": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Potong bagian atas. Jangan berhenti!",
+          "Terus potong!",
+          "Tutupnya lepas!"
         ],
         "fr": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Coupe le couvercle. Continue !",
+          "Encore !",
+          "Le couvercle est enlevé !"
         ],
         "ar": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "اقطع الغطاء. لا تتوقف!",
+          "واصل القطع!",
+          "انفتح الغطاء!"
         ],
         "tr": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Kapağı kes. Durma!",
+          "Kesmeye devam!",
+          "Kapak çıktı!"
         ],
         "it": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Taglia il coperchio. Non fermarti!",
+          "Continua a tagliare!",
+          "Coperchio via!"
         ],
         "pl": [
-          "Cut open the top. Don't stop!",
-          "Keep cutting!",
-          "The lid is off!"
+          "Wytnij wieczko. Nie przestawaj!",
+          "Tnij dalej!",
+          "Wieczko zdjęte!"
         ]
       },
       "titles": {
@@ -757,69 +802,69 @@
           "다 퍼냈어요!"
         ],
         "zh-Hans": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "挖出所有籽！",
+          "快空了！",
+          "挖干净了！"
         ],
         "ja": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "種を全部すくって。",
+          "もう少し！",
+          "全部すくった！"
         ],
         "es": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Saca todas las semillas.",
+          "¡Casi vacío!",
+          "¡Todo sacado!"
         ],
         "hi": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "सारे बीज निकालो।",
+          "लगभग खाली!",
+          "सब निकाल दिया!"
         ],
         "de": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Hol alle Kerne raus.",
+          "Fast leer!",
+          "Alles raus!"
         ],
         "vi": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Xúc hết hạt.",
+          "Gần hết!",
+          "Xúc xong!"
         ],
         "pt-BR": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Retire todas as sementes.",
+          "Quase vazio!",
+          "Tudo retirado!"
         ],
         "id": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Keruk semua biji.",
+          "Hampir kosong!",
+          "Semua terkeruk!"
         ],
         "fr": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Enlève toutes les graines.",
+          "Presque vide !",
+          "Tout enlevé !"
         ],
         "ar": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "أخرج كل البذور.",
+          " casi فارغ!",
+          "أخرجت الكل!"
         ],
         "tr": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Tüm çekirdekleri oy.",
+          "Neredeyse boş!",
+          "Hepsi çıktı!"
         ],
         "it": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Rimuovi tutti i semi.",
+          "Quasi vuoto!",
+          "Tutto rimosso!"
         ],
         "pl": [
-          "Scoop out all the seeds.",
-          "Almost empty!",
-          "All scooped!"
+          "Wydrąż wszystkie nasiona.",
+          "Prawie pusto!",
+          "Wydrążone!"
         ]
       },
       "titles": {
@@ -863,69 +908,69 @@
           "맛있는 씨예요!"
         ],
         "zh-Hans": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "烤南瓜籽。",
+          "摇动锅！",
+          "香！"
         ],
         "ja": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "種を炒って。",
+          "フライパンを振って！",
+          "おいしい種！"
         ],
         "es": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Tuesta las semillas.",
+          "¡Mueve la sartén!",
+          "¡Semillas ricas!"
         ],
         "hi": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "बीज भूनें।",
+          "पैन हिलाएँ!",
+          "स्वादिष्ट!"
         ],
         "de": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Röste die Kerne.",
+          "Schwenke die Pfanne!",
+          "Leckere Kerne!"
         ],
         "vi": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Rang hạt.",
+          "Lắc chảo!",
+          "Ngon!"
         ],
         "pt-BR": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Toste as sementes.",
+          "Agite a frigideira!",
+          "Sementes gostosas!"
         ],
         "id": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Sangrai biji.",
+          "Goyang wajan!",
+          "Enak!"
         ],
         "fr": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Grille les graines.",
+          "Secoue la poêle !",
+          "Délicieuses !"
         ],
         "ar": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "حمّص البذور.",
+          "حرّك المقلاة!",
+          "لذيذ!"
         ],
         "tr": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Çekirdekleri kavur.",
+          "Tavayı salla!",
+          "Lezzetli!"
         ],
         "it": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Tosta i semi.",
+          "Muovi la padella!",
+          "Semi buoni!"
         ],
         "pl": [
-          "Roast the pumpkin seeds.",
-          "Shake the pan!",
-          "Yummy seeds!"
+          "Praż nasiona.",
+          "Potrząsaj patelnią!",
+          "Pyszne!"
         ]
       },
       "titles": {
@@ -972,69 +1017,69 @@
           "얼굴이 준비됐어요!"
         ],
         "zh-Hans": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "戳洞描脸。",
+          "继续戳！",
+          "脸准备好了！"
         ],
         "ja": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "顔の線に沿って穴を開けて。",
+          "穴を開け続けて！",
+          "顔の準備OK!"
         ],
         "es": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Pincha agujeros para marcar la cara.",
+          "¡Sigue pinchando!",
+          "¡Cara lista!"
         ],
         "hi": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "चेहरे के लिए छेद करें।",
+          "छेदते रहें!",
+          "चेहरा तैयार!"
         ],
         "de": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Stich Löcher für das Gesicht.",
+          "Weiter stechen!",
+          "Gesicht fertig!"
         ],
         "vi": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Chọc lỗ theo mặt.",
+          "Chọc tiếp!",
+          "Mặt xong!"
         ],
         "pt-BR": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Fure buracos para o rosto.",
+          "Continue!",
+          "Rosto pronto!"
         ],
         "id": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Lubangi untuk wajah.",
+          "Terus lubangi!",
+          "Wajah siap!"
         ],
         "fr": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Perce des trous pour le visage.",
+          "Continue !",
+          "Visage prêt !"
         ],
         "ar": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "اثقب ثقوباً للوجه.",
+          "واصل!",
+          "الوجه جاهز!"
         ],
         "tr": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Yüz için delik aç.",
+          "Delmeye devam!",
+          "Yüz hazır!"
         ],
         "it": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Fai buchi per il viso.",
+          "Continua!",
+          "Viso pronto!"
         ],
         "pl": [
-          "Poke holes into the pumpkin to trace the face.",
-          "Keep poking holes!",
-          "Face is ready!"
+          "Dziurkuj dynię wg twarzy.",
+          "Dziurkuj dalej!",
+          "Twarz gotowa!"
         ]
       },
       "titles": {
@@ -1079,69 +1124,69 @@
           "무서운 얼굴이에요!"
         ],
         "zh-Hans": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "沿線雕刻。",
+          "继续刻！",
+          " spooky 脸！"
         ],
         "ja": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "線に沿って彫って。",
+          "彫り続けて！",
+          "怖い顔！"
         ],
         "es": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Talla siguiendo las líneas.",
+          "¡Sigue tallando!",
+          "¡Cara espeluznante!"
         ],
         "hi": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "लाइनों पर तराशें।",
+          "तराशते रहें!",
+          "डरावना चेहरा!"
         ],
         "de": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Schnitze entlang der Linien.",
+          "Weiter schnitzen!",
+          "Gruseliges Gesicht!"
         ],
         "vi": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Khắc theo đường.",
+          "Khắc tiếp!",
+          "Mặt ma quái!"
         ],
         "pt-BR": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Esculpa nas linhas.",
+          "Continue!",
+          "Rosto assustador!"
         ],
         "id": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Ukir mengikuti garis.",
+          "Terus ukir!",
+          "Wajah seram!"
         ],
         "fr": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Sculpte le long des lignes.",
+          "Continue !",
+          "Visage effrayant !"
         ],
         "ar": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "انحت على الخطوط.",
+          "واصل!",
+          "وجه مخيف!"
         ],
         "tr": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Çizgileri oy.",
+          "Oymaya devam!",
+          "Korkunç yüz!"
         ],
         "it": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Intaglia sulle linee.",
+          "Continua!",
+          "Faccia spaventosa!"
         ],
         "pl": [
-          "Carve along the lines.",
-          "Keep carving!",
-          "Spooky face!"
+          "Rzeźb wzdłuż linii.",
+          "Rzeźb dalej!",
+          "Straszna twarz!"
         ]
       },
       "titles": {
@@ -1185,69 +1230,69 @@
           "멋져요!"
         ],
         "zh-Hans": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "放蜡烛，点亮！",
+          "发光！",
+          "真漂亮！"
         ],
         "ja": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "ろうそくを入れて。火をつけて！",
+          "光ってる！",
+          "きれい！"
         ],
         "es": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Pon la vela. ¡Enciéndela!",
+          "¡Brilla!",
+          "¡Hermoso!"
         ],
         "hi": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "मोमबत्ती रखें। जलाएँ!",
+          "चमक!",
+          "सुंदर!"
         ],
         "de": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Kerze rein. Anzünden!",
+          "Leuchtet!",
+          "Schön!"
         ],
         "vi": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Đặt nến. Thắp!",
+          "Sáng!",
+          "Đẹp!"
         ],
         "pt-BR": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Coloque a vela. Acenda!",
+          "Brilha!",
+          "Lindo!"
         ],
         "id": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Masukkan lilin. Nyalakan!",
+          "Bersinar!",
+          "Indah!"
         ],
         "fr": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Mets la bougie. Allume !",
+          "Ça brille !",
+          "Magnifique !"
         ],
         "ar": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "ضع الشمع. أشعل!",
+          "يلمع!",
+          "جميل!"
         ],
         "tr": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Mumu koy. Yak!",
+          "Parlıyor!",
+          "Harika!"
         ],
         "it": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Metti la candela. Accendi!",
+          "Brilla!",
+          "Bellissimo!"
         ],
         "pl": [
-          "Put in the candle. Light it!",
-          "Glow!",
-          "Beautiful!"
+          "Włóż świeczkę. Zapal!",
+          "Świeci!",
+          "Pięknie!"
         ]
       },
       "titles": {
@@ -1295,69 +1340,69 @@
           "딱 좋은 자리예요!"
         ],
         "zh-Hans": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "放在房子旁！",
+          "哎呀！掉了。",
+          "位置完美！"
         ],
         "ja": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "家のそばに置いて。",
+          "あら！落ちた。",
+          "ぴったり！"
         ],
         "es": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "¡Ponla junto a la casa!",
+          "¡Oh no! Se cayó.",
+          "¡Lugar perfecto!"
         ],
         "hi": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "घर के पास रखो!",
+          "अरे! गिर गया।",
+          "बढ़िया जगह!"
         ],
         "de": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Stell sie ans Haus.",
+          "Oh nein! Runtergefallen.",
+          "Perfekter Platz!"
         ],
         "vi": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Đặt cạnh nhà!",
+          "Ôi không! Rơi rồi.",
+          "Chỗ hoàn hảo!"
         ],
         "pt-BR": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Coloque na casa!",
+          "Ops! Caiu.",
+          "Lugar perfeito!"
         ],
         "id": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Taruh di rumah!",
+          "Aduh! Jatuh.",
+          "Tempat pas!"
         ],
         "fr": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Mets-la devant la maison !",
+          "Oh non ! Tombée.",
+          "Parfait !"
         ],
         "ar": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "ضعه عند البيت!",
+          "يا لا! سقط.",
+          "مكان مثالي!"
         ],
         "tr": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Evin yanına koy!",
+          "Hay aksi! Düştü.",
+          "Mükemmel yer!"
         ],
         "it": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Mettila vicino alla casa!",
+          "Oh no! Caduta.",
+          "Posto perfetto!"
         ],
         "pl": [
-          "Put it by the house!",
-          "Oh no! It fell!",
-          "Perfect spot!"
+          "Postaw przy domu!",
+          "O nie! Spadła.",
+          "Idealne miejsce!"
         ]
       },
       "titles": {
@@ -1402,69 +1447,69 @@
           "끝났어요! 잘했어요!"
         ],
         "zh-Hans": [
-          "Give candy to the kids!",
-          "Happy Halloween!",
-          "You're done! Great job!"
+          "给孩子们分糖！",
+          "万圣节快乐！",
+          "完成了！做得好！"
         ],
         "ja": [
-          "Give candy to the kids!",
+          "子どもにお菓子を！",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "終わり！よくできた！"
         ],
         "es": [
-          "Give candy to the kids!",
-          "Happy Halloween!",
-          "You're done! Great job!"
+          "¡Da dulces a los niños!",
+          "¡Feliz Halloween!",
+          "¡Terminaste! ¡Buen trabajo!"
         ],
         "hi": [
-          "Give candy to the kids!",
+          "बच्चों को मिठाई दो!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "हो गया! शाबाश!"
         ],
         "de": [
-          "Give candy to the kids!",
+          "Gib den Kindern Süßigkeiten!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Fertig! Super!"
         ],
         "vi": [
-          "Give candy to the kids!",
+          "Phát kẹo cho trẻ!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Xong! Giỏi lắm!"
         ],
         "pt-BR": [
-          "Give candy to the kids!",
-          "Happy Halloween!",
-          "You're done! Great job!"
+          "Dê doces às crianças!",
+          "Feliz Halloween!",
+          "Acabou! Muito bem!"
         ],
         "id": [
-          "Give candy to the kids!",
+          "Bagi permen ke anak-anak!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Selesai! Hebat!"
         ],
         "fr": [
-          "Give candy to the kids!",
-          "Happy Halloween!",
-          "You're done! Great job!"
+          "Donne des bonbons aux enfants !",
+          "Joyeux Halloween !",
+          "Terminé ! Bravo !"
         ],
         "ar": [
-          "Give candy to the kids!",
+          "وزّع حلوى على الأطفال!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "انتهيت! أحسنت!"
         ],
         "tr": [
-          "Give candy to the kids!",
+          "Çocuklara şeker ver!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Bitti! Aferin!"
         ],
         "it": [
-          "Give candy to the kids!",
+          "Dai dolci ai bambini!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Finito! Bravissimo!"
         ],
         "pl": [
-          "Give candy to the kids!",
+          "Rozdaj dzieciom cukierki!",
           "Happy Halloween!",
-          "You're done! Great job!"
+          "Koniec! Brawo!"
         ]
       },
       "titles": {

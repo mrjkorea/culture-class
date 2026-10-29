@@ -26,6 +26,21 @@ let reducedMotion = false;
 
 const timer = createTimer();
 
+/** CoS browser verify: ?cos=1&cosStage=house|candy (skips intro stages + transition movies). */
+function cosVerifyOptions() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("cos") !== "1") return null;
+  const raw = (params.get("cosStage") || params.get("stage") || "house").toLowerCase();
+  const allowed = new Set(["patch", "house", "candy", "wash", "cut"]);
+  const key = allowed.has(raw) ? raw : "house";
+  const idx = () => {
+    if (!spec?.stages) return 0;
+    const i = spec.stages.findIndex((s) => s.key === key);
+    return i >= 0 ? i : 0;
+  };
+  return { stageKey: key, stageIndex: idx };
+}
+
 function createTimer() {
   let acc = 0;
   let t0 = 0;
@@ -122,8 +137,10 @@ function wireFrank() {
 function paintLang() {
   uiLang = getLang();
   backLink.textContent = t("back");
-  soundBtn.setAttribute("aria-label", speech.enabled ? t("soundOn") : t("soundOff"));
-  soundBtn.classList.toggle("is-muted", !speech.enabled);
+  const topTitle = document.getElementById("top-game-title");
+  if (topTitle && spec) topTitle.textContent = t("gameTitle");
+  soundBtn.setAttribute("aria-label", speech?.enabled ? t("soundOn") : t("soundOff"));
+  soundBtn.classList.toggle("is-muted", speech && !speech.enabled);
 }
 
 function showLines(block, index, alert = false) {
@@ -185,12 +202,17 @@ function renderTitle(keepName) {
   view.dataset.screen = "title";
   view.dataset.stageKey = "";
   view.dataset.phase = "title";
+  const cos = cosVerifyOptions();
+  const cosNote = cos
+    ? `<p class="hint cos-verify-note">CoS verify: starts at “${esc(cos.stageKey)}” stage (skips earlier stages &amp; movies). Remove <code>?cos=1</code> for the normal game.</p>`
+    : "";
   view.innerHTML = `<section class="card title-card">
     <div class="title-art">${pumpkinSvg("title")}</div>
-    <h1>${esc(spec.title)}</h1>
+    <h1>${esc(t("gameTitle"))}</h1>
     <p class="brand">${esc(t("classTag"))}</p>
     <p class="how">${esc(fill(t("how")))}</p>
     <p class="hint">${esc(t("beatNote"))}</p>
+    ${cosNote}
     <form id="nick-form">
       <label for="nick">${esc(t("nickname"))}</label>
       <input id="nick" name="nick" maxlength="16" autocomplete="off" autocapitalize="words" required placeholder="${esc(t("namePlaceholder"))}"${signed ? " readonly" : ""}>
@@ -247,11 +269,16 @@ async function onStart(event) {
 async function runGame(name) {
   state = { name, misses: 0, faceId: null, face: null, phase: "transition", saved: false, entry: null };
   timer.reset();
-  for (let i = 0; i < spec.stages.length; i += 1) {
-    await playStage(spec.stages[i], i);
-    await playStageMovie(spec.transitions[i], i);
+  const cos = cosVerifyOptions();
+  const startAt = cos ? cos.stageIndex() : 0;
+  if (cos && startAt > 0) {
+    console.info(`[CoS verify] Starting at stage "${cos.stageKey}" (index ${startAt + 1}).`);
   }
-  await playGhostFinale();
+  for (let i = startAt; i < spec.stages.length; i += 1) {
+    await playStage(spec.stages[i], i);
+    if (!cos) await playStageMovie(spec.transitions[i], i);
+  }
+  if (!cos) await playGhostFinale();
   showResults();
 }
 
@@ -319,6 +346,7 @@ function playStage(stage, index) {
       assetBase,
       manifest,
       uiLang,
+      uiCopy: spec.uiCopy,
       setFace(id) {
         state.faceId = id;
         state.face = faces.find((face) => face.id === id) || null;
@@ -585,6 +613,20 @@ function onLangChange() {
     renderTitle(true);
     return;
   }
+  if (screen === "results" && spec && state?.entry) {
+    const kicker = view.querySelector(".kicker");
+    if (kicker) kicker.textContent = t("doneTitle");
+    const again = view.getElementById("again-btn");
+    if (again) again.textContent = t("playAgain");
+    const hintEl = view.querySelector(".results-card .hint");
+    if (hintEl) hintEl.textContent = t("timeNote");
+    const doneBlock = {};
+    for (const { code } of LANGS) {
+      doneBlock[code] = [spec.uiCopy?.[code]?.doneBody || spec.uiCopy.en.doneBody];
+    }
+    showLines(doneBlock, 0);
+    return;
+  }
   if (screen === "stage" && spec) {
     const idx = spec.stages.findIndex((s) => s.key === view.dataset.stageKey);
     const stage = spec.stages[idx];
@@ -616,11 +658,7 @@ async function init() {
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   uiLang = getLang();
   window.addEventListener("storage", (e) => {
-    if (e.key === "culture-class-lang") {
-      uiLang = getLang();
-      paintLang();
-      paintLines();
-    }
+    if (e.key === "culture-class-lang") onLangChange();
   });
   try {
     const loaded = await loadCraft();
