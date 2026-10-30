@@ -20,30 +20,43 @@
       playBingoTermAudio,
       shuffle,
     } from "../js/bingo.js";
-    import { repoRoot } from "../js/paths.js";
 
-    const monthId = getMonthIdFromQuery();
-    const meta = await loadMonthsMeta();
-    const month = meta?.months?.find((m) => m.id === monthId);
-    const pool = await loadWordPool(monthId);
-    const terms = pool.map((t) => t.term);
+    let monthId = "10";
+    let meta = null;
+    let month = null;
+    let pool = [];
+    let terms = [];
+    let bootError = "";
     let called = new Set();
 
-    const app = document.getElementById("app");
-    const back = backToMonthLink(monthId, meta);
+    async function loadBoot() {
+      monthId = getMonthIdFromQuery();
+      meta = await loadMonthsMeta();
+      month = meta?.months?.find((m) => m.id === monthId);
+      pool = await loadWordPool(monthId);
+      terms = pool.map((t) => t.term);
+      if (!terms.length) throw new Error("empty word pool");
+    }
 
-    const displayOrder = shuffle(terms);
+    const app = document.getElementById("app");
+    let displayOrder = [];
 
     function render() {
+      const back = backToMonthLink(monthId, meta);
+      if (!displayOrder.length) displayOrder = shuffle(terms);
       const chips = displayOrder
         .map((word) => {
           const isCalled = called.has(word);
           return `<button type="button" class="word-chip${isCalled ? " called" : ""}" data-word="${word.replace(/"/g, "&quot;")}">${word}</button>`;
         })
         .join("");
+      const errLine = bootError
+        ? `<p class="hint" role="status">${bootError}</p>`
+        : "";
 
       app.innerHTML = `
         <a class="back-link" href="${back}">← Back to month</a>
+        ${errLine}
         <header class="site-header">
           <h1>Bingo — Teacher</h1>
           <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Month ${monthId}</p>
@@ -81,7 +94,23 @@
       });
     }
 
-    render();
+    (async () => {
+      try {
+        await loadBoot();
+      } catch (err) {
+        console.error(err);
+        bootError = "Could not load word list — showing October bingo.";
+        try {
+          monthId = "10";
+          await loadBoot();
+        } catch (err2) {
+          console.error(err2);
+          terms = [];
+        }
+      }
+      displayOrder = shuffle(terms);
+      render();
+    })();
   </script>
 </body>
 </html>
