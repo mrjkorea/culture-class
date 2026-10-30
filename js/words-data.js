@@ -2,6 +2,32 @@ import { dataUrl, monthPageUrl, wordsLearnUrl, wordsMemoryUrl } from "./paths.js
 import { normalizeWordTerms } from "./word-list.js";
 
 const LEARN_DONE_PREFIX = "culture-class-learn-done-";
+let l1EnOverlayPromise = null;
+
+async function loadL1EnOverlay() {
+  if (!l1EnOverlayPromise) {
+    l1EnOverlayPromise = fetch(dataUrl("culture-l1-en.json"))
+      .then((res) => (res.ok ? res.json() : {}))
+      .catch(() => ({}));
+  }
+  return l1EnOverlayPromise;
+}
+
+function mergeL1EnOverlay(terms, overlay) {
+  if (!overlay || typeof overlay !== "object") return terms;
+  return terms.map((t) => {
+    const en = overlay[t.id];
+    if (!en) return t;
+    return {
+      ...t,
+      l1: {
+        ...(t.l1 || {}),
+        en: String(en),
+        ko: (t.l1 && t.l1.ko) || t.ko || t.definition || "",
+      },
+    };
+  });
+}
 
 export function getMonthIdFromQuery() {
   const params = new URLSearchParams(window.location.search);
@@ -57,7 +83,10 @@ export async function loadWordsPackForMonth(monthId) {
     return { month, pack: null, terms: [] };
   }
   const pack = await res.json();
-  const terms = normalizeWordTerms(pack);
+  const terms = mergeL1EnOverlay(
+    normalizeWordTerms(pack),
+    await loadL1EnOverlay(),
+  );
   return { month, pack, terms };
 }
 

@@ -22,6 +22,7 @@
     } from "../js/bingo.js";
     import { playWordAudio } from "../js/words-audio.js";
     import { setStepDone } from "../js/month-progress.js";
+    import { t } from "../js/i18n.js";
 
     const monthId = getMonthIdFromQuery();
     const meta = await loadMonthsMeta();
@@ -66,6 +67,7 @@
     function render() {
       const back = backToMonthLink(monthId, meta);
       const cells = card.grid.map((cell, idx) => cellHtml(cell, idx)).join("");
+      const teacherMonth = monthId ? encodeURIComponent(monthId) : "";
 
       document.getElementById("app").innerHTML = `
         <a class="back-link" href="${back}">← Back to month</a>
@@ -73,11 +75,14 @@
           <h2>Bingo — Student</h2>
           <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Tap a picture to hear the word</p>
         </header>
-        <p class="hint"><a href="teacher.html?month=${monthId}">Teacher call list</a></p>
+        <p class="hint">${teacherMonth ? `<a href="teacher.html?month=${teacherMonth}">Teacher call list</a>` : "Open from your month map (?month=01)."}</p>
         <div class="bingo-toolbar" style="justify-content:center">
           <button type="button" class="btn btn-glow" id="btn-new">New card</button>
         </div>
         <div class="bingo-grid" style="grid-template-columns: repeat(${card.cols}, 1fr)">${cells}</div>
+        <p class="bingo-map-back" style="margin-top:1.25rem;text-align:center">
+          <a class="btn btn-glow-secondary" href="${back}">${t("cc_back_map")}</a>
+        </p>
         <footer class="site-footer">Bingo — local card</footer>`;
 
       document.querySelector(".bingo-grid").addEventListener("click", (e) => {

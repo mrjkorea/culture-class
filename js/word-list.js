@@ -6,25 +6,42 @@ export function wordSlug(term) {
     .replace(/\s+/g, "-");
 }
 
+function normalizeOne(raw, fallbackTerm) {
+  const term = raw.term || raw.en || fallbackTerm || "";
+  const ko = raw.ko ?? raw.definition ?? "";
+  const l1 =
+    raw.l1 && typeof raw.l1 === "object"
+      ? { ...raw.l1 }
+      : ko
+        ? { ko: String(ko) }
+        : null;
+  return {
+    id: raw.id || wordSlug(term),
+    term,
+    definition: raw.definition ?? ko ?? "",
+    ko: String(ko || ""),
+    audio: raw.audio || "",
+    image: raw.image || raw.pic || "",
+    l1,
+    ww: raw.ww && typeof raw.ww === "object" ? raw.ww : null,
+    i18n:
+      raw.i18n && typeof raw.i18n === "object"
+        ? raw.i18n
+        : raw.gloss && typeof raw.gloss === "object"
+          ? raw.gloss
+          : null,
+    enGloss: raw.enGloss || "",
+    enDefinition: raw.enDefinition || "",
+  };
+}
+
 export function normalizeWordTerms(data) {
   if (!data) return [];
   if (Array.isArray(data.terms) && data.terms.length) {
-    return data.terms.map((t) => ({
-      id: t.id || wordSlug(t.term),
-      term: t.term,
-      definition: t.definition ?? "",
-      audio: t.audio || "",
-      image: t.image || t.pic || "",
-    }));
+    return data.terms.map((t) => normalizeOne(t, t.term));
   }
   if (Array.isArray(data.words) && data.words.length) {
-    return data.words.map((w) => ({
-      id: w.id || wordSlug(w.en),
-      term: w.en,
-      definition: w.ko ?? "",
-      audio: w.audio || "",
-      image: w.pic || w.image || "",
-    }));
+    return data.words.map((w) => normalizeOne(w, w.en));
   }
   return [];
 }
