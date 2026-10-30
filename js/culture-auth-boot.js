@@ -8,6 +8,8 @@
   var BOOT_SRC = "https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js";
   var CHECKING_RE = /checking your id/i;
   var MAX_CHECKING_MS = 4500;
+  /** Culture Class: always show map/lesson UI even if MRJ login doors stay up. */
+  var CLASSROOM_FAILOPEN_MS = 4000;
 
   var params = new URLSearchParams(window.location.search);
   var cosMode = params.get("cos") === "1";
@@ -67,6 +69,12 @@
     }
     return;
   }
+
+  window.setTimeout(function () {
+    if (!window.__ccCultureAuthDone) {
+      dispatchReady({ guest: true, reason: "classroom-failopen" });
+    }
+  }, CLASSROOM_FAILOPEN_MS);
 
   var boot = document.createElement("script");
   boot.src = BOOT_SRC;
