@@ -65,7 +65,11 @@ const TYPES={
 };
 const PROMPTS={listen:'Listen and choose the right picture.',spell:'Look at the picture. Choose the right spelling.',fill:'Fill in the missing word.',order:'Put the words in order.',dialogue:'Choose the best answer.',hear:'Listen. Which sentence do you hear?'};
 const PROMPT=q=>{const t=q&&q.prompt;return (typeof t==='string'&&t.trim()&&t!=='undefined')?t:(PROMPTS[q&&q.type]||'Choose the right answer.')};
-const HOME=()=>D.kind==='culture'?'../months/10-october/':D.kind==='review'?(D.id&&/_review_u\d+$/.test(D.id)?'review.html':'units.html'):WB.link('index.html');
+const CULTURE_MONTH_SLUG={'01':'01-january','02':'02-february','03':'03-march','04':'04-april','05':'05-may','06':'06-june','07':'07-july','08':'08-august','09':'09-september','10':'10-october','11':'11-november','12':'12-december'};
+function cultureMonthId(){const fromId=(D&&D.id||'').match(/^culture_m(\d{2})(?:_show)?$/);if(fromId)return fromId[1];if(typeof _monthNum==='number'&&Number.isFinite(_monthNum)&&_monthNum>=1&&_monthNum<=12)return String(_monthNum).padStart(2,'0');return null}
+function cultureMapHome(){const id=cultureMonthId();const slug=id&&CULTURE_MONTH_SLUG[id];return slug?'../months/'+slug+'/':'../'}
+function culturePassNext(){const m=(D&&D.id||'').match(/^culture_m(\d{2})(?:_show)?$/);if(!m)return{lbl:'Continue',href:cultureMapHome()};const monthQ=parseInt(m[1],10);if(String(D.id).endsWith('_show'))return{lbl:'Next: Meet the words →',href:'../words/meet.html?month='+monthQ};return{lbl:'Next: CP Speak →',href:'../cp/speak.html?month='+monthQ}}
+const HOME=()=>D.kind==='culture'?cultureMapHome():D.kind==='review'?(D.id&&/_review_u\d+$/.test(D.id)?'review.html':'units.html'):WB.link('index.html');
 const KINDLBL=()=>D.kind==='culture'?'Culture':D.kind==='review'?'Review':'Day 3';
 function show(){locked=false;const q=D.questions[i],T=TYPES[q.type];if(!T){i++;return i<N?show():end()}
  card.innerHTML=head()+`<div class="p">${PROMPT(q)}</div>`+T.html(q)+`<div id="fb"></div>`;
@@ -79,11 +83,10 @@ async function check(ok,btn){if(locked)return;locked=true;const q=D.questions[i]
  await clip(ok?'up':'slip');const fromPos=pos;const newPos=ok?Math.min(N,pos+1):Math.max(0,pos-0.5);await tweenClimber(fromPos,newPos,ok);pos=newPos;move();
  setTimeout(next,ok?450:900)}
 function next(){i++;if(i<N)show();else end()}
-function markCultureStep(){try{if(D&&D.kind==='culture'){const step=D.id==='culture_m10_show'?'quiz':'climb';localStorage.setItem('culture-class-step-done-10-'+step,'1')}}catch(e){}}
+function markCultureStep(){try{if(D&&D.kind==='culture'){const m=(D.id||'').match(/^culture_m(\d{2})(?:_show)?$/);if(!m)return;const step=String(D.id).endsWith('_show')?'quiz':'climb';localStorage.setItem('culture-class-step-done-'+m[1]+'-'+step,'1')}}catch(e){}}
 async function end(){const p=Math.round(right/N*100),ps=p>=D.passPercent;WB.save('climb',p,right,N);document.querySelector('.nextlvl')?.remove();
  if(ps)markCultureStep();
- const nextLbl=D.id==='culture_m10_show'?'Next: Meet the words →':D.id==='culture_m10'?'Next: CP Speak →':'Continue';
- const nextHref=D.id==='culture_m10_show'?'../words/meet.html?month=10':D.id==='culture_m10'?'../cp/speak.html?month=10':HOME();
+ const passNext=culturePassNext();const nextLbl=passNext.lbl;const nextHref=passNext.href;
  card.innerHTML=`<h1>${D.title}</h1><p class="pct ${ps?'':'fail'}">${p}%</p><div style="font-size:28px">${right} / ${N} right</div>
  <div class="p" style="font-size:24px">${p===100?'🌟 GOLD STAR! '+KINDLBL()+' passed!':ps?'🏔️ PASS! You reached the top! '+KINDLBL()+' passed!':'Not yet — you need '+D.passPercent+'%. Try again!'}</div>
  <button id="again">🔁 Play again</button> <button onclick="location.href=HOME()">🏠 Map</button>${ps?` <button class="ok" onclick="location.href='${nextHref}'">${nextLbl}</button>`:''}`;
