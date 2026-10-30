@@ -1,16 +1,19 @@
+/** Keep in sync with SITE_LINK_V when busting Meet ES modules. */
+const MEET_V = "20261030-meet-i18n";
+
 import {
   escapeHtml,
   getMonthIdFromQuery,
   loadWordsPackForMonth,
   monthPageUrl,
-} from "./words-data.js";
-import { playWordAudio } from "./words-audio.js";
-import { setStepDone } from "./month-progress.js";
-import { repoRoot, wordsLearnUrl } from "./paths.js";
-import { applyMonthUiTheme } from "./month-ui-theme.js";
-import { ensureThemeStylesheet } from "./month-styles.js";
-import { getLang, mountLangSelect, t } from "./i18n.js";
-import { termGloss } from "./word-gloss.js";
+} from `./words-data.js?v=${MEET_V}`;
+import { playWordAudio } from `./words-audio.js?v=${MEET_V}`;
+import { setStepDone } from `./month-progress.js?v=${MEET_V}`;
+import { repoRoot, wordsLearnUrl } from `./paths.js?v=${MEET_V}`;
+import { applyMonthUiTheme } from `./month-ui-theme.js?v=${MEET_V}`;
+import { ensureThemeStylesheet } from `./month-styles.js?v=${MEET_V}`;
+import { getLang, mountLangSelect, t } from `./i18n.js?v=${MEET_V}`;
+import { termGloss } from `./word-gloss.js?v=${MEET_V}`;
 
 /** Pause after audio ends so students hear the word before the next card. */
 const MEET_ADVANCE_MS = 600;
