@@ -14,45 +14,33 @@
   <script type="module">
     import {
       backToMonthLink,
+      buildBingoCard,
       getMonthIdFromQuery,
       loadMonthsMeta,
       loadWordPool,
-      shuffle,
       wordImageForTerm,
     } from "../js/bingo.js";
     import { playWordAudio } from "../js/words-audio.js";
     import { setStepDone } from "../js/month-progress.js";
     import { t } from "../js/i18n.js";
 
-    const monthId = getMonthIdFromQuery();
-    const meta = await loadMonthsMeta();
-    const month = meta?.months?.find((m) => m.id === monthId);
-    const pool = await loadWordPool(monthId);
-    const terms = pool.map((t) => t.term);
+    let monthId = "10";
+    let meta = null;
+    let month = null;
+    let pool = [];
+    let terms = [];
+    let bootError = "";
 
-    function buildCard(words) {
-      const size = 16;
-      const need = 15;
-      const bag = [];
-      while (bag.length < need) bag.push(...shuffle(words));
-      const cells = bag.slice(0, need);
-      const grid = [];
-      const cols = 4;
-      let i = 0;
-      for (let r = 0; r < cols; r++) {
-        for (let c = 0; c < cols; c++) {
-          const center = r === 1 && c === 1;
-          if (center) {
-            grid.push({ text: "FREE", free: true, marked: true });
-          } else {
-            grid.push({ text: cells[i++], free: false, marked: false });
-          }
-        }
-      }
-      return { grid, cols };
+    async function loadBoot() {
+      monthId = getMonthIdFromQuery();
+      meta = await loadMonthsMeta();
+      month = meta?.months?.find((m) => m.id === monthId);
+      pool = await loadWordPool(monthId);
+      terms = pool.map((t) => t.term);
+      if (!terms.length) throw new Error("empty word pool");
     }
 
-    let card = buildCard(terms);
+    let card = buildBingoCard([]);
 
     function cellHtml(cell, idx) {
       const cls = ["bingo-cell", cell.free ? "free" : "", cell.marked ? "marked" : ""]
@@ -67,15 +55,19 @@
     function render() {
       const back = backToMonthLink(monthId, meta);
       const cells = card.grid.map((cell, idx) => cellHtml(cell, idx)).join("");
-      const teacherMonth = monthId ? encodeURIComponent(monthId) : "";
+      const teacherMonth = encodeURIComponent(monthId);
+      const errLine = bootError
+        ? `<p class="hint" role="status">${bootError}</p>`
+        : "";
 
       document.getElementById("app").innerHTML = `
         <a class="back-link" href="${back}">← Back to month</a>
+        ${errLine}
         <header class="halloween-hero">
           <h2>Bingo — Student</h2>
           <p>${month ? `${month.name}: ${month.theme}` : "Culture Class"} · Tap a picture to hear the word</p>
         </header>
-        <p class="hint">${teacherMonth ? `<a href="teacher.html?month=${teacherMonth}">Teacher call list</a>` : "Open from your month map (?month=01)."}</p>
+        <p class="hint"><a href="teacher.html?month=${teacherMonth}">Teacher call list</a></p>
         <div class="bingo-toolbar" style="justify-content:center">
           <button type="button" class="btn btn-glow" id="btn-new">New card</button>
         </div>
@@ -99,12 +91,29 @@
       });
 
       document.getElementById("btn-new").addEventListener("click", () => {
-        card = buildCard(terms);
+        card = buildBingoCard(terms);
         render();
       });
     }
 
-    render();
+    (async () => {
+      try {
+        await loadBoot();
+      } catch (err) {
+        console.error(err);
+        bootError = "Could not load word list — showing October bingo.";
+        try {
+          monthId = "10";
+          await loadBoot();
+        } catch (err2) {
+          console.error(err2);
+          terms = [];
+          pool = [];
+        }
+      }
+      card = buildBingoCard(terms);
+      render();
+    })();
   </script>
 </body>
 </html>

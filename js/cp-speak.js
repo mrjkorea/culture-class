@@ -1,17 +1,13 @@
 /**
  * Culture Class CP speak — Day 4 Speak sheet + cue card (October content).
+ * Pronounce/HuBERT loads in background; practice UI paints without waiting on checkerReady.
  */
-import {
-  bootShared,
-  grade,
-  DOOR_FAIL_TEXT,
-} from "https://mrjkorea.github.io/pronounce/src/shared.js";
 import {
   beginMicTake,
   cancelMicTake,
   isCapturing,
   micErrorMessage,
-} from "./cp/mic-capture.js?v=20261030-cp-mic";
+} from "./cp/mic-capture.js?v=20261030-bingo-speak";
 import {
   craftUrl,
   escapeHtml,
@@ -22,6 +18,18 @@ import {
 import { resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
 import { syncDisplayNameFromAuth } from "./student-signin.js";
+
+const PRONOUNCE_SHARED =
+  "https://mrjkorea.github.io/pronounce/src/shared.js";
+const ORT_WASM =
+  "https://mrjkorea.github.io/pronounce/vendor/ort/ort.wasm.min.js";
+const DEFAULT_SPEAK_MONTH = "10";
+const DOOR_FAIL_FALLBACK =
+  "We couldn't hear you clearly — try again closer to the mic.";
+
+/** @type {null | typeof import("https://mrjkorea.github.io/pronounce/src/shared.js")} */
+let pronounceShared = null;
+let checkerBootPromise = null;
 
 const app = document.getElementById("app");
 let pack = null;
@@ -47,6 +55,43 @@ const layoutOnlyMode =
 
 function el(id) {
   return document.getElementById(id);
+}
+
+function doorFailText() {
+  return pronounceShared?.DOOR_FAIL_TEXT || DOOR_FAIL_FALLBACK;
+}
+
+function showPracticeChrome() {
+  document.body.classList.remove("auth-wait");
+  setCheckerProgress(0, "Practice below — sound checker loads in background");
+}
+
+function loadOrtWasmScript() {
+  if (window.ort) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[src="${ORT_WASM}"]`);
+    if (existing) {
+      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("error", () => reject(new Error("ORT failed")), {
+        once: true,
+      });
+      if (window.ort) resolve();
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = ORT_WASM;
+    s.async = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error("ORT script failed"));
+    document.head.appendChild(s);
+  });
+}
+
+async function loadPronounceShared() {
+  if (pronounceShared) return pronounceShared;
+  await loadOrtWasmScript();
+  pronounceShared = await import(/* webpackIgnore: true */ PRONOUNCE_SHARED);
+  return pronounceShared;
 }
 
 function bandFor(pct) {
@@ -196,7 +241,7 @@ function renderPractice() {
         <button type="button" class="secondary" id="btnHear">🔊 Hear English</button>
         <button type="button" class="primary mic" id="btnSpeak">🎤 Speak</button>
       </div>
-      <p class="status" id="micStatus">Tap Korean or Hear English first.</p>
+      <p class="status" id="micStatus">Tap Korean or Hear English — Speak unlocks when the checker is ready.</p>
       <div class="result" id="resultBox" hidden>
         <p class="big-score" id="resultScore"></p>
         <p class="hint" id="resultDetail"></p>
@@ -269,7 +314,14 @@ function syncMicButton() {
   btn.classList.toggle("listening", listening);
   btn.textContent = listening ? "■ Stop" : "🎤 Speak";
   btn.setAttribute("aria-label", listening ? "Stop listening" : "Speak sentence");
-  btn.disabled = !checkerReady || grading || (!heard && !listening);
+  btn.disabled = grading || (!heard && !listening) || (!checkerReady && !listening);
+  if (!checkerReady && !listening && !checkerError) {
+    btn.title = "Sound checker still loading — Hear English works now";
+  } else if (checkerError) {
+    btn.title = "Hear-only mode — checker unavailable";
+  } else {
+    btn.removeAttribute("title");
+  }
 }
 
 function cancelActiveMicCapture() {
@@ -279,6 +331,8 @@ function cancelActiveMicCapture() {
 }
 
 async function gradeBlob(blob, item) {
+  const shared = await loadPronounceShared();
+  const grade = shared.grade;
   const candidates = [item.english].concat(item.alts || []);
   let bestOut = null;
   let bestTarget = candidates[0];
@@ -328,7 +382,7 @@ function showGradeResult(result, target, itemIndex) {
   }
   if (doorFail) {
     el("resultScore").textContent = "Try again";
-    el("resultDetail").textContent = DOOR_FAIL_TEXT;
+    el("resultDetail").textContent = doorFailText();
   } else {
     el("resultScore").textContent = (pass ? "✓ " : "") + score + "%";
     const weak = (result.weak || result.missedWords || []).join(", ");
@@ -340,7 +394,7 @@ function showGradeResult(result, target, itemIndex) {
   el("micStatus").textContent = pass
     ? "Passed! Tap Next."
     : doorFail
-      ? DOOR_FAIL_TEXT
+      ? doorFailText()
       : `Under ${passPct}% — hear English, then Speak again.`;
   el("scoreBadge").textContent = `${passedCount()} / ${pack.items.length}`;
   const sheet = app.querySelector(".cp-day4-sheet");
@@ -367,9 +421,10 @@ async function toggleMic() {
     return;
   }
   if (!checkerReady) {
+    if (!checkerBootPromise && !checkerError) void bootChecker();
     el("micStatus").textContent = checkerError
-      ? `Sound checker failed — refresh the page. (${checkerError})`
-      : "Wait for “Sound checker ready” above, then Hear English.";
+      ? `Hear-only for now — checker failed. (${checkerError})`
+      : "Sound checker still loading — use Hear English, then try Speak again.";
     return;
   }
   if (!heard) {
@@ -432,25 +487,39 @@ function nextItem() {
 
 async function bootChecker() {
   if (layoutOnlyMode) return;
-  try {
-    await bootShared({
-      onProgress: (frac, text) => setCheckerProgress(frac, text),
-    });
-    checkerReady = true;
-    setCheckerProgress(1, "Sound checker ready");
-    const track = el("modelTrack");
-    if (track) track.classList.add("done");
-    syncMicButton();
-  } catch (err) {
-    console.error(err);
-    checkerError = err.message || "boot failed";
-    setCheckerProgress(0, "Sound checker failed to load");
-    const status = el("micStatus");
-    if (status) {
-      status.textContent = "Sound checker failed — refresh the page or ask your teacher.";
+  if (checkerBootPromise) return checkerBootPromise;
+  checkerBootPromise = (async () => {
+    try {
+      const shared = await loadPronounceShared();
+      await shared.bootShared({
+        onProgress: (frac, text) => setCheckerProgress(frac, text),
+      });
+      checkerReady = true;
+      checkerError = "";
+      setCheckerProgress(1, "Sound checker ready");
+      const track = el("modelTrack");
+      if (track) track.classList.add("done");
+      const status = el("micStatus");
+      if (status && !isCapturing()) {
+        status.textContent = heard
+          ? "Checker ready — tap Speak."
+          : "Checker ready — tap Korean or Hear English first.";
+      }
+      syncMicButton();
+    } catch (err) {
+      console.error(err);
+      checkerError = err.message || "boot failed";
+      checkerReady = false;
+      setCheckerProgress(0, "Hear-only mode — checker unavailable");
+      const status = el("micStatus");
+      if (status) {
+        status.textContent =
+          "Hear-only mode — sound checker did not load. You can still hear English.";
+      }
+      syncMicButton();
     }
-    syncMicButton();
-  }
+  })();
+  return checkerBootPromise;
 }
 
 function applyLayoutOnlyCheckerUi() {
@@ -468,17 +537,29 @@ function applyLayoutOnlyCheckerUi() {
 }
 
 async function init() {
+  showPracticeChrome();
   syncDisplayNameFromAuth();
   window.addEventListener("mrj-auth-ready", syncDisplayNameFromAuth);
   bindVoiceToggle();
-  const monthId = getMonthIdFromQuery();
-  if (!monthId) {
-    renderEmpty("Missing month. Open from the October map (?month=10).");
+
+  let monthId = getMonthIdFromQuery() || DEFAULT_SPEAK_MONTH;
+  let loaded;
+  try {
+    loaded = await loadCpPackForMonth(monthId);
+    month = loaded.month;
+    pack = loaded.pack;
+    if (!pack?.items?.length && monthId !== DEFAULT_SPEAK_MONTH) {
+      monthId = DEFAULT_SPEAK_MONTH;
+      loaded = await loadCpPackForMonth(monthId);
+      month = loaded.month;
+      pack = loaded.pack;
+    }
+  } catch (err) {
+    console.error(err);
+    renderEmpty("Could not load CP speak — try again or open from the October map.");
     return;
   }
-  const loaded = await loadCpPackForMonth(monthId);
-  month = loaded.month;
-  pack = loaded.pack;
+
   if (!month?.cpPackFile) {
     renderEmpty(`CP speak for ${month?.name || "this month"} is not ready yet.`);
     return;
@@ -507,5 +588,6 @@ async function init() {
 
 init().catch((err) => {
   console.error(err);
+  showPracticeChrome();
   renderEmpty("Failed to load CP speak.");
 });

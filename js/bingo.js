@@ -42,12 +42,15 @@ export async function loadWordPool(monthId) {
   return DEFAULT_POOL.map((w) => ({ term: w, definition: "" }));
 }
 
+/** October word pool when `?month=` is missing or invalid (fail-open). */
+export const DEFAULT_BINGO_MONTH = "10";
+
 export function getMonthIdFromQuery() {
   const p = new URLSearchParams(window.location.search);
   const raw = p.get("month");
-  if (!raw) return null;
+  if (!raw) return DEFAULT_BINGO_MONTH;
   const id = raw.padStart(2, "0").slice(-2);
-  return /^\d{2}$/.test(id) ? id : null;
+  return /^\d{2}$/.test(id) ? id : DEFAULT_BINGO_MONTH;
 }
 
 export function shuffle(arr) {
@@ -57,6 +60,29 @@ export function shuffle(arr) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+/** 4×4 bingo card; uses DEFAULT_POOL if words empty (never hang on empty pool). */
+export function buildBingoCard(words) {
+  const base = words?.length ? words : DEFAULT_POOL;
+  const need = 15;
+  const bag = [];
+  while (bag.length < need) bag.push(...shuffle(base));
+  const cells = bag.slice(0, need);
+  const grid = [];
+  const cols = 4;
+  let i = 0;
+  for (let r = 0; r < cols; r++) {
+    for (let c = 0; c < cols; c++) {
+      const center = r === 1 && c === 1;
+      if (center) {
+        grid.push({ text: "FREE", free: true, marked: true });
+      } else {
+        grid.push({ text: cells[i++], free: false, marked: false });
+      }
+    }
+  }
+  return { grid, cols };
 }
 
 export function backToMonthLink(monthId, data) {
