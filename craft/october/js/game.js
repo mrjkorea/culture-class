@@ -535,6 +535,7 @@ function renderResults() {
     <p class="face-used"></p>
     <p class="hint">${esc(t("timeNote"))}</p>
     <button id="again-btn" class="go" type="button">${esc(t("playAgain"))}</button>
+    <a id="map-btn" class="go map-back" href="${esc(backLink.href)}">Back to map</a>
     <h2 class="board-title">${esc(t("board"))}</h2>
     <div id="board-slot"></div>
   </section>`;

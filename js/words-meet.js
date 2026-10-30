@@ -16,7 +16,7 @@ const app = document.getElementById("app");
 let terms = [];
 let month = null;
 let index = 0;
-let seen = new Set();
+let cardAdvanceLock = false;
 
 function renderShell(body) {
   const back = month
@@ -44,7 +44,6 @@ function renderShell(body) {
 function renderCard() {
   const term = terms[index];
   const total = terms.length;
-  const checked = seen.has(term.term);
   const lang = getLang();
   const gloss = termGloss(term, lang);
   const imgSrc = term.image ? `${repoRoot()}/${term.image.replace(/^\/+/, "")}` : "";
@@ -57,27 +56,25 @@ function renderCard() {
 
   renderShell(`
     <p class="meet-progress">${index + 1} / ${total}</p>
-    <button type="button" class="meet-card" id="meetCard" aria-label="Hear ${escapeHtml(term.term)}">
+    <button type="button" class="meet-card" id="meetCard" aria-label="${escapeHtml(t("cc_meet_hear"))}: ${escapeHtml(term.term)}">
       ${img}
       <span class="meet-en">${escapeHtml(term.term)}</span>
       ${glossHtml}
       <span class="meet-hear-hint">🔊 ${t("cc_meet_hear")}</span>
     </button>
-    <label class="meet-check">
-      <input type="checkbox" id="meetCheck" ${checked ? "checked" : ""}>
-      ${t("cc_meet_check")}
-    </label>
     <div class="step-actions meet-nav">
       <button type="button" class="btn btn-glow-secondary" id="btnPrev" ${index === 0 ? "disabled" : ""}>${t("cc_meet_prev")}</button>
       <button type="button" class="btn btn-glow" id="btnNext">${index >= total - 1 ? t("cc_meet_finish") : t("cc_meet_next")}</button>
     </div>`);
 
   document.getElementById("meetCard").addEventListener("click", () => {
+    if (cardAdvanceLock) return;
+    cardAdvanceLock = true;
     void playWordAudio(term.term, term.audio);
-  });
-  document.getElementById("meetCheck").addEventListener("change", (e) => {
-    if (e.target.checked) seen.add(term.term);
-    else seen.delete(term.term);
+    window.setTimeout(() => {
+      cardAdvanceLock = false;
+      onNext();
+    }, 700);
   });
   document.getElementById("btnPrev").addEventListener("click", () => {
     if (index > 0) {
@@ -90,8 +87,6 @@ function renderCard() {
 }
 
 function onNext() {
-  const term = terms[index];
-  seen.add(term.term);
   if (index < terms.length - 1) {
     index += 1;
     renderCard();

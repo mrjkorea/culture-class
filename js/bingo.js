@@ -1,4 +1,4 @@
-import { dataUrl, monthPageUrl, repoRoot } from "./paths.js";
+import { dataUrl, homeUrl, monthPageUrl, repoRoot } from "./paths.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { playWordAudio, playTermAudioFromPack } from "./word-audio.js";
 
@@ -44,7 +44,10 @@ export async function loadWordPool(monthId) {
 
 export function getMonthIdFromQuery() {
   const p = new URLSearchParams(window.location.search);
-  return p.get("month") || "08";
+  const raw = p.get("month");
+  if (!raw) return null;
+  const id = raw.padStart(2, "0").slice(-2);
+  return /^\d{2}$/.test(id) ? id : null;
 }
 
 export function shuffle(arr) {
@@ -57,9 +60,11 @@ export function shuffle(arr) {
 }
 
 export function backToMonthLink(monthId, data) {
-  const month = data?.months?.find((m) => m.id === monthId);
-  const slug = month?.slug || "08-august";
-  return monthPageUrl(slug);
+  if (!monthId) return homeUrl();
+  const normalized = String(monthId).padStart(2, "0").slice(-2);
+  const month = data?.months?.find((m) => m.id === normalized);
+  if (month?.slug) return monthPageUrl(month.slug);
+  return homeUrl();
 }
 
 export async function loadMonthsMeta() {
