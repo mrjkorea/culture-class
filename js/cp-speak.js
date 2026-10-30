@@ -7,7 +7,7 @@ import {
   cancelMicTake,
   isCapturing,
   micErrorMessage,
-} from "./cp/mic-capture.js?v=20261030-speak-lazy";
+} from "./cp/mic-capture.js?v=20261030-speak-failopen";
 import {
   craftUrl,
   escapeHtml,
@@ -49,6 +49,8 @@ let rowResults = {};
 const THRESHOLDS = { green: 75, yellow: 50 };
 
 const CP_PACK_LOAD_TIMEOUT_MS = 8000;
+/** Never block mic grading on a slow HuBERT download — fall back to practice-only. */
+const HUBERT_GRADE_WAIT_MS = 6000;
 
 const layoutOnlyParams = new URLSearchParams(location.search);
 const layoutOnlyMode =
@@ -318,12 +320,10 @@ function syncMicButton() {
   btn.textContent = listening ? "■ Stop" : "🎤 Speak";
   btn.setAttribute("aria-label", listening ? "Stop listening" : "Speak sentence");
   btn.disabled = grading || (!heard && !listening);
-  if (checkerFallback && checkerError) {
-    btn.title = "Basic scoring — full checker still loading or unavailable";
-  } else if (checkerFallback) {
-    btn.title = "Basic scoring until full checker loads";
+  if (!hubertScoringReady()) {
+    btn.title = "Practice mode — no score until sound checker is ready";
   } else if (checkerError) {
-    btn.title = "Basic scoring — checker unavailable";
+    btn.title = "";
   } else {
     btn.removeAttribute("title");
   }
@@ -339,73 +339,12 @@ function checkerProgress(frac, text) {
   setCheckerProgress(frac, text);
 }
 
-async function ensureCheckerModel(shared) {
-  if (shared.getModelBootState() === "failed") {
-    shared.resetSharedBoot();
-    void shared.bootShared({ lazy: true, onProgress: checkerProgress });
-  }
-  await shared.ensureModel({ onProgress: checkerProgress });
-  checkerFallback = false;
+function hubertScoringReady() {
+  return pronounceShared?.getModelBootState?.() === "ready";
 }
 
-async function gradeBlob(blob, item) {
-  const candidates = [item.english].concat(item.alts || []);
-  let bestTarget = candidates[0];
-  if (checkerFallback) {
-    const out = await fallbackGradeBlob(blob, item, bestTarget);
-    return { out, target: bestTarget };
-  }
-  const shared = await loadPronounceShared();
-  try {
-    await ensureCheckerModel(shared);
-  } catch (err) {
-    console.warn("ensureModel failed — basic scoring", err);
-    checkerFallback = true;
-    checkerError = err?.message || "model unavailable";
-    const out = await fallbackGradeBlob(blob, item, bestTarget);
-    return { out, target: bestTarget };
-  }
-  const grade = shared.grade;
-  let bestOut = null;
-  for (const c of candidates) {
-    const out = await grade(blob, c, "day4", { passAt: passPct });
-    const result = out.result || out;
-    if (!bestOut || (result.scorePct || 0) > (bestOut.result?.scorePct || 0)) {
-      bestOut = out;
-      bestTarget = c;
-    }
-    if (result.pass) break;
-  }
-  if (shared.getModelBootState() === "ready") {
-    applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
-  }
-  return { out: bestOut, target: bestTarget };
-}
-
-function targetWords(text) {
-  return String(text || "")
-    .toLowerCase()
-    .replace(/[^a-z0-9'\s]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .split(" ")
-    .filter(Boolean);
-}
-
-/** Lightweight scoring when HuBERT is still loading or unavailable. */
-async function fallbackGradeBlob(blob, item, target) {
-  const words = targetWords(target);
-  const fail = (doorFail = true) => ({
-    result: {
-      scorePct: 0,
-      pass: false,
-      doorFail,
-      words: [],
-    },
-  });
-  if (!blob || blob.size < 100) {
-    return fail(true);
-  }
+async function recordingLooksValid(blob) {
+  if (!blob || blob.size < 100) return false;
   try {
     const arrayBuf = await blob.arrayBuffer();
     const ctx = new AudioContext();
@@ -415,36 +354,93 @@ async function fallbackGradeBlob(blob, item, target) {
       let sum = 0;
       for (let i = 0; i < ch.length; i++) sum += ch[i] * ch[i];
       const rms = Math.sqrt(sum / Math.max(1, ch.length));
-      const durSec = audioBuf.duration;
-      const minDur = Math.max(0.8, words.length * 0.28);
-      if (rms < 0.004 || durSec < 0.25) {
-        return fail(true);
-      }
-      const durScore = Math.min(100, (durSec / minDur) * 72);
-      const volScore = Math.min(100, rms * 900);
-      let scorePct = Math.round(0.55 * durScore + 0.45 * volScore);
-      scorePct = Math.max(35, Math.min(82, scorePct));
-      const wordRows = words.map((w) => ({
-        word: w,
-        scorePct,
-        band: bandFor(scorePct),
-      }));
-      const pass = scorePct >= passPct;
-      return {
-        result: {
-          scorePct,
-          pass,
-          doorFail: false,
-          words: wordRows,
-        },
-      };
+      return rms >= 0.004 && audioBuf.duration >= 0.25;
     } finally {
       await ctx.close().catch(() => {});
     }
   } catch (err) {
-    console.warn("fallbackGradeBlob", err);
-    return fail(false);
+    console.warn("recordingLooksValid", err);
+    return false;
   }
+}
+
+async function gradeBlob(blob, item) {
+  const candidates = [item.english].concat(item.alts || []);
+  let bestTarget = candidates[0];
+
+  let shared = pronounceShared;
+  if (!shared) {
+    try {
+      shared = await loadPronounceShared();
+    } catch (err) {
+      console.warn("pronounce shared unavailable", err);
+      return {
+        practiceOnly: true,
+        target: bestTarget,
+        heardOk: await recordingLooksValid(blob),
+      };
+    }
+  }
+
+  if (shared.getModelBootState() !== "ready") {
+    return {
+      practiceOnly: true,
+      target: bestTarget,
+      heardOk: await recordingLooksValid(blob),
+    };
+  }
+
+  checkerFallback = false;
+  const gradeFn = shared.grade;
+  const gradeWork = (async () => {
+    let bestOut = null;
+    for (const c of candidates) {
+      const out = await gradeFn(blob, c, "day4", { passAt: passPct });
+      const result = out.result || out;
+      if (!bestOut || (result.scorePct || 0) > (bestOut.result?.scorePct || 0)) {
+        bestOut = out;
+        bestTarget = c;
+      }
+      if (result.pass) break;
+    }
+    return { out: bestOut, target: bestTarget };
+  })();
+
+  try {
+    const graded = await Promise.race([
+      gradeWork,
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("HuBERT grade timeout")), HUBERT_GRADE_WAIT_MS);
+      }),
+    ]);
+    applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
+    return graded;
+  } catch (err) {
+    console.warn("HuBERT grade failed — practice only", err);
+    checkerFallback = true;
+    checkerError = err?.message || "grade failed";
+    return {
+      practiceOnly: true,
+      target: bestTarget,
+      heardOk: await recordingLooksValid(blob),
+    };
+  }
+}
+
+function showPracticeOnlyResult(target, itemIndex, heardOk) {
+  el("englishReveal").hidden = false;
+  const box = el("resultBox");
+  if (box) box.hidden = true;
+  if (!heardOk) {
+    el("micStatus").textContent = doorFailText();
+    return;
+  }
+  const checkerLabel = hubertScoringReady()
+    ? "Checker ready — Speak again for a score."
+    : "Practice recorded (no score yet) — tap Next to keep going, or Speak again when the checker is ready.";
+  el("micStatus").textContent = checkerLabel;
+  el("btnNext").hidden = false;
+  el("btnSkip").hidden = false;
 }
 
 function normalizePageResult(result) {
@@ -537,12 +533,19 @@ async function toggleMic() {
         return;
       }
       grading = true;
-      el("micStatus").textContent = "Checking pronunciation…";
+      el("micStatus").textContent = hubertScoringReady()
+        ? "Checking pronunciation…"
+        : "Recording practice…";
       syncMicButton();
       try {
-        const { out, target } = await gradeBlob(blob, item);
-        const result = out.result || out;
-        if (index === itemIndex) showGradeResult(result, target, itemIndex);
+        const graded = await gradeBlob(blob, item);
+        if (index !== itemIndex) return;
+        if (graded.practiceOnly) {
+          showPracticeOnlyResult(graded.target, itemIndex, graded.heardOk);
+        } else {
+          const result = graded.out.result || graded.out;
+          showGradeResult(result, graded.target, itemIndex);
+        }
       } catch (err) {
         console.error(err);
         if (index === itemIndex) el("micStatus").textContent = "Checking failed — try again.";
@@ -588,7 +591,7 @@ function applyCheckerReady(label, { fallback = false, error = "" } = {}) {
 }
 
 function unlockSpeakForClass(error = "") {
-  applyCheckerReady("Speak ready — checker loads in background (basic scoring)", {
+  applyCheckerReady("Speak ready — practice now (scores when checker loads)", {
     fallback: true,
     error,
   });
@@ -632,7 +635,6 @@ async function bootChecker() {
       const shared = await loadPronounceShared();
       await shared.bootShared({ lazy: true, onProgress: checkerProgress });
 
-      checkerFallback = false;
       checkerReady = true;
       syncMicButton();
 
@@ -644,10 +646,11 @@ async function bootChecker() {
       }
       if (state === "failed") {
         unlockSpeakForClass("boot failed");
-        setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
+        setCheckerProgress(1, "Speak ready — practice without scores (checker unavailable)");
         return;
       }
 
+      checkerFallback = true;
       setCheckerProgress(0, "Sound checker loading…");
       shared
         .ensureModel({ onProgress: checkerProgress })
@@ -658,12 +661,12 @@ async function bootChecker() {
         .catch((err) => {
           console.error(err);
           unlockSpeakForClass(err?.message || "model failed");
-          setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
+          setCheckerProgress(1, "Speak ready — practice without scores (checker unavailable)");
         });
     } catch (err) {
       console.error(err);
       unlockSpeakForClass(err?.message || "boot failed");
-      setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
+      setCheckerProgress(1, "Speak ready — practice without scores (checker unavailable)");
     }
   })();
   return checkerBootPromise;

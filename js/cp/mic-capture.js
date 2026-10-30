@@ -1,5 +1,5 @@
 /** Bump with cp-speak.html script pin so classroom Chrome picks up mic + worker fixes. */
-export const MIC_CAPTURE_BUILD = "20261030-speak-lazy";
+export const MIC_CAPTURE_BUILD = "20261030-speak-failopen";
 
 const SILENCE_MS = 1200;
 const SILENCE_GRACE_MS = 1600;
