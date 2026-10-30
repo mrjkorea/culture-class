@@ -1,5 +1,5 @@
 /** Resolve paths for GitHub Pages project site (/culture-class/). */
-import { withLinkVersion } from "./site-version.js";
+import { withLinkVersion } from "./site-version.js?v=20261030-meet-i18n";
 
 export function repoRoot() {
   let path = window.location.pathname.replace(/\/+$/, "");

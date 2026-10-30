@@ -1,9 +1,5 @@
 /** Bump or tie to deploy SHA for GitHub Pages cache bust on step links. */
-<<<<<<< HEAD
-export const SITE_LINK_V = "20261030-meet-word2";
-=======
-export const SITE_LINK_V = "20261030-cp-mic";
->>>>>>> 390c4dc (fix(cp-speak): resume AudioContext, cache-bust mic modules, clearer mic errors)
+export const SITE_LINK_V = "20261030-meet-i18n";
 
 export function withLinkVersion(href) {
   if (!href || /^https?:\/\//i.test(href) || href.startsWith("#")) return href;
