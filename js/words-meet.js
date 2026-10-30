@@ -1,16 +1,19 @@
+/** Keep in sync with SITE_LINK_V when busting Meet ES modules. */
+const MEET_V = "20261030-meet-failopen";
+
 import {
   escapeHtml,
   getMonthIdFromQuery,
   loadWordsPackForMonth,
   monthPageUrl,
-} from "./words-data.js";
-import { playWordAudio } from "./words-audio.js";
-import { setStepDone } from "./month-progress.js";
-import { repoRoot, wordsLearnUrl } from "./paths.js";
-import { applyMonthUiTheme } from "./month-ui-theme.js";
-import { ensureThemeStylesheet } from "./month-styles.js";
-import { getLang, mountLangSelect, t } from "./i18n.js";
-import { termGloss } from "./word-gloss.js";
+} from "./words-data.js?v=20261030-meet-failopen";
+import { playWordAudio } from "./words-audio.js?v=20261030-meet-failopen";
+import { setStepDone } from "./month-progress.js?v=20261030-meet-failopen";
+import { repoRoot, wordsLearnUrl } from "./paths.js?v=20261030-meet-failopen";
+import { applyMonthUiTheme } from "./month-ui-theme.js?v=20261030-meet-failopen";
+import { ensureThemeStylesheet } from "./month-styles.js?v=20261030-meet-failopen";
+import { getLang, mountLangSelect, t } from "./i18n.js?v=20261030-meet-failopen";
+import { termGloss } from "./word-gloss.js?v=20261030-meet-failopen";
 
 /** Pause after audio ends so students hear the word before the next card. */
 const MEET_ADVANCE_MS = 600;
