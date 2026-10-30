@@ -5,7 +5,8 @@
 (function () {
   "use strict";
 
-  var BOOT_SRC = "https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js";
+  var BOOT_SRC =
+    "https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js?v=20261030-cf-login-1.7.3";
   var CHECKING_RE = /checking your id/i;
   var MAX_CHECKING_MS = 4500;
   /** Culture Class: always show map/lesson UI even if MRJ login doors stay up. */
