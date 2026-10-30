@@ -6,7 +6,12 @@ import {
   grade,
   DOOR_FAIL_TEXT,
 } from "https://mrjkorea.github.io/pronounce/src/shared.js";
-import { beginMicTake, cancelMicTake, isCapturing } from "./cp/mic-capture.js";
+import {
+  beginMicTake,
+  cancelMicTake,
+  isCapturing,
+  micErrorMessage,
+} from "./cp/mic-capture.js?v=20261030-cp-mic";
 import {
   craftUrl,
   escapeHtml,
@@ -363,8 +368,8 @@ async function toggleMic() {
   }
   if (!checkerReady) {
     el("micStatus").textContent = checkerError
-      ? "Checker offline — refresh the page."
-      : "Checker loading…";
+      ? `Sound checker failed — refresh the page. (${checkerError})`
+      : "Wait for “Sound checker ready” above, then Hear English.";
     return;
   }
   if (!heard) {
@@ -378,7 +383,12 @@ async function toggleMic() {
   try {
     const started = await beginMicTake(async (blob) => {
       syncMicButton();
-      if (!blob || index !== itemIndex) return;
+      if (index !== itemIndex) return;
+      if (!blob) {
+        el("micStatus").textContent =
+          "No speech heard — tap Speak, wait for Listening, then say the sentence.";
+        return;
+      }
       grading = true;
       el("micStatus").textContent = "Checking pronunciation…";
       syncMicButton();
@@ -394,10 +404,16 @@ async function toggleMic() {
         syncMicButton();
       }
     });
-    if (started) syncMicButton();
+    if (!started) {
+      el("micStatus").textContent = "Mic busy — tap Stop or wait a moment, then try again.";
+    }
+    syncMicButton();
   } catch (err) {
     console.error(err);
-    el("micStatus").textContent = "Please allow microphone access.";
+    el("micStatus").textContent =
+      err?.name && err.name !== "Error"
+        ? micErrorMessage(err)
+        : err?.message || micErrorMessage(err);
     syncMicButton();
   }
 }
@@ -429,6 +445,11 @@ async function bootChecker() {
     console.error(err);
     checkerError = err.message || "boot failed";
     setCheckerProgress(0, "Sound checker failed to load");
+    const status = el("micStatus");
+    if (status) {
+      status.textContent = "Sound checker failed — refresh the page or ask your teacher.";
+    }
+    syncMicButton();
   }
 }
 

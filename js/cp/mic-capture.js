@@ -1,14 +1,45 @@
+/** Bump with cp-speak.html script pin so classroom Chrome picks up mic + worker fixes. */
+export const MIC_CAPTURE_BUILD = "20261030-cp-mic";
+
 const SILENCE_MS = 1200;
 const SILENCE_GRACE_MS = 1600;
 const SILENCE_CHECK_MS = 80;
 const SILENCE_RMS = 0.008;
 const MAX_RECORD_MS = 60000;
+const MIN_WAV_BYTES = 100;
 
 let capture = null;
 let silenceTimer = null;
 
 export function isCapturing() {
   return !!capture;
+}
+
+export function micErrorMessage(err) {
+  const name = err?.name || "";
+  if (name === "NotAllowedError" || name === "PermissionDeniedError") {
+    return "Microphone blocked — click the lock icon in the address bar and allow the mic.";
+  }
+  if (name === "NotFoundError" || name === "DevicesNotFoundError") {
+    return "No microphone found — plug in a mic or check Linux sound settings.";
+  }
+  if (name === "NotReadableError" || name === "TrackStartError") {
+    return "Microphone busy — close other tabs or apps using the mic, then try again.";
+  }
+  if (name === "SecurityError") {
+    return "Microphone needs a secure page — use the class link (https), not a file:// copy.";
+  }
+  return "Could not open microphone — refresh the page and tap Speak again.";
+}
+
+async function ensureContextRunning(ctx) {
+  if (!ctx) throw new Error("Microphone audio could not start.");
+  if (ctx.state === "suspended") {
+    await ctx.resume();
+  }
+  if (ctx.state !== "running") {
+    throw new Error("Microphone audio is paused — tap Speak again or refresh the page.");
+  }
 }
 
 export function startSilenceWatch(stream, ctx, onEnd, endSilence = SILENCE_MS, grace = SILENCE_GRACE_MS) {
@@ -27,6 +58,7 @@ export function startSilenceWatch(stream, ctx, onEnd, endSilence = SILENCE_MS, g
     let totalMs = 0;
     let spoke = false;
     const tick = () => {
+      if (!capture) return;
       analyser.getFloatTimeDomainData(buf);
       let sum = 0;
       for (let i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
@@ -93,7 +125,9 @@ function claimCapture() {
 function encodeWavInWorker(chunks, sampleRate) {
   const transfers = chunks.map((c) => c.buffer);
   return new Promise((resolve, reject) => {
-    const worker = new Worker(new URL("./wav-worker.js", import.meta.url));
+    const worker = new Worker(
+      new URL(`./wav-worker.js?v=${MIC_CAPTURE_BUILD}`, import.meta.url)
+    );
     worker.onmessage = (ev) => {
       worker.terminate();
       resolve(new Blob([ev.data.buf], { type: "audio/wav" }));
@@ -109,18 +143,50 @@ function encodeWavInWorker(chunks, sampleRate) {
 async function blobFrom(rec) {
   if (!rec) return null;
   const rate = rec.ctx.sampleRate || 48000;
-  const blob = await encodeWavInWorker(rec.chunks, rate);
-  rec.ctx.close().catch(() => {});
+  let blob = null;
+  try {
+    blob = await encodeWavInWorker(rec.chunks, rate);
+  } finally {
+    rec.ctx.close().catch(() => {});
+  }
+  if (!blob || blob.size < MIN_WAV_BYTES) return null;
   return blob;
+}
+
+function releaseFailedTake(stream, partial) {
+  if (partial) {
+    try {
+      partial.proc.disconnect();
+      partial.src.disconnect();
+      partial.gain.disconnect();
+    } catch (_) {}
+    partial.ctx.close().catch(() => {});
+  }
+  if (stream) stream.getTracks().forEach((t) => t.stop());
+  capture = null;
+  stopSilenceWatch();
 }
 
 export async function beginMicTake(onFinished) {
   if (capture) return false;
-  const stream = await navigator.mediaDevices.getUserMedia({
-    audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-  });
-  capture = startCapture(stream);
-  startSilenceWatch(stream, capture.ctx, () => {
+  let stream = null;
+  let partial = null;
+  try {
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error("This browser cannot record — use Chrome and refresh.");
+    }
+    stream = await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+    });
+    partial = startCapture(stream);
+    capture = partial;
+    await ensureContextRunning(partial.ctx);
+  } catch (err) {
+    releaseFailedTake(stream, partial);
+    throw err;
+  }
+
+  startSilenceWatch(stream, partial.ctx, () => {
     void (async () => {
       const blob = await stopMicTake();
       if (onFinished) await onFinished(blob);
