@@ -107,7 +107,7 @@ export function climbUrl(unitId) {
     const m = /^culture_m(\d{2})(?:_show)?$/.exec(unitId || "");
     const monthQ = m ? `&month=${parseInt(m[1], 10)}` : "";
     return withLinkVersion(
-      `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}${monthQ}&test=1`
+      `${repoRoot()}/climb/climb.html?unit=${encodeURIComponent(unitId)}${monthQ}`
     );
   }
   return `${CLIMB_BASE}?unit=${encodeURIComponent(unitId)}`;
