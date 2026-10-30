@@ -508,6 +508,84 @@ a:hover {
   display: none;
 }
 
+/* Meet the Words — classroom projection (words/meet.html) */
+.themed-words-flow .meet-progress {
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 0.35rem;
+  opacity: 0.85;
+}
+
+.themed-words-flow .meet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: min(760px, 98vw);
+  margin: 0 auto;
+  padding: 0.75rem 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  cursor: default;
+  font: inherit;
+  color: inherit;
+}
+
+.themed-words-flow .meet-pic,
+.themed-words-flow .meet-pic-fallback {
+  width: min(520px, 90vw);
+  max-height: min(520px, 52vh);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 18px;
+}
+
+.themed-words-flow .meet-pic-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+
+.themed-words-flow .meet-en-btn {
+  margin-top: 0.65rem;
+  padding: 0.15rem 0.35rem;
+  font-size: clamp(2.25rem, 11vw, 4.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  background: none;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  text-align: center;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.themed-words-flow .meet-en-btn:hover:not(:disabled),
+.themed-words-flow .meet-en-btn:focus-visible {
+  transform: scale(1.03);
+  outline: 2px solid var(--accent, #ff8a1e);
+  outline-offset: 4px;
+}
+
+.themed-words-flow .meet-en-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.themed-words-flow .meet-gloss {
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  margin-top: 0.4rem;
+}
+
 .quiz-choice-ok {
   border-color: #2f9e44 !important;
   background: rgba(47, 158, 68, 0.15) !important;
