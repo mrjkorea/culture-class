@@ -19,6 +19,7 @@ import {
   pumpkinSvg,
 } from "./art.js";
 import { faceSvgMarkup } from "./faces.js";
+import { scene3dUrl } from "./assets.js";
 import { pickLocalized } from "../../../js/i18n.js";
 
 function craftUi(ctx, key) {
@@ -139,7 +140,11 @@ function houseMarkup(count, ctx) {
         `<button type="button" class="spot" data-choice="${i}" style="left:${x}%;top:${y}%" aria-label="Spot">${pumpkinIcon()}</button>`
     )
     .join("");
-  return `<div class="house-scene scene-3d" data-play>
+  const bg = scene3dUrl(ctx?.assetBase, ctx?.manifest, "house");
+  const bgStyle = bg
+    ? ` style="background-image:url('${String(bg).replace(/'/g, "%27").replace(/"/g, "%22")}')"`
+    : "";
+  return `<div class="house-scene scene-3d" data-play${bgStyle}>
     <div class="spots">${buttons}</div>
   </div>`;
 }

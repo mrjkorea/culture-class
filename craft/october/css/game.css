@@ -849,10 +849,13 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 }
 .bowl-hit:focus-visible { outline: 3px solid #fff; border-radius: 20px; }
 
-.house-scene {
+.house-scene.scene-3d {
   position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.house-scene .spots { position: absolute; inset: 0; }
+.house-scene .spots { position: absolute; inset: 0; z-index: 1; }
 .spots { position: absolute; inset: 0; }
 .spot {
   position: absolute;
