@@ -156,6 +156,7 @@ function bindSheetNavigation() {
     row.addEventListener("click", () => {
       const i = Number(row.dataset.i);
       if (Number.isFinite(i) && i !== index) {
+        cancelActiveMicCapture();
         index = i;
         passedCurrent = false;
         heard = false;
@@ -261,8 +262,15 @@ function syncMicButton() {
   }
   const listening = isCapturing();
   btn.classList.toggle("listening", listening);
-  btn.textContent = listening ? "Listening…" : "🎤 Speak";
-  btn.disabled = !checkerReady || grading || listening || (!heard && !listening);
+  btn.textContent = listening ? "■ Stop" : "🎤 Speak";
+  btn.setAttribute("aria-label", listening ? "Stop listening" : "Speak sentence");
+  btn.disabled = !checkerReady || grading || (!heard && !listening);
+}
+
+function cancelActiveMicCapture() {
+  if (!isCapturing()) return;
+  cancelMicTake();
+  grading = false;
 }
 
 async function gradeBlob(blob, item) {
@@ -348,7 +356,8 @@ function showGradeResult(result, target, itemIndex) {
 
 async function toggleMic() {
   if (isCapturing()) {
-    cancelMicTake();
+    cancelActiveMicCapture();
+    el("micStatus").textContent = "Stopped — tap Speak to try again.";
     syncMicButton();
     return;
   }
@@ -394,6 +403,7 @@ async function toggleMic() {
 }
 
 function nextItem() {
+  cancelActiveMicCapture();
   index += 1;
   passedCurrent = false;
   heard = false;
