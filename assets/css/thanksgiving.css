@@ -239,27 +239,28 @@ body.theme-thanksgiving {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 360px;
+  max-width: min(760px, 98vw);
   margin: 0 auto;
   padding: 1rem;
   border: 3px solid #6b2d0a;
   border-radius: 22px;
   background: rgba(255, 246, 228, 0.88);
-  cursor: pointer;
+  cursor: default;
   color: inherit;
   font: inherit;
 }
 
 .meet-pic,
 .match-pic {
-  width: min(240px, 70vw);
+  width: min(520px, 90vw);
+  max-height: min(520px, 52vh);
   aspect-ratio: 1;
   object-fit: contain;
   border-radius: 16px;
 }
 
 .meet-en {
-  font-size: 1.5rem;
+  font-size: clamp(2.25rem, 11vw, 4.75rem);
   font-weight: 900;
   margin-top: 0.65rem;
 }

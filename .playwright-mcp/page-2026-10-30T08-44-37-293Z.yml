@@ -1,0 +1,28 @@
+- generic [ref=e3]:
+  - link "← Map" [ref=e4] [cursor=pointer]:
+    - /url: /months/10-october/?v=20261030-meet-word
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - heading "October — Meet the Words" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - text: Language
+        - combobox "Language" [ref=e9]:
+          - option "English" [selected]
+          - option "한국어"
+          - option "简体中文"
+          - option "日本語"
+          - option "Español"
+          - option "हिन्दी"
+          - option "Deutsch"
+          - option "Tiếng Việt"
+          - option "Português (BR)"
+          - option "Bahasa Indonesia"
+          - option "Français"
+          - option "العربية"
+          - option "Türkçe"
+          - option "Italiano"
+          - option "Polski"
+    - paragraph [ref=e10]: Tap the picture to hear English. Check each word when you know it.
+  - paragraph [ref=e11]: 1 / 16
+  - 'button "Tap to hear English: Halloween" [ref=e13] [cursor=pointer]': Halloween
+  - contentinfo [ref=e14]: Culture Class · MRJ ENGLISH

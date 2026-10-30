@@ -12,11 +12,14 @@ import { ensureThemeStylesheet } from "./month-styles.js";
 import { getLang, mountLangSelect, t } from "./i18n.js";
 import { termGloss } from "./word-gloss.js";
 
+/** Pause after audio ends so students hear the word before the next card. */
+const MEET_ADVANCE_MS = 600;
+
 const app = document.getElementById("app");
 let terms = [];
 let month = null;
 let index = 0;
-let seen = new Set();
+let advancing = false;
 
 function renderShell(body) {
   const back = month
@@ -44,60 +47,47 @@ function renderShell(body) {
 function renderCard() {
   const term = terms[index];
   const total = terms.length;
-  const checked = seen.has(term.term);
   const lang = getLang();
   const gloss = termGloss(term, lang);
   const imgSrc = term.image ? `${repoRoot()}/${term.image.replace(/^\/+/, "")}` : "";
   const img = term.image
     ? `<img class="meet-pic" src="${escapeHtml(imgSrc)}" alt="">`
-    : `<div class="meet-pic meet-pic-fallback">${escapeHtml(term.term)}</div>`;
+    : `<div class="meet-pic meet-pic-fallback" aria-hidden="true">${escapeHtml(term.term)}</div>`;
   const glossHtml = gloss
     ? `<span class="meet-gloss">${escapeHtml(gloss)}</span>`
     : `<span class="meet-gloss meet-gloss-empty" aria-hidden="true"></span>`;
 
   renderShell(`
     <p class="meet-progress">${index + 1} / ${total}</p>
-    <button type="button" class="meet-card" id="meetCard" aria-label="Hear ${escapeHtml(term.term)}">
+    <div class="meet-card" id="meetCard">
       ${img}
-      <span class="meet-en">${escapeHtml(term.term)}</span>
+      <button type="button" class="meet-en meet-en-btn" id="meetWordBtn" aria-label="${escapeHtml(t("cc_meet_hear"))}: ${escapeHtml(term.term)}">${escapeHtml(term.term)}</button>
       ${glossHtml}
-      <span class="meet-hear-hint">🔊 ${t("cc_meet_hear")}</span>
-    </button>
-    <label class="meet-check">
-      <input type="checkbox" id="meetCheck" ${checked ? "checked" : ""}>
-      ${t("cc_meet_check")}
-    </label>
-    <div class="step-actions meet-nav">
-      <button type="button" class="btn btn-glow-secondary" id="btnPrev" ${index === 0 ? "disabled" : ""}>${t("cc_meet_prev")}</button>
-      <button type="button" class="btn btn-glow" id="btnNext">${index >= total - 1 ? t("cc_meet_finish") : t("cc_meet_next")}</button>
     </div>`);
 
-  document.getElementById("meetCard").addEventListener("click", () => {
-    void playWordAudio(term.term, term.audio);
+  document.getElementById("meetWordBtn").addEventListener("click", () => {
+    void onWordClick(term);
   });
-  document.getElementById("meetCheck").addEventListener("change", (e) => {
-    if (e.target.checked) seen.add(term.term);
-    else seen.delete(term.term);
-  });
-  document.getElementById("btnPrev").addEventListener("click", () => {
-    if (index > 0) {
-      index -= 1;
-      renderCard();
-    }
-  });
-  document.getElementById("btnNext").addEventListener("click", onNext);
-  void playWordAudio(term.term, term.audio);
 }
 
-function onNext() {
-  const term = terms[index];
-  seen.add(term.term);
-  if (index < terms.length - 1) {
-    index += 1;
-    renderCard();
-    return;
+async function onWordClick(term) {
+  if (advancing) return;
+  advancing = true;
+  const btn = document.getElementById("meetWordBtn");
+  if (btn) btn.disabled = true;
+  try {
+    await playWordAudio(term.term, term.audio);
+    await new Promise((r) => setTimeout(r, MEET_ADVANCE_MS));
+    if (index < terms.length - 1) {
+      index += 1;
+      advancing = false;
+      renderCard();
+      return;
+    }
+    finish();
+  } finally {
+    advancing = false;
   }
-  finish();
 }
 
 function finish() {
@@ -130,6 +120,7 @@ async function init() {
   applyMonthUiTheme(month);
   ensureThemeStylesheet(month);
   index = 0;
+  advancing = false;
   renderCard();
 }
 
