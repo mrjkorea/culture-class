@@ -7,7 +7,7 @@ import {
   cancelMicTake,
   isCapturing,
   micErrorMessage,
-} from "./cp/mic-capture.js?v=20261030-speak-failopen";
+} from "./cp/mic-capture.js?v=20261030-speak-lazy";
 import {
   craftUrl,
   escapeHtml,
@@ -48,8 +48,6 @@ let rowResults = {};
 
 const THRESHOLDS = { green: 75, yellow: 50 };
 
-/** Fail-open if HuBERT boot hangs (classroom Wi‑Fi / cold cache). */
-const CHECKER_BOOT_TIMEOUT_MS = 10000;
 const CP_PACK_LOAD_TIMEOUT_MS = 8000;
 
 const layoutOnlyParams = new URLSearchParams(location.search);
@@ -337,6 +335,19 @@ function cancelActiveMicCapture() {
   grading = false;
 }
 
+function checkerProgress(frac, text) {
+  setCheckerProgress(frac, text);
+}
+
+async function ensureCheckerModel(shared) {
+  if (shared.getModelBootState() === "failed") {
+    shared.resetSharedBoot();
+    void shared.bootShared({ lazy: true, onProgress: checkerProgress });
+  }
+  await shared.ensureModel({ onProgress: checkerProgress });
+  checkerFallback = false;
+}
+
 async function gradeBlob(blob, item) {
   const candidates = [item.english].concat(item.alts || []);
   let bestTarget = candidates[0];
@@ -345,6 +356,15 @@ async function gradeBlob(blob, item) {
     return { out, target: bestTarget };
   }
   const shared = await loadPronounceShared();
+  try {
+    await ensureCheckerModel(shared);
+  } catch (err) {
+    console.warn("ensureModel failed — basic scoring", err);
+    checkerFallback = true;
+    checkerError = err?.message || "model unavailable";
+    const out = await fallbackGradeBlob(blob, item, bestTarget);
+    return { out, target: bestTarget };
+  }
   const grade = shared.grade;
   let bestOut = null;
   for (const c of candidates) {
@@ -355,6 +375,9 @@ async function gradeBlob(blob, item) {
       bestTarget = c;
     }
     if (result.pass) break;
+  }
+  if (shared.getModelBootState() === "ready") {
+    applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
   }
   return { out: bestOut, target: bestTarget };
 }
@@ -593,62 +616,48 @@ async function loadSpeakPack(monthId) {
   return loaded;
 }
 
+function noteCheckerReadyForMic() {
+  const status = el("micStatus");
+  if (!status || isCapturing()) return;
+  status.textContent = heard
+    ? "Checker ready — tap Speak."
+    : "Checker ready — tap Korean or Hear English first.";
+}
+
 async function bootChecker() {
   if (layoutOnlyMode) return;
   if (checkerBootPromise) return checkerBootPromise;
   checkerBootPromise = (async () => {
     try {
       const shared = await loadPronounceShared();
-      const bootInner = shared.bootShared({
-        onProgress: (frac, text) => setCheckerProgress(frac, text),
-      });
+      await shared.bootShared({ lazy: true, onProgress: checkerProgress });
 
-      const timeoutP = new Promise((resolve) => {
-        setTimeout(() => resolve("timeout"), CHECKER_BOOT_TIMEOUT_MS);
-      });
+      checkerFallback = false;
+      checkerReady = true;
+      syncMicButton();
 
-      const result = await Promise.race([
-        bootInner.then(() => "ok").catch((err) => {
-          console.error(err);
-          return { kind: "err", message: err?.message || "boot failed" };
-        }),
-        timeoutP,
-      ]);
-
-      if (result === "ok") {
+      const state = shared.getModelBootState();
+      if (state === "ready") {
         applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
-        const status = el("micStatus");
-        if (status && !isCapturing()) {
-          status.textContent = heard
-            ? "Checker ready — tap Speak."
-            : "Checker ready — tap Korean or Hear English first.";
-        }
+        noteCheckerReadyForMic();
         return;
       }
-
-      if (result?.kind === "err") {
-        unlockSpeakForClass(result.message);
+      if (state === "failed") {
+        unlockSpeakForClass("boot failed");
         setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
         return;
       }
 
-      checkerError = "Checker load timeout";
-      unlockSpeakForClass(checkerError);
-      setCheckerProgress(1, "Speak ready — basic scoring (checker slow)");
-
-      bootInner
+      setCheckerProgress(0, "Sound checker loading…");
+      shared
+        .ensureModel({ onProgress: checkerProgress })
         .then(() => {
           applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
-          const status = el("micStatus");
-          if (status && !isCapturing()) {
-            status.textContent = heard
-              ? "Full checker ready — tap Speak."
-              : "Full checker ready — tap Korean or Hear English first.";
-          }
+          noteCheckerReadyForMic();
         })
         .catch((err) => {
           console.error(err);
-          unlockSpeakForClass(err?.message || "boot failed");
+          unlockSpeakForClass(err?.message || "model failed");
           setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
         });
     } catch (err) {
