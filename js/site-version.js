@@ -1,9 +1,5 @@
 /** Bump or tie to deploy SHA for GitHub Pages cache bust on step links. */
-<<<<<<< HEAD
-export const SITE_LINK_V = "20261030-meet-i18n";
-=======
 export const SITE_LINK_V = "20261030-cp-mic";
->>>>>>> origin/main
 
 export function withLinkVersion(href) {
   if (!href || /^https?:\/\//i.test(href) || href.startsWith("#")) return href;
