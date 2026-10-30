@@ -1,9 +1,10 @@
 /**
  * three.js interactive stages (patch luck hunt, cut top, wash).
  */
+import { knifeSvg } from "./art.js";
 import { scene3dUrl } from "./assets.js";
 import { createGlStage, THREE } from "./three-runtime.js";
-import { buildKnife, buildPatchGround, buildPumpkin } from "./pumpkin-mesh.js";
+import { buildPatchGround, buildPumpkin } from "./pumpkin-mesh.js";
 
 function hostMarkup(label, { extraClass = "", backdropStyle = "" } = {}) {
   return `<div class="gl-host scene-3d gl-scene ${extraClass}" data-play aria-label="${label}"${backdropStyle}>
@@ -223,8 +224,13 @@ export function mountCut3D(root, stage, ctx) {
   pumpkin.position.y = 0.05;
   gl.scene.add(pumpkin);
 
-  const knife = buildKnife(1.2);
-  gl.scene.add(knife);
+  container.classList.add("gl-cut");
+  const orbit = document.createElement("div");
+  orbit.className = "cut-orbit-gl";
+  orbit.setAttribute("data-orbit", "");
+  orbit.innerHTML = `<div class="knife knife-bob" data-cut-knife aria-hidden="true">${knifeSvg()}</div>`;
+  container.appendChild(orbit);
+  const cutKnife = orbit.querySelector("[data-cut-knife]");
 
   const ringGeo = new THREE.TorusGeometry(0.55, 0.04, 8, 32, Math.PI * 1.35);
   const ring = new THREE.Mesh(
@@ -241,24 +247,13 @@ export function mountCut3D(root, stage, ctx) {
   let done = 0;
   let finished = false;
   const total = stage.clicks;
-  let knifePhase = 0;
-  let knifeBaseY = knife.position.y;
-
-  gl.setFrame((t) => {
-    if (knifePhase > 0) {
-      knifePhase -= 0.016;
-      const wobble = Math.sin((1 - knifePhase) * Math.PI * 4) * 0.12;
-      knife.position.y = knifeBaseY + wobble;
-      knife.rotation.x = -0.2 + wobble * 0.8;
-    }
-    knife.position.x = 0.62 + Math.sin(t * 1.2) * 0.02;
-  });
 
   function applyProgress(t) {
     const clamped = Math.max(0, Math.min(1, t));
     ring.scale.setScalar(0.3 + clamped * 0.7);
     ring.material.opacity = 0.35 + clamped * 0.65;
     ring.material.transparent = true;
+    if (orbit) orbit.style.transform = `rotate(${clamped * 340}deg)`;
     const lid = pumpkin.userData.lid;
     if (lid) {
       lid.position.y = clamped * 0.35;
@@ -271,8 +266,11 @@ export function mountCut3D(root, stage, ctx) {
   function step() {
     if (finished) return;
     done += 1;
-    knifePhase = 1;
-    knifeBaseY = 1.05 - (done / total) * 0.15;
+    if (cutKnife) {
+      cutKnife.classList.remove("chop");
+      void cutKnife.offsetWidth;
+      cutKnife.classList.add("chop");
+    }
     ctx.sfx?.stage?.(stage.key);
     applyProgress(done / total);
     ctx.onProgress(done, total);

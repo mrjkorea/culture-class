@@ -1088,6 +1088,31 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   touch-action: manipulation;
   cursor: pointer;
 }
+.gl-host.gl-cut .cut-orbit-gl {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 0;
+  height: 0;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.35));
+}
+.gl-host.gl-cut .cut-orbit-gl .knife {
+  position: absolute;
+  left: -20px;
+  top: -82px;
+  width: 56px;
+}
+.gl-host.gl-cut .cut-orbit-gl .knife svg {
+  width: 56px;
+  height: auto;
+  display: block;
+}
+.knife-bob.chop {
+  animation: carve-chop 0.22s ease;
+}
 .gl-loading {
   position: absolute;
   inset: 0;
