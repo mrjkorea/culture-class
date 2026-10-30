@@ -385,6 +385,79 @@ body.halloween-theme {
   color: #ffd43b;
 }
 
+/* Teacher projector call board (bingo/teacher.html only) */
+body.bingo-teacher .wrap {
+  max-width: min(96vw, 1480px);
+  padding: 0.75rem 1rem 2rem;
+}
+
+body.bingo-teacher .site-header h1 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+}
+
+body.bingo-teacher.bingo-halloween .word-pool {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1.1vw, 1rem);
+  width: 100%;
+  max-width: min(94vw, 1280px);
+  margin: 0.5rem auto 0;
+}
+
+body.bingo-teacher.bingo-halloween .word-chip {
+  width: 100%;
+  min-height: clamp(92px, 13.5vh, 152px);
+  padding: clamp(0.55rem, 1vw, 1rem);
+  font-size: clamp(1.05rem, 2.6vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  border: 3px solid #b197fc;
+  border-radius: 14px;
+  background: linear-gradient(165deg, #3d1570, #1a0533);
+  color: #f8f0ff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+body.bingo-teacher.bingo-halloween .word-chip:hover {
+  border-color: #d0bfff;
+  filter: brightness(1.08);
+}
+
+body.bingo-teacher.bingo-halloween .word-chip.called {
+  background: linear-gradient(165deg, #37b24d, #69db7c);
+  border-color: #ffe066;
+  color: #052e16;
+  text-decoration: none;
+  opacity: 1;
+  box-shadow:
+    0 0 0 4px rgba(255, 224, 102, 0.55),
+    0 0 32px rgba(81, 207, 102, 0.9),
+    inset 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+body.bingo-teacher .bingo-toolbar .btn {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  padding: 0.65rem 1.1rem;
+}
+
+@media (min-width: 900px) {
+  body.bingo-teacher.bingo-halloween .word-pool {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  body.bingo-teacher.bingo-halloween .word-pool {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.bingo-teacher.bingo-halloween .word-chip {
+    min-height: clamp(72px, 18vw, 100px);
+    font-size: clamp(0.95rem, 4vw, 1.25rem);
+  }
+}
+
 /* CP pronounce skin on culture-class */
 body.cp-pronounce {
   background: #efe8da;
