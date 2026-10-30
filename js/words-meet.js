@@ -51,8 +51,8 @@ function renderCard() {
   const gloss = termGloss(term, lang);
   const imgSrc = term.image ? `${repoRoot()}/${term.image.replace(/^\/+/, "")}` : "";
   const img = term.image
-    ? `<img class="meet-pic" src="${escapeHtml(imgSrc)}" alt="">`
-    : `<div class="meet-pic meet-pic-fallback" aria-hidden="true">${escapeHtml(term.term)}</div>`;
+    ? `<img class="meet-pic meet-pic-view" src="${escapeHtml(imgSrc)}" alt="" draggable="false">`
+    : `<div class="meet-pic meet-pic-fallback meet-pic-view" aria-hidden="true">${escapeHtml(term.term)}</div>`;
   const glossHtml = gloss
     ? `<span class="meet-gloss">${escapeHtml(gloss)}</span>`
     : `<span class="meet-gloss meet-gloss-empty" aria-hidden="true"></span>`;
@@ -76,7 +76,7 @@ async function onWordClick(term) {
   const btn = document.getElementById("meetWordBtn");
   if (btn) btn.disabled = true;
   try {
-    await playWordAudio(term.term, term.audio);
+    await playWordAudio(term, term.audio);
     await new Promise((r) => setTimeout(r, MEET_ADVANCE_MS));
     if (index < terms.length - 1) {
       index += 1;
