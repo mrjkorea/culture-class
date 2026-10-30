@@ -542,6 +542,13 @@ a:hover {
   border-radius: 18px;
 }
 
+.themed-words-flow .meet-pic-view {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .themed-words-flow .meet-pic-fallback {
   display: flex;
   align-items: center;

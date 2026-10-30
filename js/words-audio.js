@@ -25,12 +25,26 @@ function resolveSrc(path) {
   return dataUrl(clean);
 }
 
-/** Play English word audio (oct-words Fish TTS mp3 only — no browser TTS). */
+/** Resolve pre-baked Fish TTS mp3 from a words-pack term (same paths as bingo / Learn). */
+export function resolveTermAudioSrc(term, explicitPath) {
+  const fromTerm =
+    explicitPath ||
+    (term && typeof term === "object" ? term.audio : "") ||
+    "";
+  if (fromTerm) return resolveSrc(fromTerm);
+  const label = typeof term === "string" ? term : term?.term || term?.en || "";
+  const slug = wordSlug(label);
+  if (!slug) return "";
+  return resolveSrc(`data/audio/oct-words/${slug}.mp3`);
+}
+
+/**
+ * Play English word audio — pre-baked Fish TTS mp3 only (HTMLAudioElement), never SpeechSynthesis.
+ * October Meet/Learn/Memory: `data/audio/oct-words/*.mp3` (Pirate Fish voice; see docs/TTS_REBAKE_OCT.md).
+ * Other months: each term's `audio` field under `data/audio/<month>-words/` (Fish bakes per month pack).
+ */
 export function playWordAudio(term, explicitPath) {
-  const slug = wordSlug(term);
-  const src = explicitPath
-    ? resolveSrc(explicitPath)
-    : resolveSrc(`data/audio/oct-words/${slug}.mp3`);
+  const src = resolveTermAudioSrc(term, explicitPath);
   if (!src) return Promise.resolve();
   if (current) {
     current.pause();
