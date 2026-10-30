@@ -34,7 +34,7 @@
  </svg><video id="vid" muted playsinline preload="auto"></video></div>
  <div id="card"></div>
 </div>
-<script src="wb.js?v=20261029-month-wins"></script>
+<script src="wb.js?v=20261030-climb-no-pass"></script>
 <script>
 let D,i=0,right=0,pos=0,locked=false,N=0;const card=document.getElementById('card'),vid=document.getElementById('vid');
 const sh=WB.sh,word=w=>{const x=WB.w(w);const src=x&&x.audio?x.audio:(D.wordAudio?D.wordAudio+w.split(' ')[0]+'.mp3':'');return src?WB.play(src):Promise.resolve()},line=f=>{if(!f)return Promise.resolve();return WB.play(String(f).includes('/')?f:D.lineAudio+f)};
@@ -76,7 +76,7 @@ function show(){locked=false;const q=D.questions[i],T=TYPES[q.type];if(!T){i++;r
  const pl=document.getElementById('play');if(pl)pl.onclick=()=>q.audio?line(q.audio):word(q.answer);
  card.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>check(b.dataset.a===q.answer,b));T.start&&T.start(q)}
 async function check(ok,btn){if(locked)return;locked=true;const q=D.questions[i],fb=document.getElementById('fb');
- if(ok){right++;WB.tick('climb',right,N);btn&&btn.classList.add('ok');fb.innerHTML='🎉 Great job! Climb up!';fb.style.color='#2f9e44';WB.cheer('right')}
+ if(ok){right++;if(D.kind!=='culture')WB.tick('climb',right,N);btn&&btn.classList.add('ok');fb.innerHTML='🎉 Great job! Climb up!';fb.style.color='#2f9e44';WB.cheer('right')}
  else{btn&&btn.classList.add('no');const ans=Array.isArray(q.answer)?q.answer.join(' '):q.answer;
   card.querySelectorAll('[data-a]').forEach(b=>{if(b.dataset.a===q.answer)b.classList.add('ok')});
   fb.innerHTML='😮 Oops, slip! Right answer: <u>'+ans+'</u>';fb.style.color='#c92a2a';WB.cheer('wrong')}
