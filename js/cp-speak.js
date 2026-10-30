@@ -49,7 +49,8 @@ let rowResults = {};
 const THRESHOLDS = { green: 75, yellow: 50 };
 
 /** Fail-open if HuBERT boot hangs (classroom Wi‑Fi / cold cache). */
-const CHECKER_BOOT_TIMEOUT_MS = 25000;
+const CHECKER_BOOT_TIMEOUT_MS = 10000;
+const CP_PACK_LOAD_TIMEOUT_MS = 8000;
 
 const layoutOnlyParams = new URLSearchParams(location.search);
 const layoutOnlyMode =
@@ -245,7 +246,7 @@ function renderPractice() {
         <button type="button" class="secondary" id="btnHear">🔊 Hear English</button>
         <button type="button" class="primary mic" id="btnSpeak">🎤 Speak</button>
       </div>
-      <p class="status" id="micStatus">Tap Korean or Hear English — Speak unlocks when the checker is ready.</p>
+      <p class="status" id="micStatus">Tap Korean or Hear English, then Speak.</p>
       <div class="result" id="resultBox" hidden>
         <p class="big-score" id="resultScore"></p>
         <p class="hint" id="resultDetail"></p>
@@ -318,11 +319,13 @@ function syncMicButton() {
   btn.classList.toggle("listening", listening);
   btn.textContent = listening ? "■ Stop" : "🎤 Speak";
   btn.setAttribute("aria-label", listening ? "Stop listening" : "Speak sentence");
-  btn.disabled = grading || (!heard && !listening) || (!checkerReady && !listening);
-  if (!checkerReady && !listening && !checkerError) {
-    btn.title = "Sound checker still loading — Hear English works now";
+  btn.disabled = grading || (!heard && !listening);
+  if (checkerFallback && checkerError) {
+    btn.title = "Basic scoring — full checker still loading or unavailable";
+  } else if (checkerFallback) {
+    btn.title = "Basic scoring until full checker loads";
   } else if (checkerError) {
-    btn.title = "Hear-only mode — checker unavailable";
+    btn.title = "Basic scoring — checker unavailable";
   } else {
     btn.removeAttribute("title");
   }
@@ -493,13 +496,6 @@ async function toggleMic() {
     syncMicButton();
     return;
   }
-  if (!checkerReady) {
-    if (!checkerBootPromise && !checkerError) void bootChecker();
-    el("micStatus").textContent = checkerError
-      ? `Hear-only for now — checker failed. (${checkerError})`
-      : "Sound checker still loading — use Hear English, then try Speak again.";
-    return;
-  }
   if (!heard) {
     el("micStatus").textContent = "Hear English first.";
     return;
@@ -558,36 +554,49 @@ function nextItem() {
   updateItemView();
 }
 
-function applyCheckerReady(label, { fallback = false } = {}) {
+function applyCheckerReady(label, { fallback = false, error = "" } = {}) {
   checkerReady = true;
   checkerFallback = fallback;
-  checkerError = "";
+  checkerError = error;
   setCheckerProgress(1, label);
   const track = el("modelTrack");
   if (track) track.classList.add("done");
   syncMicButton();
 }
 
-function applyCheckerFailOpen(reason) {
-  console.warn("CP Speak: sound checker fail-open:", reason);
-  applyCheckerReady(
-    "Speak ready — full checker still loading (basic scoring for now)",
-    { fallback: true },
-  );
-  const status = el("micStatus");
-  if (status && !heard) {
-    status.textContent = "Tap Korean or Hear English, then Speak (basic scoring until checker loads).";
+function unlockSpeakForClass(error = "") {
+  applyCheckerReady("Speak ready — checker loads in background (basic scoring)", {
+    fallback: true,
+    error,
+  });
+}
+
+async function loadSpeakPack(monthId) {
+  const loadOne = (id) =>
+    Promise.race([
+      loadCpPackForMonth(id),
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("CP pack load timeout")), CP_PACK_LOAD_TIMEOUT_MS);
+      }),
+    ]);
+
+  let loaded;
+  try {
+    loaded = await loadOne(monthId);
+  } catch (err) {
+    if (monthId === DEFAULT_SPEAK_MONTH) throw err;
+    loaded = await loadOne(DEFAULT_SPEAK_MONTH);
   }
+  if (!loaded.pack?.items?.length && monthId !== DEFAULT_SPEAK_MONTH) {
+    loaded = await loadOne(DEFAULT_SPEAK_MONTH);
+  }
+  return loaded;
 }
 
 async function bootChecker() {
   if (layoutOnlyMode) return;
   if (checkerBootPromise) return checkerBootPromise;
   checkerBootPromise = (async () => {
-    applyCheckerReady(
-      "Speak works now — full checker still loading (basic scoring)",
-      { fallback: true },
-    );
     try {
       const shared = await loadPronounceShared();
       const bootInner = shared.bootShared({
@@ -601,15 +610,13 @@ async function bootChecker() {
       const result = await Promise.race([
         bootInner.then(() => "ok").catch((err) => {
           console.error(err);
-          checkerError = err?.message || "boot failed";
-          return "err";
+          return { kind: "err", message: err?.message || "boot failed" };
         }),
         timeoutP,
       ]);
 
       if (result === "ok") {
-        checkerFallback = false;
-        applyCheckerReady("Sound checker ready", { fallback: false });
+        applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
         const status = el("micStatus");
         if (status && !isCapturing()) {
           status.textContent = heard
@@ -619,19 +626,19 @@ async function bootChecker() {
         return;
       }
 
-      if (result === "err") {
-        setCheckerProgress(
-          1,
-          "Speak ready — pronunciation checker unavailable (basic scoring)",
-        );
+      if (result?.kind === "err") {
+        unlockSpeakForClass(result.message);
+        setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
         return;
       }
 
-      // Still loading after timeout — keep fallback; finish in background.
+      checkerError = "Checker load timeout";
+      unlockSpeakForClass(checkerError);
+      setCheckerProgress(1, "Speak ready — basic scoring (checker slow)");
+
       bootInner
         .then(() => {
-          checkerFallback = false;
-          applyCheckerReady("Sound checker ready", { fallback: false });
+          applyCheckerReady("Sound checker ready", { fallback: false, error: "" });
           const status = el("micStatus");
           if (status && !isCapturing()) {
             status.textContent = heard
@@ -641,19 +648,13 @@ async function bootChecker() {
         })
         .catch((err) => {
           console.error(err);
-          checkerError = err?.message || "boot failed";
-          setCheckerProgress(
-            1,
-            "Speak ready — pronunciation checker unavailable (basic scoring)",
-          );
+          unlockSpeakForClass(err?.message || "boot failed");
+          setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
         });
     } catch (err) {
       console.error(err);
-      checkerError = err.message || "boot failed";
-      setCheckerProgress(
-        1,
-        "Speak ready — pronunciation checker unavailable (basic scoring)",
-      );
+      unlockSpeakForClass(err?.message || "boot failed");
+      setCheckerProgress(1, "Speak ready — basic scoring (checker unavailable)");
     }
   })();
   return checkerBootPromise;
@@ -675,6 +676,10 @@ function applyLayoutOnlyCheckerUi() {
 
 async function init() {
   showPracticeChrome();
+  if (!layoutOnlyMode) {
+    unlockSpeakForClass();
+    void bootChecker();
+  }
   syncDisplayNameFromAuth();
   window.addEventListener("mrj-auth-ready", syncDisplayNameFromAuth);
   bindVoiceToggle();
@@ -682,18 +687,12 @@ async function init() {
   let monthId = getMonthIdFromQuery() || DEFAULT_SPEAK_MONTH;
   let loaded;
   try {
-    loaded = await loadCpPackForMonth(monthId);
+    loaded = await loadSpeakPack(monthId);
     month = loaded.month;
     pack = loaded.pack;
-    if (!pack?.items?.length && monthId !== DEFAULT_SPEAK_MONTH) {
-      monthId = DEFAULT_SPEAK_MONTH;
-      loaded = await loadCpPackForMonth(monthId);
-      month = loaded.month;
-      pack = loaded.pack;
-    }
   } catch (err) {
     console.error(err);
-    renderEmpty("Could not load CP speak — try again or open from the October map.");
+    renderEmpty("Could not load CP speak — check Wi‑Fi and refresh, or open from the October map.");
     return;
   }
 
@@ -718,8 +717,6 @@ async function init() {
   renderPractice();
   if (layoutOnlyMode) {
     applyLayoutOnlyCheckerUi();
-  } else {
-    void bootChecker();
   }
 }
 
