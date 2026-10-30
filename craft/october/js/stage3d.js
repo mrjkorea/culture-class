@@ -1,13 +1,45 @@
 /**
  * three.js interactive stages (patch luck hunt, cut top, wash).
  */
+import { scene3dUrl } from "./assets.js";
 import { createGlStage, THREE } from "./three-runtime.js";
 import { buildKnife, buildPatchGround, buildPumpkin } from "./pumpkin-mesh.js";
 
-function hostMarkup(label) {
-  return `<div class="gl-host scene-3d gl-scene" data-play aria-label="${label}">
+function hostMarkup(label, { extraClass = "", backdropStyle = "" } = {}) {
+  return `<div class="gl-host scene-3d gl-scene ${extraClass}" data-play aria-label="${label}"${backdropStyle}>
     <div class="gl-loading">Loading 3D…</div>
   </div>`;
+}
+
+function patchBackdropStyle(ctx) {
+  const url = scene3dUrl(ctx?.assetBase, ctx?.manifest, "patch");
+  if (!url) return "";
+  const safe = String(url).replace(/'/g, "%27").replace(/"/g, "%22");
+  return ` style="background-image:url('${safe}')"`;
+}
+
+function addProceduralPatch(gl) {
+  if (!gl.scene.fog) gl.scene.fog = new THREE.Fog(0xffffff, 18, 55);
+  const { ground, vines, fencePosts } = buildPatchGround();
+  gl.scene.add(ground, vines, fencePosts);
+}
+
+function applyPatchPhotoBackdrop(gl, container, ctx) {
+  const patchUrl = scene3dUrl(ctx?.assetBase, ctx?.manifest, "patch");
+  if (!patchUrl) {
+    addProceduralPatch(gl);
+    return;
+  }
+  const loader = new THREE.TextureLoader();
+  loader.load(
+    patchUrl,
+    (tex) => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      gl.scene.background = tex;
+    },
+    undefined,
+    () => addProceduralPatch(gl)
+  );
 }
 
 function findPumpkinIndex(hit) {
@@ -20,13 +52,17 @@ function findPumpkinIndex(hit) {
 }
 
 export function mountPatch3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title);
+  root.innerHTML = hostMarkup(stage.title, {
+    extraClass: "gl-patch",
+    backdropStyle: patchBackdropStyle(ctx),
+  });
   const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 54, fog: true });
+  const gl = createGlStage(container, { fov: 58, fog: false });
   if (!gl) {
     return null;
   }
   container.querySelector(".gl-loading")?.remove();
+  applyPatchPhotoBackdrop(gl, container, ctx);
 
   const good = new Set();
   const pool = stage.poolSize;
@@ -34,17 +70,14 @@ export function mountPatch3D(root, stage, ctx) {
     good.add(Math.floor(Math.random() * pool));
   }
 
-  const { ground, vines, fencePosts } = buildPatchGround();
-  gl.scene.add(ground, vines, fencePosts);
-
   const cols = Math.ceil(Math.sqrt(pool));
   const rows = Math.ceil(pool / cols);
   const pumpkins = [];
   const pickRoots = [];
   let found = 0;
   let finished = false;
-  const spacing = pool > 24 ? 1.05 : 1.25;
-  const pumpScale = pool > 24 ? 0.78 : 0.92;
+  const spacing = pool > 24 ? 0.98 : 1.12;
+  const pumpScale = pool > 24 ? 1.05 : 1.22;
 
   for (let i = 0; i < pool; i += 1) {
     const col = i % cols;
@@ -69,8 +102,8 @@ export function mountPatch3D(root, stage, ctx) {
     gl.scene.add(pick);
   }
 
-  const span = Math.max(cols, rows) * spacing * 0.55 + 2.2;
-  gl.camera.position.set(0, span * 0.85, span * 1.35);
+  const span = Math.max(cols, rows) * spacing * 0.48 + 1.35;
+  gl.camera.position.set(0, span * 0.72, span * 1.02);
   gl.camera.lookAt(0, 0.35, 0);
   gl.resize();
   requestAnimationFrame(() => gl.resize());
@@ -174,7 +207,7 @@ export function mountPatch3D(root, stage, ctx) {
 export function mountCut3D(root, stage, ctx) {
   root.innerHTML = hostMarkup(stage.title);
   const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 46, fog: false });
+  const gl = createGlStage(container, { fov: 52, fog: false });
   if (!gl) return null;
   container.querySelector(".gl-loading")?.remove();
   gl.renderer.setClearColor(0xffffff);
@@ -186,7 +219,7 @@ export function mountCut3D(root, stage, ctx) {
   table.position.y = -0.05;
   gl.scene.add(table);
 
-  const pumpkin = buildPumpkin(42, 1.85, { withLid: true });
+  const pumpkin = buildPumpkin(42, 2.2, { withLid: true });
   pumpkin.position.y = 0.05;
   gl.scene.add(pumpkin);
 
@@ -202,8 +235,8 @@ export function mountCut3D(root, stage, ctx) {
   ring.position.y = 1.05;
   gl.scene.add(ring);
 
-  gl.camera.position.set(0, 2.2, 4.2);
-  gl.camera.lookAt(0, 0.9, 0);
+  gl.camera.position.set(0, 1.75, 3.15);
+  gl.camera.lookAt(0, 0.85, 0);
 
   let done = 0;
   let finished = false;
@@ -269,7 +302,7 @@ export function mountCut3D(root, stage, ctx) {
 export function mountWash3D(root, stage, ctx) {
   root.innerHTML = hostMarkup(stage.title);
   const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 48, fog: false });
+  const gl = createGlStage(container, { fov: 52, fog: false });
   if (!gl) return null;
   container.querySelector(".gl-loading")?.remove();
   gl.renderer.setClearColor(0xffffff);
@@ -281,7 +314,7 @@ export function mountWash3D(root, stage, ctx) {
   floor.rotation.x = -Math.PI / 2;
   gl.scene.add(floor);
 
-  const pumpkin = buildPumpkin(11, 1.35);
+  const pumpkin = buildPumpkin(11, 1.72);
   pumpkin.position.y = 0.1;
   gl.scene.add(pumpkin);
 
@@ -303,8 +336,8 @@ export function mountWash3D(root, stage, ctx) {
   sponge.position.set(0.9, 0.8, 0.6);
   gl.scene.add(sponge);
 
-  gl.camera.position.set(0, 1.8, 3.6);
-  gl.camera.lookAt(0, 0.7, 0);
+  gl.camera.position.set(0, 1.45, 2.7);
+  gl.camera.lookAt(0, 0.65, 0);
 
   let done = 0;
   let finished = false;

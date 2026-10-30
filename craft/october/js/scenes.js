@@ -41,6 +41,13 @@ function vary(i) {
   return n - Math.floor(n);
 }
 
+function sceneBackdropAttr(ctx, key) {
+  const bg = scene3dUrl(ctx?.assetBase, ctx?.manifest, key);
+  if (!bg) return "";
+  const safe = String(bg).replace(/'/g, "%27").replace(/"/g, "%22");
+  return ` style="background-image:url('${safe}')"`;
+}
+
 export function mountStage(root, stage, ctx) {
   if (stage.key === "patch" && stage.type === "luck_hunt") {
     const gl = mountPatch3D(root, stage, ctx);
@@ -127,7 +134,7 @@ function patchMarkup(count, ctx) {
       <span class="pumpkin-tilt" style="--s:${scale};--r:${rot}deg">${pumpkinSvg(`patch${i}`)}</span>
     </button>`;
   }).join("");
-  return `<div class="patch scene-3d" data-play>
+  return `<div class="patch scene-3d" data-play${sceneBackdropAttr(ctx, "patch")}>
     <div class="patch-grid" style="grid-template-columns:repeat(${cols}, minmax(0, 1fr))">${buttons}</div>
   </div>`;
 }
@@ -140,11 +147,7 @@ function houseMarkup(count, ctx) {
         `<button type="button" class="spot" data-choice="${i}" style="left:${x}%;top:${y}%" aria-label="Spot">${pumpkinIcon()}</button>`
     )
     .join("");
-  const bg = scene3dUrl(ctx?.assetBase, ctx?.manifest, "house");
-  const bgStyle = bg
-    ? ` style="background-image:url('${String(bg).replace(/'/g, "%27").replace(/"/g, "%22")}')"`
-    : "";
-  return `<div class="house-scene scene-3d" data-play${bgStyle}>
+  return `<div class="house-scene scene-3d" data-play${sceneBackdropAttr(ctx, "house")}>
     <div class="spots">${buttons}</div>
   </div>`;
 }

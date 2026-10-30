@@ -350,7 +350,7 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 
 .play {
   flex: 1;
-  min-height: min(52dvh, 420px);
+  min-height: min(58dvh, 480px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -360,17 +360,18 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   box-sizing: border-box;
 }
 
+/* --play-reserve: topbar + Frank HUD + progress (keep visible on classroom displays) */
 .play > .gl-host,
 .play > .scene-3d,
 .play > .scene {
   flex: 0 1 auto;
   align-self: center;
   width: min(980px, 98vw);
-  max-width: min(980px, 98vw, calc(min(72dvh, calc(100dvh - 168px)) * 4 / 3));
+  max-width: min(980px, 98vw, calc(min(84dvh, calc(100dvh - 148px)) * 4 / 3));
   aspect-ratio: 4 / 3;
   height: auto;
-  min-height: min(42dvh, 360px);
-  max-height: min(72dvh, calc(100dvh - 168px));
+  min-height: min(52dvh, 420px);
+  max-height: min(84dvh, calc(100dvh - 148px));
 }
 
 .scene { position: relative; }
@@ -849,12 +850,15 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 }
 .bowl-hit:focus-visible { outline: 3px solid #fff; border-radius: 20px; }
 
-.house-scene.scene-3d {
+.house-scene.scene-3d,
+.patch.scene-3d,
+.gl-host.gl-patch {
   position: relative;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+.patch-grid { position: relative; z-index: 1; }
 .house-scene .spots { position: absolute; inset: 0; z-index: 1; }
 .spots { position: absolute; inset: 0; }
 .spot {
@@ -1070,8 +1074,8 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: min(52dvh, 480px);
-  max-height: min(72dvh, calc(100dvh - 168px));
+  min-height: min(58dvh, 540px);
+  max-height: min(84dvh, calc(100dvh - 148px));
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 0 0 1px #ebe4f0;
