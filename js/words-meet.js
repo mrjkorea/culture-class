@@ -1,28 +1,36 @@
-/** Keep in sync with SITE_LINK_V when busting Meet ES modules. */
-const MEET_V = "20261030-meet-i18n";
-
 import {
   escapeHtml,
   getMonthIdFromQuery,
   loadWordsPackForMonth,
   monthPageUrl,
-} from `./words-data.js?v=${MEET_V}`;
-import { playWordAudio } from `./words-audio.js?v=${MEET_V}`;
-import { setStepDone } from `./month-progress.js?v=${MEET_V}`;
-import { repoRoot, wordsLearnUrl } from `./paths.js?v=${MEET_V}`;
-import { applyMonthUiTheme } from `./month-ui-theme.js?v=${MEET_V}`;
-import { ensureThemeStylesheet } from `./month-styles.js?v=${MEET_V}`;
-import { getLang, mountLangSelect, t } from `./i18n.js?v=${MEET_V}`;
-import { termGloss } from `./word-gloss.js?v=${MEET_V}`;
+} from "./words-data.js";
+import { playWordAudio } from "./words-audio.js";
+import { setStepDone } from "./month-progress.js";
+import { repoRoot, wordsLearnUrl } from "./paths.js";
+import { applyMonthUiTheme } from "./month-ui-theme.js";
+import { ensureThemeStylesheet } from "./month-styles.js";
+import { getLang, mountLangSelect, t } from "./i18n.js";
+import { termGloss } from "./word-gloss.js";
 
 /** Pause after audio ends so students hear the word before the next card. */
 const MEET_ADVANCE_MS = 600;
+const DEFAULT_MONTH_ID = "10";
+const PACK_LOAD_MS = 8000;
 
 const app = document.getElementById("app");
 let terms = [];
 let month = null;
 let index = 0;
 let advancing = false;
+
+function withTimeout(promise, ms) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("pack-load-timeout")), ms)
+    ),
+  ]);
+}
 
 function renderShell(body) {
   const back = month
@@ -107,12 +115,17 @@ function finish() {
 }
 
 async function init() {
-  const monthId = getMonthIdFromQuery();
-  if (!monthId) {
-    renderShell(`<p class="placeholder-box">Open from your month map (?month=01).</p>`);
+  const monthId = getMonthIdFromQuery() || DEFAULT_MONTH_ID;
+  renderShell(`<p class="placeholder-box">Loading words…</p>`);
+  let loaded;
+  try {
+    loaded = await withTimeout(loadWordsPackForMonth(monthId), PACK_LOAD_MS);
+  } catch {
+    renderShell(
+      `<p class="placeholder-box">Words are taking too long to load. <a href="${escapeHtml(monthPageUrl("10-october"))}">Back to map</a> and try again.</p>`
+    );
     return;
   }
-  const loaded = await loadWordsPackForMonth(monthId);
   month = loaded.month;
   terms = loaded.terms;
   if (!month?.wordsPreviewFile || !terms.length) {
