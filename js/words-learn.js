@@ -15,6 +15,7 @@ import { applyMonthUiTheme } from "./month-ui-theme.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
 import { getLang, mountLangSelect, t } from "./i18n.js";
 import { termGloss } from "./word-gloss.js";
+import { blockIfActivityLocked } from "./path-lock.js";
 
 const WINS_KEY_PREFIX = "culture-class-factory-wins-";
 const app = document.getElementById("app");
@@ -250,6 +251,7 @@ async function init() {
     renderShell(`<p class="placeholder-box">Words not ready.</p>`);
     return;
   }
+  if (blockIfActivityLocked(app, month, "learn")) return;
   document.title = `Culture Class — ${month.name} ${t("part_a")}`;
   applyMonthUiTheme(month);
   ensureThemeStylesheet(month);

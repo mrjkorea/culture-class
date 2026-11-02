@@ -1,6 +1,7 @@
 import { dataUrl, monthPageUrl, repoRoot, wordsMeetUrl } from "./paths.js";
 import { escapeHtml, getMonthIdFromQuery, loadMonthById } from "./words-data.js";
 import { setStepDone } from "./month-progress.js";
+import { blockIfActivityLocked } from "./path-lock.js";
 import { getLang, mountLangSelect, pickLocalized, t } from "./i18n.js";
 import { resolveSrc } from "./words-audio.js";
 
@@ -246,6 +247,7 @@ async function init() {
     renderShell(`<p class="placeholder-box">Quiz file missing on server.</p>`);
     return;
   }
+  if (blockIfActivityLocked(app, month, "quiz")) return;
   document.title = `Culture Class — ${month.name} Daily Quiz`;
   qIndex = 0;
   answers = [];

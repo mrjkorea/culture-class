@@ -1,19 +1,20 @@
 /** Keep in sync with SITE_LINK_V when busting Meet ES modules. */
-const MEET_V = "20261030-meet-failopen";
+const MEET_V = "20261102-unlock-all";
 
 import {
   escapeHtml,
   getMonthIdFromQuery,
   loadWordsPackForMonth,
   monthPageUrl,
-} from "./words-data.js?v=20261030-meet-failopen";
-import { playWordAudio } from "./words-audio.js?v=20261030-meet-failopen";
-import { setStepDone } from "./month-progress.js?v=20261030-meet-failopen";
-import { repoRoot, wordsLearnUrl } from "./paths.js?v=20261030-meet-failopen";
-import { applyMonthUiTheme } from "./month-ui-theme.js?v=20261030-meet-failopen";
-import { ensureThemeStylesheet } from "./month-styles.js?v=20261030-meet-failopen";
-import { getLang, mountLangSelect, t } from "./i18n.js?v=20261030-meet-failopen";
-import { termGloss } from "./word-gloss.js?v=20261030-meet-failopen";
+} from "./words-data.js?v=20261102-unlock-all";
+import { playWordAudio } from "./words-audio.js?v=20261102-unlock-all";
+import { setStepDone } from "./month-progress.js?v=20261102-unlock-all";
+import { repoRoot, wordsLearnUrl } from "./paths.js?v=20261102-unlock-all";
+import { applyMonthUiTheme } from "./month-ui-theme.js?v=20261102-unlock-all";
+import { ensureThemeStylesheet } from "./month-styles.js?v=20261102-unlock-all";
+import { getLang, mountLangSelect, t } from "./i18n.js?v=20261102-unlock-all";
+import { termGloss } from "./word-gloss.js?v=20261102-unlock-all";
+import { blockIfActivityLocked } from "./path-lock.js?v=20261102-unlock-all";
 
 /** Pause after audio ends so students hear the word before the next card. */
 const MEET_ADVANCE_MS = 600;
@@ -135,6 +136,7 @@ async function init() {
     renderShell(`<p class="placeholder-box">Words are not ready for this month yet.</p>`);
     return;
   }
+  if (blockIfActivityLocked(app, month, "meet")) return;
   document.title = `Culture Class — ${month.name} Meet`;
   applyMonthUiTheme(month);
   ensureThemeStylesheet(month);

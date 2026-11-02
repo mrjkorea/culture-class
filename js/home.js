@@ -1,5 +1,6 @@
 import { dataUrl, monthUrl, repoRoot } from "./paths.js";
 import { applyI18n, getLang, mountLangSelect, setLang, t } from "./i18n.js";
+import { isMonthPathOpen, pathLocksActive } from "./path-lock.js";
 
 async function loadMonths() {
   const res = await fetch(dataUrl("months.json"));
@@ -26,15 +27,27 @@ function renderHome(data) {
     .map((m) => {
       const hasCover = Boolean(m.cardCover || m.coverImage);
       const halloween = m.monthLayout === "halloween" || m.id === "10";
-      const cls = hasCover
-        ? `month-card month-card-cover${halloween ? " month-card-cover-halloween" : ""}`
-        : "month-card";
-      return `
-    <a class="${cls}" href="${monthUrl(m.slug)}"${coverStyle(m)}>
+      const open = isMonthPathOpen(m.id);
+      const locked = pathLocksActive() && !open;
+      const cls = [
+        hasCover
+          ? `month-card month-card-cover${halloween ? " month-card-cover-halloween" : ""}`
+          : "month-card",
+        locked ? "month-card-locked" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const inner = `
       <div class="num">Month ${m.id}</div>
       <div class="name">${m.name}</div>
       <div class="theme">${m.theme}</div>
-    </a>`;
+      ${locked ? '<div class="month-lock-tag">🔒</div>' : ""}`;
+      if (locked) {
+        return `
+    <div class="${cls}" aria-disabled="true"${coverStyle(m)}>${inner}</div>`;
+      }
+      return `
+    <a class="${cls}" href="${monthUrl(m.slug)}"${coverStyle(m)}>${inner}</a>`;
     })
     .join("");
 

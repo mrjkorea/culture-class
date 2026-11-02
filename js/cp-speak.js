@@ -17,6 +17,7 @@ import {
 } from "./cp-data.js";
 import { resolveSrc } from "./words-audio.js";
 import { setStepDone } from "./month-progress.js";
+import { blockIfActivityLocked } from "./path-lock.js";
 import { syncDisplayNameFromAuth } from "./student-signin.js";
 
 const PRONOUNCE_SHARED =
@@ -761,6 +762,7 @@ async function init() {
     renderEmpty("Could not load CP sentences.");
     return;
   }
+  if (blockIfActivityLocked(app, month, "cp")) return;
   passPct = pack.passPercent ?? 60;
   document.title = `Culture Class — ${month.name} CP Speak`;
   const brand = el("cpBrand");

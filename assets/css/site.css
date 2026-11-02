@@ -138,6 +138,40 @@ a:hover {
   line-height: 1.35;
 }
 
+.month-card-locked {
+  opacity: 0.55;
+  cursor: not-allowed;
+  position: relative;
+  box-shadow: none;
+}
+
+.month-card-locked:hover {
+  transform: none;
+  border-color: var(--border);
+}
+
+.month-lock-tag {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.5rem;
+  font-size: 1rem;
+}
+
+.path-lock-box h2 {
+  margin-top: 0;
+}
+
+.map-node.locked {
+  pointer-events: none;
+  opacity: 0.55;
+  filter: grayscale(0.35);
+}
+
+.map-node-lock {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
 .month-hero {
   background: var(--surface);
   border: 1px solid var(--border);

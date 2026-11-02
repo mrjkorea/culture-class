@@ -29,6 +29,7 @@ function escapeHtml(s) {
 }
 
 import { withLinkVersion } from "./site-version.js";
+import { isActivityPathOpen, pathLocksActive } from "./path-lock.js";
 
 function stepHref(month, step) {
   let href;
@@ -102,14 +103,31 @@ export function renderThemedMapMonth(month) {
     .map((step) => {
       const done = isStepDone(month.id, step.id);
       const isCurrent = step.id === current.id;
-      const classes = ["map-node", done ? "done" : "", isCurrent ? "current" : ""]
+      const open = isActivityPathOpen(month.id, step.id);
+      const locked = pathLocksActive() && !open;
+      const classes = [
+        "map-node",
+        done ? "done" : "",
+        isCurrent ? "current" : "",
+        locked ? "locked" : "",
+      ]
         .filter(Boolean)
         .join(" ");
-      return `
-        <a class="${classes}" style="left:${step.x}%;top:${step.y}%;" href="${escapeHtml(stepHref(month, step))}" data-step="${step.id}">
+      const href = escapeHtml(stepHref(month, step));
+      const inner = `
           <span class="map-node-emoji">${step.emoji}</span>
           <span class="map-node-label">${escapeHtml(step.short)}</span>
           ${done ? '<span class="map-node-check">✓</span>' : ""}
+          ${locked ? '<span class="map-node-lock" aria-hidden="true">🔒</span>' : ""}`;
+      if (locked) {
+        return `
+        <span class="${classes}" style="left:${step.x}%;top:${step.y}%;" data-step="${step.id}" title="Finish the previous step first">
+          ${inner}
+        </span>`;
+      }
+      return `
+        <a class="${classes}" style="left:${step.x}%;top:${step.y}%;" href="${href}" data-step="${step.id}">
+          ${inner}
         </a>`;
     })
     .join("");

@@ -13,6 +13,7 @@ import { applyMonthUiTheme, memoryLbKey } from "./month-ui-theme.js";
 import { getLang, mountLangSelect, t } from "./i18n.js";
 import { leaderboardDisplayName, syncDisplayNameFromAuth } from "./student-signin.js";
 import { termGloss } from "./word-gloss.js";
+import { blockIfActivityLocked } from "./path-lock.js";
 
 const PAIRS_PER_ROUND = 6;
 let LB_KEY = "culture-class-memory-lb-10";
@@ -286,6 +287,7 @@ async function init() {
     renderShell("Memory", `<p class="placeholder-box">Words not ready.</p>`);
     return;
   }
+  if (blockIfActivityLocked(app, month, "memory")) return;
   document.title = `Culture Class — ${month.name} Memory`;
   applyMonthUiTheme(month);
   LB_KEY = memoryLbKey(month.id);

@@ -20,6 +20,7 @@ import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.j
 import { renderThemedMapMonth } from "./month-map-page.js";
 import { isThemedMapMonth } from "./month-themes.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
+import { blockIfMonthLocked } from "./path-lock.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -393,6 +394,7 @@ async function init() {
       '<div class="wrap"><p class="placeholder-box">Month not found.</p></div>';
     return;
   }
+  if (blockIfMonthLocked(document.getElementById("app"), month)) return;
   let wordsPreview = null;
   if (month.wordsPreviewFile) {
     wordsPreview = await loadWordsPreview(month.wordsPreviewFile);
