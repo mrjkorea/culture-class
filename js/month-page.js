@@ -17,10 +17,11 @@ import { monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
-import { renderThemedMapMonth } from "./month-map-page.js";
+import { renderThemedMapMonth, installThemedMapTeacherRefresh } from "./month-map-page.js";
 import { isThemedMapMonth } from "./month-themes.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
 import { blockIfMonthLocked } from "./path-lock.js";
+import { installTeacherStartPanel, mountTeacherStartHereButton } from "./culture-teacher-panel.js";
 
 const MONTH_ID = window.CULTURE_MONTH_ID;
 
@@ -44,14 +45,15 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-function stepBlock(num, title, desc, bodyHtml, extraClass = "") {
+function stepBlock(num, title, desc, bodyHtml, extraClass = "", stepId = "") {
   return `
-    <article class="step ${extraClass}" id="step-${num}">
+    <article class="step ${extraClass}" id="step-${num}"${stepId ? ` data-cc-step-id="${stepId}"` : ""}>
       <div class="step-header">
         <div class="step-num">${num}</div>
         <div>
           <h3 class="step-title">${title}</h3>
           <p class="step-desc">${desc}</p>
+          ${stepId ? `<span class="teacher-start-here-slot" data-cc-step="${stepId}"></span>` : ""}
         </div>
       </div>
       <div class="step-body">${bodyHtml}</div>
@@ -152,7 +154,9 @@ function renderDefaultMonth(month, wordsPreview) {
       1,
       "MRJ Daily",
       "Class introduction video(s) from @mrjenglishnews",
-      renderIntroVideosHtml(month)
+      renderIntroVideosHtml(month),
+      "",
+      "video"
     ),
     stepBlock(
       2,
@@ -162,19 +166,25 @@ function renderDefaultMonth(month, wordsPreview) {
         ? `<div class="step-actions">
             <a class="btn btn-primary" href="${escapeHtml(dailyQuizUrl(month.id))}">Start quiz</a>
           </div>`
-        : wordsStepBody
+        : wordsStepBody,
+      "",
+      month.dailyQuizFile ? "quiz" : "meet"
     ),
     stepBlock(
       3,
       builtinWords ? "Words" : "Words — Learn",
       builtinWords ? "Meet → Learn" : "Flashcards",
-      builtinWords && month.dailyQuizFile ? wordsStepBody : learnStepBody
+      builtinWords && month.dailyQuizFile ? wordsStepBody : learnStepBody,
+      "",
+      "meet"
     ),
     stepBlock(
       4,
       "Memory",
       "Timer + local leaderboard",
-      memoryStepBody
+      memoryStepBody,
+      "",
+      "memory"
     ),
     stepBlock(
       5,
@@ -183,13 +193,17 @@ function renderDefaultMonth(month, wordsPreview) {
       `<div class="step-actions">
         <a class="btn btn-primary" href="${escapeHtml(climbWords)}" target="_blank" rel="noopener">Open Mountain Climb</a>
       </div>
-      <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code></p>`
+      <p class="hint">Unit: <code>${escapeHtml(month.unitId)}</code></p>`,
+      "",
+      "climb"
     ),
     stepBlock(
       6,
       "PRO COMP — CP TEST",
       cpSpeak ? "Pronunciation speak practice (Day 4 style)" : "Pronunciation &amp; comprehension sentences (Google Doc)",
-      cpStepBody
+      cpStepBody,
+      "",
+      "cp"
     ),
     stepBlock(
       7,
@@ -200,7 +214,9 @@ function renderDefaultMonth(month, wordsPreview) {
             <a class="btn btn-primary" href="${escapeHtml(craftHref)}">${escapeHtml(month.craftButton || "Play craft")}</a>
           </div>
           <p class="hint">${escapeHtml(month.featureDetail || "")}</p>`
-        : renderFeatureVideoHtml(month)
+        : renderFeatureVideoHtml(month),
+      "",
+      "craft"
     ),
     stepBlock(
       8,
@@ -209,7 +225,9 @@ function renderDefaultMonth(month, wordsPreview) {
       `<div class="step-actions">
         <a class="btn btn-primary" href="${escapeHtml(climbShow)}" target="_blank" rel="noopener">Open feature quiz</a>
       </div>
-      <p class="hint">Unit: <code>${escapeHtml(month.showUnitId)}</code></p>`
+      <p class="hint">Unit: <code>${escapeHtml(month.showUnitId)}</code></p>`,
+      "",
+      "climb"
     ),
     stepBlock(
       9,
@@ -219,7 +237,9 @@ function renderDefaultMonth(month, wordsPreview) {
         <a class="btn btn-primary" href="${escapeHtml(bingoTeacher)}">Teacher — call list</a>
         <a class="btn btn-secondary" href="${escapeHtml(bingoStudent)}">Student — bingo card</a>
       </div>
-      <p class="hint">FREE center square · tap words on student cards to hear audio when available.</p>`
+      <p class="hint">FREE center square · tap words on student cards to hear audio when available.</p>`,
+      "",
+      "bingo"
     ),
   ];
 
@@ -260,7 +280,8 @@ function renderHalloweenMonth(month) {
       "MRJ Daily",
       "Halloween culture intro — watch, then take the quiz",
       renderIntroVideosHtml(month),
-      "step-daily"
+      "step-daily",
+      "video"
     ),
     stepBlock(
       2,
@@ -270,14 +291,16 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-primary" href="${escapeHtml(dailyQuizUrl(month.id))}">Start quiz</a>
       </div>
       <p class="hint">Retake anytime · scores saved on this device · EN/KO explanations after mistakes.</p>`,
-      "step-quiz"
+      "step-quiz",
+      "quiz"
     ),
     stepBlock(
       3,
       "Words",
       "Meet → Learn (Word Master order)",
       wordsBody,
-      "step-words"
+      "step-words",
+      "meet"
     ),
     stepBlock(
       4,
@@ -287,7 +310,8 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-primary" href="${escapeHtml(wordsMemoryUrl(month.id))}">Play Memory</a>
       </div>
       <p class="hint">Match English &amp; Korean under the clock. Best times saved locally.</p>`,
-      "step-memory"
+      "step-memory",
+      "memory"
     ),
     stepBlock(
       5,
@@ -297,7 +321,8 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-primary" href="${escapeHtml(climbWords)}">Open Mountain Climb</a>
       </div>
       <p class="hint">Same climb experience as conversation class — videos, trail, and 🧗 climber.</p>`,
-      "step-climb"
+      "step-climb",
+      "climb"
     ),
     stepBlock(
       6,
@@ -307,7 +332,8 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-primary" href="${escapeHtml(cpSpeakUrl(month.id))}">CP Speak practice</a>
       </div>
       <p class="hint">Day 4 style — Korean cue, English speech, Citrinet scoring.</p>`,
-      "step-cp"
+      "step-cp",
+      "cp"
     ),
     stepBlock(
       7,
@@ -317,7 +343,8 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-primary" href="${escapeHtml(craftHref)}">${escapeHtml(month.craftButton || "Play craft")}</a>
       </div>
       <p class="hint">${escapeHtml(month.craftBlurb || month.featureDetail || "")}</p>`,
-      "step-craft"
+      "step-craft",
+      "craft"
     ),
     stepBlock(
       8,
@@ -328,7 +355,8 @@ function renderHalloweenMonth(month) {
         <a class="btn btn-secondary" href="${escapeHtml(bingoStudent)}">Student — bingo card</a>
       </div>
       <p class="hint">Loud, repeatable word audio on every cell. 4×4 card with FREE in the middle.</p>`,
-      "step-bingo"
+      "step-bingo",
+      "bingo"
     ),
   ];
 
@@ -384,6 +412,12 @@ function renderMonth(month, wordsPreview) {
 
   document.title = `Culture Class — ${month.name}: ${month.theme}`;
   void initFeatureYoutubePlayers(document.getElementById("app"));
+  document.querySelectorAll(".teacher-start-here-slot[data-cc-step]").forEach((slot) => {
+    mountTeacherStartHereButton(slot, {
+      monthId: month.id,
+      stepId: slot.getAttribute("data-cc-step"),
+    });
+  });
 }
 
 async function init() {
@@ -402,9 +436,12 @@ async function init() {
   if (isThemedMapMonth(month)) {
     ensureThemeStylesheet(month);
     renderThemedMapMonth(month);
+    installThemedMapTeacherRefresh(month);
+    installTeacherStartPanel(month.id);
     return;
   }
   renderMonth(month, wordsPreview);
+  installTeacherStartPanel(month.id);
 }
 
 init().catch((err) => {
