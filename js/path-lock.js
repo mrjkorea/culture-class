@@ -1,11 +1,15 @@
 /**
  * Culture Class — month hub + sequential activity path locks.
- * Jay: temporary UNLOCK_ALL until proper teacher unlock UI ships.
+ * Jay: temporary UNLOCK_ALL until teacher unlock UI is proven in class — set UNLOCK_ALL false to enforce gates.
  */
 import { MAP_LESSON_STEPS } from "./month-themes.js";
 import { isStepDone } from "./month-progress.js";
 import { homeUrl, monthPageUrl } from "./paths.js";
 import { escapeHtml } from "./words-data.js";
+import {
+  isTeacherMonthUnlocked,
+  isTeacherStepUnlocked,
+} from "./culture-teacher-unlock.js";
 
 /** Set false when teacher unlock UI is ready for production gating. */
 export const UNLOCK_ALL = true;
@@ -16,6 +20,7 @@ if (typeof window !== "undefined") {
   window.__ccPathUnlockAll = UNLOCK_ALL;
 }
 
+/** @deprecated Teacher mode no longer bypasses all locks; use per-section teacher unlocks. */
 export function isTeacherPathUnlocked() {
   try {
     return !!(window.MRJTeacherUnlock && window.MRJTeacherUnlock.isUnlocked());
@@ -25,7 +30,7 @@ export function isTeacherPathUnlocked() {
 }
 
 export function pathLocksActive() {
-  return !UNLOCK_ALL && !isTeacherPathUnlocked();
+  return !UNLOCK_ALL;
 }
 
 export function getReleasedMonthId() {
@@ -40,6 +45,7 @@ export function getReleasedMonthId() {
 
 export function isMonthPathOpen(monthId) {
   if (!pathLocksActive()) return true;
+  if (isTeacherMonthUnlocked(monthId)) return true;
   const released = parseInt(getReleasedMonthId(), 10);
   const target = parseInt(String(monthId || "").padStart(2, "0"), 10);
   if (!Number.isFinite(target)) return false;
@@ -55,6 +61,7 @@ function stepOrder(stepId) {
 export function isActivityPathOpen(monthId, stepId) {
   if (!pathLocksActive()) return true;
   if (!isMonthPathOpen(monthId)) return false;
+  if (isTeacherStepUnlocked(monthId, stepId)) return true;
   const steps = MAP_LESSON_STEPS;
   const idx = steps.findIndex((s) => s.id === stepId);
   if (idx <= 0) return true;

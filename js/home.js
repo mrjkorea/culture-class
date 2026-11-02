@@ -1,6 +1,8 @@
 import { dataUrl, monthUrl, repoRoot } from "./paths.js";
 import { applyI18n, getLang, mountLangSelect, setLang, t } from "./i18n.js";
 import { isMonthPathOpen, pathLocksActive } from "./path-lock.js";
+import { installTeacherStartPanel, mountTeacherStartHereButton, isTeacherUiActive } from "./culture-teacher-panel.js";
+import { onTeacherPathChanged } from "./culture-teacher-unlock.js";
 
 async function loadMonths() {
   const res = await fetch(dataUrl("months.json"));
@@ -29,6 +31,9 @@ function renderHome(data) {
       const halloween = m.monthLayout === "halloween" || m.id === "10";
       const open = isMonthPathOpen(m.id);
       const locked = pathLocksActive() && !open;
+      const teacherRow = locked
+        ? `<div class="teacher-start-here-slot" data-cc-month="${m.id}"></div>`
+        : "";
       const cls = [
         hasCover
           ? `month-card month-card-cover${halloween ? " month-card-cover-halloween" : ""}`
@@ -41,7 +46,7 @@ function renderHome(data) {
       <div class="num">Month ${m.id}</div>
       <div class="name">${m.name}</div>
       <div class="theme">${m.theme}</div>
-      ${locked ? '<div class="month-lock-tag">🔒</div>' : ""}`;
+      ${locked ? '<div class="month-lock-tag">🔒</div>' : ""}${teacherRow}`;
       if (locked) {
         return `
     <div class="${cls}" aria-disabled="true"${coverStyle(m)}>${inner}</div>`;
@@ -52,6 +57,14 @@ function renderHome(data) {
     .join("");
 
   applyI18n(document);
+  document.querySelectorAll(".teacher-start-here-slot[data-cc-month]").forEach((slot) => {
+    if (!isTeacherUiActive()) return;
+    mountTeacherStartHereButton(slot, {
+      monthId: slot.getAttribute("data-cc-month"),
+      stepId: "video",
+      label: "Start month",
+    });
+  });
 }
 
 setLang(getLang());
@@ -63,4 +76,9 @@ loadMonths().then(renderHome).catch((err) => {
   console.error(err);
   document.getElementById("month-grid").innerHTML =
     '<p class="placeholder-box">Could not load course data. Check that <code>data/months.json</code> is deployed.</p>';
+});
+
+installTeacherStartPanel(null);
+onTeacherPathChanged(() => {
+  loadMonths().then(renderHome).catch(console.error);
 });

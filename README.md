@@ -45,9 +45,13 @@ Quiz JSON on the climb server may land later; URLs are wired now.
 
 Deploy from **`main`** branch, folder **`/`** (root).
 
+## Path locks & teacher unlock
+
+- **`js/path-lock.js`**: `UNLOCK_ALL` (currently `true`) bypasses all month/step gates for classroom. When set to `false`, a section opens if **progress** or **teacher unlock** allows it.
+- **Teacher**: Sign in as the student, tap **Teacher** → enter PIN → panel lists months, map steps, and word groups (every 5 words). Unlocks sync to AppProgress (`culture-class`) when MRJ auth is available.
+
 ## v1 scope
 
-- No mrj-signin gate
 - Culture intro videos play in-page via YouTube (`youtube-nocookie.com` embeds); missing slots stay as placeholders
 - No copyrighted cartoon hosting
 - Bingo v0 without Firebase (teacher projects call list)

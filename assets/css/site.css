@@ -157,6 +157,124 @@ a:hover {
   font-size: 1rem;
 }
 
+/* Teacher "Start from here" (mrj-auth Teacher chip panel) */
+.teacher-start-here-btn {
+  margin-top: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 2px solid var(--accent, #c9a227);
+  background: #fff8e6;
+  cursor: pointer;
+  min-height: 44px;
+  display: none;
+}
+body.mrj-teacher .teacher-start-here-btn {
+  display: inline-block;
+}
+#teacher-start-panel-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  pointer-events: none;
+}
+#teacher-start-panel-root:not([hidden]) {
+  pointer-events: auto;
+}
+.teacher-start-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+.teacher-start-dialog {
+  position: relative;
+  max-width: 520px;
+  width: calc(100% - 1.5rem);
+  margin: 4.5rem auto 1rem;
+  background: var(--surface, #fff);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  max-height: calc(100vh - 5.5rem);
+  overflow: auto;
+  padding: 0.75rem 1rem 1rem;
+}
+.teacher-start-header h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+}
+.teacher-start-sub {
+  margin: 0 0 0.5rem;
+  color: var(--muted, #555);
+  font-size: 0.95rem;
+}
+.teacher-start-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+.teacher-start-section h3 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 1.05rem;
+}
+.teacher-start-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.teacher-start-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border, #ddd);
+}
+.teacher-start-row span {
+  flex: 1 1 160px;
+}
+.teacher-start-action {
+  min-height: 44px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid var(--border, #ccc);
+  background: #f5f5f5;
+  cursor: pointer;
+}
+.teacher-start-action.primary {
+  background: var(--accent, #c9a227);
+  color: #1a1200;
+  border-color: #a88410;
+  font-weight: 600;
+}
+.teacher-start-footer {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+}
+.teacher-start-note {
+  background: #f0f7ff;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.map-node .teacher-start-here-btn,
+.step-header .teacher-start-here-btn {
+  display: none;
+}
+body.mrj-teacher .map-node .teacher-start-here-btn,
+body.mrj-teacher .step-header .teacher-start-here-btn {
+  display: inline-block;
+}
+
 .path-lock-box h2 {
   margin-top: 0;
 }

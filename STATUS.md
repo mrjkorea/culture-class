@@ -2,7 +2,8 @@
 
 ## October 2026 (month 10) — Halloween remake
 
-- **Map UI**: `months/10-october/` — full-bleed adventure map with path nodes (video → quiz → Meet → Learn → Memory → Climb → CP → Craft → Bingo). Progress stored in `localStorage` (`culture-class-step-done-10-*`). Path locks gated by `js/path-lock.js` (`UNLOCK_ALL` for classroom).
+- **Map UI**: `months/10-october/` — full-bleed adventure map with path nodes (video → quiz → Meet → Learn → Memory → Climb → CP → Craft → Bingo). Progress stored in `localStorage` (`culture-class-step-done-10-*`). Path locks gated by `js/path-lock.js` (`UNLOCK_ALL` temporary — set `UNLOCK_ALL = false` in that file when ready to enforce progress + teacher unlocks).
+- **Teacher unlock**: Top-right **Teacher** chip (mrj-signin PIN) opens **Start from here** panel; per-student unlocks in `localStorage` key `culture-class-teacher-path-<studentId>` and AppProgress program `culture-class`.
 - **Words**: `data/oct-words.json` + `data/audio/oct-words/*.mp3` + SVG art under `assets/words/oct/`.
 - **Meet / Learn / Memory**: `words/meet.html`, `words/learn.html`, `words/memory.html` with Halloween theme (`assets/css/halloween.css`). JPG art (no text in images); Pirate Fish mp3 audio. Memory uses pumpkin card backs, SFX, spoken English on flip.
 - **Mountain Climb**: `climb/climb.html` + `climb/data/culture_m10.json` (words) and `culture_m10_show.json` (daily quiz). Coach SFX from day2-words Ray clips.

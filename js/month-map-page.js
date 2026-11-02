@@ -30,6 +30,8 @@ function escapeHtml(s) {
 
 import { withLinkVersion } from "./site-version.js";
 import { isActivityPathOpen, pathLocksActive } from "./path-lock.js";
+import { mountTeacherStartHereButton } from "./culture-teacher-panel.js";
+import { onTeacherPathChanged } from "./culture-teacher-unlock.js";
 
 function stepHref(month, step) {
   let href;
@@ -118,7 +120,8 @@ export function renderThemedMapMonth(month) {
           <span class="map-node-emoji">${step.emoji}</span>
           <span class="map-node-label">${escapeHtml(step.short)}</span>
           ${done ? '<span class="map-node-check">✓</span>' : ""}
-          ${locked ? '<span class="map-node-lock" aria-hidden="true">🔒</span>' : ""}`;
+          ${locked ? '<span class="map-node-lock" aria-hidden="true">🔒</span>' : ""}
+          <span class="teacher-start-here-slot" data-cc-step="${step.id}"></span>`;
       if (locked) {
         return `
         <span class="${classes}" style="left:${step.x}%;top:${step.y}%;" data-step="${step.id}" title="Finish the previous step first">
@@ -168,6 +171,22 @@ export function renderThemedMapMonth(month) {
   });
 
   void initFeatureYoutubePlayers(document.getElementById("app"));
+  paintTeacherMapButtons(month);
+}
+
+function paintTeacherMapButtons(month) {
+  document.querySelectorAll(".teacher-start-here-slot[data-cc-step]").forEach((slot) => {
+    mountTeacherStartHereButton(slot, {
+      monthId: month.id,
+      stepId: slot.getAttribute("data-cc-step"),
+    });
+  });
+}
+
+export function installThemedMapTeacherRefresh(month) {
+  onTeacherPathChanged(() => {
+    renderThemedMapMonth(month);
+  });
 }
 
 /** @deprecated use renderThemedMapMonth */
