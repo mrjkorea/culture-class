@@ -14,7 +14,7 @@ export const MONTH_FISH_VOICES = {
   "09": { host: "Nia", fishId: "", key: "nia" },
   "10": { host: "Frank Monster", fishId: "a1895a46a08d48578b8a679a035d79fe", key: "frank" },
   "11": { host: "Grandma June", fishId: "0a90765966ac4556a6ecfd86ef8057d3", key: "june" },
-  "12": { host: "Miss Harper", fishId: "736de7d32d7949469ba4664bce9f3f32", key: "harper" },
+  "12": { host: "Santa", fishId: "ae1297174b0e4a9c838d218aa0419d8f", key: "santa" },
 };
 
 /** Locked Fish narrator per month — see `js/month-fish-voices.js`. */

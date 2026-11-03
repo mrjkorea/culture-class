@@ -1,0 +1,15 @@
+{
+  "voiceId": "0a90765966ac4556a6ecfd86ef8057d3",
+  "voiceName": "Grandma June",
+  "bakedAt": "2026-11-04",
+  "note": "November Climb coach cheers (right/wrong/top/retry) — Grandma June only.",
+  "clips": {
+    "right1.mp3": "data/audio/nov-climb-coach/right1.mp3",
+    "right2.mp3": "data/audio/nov-climb-coach/right2.mp3",
+    "right3.mp3": "data/audio/nov-climb-coach/right3.mp3",
+    "wrong1.mp3": "data/audio/nov-climb-coach/wrong1.mp3",
+    "wrong2.mp3": "data/audio/nov-climb-coach/wrong2.mp3",
+    "top1.mp3": "data/audio/nov-climb-coach/top1.mp3",
+    "retry1.mp3": "data/audio/nov-climb-coach/retry1.mp3"
+  }
+}

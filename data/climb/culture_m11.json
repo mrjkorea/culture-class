@@ -9,7 +9,7 @@
   "wordAudio": "../data/audio/nov-words/",
   "picDir": "../assets/words/nov/",
   "coach": {
-    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "dir": "../data/audio/nov-climb-coach/",
     "right": [
       "right1.mp3",
       "right2.mp3",

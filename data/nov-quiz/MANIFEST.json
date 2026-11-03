@@ -1,0 +1,13 @@
+{
+  "voiceId": "0a90765966ac4556a6ecfd86ef8057d3",
+  "voiceName": "Grandma June",
+  "bakedAt": "2026-11-04",
+  "note": "November Thanksgiving daily quiz stems \u2014 Grandma June only.",
+  "clips": {
+    "q1_stem": "data/audio/nov-quiz/q1_stem.mp3",
+    "q2_stem": "data/audio/nov-quiz/q2_stem.mp3",
+    "q3_stem": "data/audio/nov-quiz/q3_stem.mp3",
+    "q4_stem": "data/audio/nov-quiz/q4_stem.mp3",
+    "q5_stem": "data/audio/nov-quiz/q5_stem.mp3"
+  }
+}
