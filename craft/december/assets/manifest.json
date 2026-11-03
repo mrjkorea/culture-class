@@ -1,8 +1,8 @@
 {
-  "version": 1,
-  "nature": {
-    "closed": "nature/nature_talk_closed.jpg",
-    "open": "nature/nature_talk_open.jpg"
+  "version": 2,
+  "santa": {
+    "closed": "santa/santa_talk_closed.jpg",
+    "open": "santa/santa_talk_open.jpg"
   },
   "audio": {
     "intro": "audio/nature/intro.mp3",

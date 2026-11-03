@@ -92,18 +92,18 @@ function speakLine(stage, block, lineIndex, opts = {}) {
   return speech.speak("", { clipKey });
 }
 
-function cowboyUrls() {
-  if (!manifest?.cowboy) return null;
+function grandmaUrls() {
+  if (!manifest?.grandma) return null;
   return {
-    open: new URL(manifest.cowboy.open, assetBase).href,
-    closed: new URL(manifest.cowboy.closed, assetBase).href,
+    open: new URL(manifest.grandma.open, assetBase).href,
+    closed: new URL(manifest.grandma.closed, assetBase).href,
   };
 }
 
-function wireCowboy() {
-  const img = document.getElementById("cowboy-img");
-  const urls = cowboyUrls();
-  if (img && urls) speech.setCowboy(img, urls);
+function wireGrandma() {
+  const img = document.getElementById("grandma-img");
+  const urls = grandmaUrls();
+  if (img && urls) speech.setGrandma(img, urls);
 }
 
 function paintLang() {
@@ -274,9 +274,9 @@ function stageShell(stage, index) {
       <p id="line-a" class="line line-single"></p>
       <div class="bar" id="bar"><span id="progress-fill"></span></div>
       <p id="progress-label" class="progress-label"></p>
-      <div class="cowboy-row">
-        <div class="cowboy-host" aria-hidden="true">
-          <img id="cowboy-img" alt="" width="72" height="72" decoding="async" />
+      <div class="grandma-row">
+        <div class="grandma-host" aria-hidden="true">
+          <img id="grandma-img" alt="" width="72" height="72" decoding="async" />
         </div>
       </div>
     </div>
@@ -294,7 +294,7 @@ function playStage(stage, index) {
     const play = document.getElementById("play");
     let handle = null;
     let mid = false;
-    wireCowboy();
+    wireGrandma();
     const craft = state.craft;
     const ctx = {
       uiLang,

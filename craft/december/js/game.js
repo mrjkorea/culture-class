@@ -89,18 +89,18 @@ function speakLine(stage, block, lineIndex, opts = {}) {
   return speech.speak("", { clipKey });
 }
 
-function natureUrls() {
-  if (!manifest?.nature) return null;
+function santaUrls() {
+  if (!manifest?.santa) return null;
   return {
-    open: new URL(manifest.nature.open, assetBase).href,
-    closed: new URL(manifest.nature.closed, assetBase).href,
+    open: new URL(manifest.santa.open, assetBase).href,
+    closed: new URL(manifest.santa.closed, assetBase).href,
   };
 }
 
-function wireNature() {
-  const img = document.getElementById("nature-img");
-  const urls = natureUrls();
-  if (img && urls) speech.setNature(img, urls);
+function wireSanta() {
+  const img = document.getElementById("santa-img");
+  const urls = santaUrls();
+  if (img && urls) speech.setSanta(img, urls);
 }
 
 function paintLang() {
@@ -267,9 +267,9 @@ function stageShell(stage, index) {
       <p id="line-a" class="line line-single"></p>
       <div class="bar" id="bar"><span id="progress-fill"></span></div>
       <p id="progress-label" class="progress-label"></p>
-      <div class="nature-row">
-        <div class="nature-host" aria-hidden="true">
-          <img id="nature-img" alt="" width="72" height="72" decoding="async" />
+      <div class="santa-row">
+        <div class="santa-host" aria-hidden="true">
+          <img id="santa-img" alt="" width="72" height="72" decoding="async" />
         </div>
       </div>
     </div>
@@ -287,7 +287,7 @@ function playStage(stage, index) {
     const play = document.getElementById("play");
     let handle = null;
     let mid = false;
-    wireNature();
+    wireSanta();
     const craft = state.craft;
     const ctx = {
       uiLang,

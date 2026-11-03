@@ -1,8 +1,8 @@
 {
-  "version": 2,
-  "cowboy": {
-    "closed": "cowboy/cowboy_talk_closed.jpg",
-    "open": "cowboy/cowboy_talk_open.jpg"
+  "version": 3,
+  "grandma": {
+    "closed": "grandma/grandma_talk_closed.jpg",
+    "open": "grandma/grandma_talk_open.jpg"
   },
   "scenes3d": {
     "hunt": "transitions/t01_hunt.jpg",
