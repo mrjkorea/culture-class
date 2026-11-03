@@ -1130,17 +1130,17 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 }
 
 /* —— December Christmas craft —— */
-.nature-host img {
+.santa-host img {
   border-radius: 50%;
-  border: 3px solid #2e7d32;
+  border: 3px solid #c62828;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.nature-host.is-talking img {
+.santa-host.is-talking img {
   box-shadow: 0 0 14px rgba(255, 213, 79, 0.55);
 }
 
-.nature-row {
+.santa-row {
   display: flex;
   justify-content: center;
   margin-top: 0.35rem;

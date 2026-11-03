@@ -1,5 +1,5 @@
 /**
- * Nature (Docs) host: warm festive Fish MP3s in assets/audio/nature/ only.
+ * Santa host art with Fish MP3s in assets/audio/nature/ (Santa voice rebake is separate).
  */
 
 export function createSpeech(manifest = {}, assetBase = "") {
@@ -11,7 +11,7 @@ export function createSpeech(manifest = {}, assetBase = "") {
   let speaking = false;
   let activeAudio = null;
 
-  function setNature(img, urls) {
+  function setSanta(img, urls) {
     hostImg = img || null;
     openUrl = urls?.open || "";
     closedUrl = urls?.closed || "";
@@ -21,7 +21,7 @@ export function createSpeech(manifest = {}, assetBase = "") {
   function setMouth(open) {
     if (!hostImg || !openUrl || !closedUrl) return;
     hostImg.src = open ? openUrl : closedUrl;
-    hostImg.closest(".nature-host")?.classList.toggle("is-talking", open);
+    hostImg.closest(".santa-host")?.classList.toggle("is-talking", open);
   }
 
   function startFlap() {
@@ -38,7 +38,7 @@ export function createSpeech(manifest = {}, assetBase = "") {
     flapTimer = 0;
     setMouth(false);
     speaking = false;
-    hostImg?.closest(".nature-host")?.classList.remove("is-talking");
+    hostImg?.closest(".santa-host")?.classList.remove("is-talking");
   }
 
   function clipUrl(clipKey) {
@@ -99,7 +99,7 @@ export function createSpeech(manifest = {}, assetBase = "") {
       activeAudio = null;
       stopFlap();
     },
-    setNature,
+    setSanta,
     setEnabled(on) {
       enabled = Boolean(on);
       if (!enabled) this.stop();
