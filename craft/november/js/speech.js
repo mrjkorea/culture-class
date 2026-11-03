@@ -1,5 +1,5 @@
 /**
- * Cowboy host: warm festive Fish MP3s in assets/audio/cowboy/ only.
+ * Grandma June host: warm Fish MP3s in assets/audio/grandma/ only.
  */
 
 export function createSpeech(manifest = {}, assetBase = "") {

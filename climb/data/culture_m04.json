@@ -6,8 +6,26 @@
   "units": [
     "culture_m04"
   ],
-  "wordAudio": "data/audio/apr-words/",
-  "picDir": "assets/words/apr/",
+  "wordAudio": "../data/audio/apr-words/",
+  "picDir": "../assets/words/apr/",
+  "coach": {
+    "dir": "https://mrjkorea.github.io/day2-words/day3/audio/ray/",
+    "right": [
+      "right1.mp3",
+      "right2.mp3",
+      "right3.mp3"
+    ],
+    "wrong": [
+      "wrong1.mp3",
+      "wrong2.mp3"
+    ],
+    "top": [
+      "top1.mp3"
+    ],
+    "retry": [
+      "retry1.mp3"
+    ]
+  },
   "lineAudio": "",
   "video": {
     "up": "https://mrjkorea.github.io/day2-words/day3/video/climb_up.mp4",
