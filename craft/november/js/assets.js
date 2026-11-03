@@ -1,4 +1,4 @@
-/** Load stages.json + manifest. Nia host audio only. */
+/** Load stages.json + manifest. Grandma June host audio only. */
 
 import { CRAFT_ASSET_V } from "./asset-version.js";
 
@@ -18,6 +18,12 @@ export async function loadCraft() {
 
 export function transitionUrl(assetBase, manifest, id) {
   const rel = manifest.transitions?.[id];
+  if (!rel) return "";
+  return new URL(rel, assetBase).href;
+}
+
+export function scene3dUrl(assetBase, manifest, key) {
+  const rel = manifest.scenes3d?.[key];
   if (!rel) return "";
   return new URL(rel, assetBase).href;
 }

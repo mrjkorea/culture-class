@@ -1,7 +1,24 @@
 /**
- * November Thanksgiving craft — eleven feast stages.
+ * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { ovenSvg, tableSvg, titleArtSvg } from "./thanksgiving-art.js";
+import { scene3dUrl } from "./assets.js";
+import {
+  mountHunt3D,
+  mountMash3D,
+  mountOven3D,
+  mountPie3D,
+  mountPlates3D,
+  mountPluck3D,
+} from "./stage3d.js";
+import {
+  diningRoomSvg,
+  gravyPotSvg,
+  ovenSvg,
+  pieBakeSvg,
+  stuffingBowlSvg,
+  tableSvg,
+  turkeyPluckSvg,
+} from "./thanksgiving-art.js";
 
 function esc(s) {
   return String(s)
@@ -11,14 +28,37 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
+function sceneKeyForStage(stage) {
+  return stage.key || "hunt";
+}
+
+function backdropAttr(ctx, sceneKey) {
+  const bg = scene3dUrl(ctx?.assetBase, ctx?.manifest, sceneKey);
+  if (!bg) return "";
+  const safe = String(bg).replace(/'/g, "%27").replace(/"/g, "%22");
+  return ` style="background-image:url('${safe}')"`;
+}
+
+function feastSceneWrap(ctx, stage, inner, extraClass = "") {
+  const key = sceneKeyForStage(stage);
+  return `<div class="feast-scene scene-3d gl-scene ${extraClass}"${backdropAttr(ctx, key)}>${inner}</div>`;
+}
+
 function mountTurkeyHunt(root, stage, ctx) {
+  const gl = mountHunt3D(root, stage, ctx);
+  if (gl) return gl;
   const pool = stage.poolSize || 16;
   const turkeys = new Set([Math.floor(Math.random() * pool)]);
   let found = false;
-  root.innerHTML = `<div class="hunt-field">${Array.from(
-    { length: pool },
-    (_, i) => `<button type="button" class="bush-cell" data-i="${i}">🌾</button>`
-  ).join("")}</div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="hunt-field hunt-field-lg">${Array.from(
+      { length: pool },
+      (_, i) => `<button type="button" class="bush-cell" data-i="${i}">🌾</button>`
+    ).join("")}</div>`,
+    "feast-fallback"
+  );
   root.querySelectorAll(".bush-cell").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (btn.disabled || found) return;
@@ -40,15 +80,27 @@ function mountTurkeyHunt(root, stage, ctx) {
 }
 
 function mountPluck(root, stage, ctx) {
+  const gl = mountPluck3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 28;
   let n = 0;
-  root.innerHTML = `<div class="pluck-stage"><p class="turkey-icon">🦃</p><button type="button" class="feast-btn" id="pluck">Pluck feathers</button><p class="feather-count" id="fc">0</p></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="pluck-stage pluck-stage-lg">
+      <div class="pluck-art-wrap">${turkeyPluckSvg(1)}</div>
+      <button type="button" class="feast-btn feast-btn-lg" id="pluck">Pluck feathers</button>
+      <p class="feather-count" id="fc">0</p>
+    </div>`
+  );
+  const art = root.querySelector(".pluck-turkey-art");
   const fc = root.querySelector("#fc");
   root.querySelector("#pluck").addEventListener("click", () => {
     if (n >= total) return;
     n += 1;
     ctx.onProgress(n, total);
     ctx.sfx?.stage?.(stage.key);
+    if (art) art.outerHTML = turkeyPluckSvg(1 - n / total);
     if (fc) fc.textContent = `${n}`;
     if (n >= total) ctx.onComplete();
   });
@@ -58,20 +110,32 @@ function mountPluck(root, stage, ctx) {
 function mountStuff(root, stage, ctx) {
   const total = stage.clicks || 20;
   let n = 0;
-  root.innerHTML = `<div class="stuff-stage"><button type="button" class="feast-btn" id="stuff">Stuff dressing</button><div class="stuff-meter"><span id="sm"></span></div></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="stuff-stage stuff-stage-lg">
+      <div class="stuff-art">${stuffingBowlSvg(0)}</div>
+      <button type="button" class="feast-btn feast-btn-lg" id="stuff">Stuff dressing</button>
+      <div class="stuff-meter"><span id="sm"></span></div>
+    </div>`
+  );
   const sm = root.querySelector("#sm");
+  const art = root.querySelector(".stuff-bowl-art");
   root.querySelector("#stuff").addEventListener("click", () => {
     if (n >= total) return;
     n += 1;
     ctx.onProgress(n, total);
     ctx.sfx?.stage?.(stage.key);
     if (sm) sm.style.width = `${(n / total) * 100}%`;
+    if (art) art.outerHTML = stuffingBowlSvg(n / total);
     if (n >= total) ctx.onComplete();
   });
   return { destroy() {} };
 }
 
 function mountOvenHold(root, stage, ctx) {
+  const gl = mountOven3D(root, stage, ctx);
+  if (gl) return gl;
   const need = stage.holdRequiredMs || 60000;
   let accumulated = 0;
   let holding = false;
@@ -79,12 +143,16 @@ function mountOvenHold(root, stage, ctx) {
   let last = 0;
   let lastSec = -1;
 
-  root.innerHTML = `<div class="oven-stage">
-    ${ovenSvg(0)}
-    <p class="oven-hint" id="oven-hint">Hold to roast — about one minute</p>
-    <div class="oven-meter"><span id="oven-fill"></span></div>
-    <button type="button" class="feast-btn oven-hold-btn" id="oven-hold">Hold oven door</button>
-  </div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="oven-stage oven-stage-lg">
+      ${ovenSvg(0)}
+      <p class="oven-hint" id="oven-hint">Hold to roast — about one minute</p>
+      <div class="oven-meter"><span id="oven-fill"></span></div>
+      <button type="button" class="feast-btn feast-btn-lg oven-hold-btn" id="oven-hold">Hold oven door</button>
+    </div>`
+  );
   const fill = root.querySelector("#oven-fill");
   const hint = root.querySelector("#oven-hint");
   const btn = root.querySelector("#oven-hold");
@@ -148,9 +216,18 @@ function mountOvenHold(root, stage, ctx) {
 }
 
 function mountMash(root, stage, ctx) {
+  const gl = mountMash3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 32;
   let n = 0;
-  root.innerHTML = `<div class="mash-stage"><button type="button" class="feast-btn mash-btn" id="mash">Mash 🥔</button><p class="hint">Tap or hold</p></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="mash-stage mash-stage-lg">
+      <button type="button" class="feast-btn feast-btn-lg mash-btn" id="mash">Mash 🥔</button>
+      <p class="hint feast-hint-overlay">Tap the pot — keep mashing!</p>
+    </div>`
+  );
   const btn = root.querySelector("#mash");
   let tick = null;
   const step = () => {
@@ -187,43 +264,67 @@ function mountMash(root, stage, ctx) {
 function mountGravy(root, stage, ctx) {
   const total = stage.clicks || 16;
   let n = 0;
-  root.innerHTML = `<div class="gravy-stage"><div class="gravy-bowl">🥣</div><button type="button" class="feast-btn" id="pour">Pour gravy</button></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="gravy-stage gravy-stage-lg">
+      <div class="gravy-art">${gravyPotSvg(0)}</div>
+      <button type="button" class="feast-btn feast-btn-lg" id="pour">Pour gravy</button>
+    </div>`
+  );
+  const art = root.querySelector(".gravy-pot-art");
   root.querySelector("#pour").addEventListener("click", () => {
     if (n >= total) return;
     n += 1;
     ctx.onProgress(n, total);
     ctx.sfx?.splash?.();
     ctx.sfx?.stage?.(stage.key);
+    if (art) art.outerHTML = gravyPotSvg(n / total);
     if (n >= total) ctx.onComplete();
   });
   return { destroy() {} };
 }
 
 function mountPie(root, stage, ctx) {
+  const gl = mountPie3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 12;
   let n = 0;
-  root.innerHTML = `<div class="pie-stage"><p class="pie-icon" id="pie">🥧</p><button type="button" class="feast-btn" id="bake">Bake pie</button></div>`;
-  const pie = root.querySelector("#pie");
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="pie-stage pie-stage-lg">
+      <div class="pie-art">${pieBakeSvg(0)}</div>
+      <button type="button" class="feast-btn feast-btn-lg" id="bake">Bake pie</button>
+    </div>`
+  );
+  const art = root.querySelector(".pie-bake-art");
   root.querySelector("#bake").addEventListener("click", () => {
     if (n >= total) return;
     n += 1;
     ctx.onProgress(n, total);
     ctx.sfx?.stage?.(stage.key);
-    if (pie) pie.textContent = n > total / 2 ? "🎃🥧" : "🥧";
+    if (art) art.outerHTML = pieBakeSvg(n / total);
     if (n >= total) ctx.onComplete();
   });
   return { destroy() {} };
 }
 
 function mountSetPlates(root, stage, ctx) {
+  const gl = mountPlates3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 6;
   let n = 0;
-  root.innerHTML = `<div class="table-stage">${tableSvg(0)}<div class="plate-row" id="plates"></div></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="table-stage table-stage-lg">${tableSvg(0)}<div class="plate-row plate-row-lg" id="plates"></div></div>`
+  );
   const row = root.querySelector("#plates");
   for (let i = 0; i < total; i += 1) {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "plate-btn";
+    btn.className = "plate-btn plate-btn-lg";
     btn.textContent = "Set plate";
     btn.addEventListener("click", () => {
       if (btn.disabled) return;
@@ -245,12 +346,19 @@ function mountSetSilver(root, stage, ctx) {
   const total = stage.clicks || 8;
   const items = ["🍴", "🍴", "🥛", "🥛", "🍴", "🥛", "🧻", "🍴"];
   let n = 0;
-  root.innerHTML = `<div class="silver-stage"><div class="silver-grid" id="sg"></div></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="silver-stage silver-stage-lg">
+      ${diningRoomSvg()}
+      <div class="silver-grid silver-grid-lg" id="sg"></div>
+    </div>`
+  );
   const grid = root.querySelector("#sg");
   items.forEach((icon, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "silver-btn";
+    btn.className = "silver-btn silver-btn-lg";
     btn.textContent = i < total ? "?" : "—";
     if (i >= total) {
       btn.disabled = true;
@@ -274,12 +382,19 @@ function mountSeatFamily(root, stage, ctx) {
   const total = stage.clicks || 5;
   const names = ["Mom", "Dad", "Grandma", "Grandpa", "You"];
   let n = 0;
-  root.innerHTML = `<div class="seat-stage"><div class="chair-row" id="chairs"></div></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="seat-stage seat-stage-lg">
+      ${diningRoomSvg()}
+      <div class="chair-row chair-row-lg" id="chairs"></div>
+    </div>`
+  );
   const row = root.querySelector("#chairs");
   names.forEach((name, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "chair-btn";
+    btn.className = "chair-btn chair-btn-lg";
     btn.textContent = `Seat ${name}`;
     btn.addEventListener("click", () => {
       if (btn.disabled || i >= total) return;
@@ -305,12 +420,19 @@ function mountThankfulCard(root, stage, ctx) {
     { en: "School", ko: "학교" },
   ];
   const lang = ctx.uiLang === "ko" ? "ko" : "en";
-  root.innerHTML = `<div class="thanks-stage"><p class="thanks-prompt">I'm thankful for…</p><div class="thanks-cards">${cards
-    .map(
-      (c, i) =>
-        `<button type="button" class="thanks-card" data-i="${i}">${esc(c[lang])}</button>`
-    )
-    .join("")}</div></div>`;
+  root.innerHTML = feastSceneWrap(
+    ctx,
+    stage,
+    `<div class="thanks-stage thanks-stage-lg">
+      <p class="thanks-prompt">I'm thankful for…</p>
+      <div class="thanks-cards thanks-cards-lg">${cards
+        .map(
+          (c, i) =>
+            `<button type="button" class="thanks-card thanks-card-lg" data-i="${i}">${esc(c[lang])}</button>`
+        )
+        .join("")}</div>
+    </div>`
+  );
   root.querySelectorAll(".thanks-card").forEach((btn) => {
     btn.addEventListener("click", () => {
       root.querySelectorAll(".thanks-card").forEach((b) => {

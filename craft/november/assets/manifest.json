@@ -1,8 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
   "cowboy": {
     "closed": "cowboy/cowboy_talk_closed.jpg",
     "open": "cowboy/cowboy_talk_open.jpg"
+  },
+  "scenes3d": {
+    "hunt": "transitions/t01_hunt.jpg",
+    "pluck": "transitions/t02_pluck.jpg",
+    "stuff": "transitions/t03_stuff.jpg",
+    "oven": "transitions/t04_oven.jpg",
+    "mash": "transitions/t05_mash.jpg",
+    "gravy": "transitions/t06_gravy.jpg",
+    "pie": "transitions/t07_pie.jpg",
+    "plates": "transitions/t08_plates.jpg",
+    "silver": "transitions/t09_silver.jpg",
+    "seat": "transitions/t10_seat.jpg",
+    "thanks": "transitions/t11_thanks.jpg"
   },
   "audio": {
     "intro": "audio/grandma/intro.mp3",
