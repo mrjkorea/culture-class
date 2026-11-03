@@ -29,6 +29,11 @@
     </main>
   </div>
   <p id="live" class="sr-only" aria-live="polite"></p>
-  <script type="module" src="js/game.js"></script>
+  <script type="module">
+    import { CRAFT_ASSET_V } from "./js/asset-version.js";
+    const css = document.querySelector('link[href="css/game.css"]');
+    if (css) css.href = `css/game.css?v=${CRAFT_ASSET_V}`;
+    import(`./js/game.js?v=${CRAFT_ASSET_V}`);
+  </script>
 </body>
 </html>

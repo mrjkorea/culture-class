@@ -1,5 +1,7 @@
 /** Load stages.json + manifest. Nia host audio only. */
 
+import { CRAFT_ASSET_V } from "./asset-version.js";
+
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`Could not load ${url.pathname || url.href}`);
@@ -23,5 +25,7 @@ export function transitionUrl(assetBase, manifest, id) {
 export function transitionVideoUrl(assetBase, manifest, id) {
   const rel = manifest.transitionVideos?.[id];
   if (!rel) return "";
-  return new URL(rel, assetBase).href;
+  const url = new URL(rel, assetBase);
+  url.searchParams.set("v", CRAFT_ASSET_V);
+  return url.href;
 }
