@@ -2,6 +2,8 @@
  * Grandma June host: warm Fish MP3s in assets/audio/grandma/ only.
  */
 
+import { CRAFT_ASSET_V } from "./asset-version.js";
+
 export function createSpeech(manifest = {}, assetBase = "") {
   let enabled = true;
   let flapTimer = 0;
@@ -44,7 +46,9 @@ export function createSpeech(manifest = {}, assetBase = "") {
   function clipUrl(clipKey) {
     const rel = manifest?.audio?.[clipKey];
     if (!rel || !assetBase) return "";
-    return new URL(rel, assetBase).href;
+    const url = new URL(rel, assetBase);
+    url.searchParams.set("v", CRAFT_ASSET_V);
+    return url.href;
   }
 
   function playClip(clipKey, { overlap = false } = {}) {
