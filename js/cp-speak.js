@@ -16,6 +16,8 @@ import {
   monthPageUrl,
 } from "./cp-data.js";
 import { resolveSrc } from "./words-audio.js";
+import { applyMonthUiTheme } from "./month-ui-theme.js";
+import { getMonthFishVoice } from "./month-fish-voices.js";
 import { setStepDone } from "./month-progress.js";
 import { blockIfActivityLocked } from "./path-lock.js";
 import { syncDisplayNameFromAuth } from "./student-signin.js";
@@ -270,23 +272,12 @@ function renderPractice() {
   syncMicButton();
 }
 
-function bindVoiceToggle() {
-  document.querySelectorAll(".voice-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".voice-btn").forEach((b) => {
-        b.classList.toggle("on", b === btn);
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-      });
-    });
-  });
-}
-
 function updateItemView() {
   renderPractice();
 }
 
 function audioSrc(item) {
-  return resolveSrc(item.audio || item.audio_harper || "");
+  return resolveSrc(item.audio || "");
 }
 
 function playAudio() {
@@ -740,8 +731,6 @@ async function init() {
   }
   syncDisplayNameFromAuth();
   window.addEventListener("mrj-auth-ready", syncDisplayNameFromAuth);
-  bindVoiceToggle();
-
   let monthId = getMonthIdFromQuery() || DEFAULT_SPEAK_MONTH;
   let loaded;
   try {
@@ -770,7 +759,13 @@ async function init() {
     brand.textContent = `${month.name} · CP Speak`;
     brand.href = monthPageUrl(month.slug);
   }
-  document.body.classList.add("halloween-theme");
+  applyMonthUiTheme(month);
+  const voice = getMonthFishVoice(month.id);
+  const label = el("modelLabel");
+  if (label && voice?.host) {
+    label.dataset.monthVoice = voice.key;
+    label.title = `English model: ${voice.host} (pre-baked audio)`;
+  }
   index = 0;
   rowResults = {};
   renderPractice();
