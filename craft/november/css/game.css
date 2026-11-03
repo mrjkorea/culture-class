@@ -1298,3 +1298,169 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   background: linear-gradient(145deg, #ffd43b, #e07a2f);
   color: #4a1c08;
 }
+
+/* White playfield + large feast scenes (October craft parity) */
+.feast-sky:has(#view[data-screen="stage"]),
+.feast-sky:has(#view[data-screen="stage-movie"]) {
+  background: #fff;
+}
+
+.feast-sky:has(#view[data-screen="stage"]) .topbar,
+.feast-sky:has(#view[data-screen="stage-movie"]) .topbar {
+  color: var(--ink);
+  background: rgba(107, 45, 10, 0.08);
+}
+
+.feast-sky:has(#view[data-screen="stage"]) .top-link,
+.feast-sky:has(#view[data-screen="stage-movie"]) .top-link,
+.feast-sky:has(#view[data-screen="stage"]) .top-title,
+.feast-sky:has(#view[data-screen="stage-movie"]) .top-title {
+  color: var(--ink);
+}
+
+.feast-sky:has(#view[data-screen="stage"]) #sound-btn,
+.feast-sky:has(#view[data-screen="stage-movie"]) #sound-btn {
+  color: var(--ink);
+  background: rgba(107, 45, 10, 0.1);
+}
+
+#view[data-screen="stage"] .play {
+  background: #fff;
+  align-items: stretch;
+}
+
+.reel-screen.stage-movie-screen {
+  background: #fff;
+}
+
+.reel-screen.stage-movie-screen .reel-label,
+.reel-screen.stage-movie-screen .still-time {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.feast-scene {
+  position: relative;
+  width: min(980px, 98vw, calc((100dvh - 100px) * 1.35));
+  height: min(78dvh, calc(100dvh - 110px));
+  margin: 0 auto;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 0 rgba(107, 45, 10, 0.16);
+  background: #3a1c08 center / cover no-repeat;
+  display: grid;
+  place-items: center;
+  padding: 4% 3%;
+}
+
+.feast-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 246, 228, 0.12) 0%, rgba(58, 28, 8, 0.35) 100%);
+  pointer-events: none;
+}
+
+.feast-scene > * {
+  position: relative;
+  z-index: 1;
+}
+
+.feast-gl.is-holding-oven::after {
+  box-shadow: inset 0 0 80px rgba(255, 107, 53, 0.45);
+}
+
+.feast-btn-lg {
+  width: min(100%, 360px);
+  min-height: 56px;
+  font-size: 1.15rem;
+}
+
+.hunt-field-lg {
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  gap: 0.55rem;
+  max-width: min(520px, 92vw);
+}
+
+.hunt-field-lg .bush-cell {
+  min-height: 64px;
+  font-size: 1.75rem;
+  border-radius: 18px;
+}
+
+.pluck-stage-lg .pluck-art-wrap,
+.stuff-stage-lg .stuff-art,
+.gravy-stage-lg .gravy-art,
+.pie-stage-lg .pie-art {
+  width: min(280px, 72vw);
+  margin: 0 auto 0.5rem;
+  filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.35));
+}
+
+.pluck-turkey-art,
+.stuff-bowl-art,
+.gravy-pot-art,
+.pie-bake-art,
+.feast-oven-art,
+.feast-table-art {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.plate-row-lg,
+.chair-row-lg {
+  max-width: min(480px, 94vw);
+  gap: 0.55rem;
+}
+
+.plate-btn-lg,
+.chair-btn-lg,
+.silver-btn-lg {
+  min-height: 52px;
+  min-width: 88px;
+  font-size: 1rem;
+}
+
+.silver-grid-lg {
+  grid-template-columns: repeat(4, minmax(64px, 1fr));
+  max-width: min(420px, 92vw);
+  gap: 0.5rem;
+}
+
+.thanks-cards-lg {
+  max-width: min(420px, 92vw);
+  gap: 0.65rem;
+}
+
+.thanks-card-lg {
+  min-height: 64px;
+  font-size: 1.05rem;
+}
+
+.feast-hint-overlay {
+  color: #fff6e4;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.dining-room-art {
+  width: min(360px, 88vw);
+  margin: 0 auto 0.65rem;
+  opacity: 0.92;
+}
+
+.screen-stage.feast-stage .play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .hunt-field-lg {
+    grid-template-columns: repeat(4, minmax(52px, 1fr));
+  }
+  .feast-scene {
+    width: min(98vw, calc(100dvh - 96px));
+    height: min(72dvh, calc(100dvh - 100px));
+  }
+}

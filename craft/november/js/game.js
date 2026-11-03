@@ -298,6 +298,9 @@ function playStage(stage, index) {
     const craft = state.craft;
     const ctx = {
       uiLang,
+      uiCopy: spec.uiCopy,
+      assetBase,
+      manifest,
       speech,
       sfx,
       reducedMotion,
