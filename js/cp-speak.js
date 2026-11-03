@@ -19,6 +19,7 @@ import { resolveSrc } from "./words-audio.js";
 import { applyMonthUiTheme } from "./month-ui-theme.js";
 import { getMonthFishVoice } from "./month-fish-voices.js";
 import { setStepDone } from "./month-progress.js";
+import { withLinkVersion } from "./site-version.js";
 import { blockIfActivityLocked } from "./path-lock.js";
 import { syncDisplayNameFromAuth } from "./student-signin.js";
 
@@ -290,7 +291,7 @@ function playAudio() {
     return;
   }
   audio.pause();
-  audio.src = src;
+  audio.src = withLinkVersion(src);
   audio.play().catch(() => {
     el("micStatus").textContent = "Could not play audio — try again.";
   });
