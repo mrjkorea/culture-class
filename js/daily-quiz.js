@@ -4,9 +4,10 @@ import { setStepDone } from "./month-progress.js";
 import { blockIfActivityLocked } from "./path-lock.js";
 import { getLang, mountLangSelect, pickLocalized, t } from "./i18n.js";
 import { resolveSrc } from "./words-audio.js";
+import { applyMonthUiTheme } from "./month-ui-theme.js";
+import { ensureThemeStylesheet } from "./month-styles.js";
 
 const SCORE_KEY_PREFIX = "culture-class-daily-quiz-";
-const FRANK_VOICE = "a1895a46a08d48578b8a679a035d79fe";
 let quizManifest = null;
 
 function scoreKey(monthId) {
@@ -40,9 +41,19 @@ async function loadQuiz(month) {
   return res.json();
 }
 
-async function loadQuizManifest() {
+/** e.g. nov-daily-quiz.json → nov-quiz/MANIFEST.json (no fallback to other months). */
+function quizManifestRel(month) {
+  const file = month?.dailyQuizFile;
+  if (!file || !/-daily-quiz\.json$/i.test(file)) return null;
+  return file.replace(/-daily-quiz\.json$/i, "-quiz/MANIFEST.json");
+}
+
+async function loadQuizManifest(month) {
+  quizManifest = null;
+  const rel = quizManifestRel(month);
+  if (!rel) return;
   try {
-    const res = await fetch(dataUrl("oct-quiz/MANIFEST.json"));
+    const res = await fetch(dataUrl(rel));
     if (res.ok) quizManifest = await res.json();
   } catch {
     quizManifest = null;
@@ -95,9 +106,9 @@ function renderShell(body) {
     ? `<a class="back-link" href="${escapeHtml(monthPageUrl(month.slug))}">← ${escapeHtml(month.name)}</a>`
     : `<a class="back-link" href="${repoRoot()}/">← All months</a>`;
   app.innerHTML = `
-    <div class="wrap words-flow theme-halloween quiz-flow">
+    <div class="wrap words-flow themed-words-flow quiz-flow">
       ${back}
-      <header class="site-header month-hero words-hero">
+      <header class="site-header month-hero words-hero themed-words-hero">
         <div class="words-hero-row">
           <h2>${month ? escapeHtml(month.name) + " — Daily Quiz" : "Daily Quiz"}</h2>
           <label class="lang-wrap cc-lang-wrap">
@@ -230,11 +241,10 @@ function renderResults() {
 }
 
 async function init() {
-  await loadQuizManifest();
   loadSfx();
   const monthId = getMonthIdFromQuery();
   if (!monthId) {
-    renderShell(`<p class="placeholder-box">Missing month. Open from the October page.</p>`);
+    renderShell(`<p class="placeholder-box">Missing month. Open from a month map.</p>`);
     return;
   }
   month = await loadMonthById(monthId);
@@ -248,6 +258,9 @@ async function init() {
     return;
   }
   if (blockIfActivityLocked(app, month, "quiz")) return;
+  await loadQuizManifest(month);
+  applyMonthUiTheme(month);
+  ensureThemeStylesheet(month);
   document.title = `Culture Class — ${month.name} Daily Quiz`;
   qIndex = 0;
   answers = [];
@@ -258,6 +271,3 @@ init().catch((err) => {
   console.error(err);
   renderShell(`<p class="placeholder-box">Failed to load quiz.</p>`);
 });
-
-// Frank voice id for bake scripts (QUIZ-02)
-export { FRANK_VOICE };

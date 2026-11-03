@@ -3,7 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const V = "20261103-teacher-start-here";
+const V = "20261104-nov-grandma-cos-gate";
 const AUTH_CSS =
   '  <link rel="stylesheet" href="https://mrjkorea.github.io/mrj-signin/mrj-auth.css?v=20261030-cf-login-1.7.3">\n';
 const SCRIPTS = `  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js?v=20261030-cf-login-1.7.3"></script>

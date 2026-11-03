@@ -1,20 +1,20 @@
 /** Keep in sync with SITE_LINK_V when busting Meet ES modules. */
-const MEET_V = "20261103-teacher-start-here";
+const MEET_V = "20261104-nov-grandma-cos-gate";
 
 import {
   escapeHtml,
   getMonthIdFromQuery,
   loadWordsPackForMonth,
   monthPageUrl,
-} from "./words-data.js?v=20261103-teacher-start-here";
-import { playWordAudio } from "./words-audio.js?v=20261103-teacher-start-here";
-import { setStepDone } from "./month-progress.js?v=20261103-teacher-start-here";
-import { repoRoot, wordsLearnUrl } from "./paths.js?v=20261103-teacher-start-here";
-import { applyMonthUiTheme } from "./month-ui-theme.js?v=20261103-teacher-start-here";
-import { ensureThemeStylesheet } from "./month-styles.js?v=20261103-teacher-start-here";
-import { getLang, mountLangSelect, t } from "./i18n.js?v=20261103-teacher-start-here";
-import { termGloss } from "./word-gloss.js?v=20261103-teacher-start-here";
-import { blockIfActivityLocked } from "./path-lock.js?v=20261103-teacher-start-here";
+} from "./words-data.js?v=20261104-nov-grandma-cos-gate";
+import { playWordAudio } from "./words-audio.js?v=20261104-nov-grandma-cos-gate";
+import { setStepDone } from "./month-progress.js?v=20261104-nov-grandma-cos-gate";
+import { repoRoot, wordsLearnUrl } from "./paths.js?v=20261104-nov-grandma-cos-gate";
+import { applyMonthUiTheme } from "./month-ui-theme.js?v=20261104-nov-grandma-cos-gate";
+import { ensureThemeStylesheet } from "./month-styles.js?v=20261104-nov-grandma-cos-gate";
+import { getLang, mountLangSelect, t } from "./i18n.js?v=20261104-nov-grandma-cos-gate";
+import { termGloss } from "./word-gloss.js?v=20261104-nov-grandma-cos-gate";
+import { blockIfActivityLocked } from "./path-lock.js?v=20261104-nov-grandma-cos-gate";
 
 /** Pause after audio ends so students hear the word before the next card. */
 const MEET_ADVANCE_MS = 600;
