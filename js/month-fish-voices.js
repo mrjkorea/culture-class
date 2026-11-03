@@ -3,18 +3,18 @@
  * CP Speak and word packs use these folders; students do not pick Ray/Harper in CP.
  */
 export const MONTH_FISH_VOICES = {
-  "01": { host: "Coach Ray", fishId: "736de7d32d7949469ba4664bce9f3f32", key: "ray" },
-  "02": { host: "Miss Harper", fishId: "736de7d32d7949469ba4664bce9f3f32", key: "harper" },
-  "03": { host: "Leo", fishId: "a60e9fc6e78c4bdca656702c6d27ba08", key: "leo" },
-  "04": { host: "Maya", fishId: "", key: "maya" },
-  "05": { host: "Grandma June", fishId: "0a90765966ac4556a6ecfd86ef8057d3", key: "june" },
-  "06": { host: "Grandpa Walt", fishId: "", key: "walt" },
-  "07": { host: "Coach Ray", fishId: "736de7d32d7949469ba4664bce9f3f32", key: "ray" },
-  "08": { host: "Harper", fishId: "736de7d32d7949469ba4664bce9f3f32", key: "harper" },
-  "09": { host: "Nia", fishId: "", key: "nia" },
+  "01": { host: "Sports announcer", fishId: "c8bacb39cd624721b8638ed8f2ec773e", key: "coach" },
+  "02": { host: "Valentino", fishId: "a1fe2e1b6f324e27929d5088f2d09be3", key: "harper" },
+  "03": { host: "Lively Irish", fishId: "29509e20f1a14a8698ffb42134fc944d", key: "leo" },
+  "04": { host: "Dolly Parton", fishId: "234e60f891c1414dabf5737c98190e1c", key: "maya" },
+  "05": { host: "Bedtime", fishId: "2ecec70ca91b4febbb84a3bc6ed46c2d", key: "walt" },
+  "06": { host: "Docs / Morgan Freeman", fishId: "3ad4d432023c47ee9e6c7805b973630a", key: "june" },
+  "07": { host: "Noah", fishId: "d9ce1833c191476db346efb50aa20722", key: "robot" },
+  "08": { host: "Patrick Stewart", fishId: "de960f838fca4db6952947296b96d0fe", key: "sage" },
+  "09": { host: "Grandpa Walt", fishId: "86d2e997840443a1832c999ee71468b2", key: "nia" },
   "10": { host: "Frank Monster", fishId: "a1895a46a08d48578b8a679a035d79fe", key: "frank" },
-  "11": { host: "Grandma June", fishId: "0a90765966ac4556a6ecfd86ef8057d3", key: "june" },
-  "12": { host: "Santa", fishId: "ae1297174b0e4a9c838d218aa0419d8f", key: "santa" },
+  "11": { host: "Grandma June", fishId: "0a90765966ac4556a6ecfd86ef8057d3", key: "grandma" },
+  "12": { host: "Santa", fishId: "ae1297174b0e4a9c838d218aa0419d8f", key: "nature" },
 };
 
 /** Locked Fish narrator per month — see `js/month-fish-voices.js`. */

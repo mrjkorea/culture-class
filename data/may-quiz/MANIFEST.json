@@ -1,0 +1,12 @@
+{
+  "voiceId": "2ecec70ca91b4febbb84a3bc6ed46c2d",
+  "voiceName": "Bedtime",
+  "bakedAt": "2026-11-04",
+  "clips": {
+    "q1_stem": "data/audio/may-quiz/q1_stem.mp3",
+    "q2_stem": "data/audio/may-quiz/q2_stem.mp3",
+    "q3_stem": "data/audio/may-quiz/q3_stem.mp3",
+    "q4_stem": "data/audio/may-quiz/q4_stem.mp3",
+    "q5_stem": "data/audio/may-quiz/q5_stem.mp3"
+  }
+}
