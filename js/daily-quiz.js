@@ -202,6 +202,13 @@ function renderResults() {
   const when = new Date().toLocaleString();
   saveAttempt(month.id, { score, total, perfect, when });
   setStepDone(month.id, "quiz");
+  if (window.CC_SCORES) {
+    window.CC_SCORES.record("quiz", {
+      scoreValue: score,
+      scoreMax: total,
+      metadata: { perfect: perfect, questions: total },
+    });
+  }
 
   const mistakeHtml = mistakes.length
     ? `<div class="quiz-mistakes">

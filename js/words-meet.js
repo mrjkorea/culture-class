@@ -107,6 +107,12 @@ async function onWordClick(term) {
 
 function finish() {
   if (month) setStepDone(month.id, "meet");
+  if (window.CC_SCORES) {
+    window.CC_SCORES.record("meet", {
+      scoreValue: terms.length,
+      scoreMax: terms.length,
+    });
+  }
   const next = month ? wordsLearnUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete themed-panel">

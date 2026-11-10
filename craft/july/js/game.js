@@ -414,6 +414,12 @@ function showResults() {
     };
     state.board = saveRun(spec.leaderboard.key, state.entry);
   }
+  if (window.CC_SCORES && state.entry) {
+    window.CC_SCORES.record("craft", {
+      durationSeconds: Math.round(state.entry.timeMs / 1000),
+      metadata: { misses: state.entry.misses, time_ms: state.entry.timeMs },
+    });
+  }
   renderResults();
 }
 

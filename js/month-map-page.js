@@ -167,7 +167,18 @@ export function renderThemedMapMonth(month) {
 
   document.getElementById("btnVideoDone")?.addEventListener("click", () => {
     setStepDone(month.id, "video");
-    window.location.href = dailyQuizUrl(month.id);
+    const go = () => {
+      window.location.href = dailyQuizUrl(month.id);
+    };
+    if (window.CC_SCORES) {
+      const post = window.CC_SCORES.record("video", { scoreMax: 100, scoreValue: 100 });
+      Promise.race([
+        Promise.resolve(post).catch(() => {}),
+        new Promise((r) => setTimeout(r, 1500)),
+      ]).then(go, go);
+    } else {
+      go();
+    }
   });
 
   void initFeatureYoutubePlayers(document.getElementById("app"));

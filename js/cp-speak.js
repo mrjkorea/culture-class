@@ -197,6 +197,13 @@ function renderSheet() {
 
 function renderDone() {
   if (month) setStepDone(month.id, "cp");
+  if (window.CC_SCORES) {
+    window.CC_SCORES.record("cp", {
+      scoreValue: passedCount(),
+      scoreMax: pack.items.length,
+      metadata: { sentences: pack.items.length },
+    });
+  }
   const total = pack.items.length;
   const craft = month?.craftPath ? craftUrl(month.craftPath) : monthPageUrl(month.slug);
   app.innerHTML = `

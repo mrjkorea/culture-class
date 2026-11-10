@@ -219,6 +219,14 @@ function finishLearn() {
     setLearnDone(month.id);
     setStepDone(month.id, "learn");
   }
+  if (window.CC_SCORES) {
+    const pct = Algo.learnPartProgress(terms, winsState.winsA);
+    window.CC_SCORES.record("learn", {
+      scoreValue: Number(pct) || 100,
+      scoreMax: 100,
+      metadata: { words: terms.length },
+    });
+  }
   const memoryHref = month ? wordsMemoryUrl(month.id) : "#";
   renderShell(`
     <div class="words-complete themed-panel">

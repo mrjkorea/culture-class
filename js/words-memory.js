@@ -100,7 +100,7 @@ function loadLb() {
 function saveLb(seconds) {
   const list = loadLb();
   const name = leaderboardDisplayName();
-  list.push({ name: name.slice(0, 24), sec, at: Date.now() });
+  list.push({ name: name.slice(0, 24), sec: seconds, at: Date.now() });
   list.sort((a, b) => a.sec - b.sec);
   localStorage.setItem(LB_KEY, JSON.stringify(list.slice(0, 8)));
 }
@@ -256,6 +256,14 @@ function onRoundComplete() {
 function renderAllDone() {
   const sec = stopTimer();
   if (month) setStepDone(month.id, "memory");
+  if (window.CC_SCORES) {
+    window.CC_SCORES.record("memory", {
+      scoreValue: terms.length,
+      scoreMax: terms.length,
+      durationSeconds: sec,
+      metadata: { rounds: rounds.length, words: terms.length },
+    });
+  }
   saveLb(sec);
   const climb = month ? climbUrl(month.unitId) : "#";
   renderShell(

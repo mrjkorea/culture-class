@@ -1,6 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mountain Climb Quiz</title>
+<link rel="stylesheet" href="https://mrjkorea.github.io/mrj-signin/mrj-auth.css?v=20261030-cf-login-1.7.3">
 <link rel="stylesheet" href="wb.css">
 <link rel="stylesheet" href="../assets/css/halloween.css">
 <style>
@@ -87,6 +88,7 @@ function next(){i++;if(i<N)show();else end()}
 function markCultureStep(){try{if(D&&D.kind==='culture'){const m=(D.id||'').match(/^culture_m(\d{2})(?:_show)?$/);if(!m)return;const step=String(D.id).endsWith('_show')?'quiz':'climb';localStorage.setItem('culture-class-step-done-'+m[1]+'-'+step,'1')}}catch(e){}}
 async function end(){const p=Math.round(right/N*100),ps=p>=D.passPercent;WB.save('climb',p,right,N);document.querySelector('.nextlvl')?.remove();
  if(ps)markCultureStep();
+ if(window.CC_SCORES)window.CC_SCORES.record((D&&/_show$/.test(D.id||''))?'climb-quiz':'climb',{scoreValue:p,scoreMax:100,metadata:{right:right,total:N,pass:ps}});
  const passNext=culturePassNext();const nextLbl=passNext.lbl;const nextHref=passNext.href;
  card.innerHTML=`<h1>${D.title}</h1><p class="pct ${ps?'':'fail'}">${p}%</p><div style="font-size:28px">${right} / ${N} right</div>
  <div class="p" style="font-size:24px">${p===100?'🌟 GOLD STAR! '+KINDLBL()+' passed!':ps?'🏔️ PASS! You reached the top! '+KINDLBL()+' passed!':'Not yet — you need '+D.passPercent+'%. Try again!'}</div>
@@ -98,4 +100,8 @@ WB.load().then(d=>{D=d;WB.voiceBtn();N=d.questions.length;drawSteps();
  if(D.kind!=='review'&&D.kind!=='culture'&&!WB.unlocked('climb')){card.innerHTML=`<h1>🔒 Locked</h1><p class="p">Finish step 8 first.</p><button onclick="location.href=WB.link('index.html')">🏠 Steps</button>`;return}
  if(WB.test)WB.skipBtn(()=>{if(!locked&&i<N)check(true,null)});start()}).catch(e=>card.innerHTML='<h1>Oops</h1><p>'+e.message+'</p>');
 </script>
+  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js?v=20261030-cf-login-1.7.3"></script>
+  <script src="../js/culture-auth-boot.js?v=20261111-scores" data-mrj-app="culture-class"></script>
+  <script src="../js/mrj-scores.js?v=20261111-scores"></script>
+  <script src="../js/culture-scores.js?v=20261111-scores"></script>
 </body></html>

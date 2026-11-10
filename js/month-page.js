@@ -17,7 +17,7 @@ import { monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
-import { renderThemedMapMonth, installThemedMapTeacherRefresh } from "./month-map-page.js";
+import { renderThemedMapMonth, installThemedMapTeacherRefresh } from "./month-map-page.js?v=20261111-scores";
 import { isThemedMapMonth } from "./month-themes.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
 import { blockIfMonthLocked } from "./path-lock.js";
