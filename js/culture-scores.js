@@ -49,6 +49,48 @@
 
   var posted = {};
 
+  /* Try number for this activity on this device: 1 for the first finished try,
+     2 for the next, and so on. The client writes it to attempt_index, so a
+     report can tell a retry from a first pass. */
+  var ATTEMPT_KEY = "culture-class-attempts";
+
+  function attempts() {
+    try {
+      var raw = root.localStorage.getItem(ATTEMPT_KEY);
+      var obj = raw ? JSON.parse(raw) : {};
+      return obj && typeof obj === "object" ? obj : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function nextAttempt(key) {
+    var all = attempts();
+    var day = "";
+    try {
+      day = root.localStorage.getItem(key + ":day") || "";
+    } catch (e) {}
+    if (day !== today()) {
+      all[key] = 0;
+      try {
+        root.localStorage.setItem(key + ":day", today());
+      } catch (e) {}
+    }
+    var n = (Number(all[key]) || 0) + 1;
+    all[key] = n;
+    try {
+      root.localStorage.setItem(ATTEMPT_KEY, JSON.stringify(all));
+    } catch (e) {}
+    return n;
+  }
+
+  function today() {
+    var d = new Date();
+    return (
+      d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2)
+    );
+  }
+
   function pad2(v) {
     var s = String(v == null ? "" : v).trim();
     if (!/^\d{1,2}$/.test(s)) return "";
@@ -107,6 +149,8 @@
     } catch (e) {}
     if (!student) return Promise.resolve({ status: "skipped", error: "no student" });
 
+    var attempt = nextAttempt(key);
+
     var meta = opts.metadata || {};
     meta.month = slug || id;
     meta.month_id = id;
@@ -122,6 +166,7 @@
       itemId: "culture-class/" + (slug || "unknown") + "/" + activity,
       itemType: "activity",
       eventKind: "learning_result",
+      attemptIndex: attempt,
       scoreValue: num(opts.scoreValue),
       scoreMax: num(opts.scoreMax),
       durationSeconds: num(opts.durationSeconds),
