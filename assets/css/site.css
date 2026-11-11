@@ -1428,3 +1428,10 @@ body.theme-halloween {
 .flash-art {
   margin-bottom: 0.75rem;
 }
+
+/* Home page: link to the daily culture videos page (Day 1 to Day 18). */
+.home-extra {
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MRJ ENGLISH Culture Class — 18 daily culture videos, Day 1 to Day 18">
+  <title>Culture Class — Daily Videos</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="stylesheet" href="../assets/css/daily-videos.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="back-link" href="../">← Back to Culture Class</a>
+
+    <header class="site-header">
+      <h1>Daily Culture Videos</h1>
+      <p>All 18 days. Each video plays here, and the file link opens it in a new tab. Your month map shows only the days about that month.</p>
+    </header>
+
+    <div id="videos"></div>
+
+    <footer class="site-footer">
+      <a href="https://mrjkorea.github.io/culture-class/">mrjkorea.github.io/culture-class</a>
+      · Videos stream from the MRJ video store · Hard refresh after updates (Ctrl+Shift+R)
+    </footer>
+  </div>
+
+  <script type="module">
+    import { installDailyVideos, renderDailyVideosHtml } from "../js/daily-videos.js";
+
+    document.getElementById("videos").innerHTML = renderDailyVideosHtml({
+      heading: "",
+      note: "Pick a day and it plays here.",
+      showFiles: true,
+    });
+    installDailyVideos(document);
+  </script>
+</body>
+</html>

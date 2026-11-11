@@ -12,6 +12,7 @@ import {
   wordsMemoryUrl,
 } from "./paths.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
+import { installDailyVideos, renderDailyVideosHtml } from "./daily-videos.js";
 import {
   firstIncompleteStep,
   isStepDone,
@@ -71,15 +72,23 @@ function stepHref(month, step) {
 
 function renderVideoBlock(month) {
   const v = month.introYoutube?.find((item) => item.id) || month.introYoutube?.[0];
-  if (!v?.id) {
-    return `<p class="hint">Watch the MRJ Daily in class, then tap Next.</p>`;
-  }
+  const monthVideo = v?.id
+    ? `<div class="month-video">
+        <h3 class="month-video-heading">This month's video</h3>
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/${escapeHtml(v.id)}?rel=0" title="${escapeHtml(v.title || "Daily video")}" allowfullscreen></iframe>
+        </div>
+        <p class="hint">${escapeHtml(v.title || "")}</p>
+      </div>`
+    : `<p class="hint">Watch the MRJ Daily in class, then tap Next.</p>`;
+
+  /* Jay, 2026-11-12: the daily culture videos come first inside step 1,
+     and only the days about this month. The #video anchor sits on this block
+     so the map's video node lands on the videos, not on the month video. */
   return `
     <div class="map-video" id="video">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/${escapeHtml(v.id)}?rel=0" title="${escapeHtml(v.title || "Daily video")}" allowfullscreen></iframe>
-      </div>
-      <p class="hint">${escapeHtml(v.title || "")}</p>
+      ${renderDailyVideosHtml({ monthId: month.id })}
+      ${monthVideo}
       <button type="button" class="btn btn-glow" id="btnVideoDone">I watched — Next</button>
     </div>`;
 }
@@ -182,6 +191,7 @@ export function renderThemedMapMonth(month) {
   });
 
   void initFeatureYoutubePlayers(document.getElementById("app"));
+  installDailyVideos(document.getElementById("app"));
   paintTeacherMapButtons(month);
 }
 
