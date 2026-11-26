@@ -163,6 +163,17 @@ input { font: inherit; }
 
 .top-actions { display: flex; gap: 8px; align-items: center; }
 
+.craft-lang-wrap select {
+  min-height: 36px;
+  border-radius: 999px;
+  border: 0;
+  padding: 4px 10px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  max-width: 9.5rem;
+}
+
 .lang {
   display: flex;
   background: rgba(255, 255, 255, 0.2);
@@ -1033,6 +1044,29 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   box-shadow: 0 12px 0 rgba(80, 16, 90, 0.18);
   background: #2a1240;
 }
+.name-tray {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.name-chip {
+  border: 0;
+  border-radius: 999px;
+  background: #fff8e7;
+  color: #3a2410;
+  font-weight: 800;
+  padding: 6px 10px;
+  cursor: grab;
+}
+.name-chip.is-dragging { outline: 3px solid #e07a1f; }
+.name-chip.is-wrong { background: #ffd0d0; }
+.name-chip.is-seated { opacity: 0.45; }
 .gl-host .gl-stage {
   display: block;
   width: 100% !important;

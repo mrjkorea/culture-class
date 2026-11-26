@@ -5,14 +5,14 @@ import { titleArtSvg } from "./thanksgiving-art.js";
 import { createSpeech } from "./speech.js";
 import { createSfx } from "./sfx.js";
 import { createTransitionStillPlayer } from "../../shared/transition-still.js";
+import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
+import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
-const LANG_KEY = "culture_craft_november_thanksgiving_v1_ui";
 const MISS_STAGE_TYPES = new Set(["turkey_hunt"]);
 
 const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
-const langEn = document.getElementById("lang-en");
-const langKo = document.getElementById("lang-ko");
+const langSelect = document.getElementById("lang-select");
 const soundBtn = document.getElementById("sound-btn");
 
 let spec;
@@ -20,7 +20,8 @@ let manifest;
 let assetBase;
 let speech;
 let sfx;
-let uiLang = "en";
+let uiLang = getLang();
+let stageCtx = null;
 let lineState = null;
 let lineToken = 0;
 let state = null;
@@ -107,13 +108,18 @@ function wireGrandma() {
 }
 
 function paintLang() {
-  langEn?.setAttribute("aria-pressed", uiLang === "en" ? "true" : "false");
-  langKo?.setAttribute("aria-pressed", uiLang === "ko" ? "true" : "false");
-  langEn?.classList.toggle("on", uiLang === "en");
-  langKo?.classList.toggle("on", uiLang === "ko");
+  uiLang = getLang();
+  if (stageCtx) stageCtx.uiLang = uiLang;
   if (backLink) backLink.textContent = t("back");
-  soundBtn?.setAttribute("aria-label", speech.enabled ? t("soundOn") : t("soundOff"));
-  soundBtn?.classList.toggle("is-muted", !speech.enabled);
+  const topTitle = document.getElementById("top-game-title");
+  if (topTitle && spec) topTitle.textContent = t("gameTitle") || spec.title;
+  soundBtn?.setAttribute("aria-label", speech?.enabled ? t("soundOn") : t("soundOff"));
+  soundBtn?.classList.toggle("is-muted", speech && !speech.enabled);
+  document.querySelectorAll("[data-ui]").forEach((el) => {
+    if (el.disabled) return;
+    const key = el.getAttribute("data-ui");
+    if (key) el.textContent = t(key);
+  });
 }
 
 function showLines(block, index, alert = false) {
@@ -123,11 +129,10 @@ function showLines(block, index, alert = false) {
 
 function paintLines() {
   if (!lineState) return;
-  const lang = uiLang === "ko" ? "ko" : "en";
   const a = document.getElementById("line-a");
   if (!a) return;
-  a.textContent = lineState.block[lang][lineState.index] || "";
-  a.lang = lang;
+  a.textContent = pickLines(lineState.block, lineState.index, uiLang);
+  a.lang = uiLang === "zh-Hans" ? "zh" : uiLang.split("-")[0];
   a.classList.toggle("is-alert", Boolean(lineState.alert));
   const live = document.getElementById("live");
   if (live) live.textContent = a.textContent;
@@ -179,28 +184,27 @@ function boardList(highlightAt, source) {
   return ol;
 }
 
-function renderTitle(keepName) {
+function renderTitle() {
   speech.stop();
-  const previous = keepName ? document.getElementById("nick")?.value || "" : "";
+  const signed = syncDisplayNameFromAuth();
   view.dataset.screen = "title";
   view.innerHTML = `<section class="card title-card feast-title">
     <div class="title-art">${titleArtSvg()}</div>
-    <h1>${esc(spec.title)}</h1>
+    <h1>${esc(t("gameTitle") || spec.title)}</h1>
     <p class="brand">${esc(t("classTag"))}</p>
     <p class="how">${esc(t("how"))}</p>
     <p class="hint">${esc(t("beatNote"))}</p>
     <form id="nick-form">
-      <label for="nick">${esc(t("nickname"))}</label>
-      <input id="nick" name="nick" maxlength="16" autocomplete="off" required placeholder="${esc(t("namePlaceholder"))}">
+      ${signed
+        ? `<p class="hint signed-as">${esc((t("playingAs") || "Playing as {name}").replace("{name}", signed))}</p>
+      <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>`
+        : `<p class="hint">Sign in with your class ID. There is no name box.</p>`}
       <p id="form-error" class="form-error" role="alert"></p>
-      <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>
     </form>
     <h2 class="board-title">${esc(t("board"))}</h2>
     <div id="board-slot"></div>
   </section>`;
   view.querySelector("#board-slot").append(boardList());
-  const input = document.getElementById("nick");
-  if (previous) input.value = previous;
   document.getElementById("nick-form").addEventListener("submit", onStart);
 }
 
@@ -209,10 +213,11 @@ let starting = false;
 async function onStart(event) {
   event.preventDefault();
   if (starting) return;
-  const name = cleanName(document.getElementById("nick").value);
+  const signed = syncDisplayNameFromAuth();
+  const name = cleanName(signed);
   const error = document.getElementById("form-error");
   if (!name) {
-    error.textContent = t("needName");
+    error.textContent = "Sign in with your class ID first.";
     return;
   }
   error.textContent = "";
@@ -260,7 +265,7 @@ function stageShell(stage, index) {
   const pips = spec.stages
     .map((_, i) => `<i class="${i < index ? "done" : i === index ? "now" : ""}"></i>`)
     .join("");
-  const label = uiLang === "ko" ? stage.titleKo || stage.title : stage.title;
+  const label = pickLocalized(stage.titles || { en: stage.title, ko: stage.titleKo }, uiLang);
   return `<section class="screen-stage feast-stage">
     <div class="hud">
       <div class="hud-row">
@@ -341,6 +346,7 @@ function playStage(stage, index) {
         });
       },
     };
+    stageCtx = ctx;
     showLines(stage.lines, 0);
     speakLine(stage, stage.lines, 0);
     timer.resume();
@@ -354,7 +360,7 @@ function playStageMovie(transition, index) {
   if (!src) return Promise.resolve();
   const poster = transitionUrl(assetBase, manifest, id);
   const caption = transition?.caption || { en: "", ko: "" };
-  const title = uiLang === "ko" ? caption.ko : caption.en;
+  const title = pickLocalized(caption, uiLang);
   return new Promise((resolve) => {
     timer.pause();
     speech.stop();
@@ -461,9 +467,27 @@ function validate(next) {
 }
 
 
+function onLangChange() {
+  uiLang = getLang();
+  paintLang();
+  paintLines();
+  const screen = view.dataset.screen;
+  if (screen === "title") renderTitle(true);
+  if (screen === "stage" && spec) {
+    const idx = spec.stages.findIndex((s) => s.key === view.dataset.stageKey);
+    const stage = spec.stages[idx];
+    const label = document.getElementById("stage-label");
+    if (label && stage && idx >= 0) {
+      const name = pickLocalized(stage.titles || { en: stage.title, ko: stage.titleKo }, uiLang);
+      label.textContent = `${idx + 1}/${spec.stages.length} ${name}`;
+    }
+  }
+}
+
 function bindChrome() {
-  langEn?.addEventListener("click", () => setLang("en"));
-  langKo?.addEventListener("click", () => setLang("ko"));
+  mountLangSelect(langSelect, onLangChange);
+  const langLabel = document.getElementById("lang-label");
+  if (langLabel) langLabel.textContent = i18nT("lang_label");
   soundBtn?.addEventListener("click", () => {
     const on = !speech.enabled;
     speech.setEnabled(on);
@@ -472,24 +496,10 @@ function bindChrome() {
   });
 }
 
-function setLang(lang) {
-  uiLang = lang === "ko" ? "ko" : "en";
-  try {
-    localStorage.setItem(LANG_KEY, uiLang);
-  } catch {
-    /* ignore */
-  }
-  paintLang();
-  if (view.dataset.screen === "title") renderTitle(true);
-}
-
 async function init() {
   reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  try {
-    uiLang = localStorage.getItem(LANG_KEY) === "ko" ? "ko" : "en";
-  } catch {
-    uiLang = "en";
-  }
+  syncDisplayNameFromAuth();
+  uiLang = getLang();
   try {
     const loaded = await loadCraft();
     spec = loaded.spec;
@@ -502,7 +512,11 @@ async function init() {
     stillPlayer.preloadAll();
     bindChrome();
     paintLang();
-    renderTitle(false);
+    renderTitle();
+    document.addEventListener("mrj-auth-ready", () => {
+      syncDisplayNameFromAuth();
+      if (view.dataset.screen === "title") renderTitle();
+    });
   } catch (err) {
     console.error(err);
     view.innerHTML = `<p class="boot-error">Could not load craft.</p>`;

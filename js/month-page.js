@@ -12,12 +12,12 @@ import {
   wordsLearnUrl,
   wordsMeetUrl,
   wordsMemoryUrl,
-} from "./paths.js";
+} from "./paths.js?v=20261127-thanksgiving";
 import { monthHasBuiltinWords } from "./words-data.js";
 import { normalizeWordTerms } from "./word-list.js";
 import { initFeatureYoutubePlayers } from "./youtube-feature-player.js";
 import { renderFeatureVideoHtml, renderIntroVideosHtml } from "./youtube-embed.js";
-import { renderThemedMapMonth, installThemedMapTeacherRefresh } from "./month-map-page.js?v=20261111-scores";
+import { renderThemedMapMonth, installThemedMapTeacherRefresh } from "./month-map-page.js?v=20261127-one-video";
 import { isThemedMapMonth } from "./month-themes.js";
 import { ensureThemeStylesheet } from "./month-styles.js";
 import { blockIfMonthLocked } from "./path-lock.js";

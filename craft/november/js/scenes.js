@@ -3,12 +3,16 @@
  */
 import { scene3dUrl } from "./assets.js";
 import {
+  mountGravy3D,
   mountHunt3D,
   mountMash3D,
   mountOven3D,
   mountPie3D,
   mountPlates3D,
   mountPluck3D,
+  mountSeat3D,
+  mountSilver3D,
+  mountStuff3D,
 } from "./stage3d.js";
 import {
   diningRoomSvg,
@@ -19,6 +23,13 @@ import {
   tableSvg,
   turkeyPluckSvg,
 } from "./thanksgiving-art.js";
+
+function ui(ctx, key) {
+  const lang = ctx?.uiLang || "en";
+  const pack = ctx?.uiCopy?.[lang] || ctx?.uiCopy?.en || {};
+  const en = ctx?.uiCopy?.en || {};
+  return pack[key] || en[key] || "";
+}
 
 function esc(s) {
   return String(s)
@@ -89,7 +100,7 @@ function mountPluck(root, stage, ctx) {
     stage,
     `<div class="pluck-stage pluck-stage-lg">
       <div class="pluck-art-wrap">${turkeyPluckSvg(1)}</div>
-      <button type="button" class="feast-btn feast-btn-lg" id="pluck">Pluck feathers</button>
+      <button type="button" class="feast-btn feast-btn-lg" id="pluck" data-ui="pluckBtn">${esc(ui(ctx, "pluckBtn"))}</button>
       <p class="feather-count" id="fc">0</p>
     </div>`
   );
@@ -108,6 +119,8 @@ function mountPluck(root, stage, ctx) {
 }
 
 function mountStuff(root, stage, ctx) {
+  const gl = mountStuff3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 20;
   let n = 0;
   root.innerHTML = feastSceneWrap(
@@ -115,7 +128,7 @@ function mountStuff(root, stage, ctx) {
     stage,
     `<div class="stuff-stage stuff-stage-lg">
       <div class="stuff-art">${stuffingBowlSvg(0)}</div>
-      <button type="button" class="feast-btn feast-btn-lg" id="stuff">Stuff dressing</button>
+      <button type="button" class="feast-btn feast-btn-lg" id="stuff" data-ui="stuffBtn">${esc(ui(ctx, "stuffBtn"))}</button>
       <div class="stuff-meter"><span id="sm"></span></div>
     </div>`
   );
@@ -148,9 +161,9 @@ function mountOvenHold(root, stage, ctx) {
     stage,
     `<div class="oven-stage oven-stage-lg">
       ${ovenSvg(0)}
-      <p class="oven-hint" id="oven-hint">Hold to roast — about one minute</p>
+      <p class="oven-hint" id="oven-hint" data-ui="ovenHint">${esc(ui(ctx, "ovenHint"))}</p>
       <div class="oven-meter"><span id="oven-fill"></span></div>
-      <button type="button" class="feast-btn feast-btn-lg oven-hold-btn" id="oven-hold">Hold oven door</button>
+      <button type="button" class="feast-btn feast-btn-lg oven-hold-btn" id="oven-hold" data-ui="ovenHold">${esc(ui(ctx, "ovenHold"))}</button>
     </div>`
   );
   const fill = root.querySelector("#oven-fill");
@@ -167,7 +180,7 @@ function mountOvenHold(root, stage, ctx) {
     if (fill) fill.style.width = `${(accumulated / need) * 100}%`;
     const oven = wrap?.querySelector(".oven-svg");
     if (oven) oven.outerHTML = ovenSvg(accumulated / need);
-    if (hint) hint.textContent = holding ? "Roasting…" : "Hold to keep roasting";
+    if (hint) hint.textContent = holding ? ui(ctx, "roasting") : ui(ctx, "holdRoast");
   };
 
   const tick = (now) => {
@@ -224,8 +237,8 @@ function mountMash(root, stage, ctx) {
     ctx,
     stage,
     `<div class="mash-stage mash-stage-lg">
-      <button type="button" class="feast-btn feast-btn-lg mash-btn" id="mash">Mash 🥔</button>
-      <p class="hint feast-hint-overlay">Tap the pot — keep mashing!</p>
+      <button type="button" class="feast-btn feast-btn-lg mash-btn" id="mash" data-ui="mashBtn">${esc(ui(ctx, "mashBtn"))}</button>
+      <p class="hint feast-hint-overlay" data-ui="mashHint">${esc(ui(ctx, "mashHint"))}</p>
     </div>`
   );
   const btn = root.querySelector("#mash");
@@ -262,6 +275,8 @@ function mountMash(root, stage, ctx) {
 }
 
 function mountGravy(root, stage, ctx) {
+  const gl = mountGravy3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 16;
   let n = 0;
   root.innerHTML = feastSceneWrap(
@@ -269,7 +284,7 @@ function mountGravy(root, stage, ctx) {
     stage,
     `<div class="gravy-stage gravy-stage-lg">
       <div class="gravy-art">${gravyPotSvg(0)}</div>
-      <button type="button" class="feast-btn feast-btn-lg" id="pour">Pour gravy</button>
+      <button type="button" class="feast-btn feast-btn-lg" id="pour" data-ui="pourBtn">${esc(ui(ctx, "pourBtn"))}</button>
     </div>`
   );
   const art = root.querySelector(".gravy-pot-art");
@@ -295,7 +310,7 @@ function mountPie(root, stage, ctx) {
     stage,
     `<div class="pie-stage pie-stage-lg">
       <div class="pie-art">${pieBakeSvg(0)}</div>
-      <button type="button" class="feast-btn feast-btn-lg" id="bake">Bake pie</button>
+      <button type="button" class="feast-btn feast-btn-lg" id="bake" data-ui="bakeBtn">${esc(ui(ctx, "bakeBtn"))}</button>
     </div>`
   );
   const art = root.querySelector(".pie-bake-art");
@@ -325,7 +340,8 @@ function mountSetPlates(root, stage, ctx) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "plate-btn plate-btn-lg";
-    btn.textContent = "Set plate";
+    btn.textContent = ui(ctx, "setPlate");
+    btn.dataset.ui = "setPlate";
     btn.addEventListener("click", () => {
       if (btn.disabled) return;
       btn.disabled = true;
@@ -343,6 +359,8 @@ function mountSetPlates(root, stage, ctx) {
 }
 
 function mountSetSilver(root, stage, ctx) {
+  const gl = mountSilver3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 8;
   const items = ["🍴", "🍴", "🥛", "🥛", "🍴", "🥛", "🧻", "🍴"];
   let n = 0;
@@ -379,8 +397,16 @@ function mountSetSilver(root, stage, ctx) {
 }
 
 function mountSeatFamily(root, stage, ctx) {
+  const gl = mountSeat3D(root, stage, ctx);
+  if (gl) return gl;
   const total = stage.clicks || 5;
-  const names = ["Mom", "Dad", "Grandma", "Grandpa", "You"];
+  const names = [
+    ["seatMom", "Mom"],
+    ["seatDad", "Dad"],
+    ["seatGrandma", "Grandma"],
+    ["seatGrandpa", "Grandpa"],
+    ["seatYou", "You"],
+  ];
   let n = 0;
   root.innerHTML = feastSceneWrap(
     ctx,
@@ -395,11 +421,13 @@ function mountSeatFamily(root, stage, ctx) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "chair-btn chair-btn-lg";
-    btn.textContent = `Seat ${name}`;
+    const [key, fallback] = name;
+    btn.dataset.ui = key;
+    btn.textContent = ui(ctx, key) || fallback;
     btn.addEventListener("click", () => {
       if (btn.disabled || i >= total) return;
       btn.disabled = true;
-      btn.textContent = `${name} 🪑`;
+      btn.textContent = `${ui(ctx, key) || fallback} 🪑`;
       n += 1;
       ctx.onProgress(n, total);
       ctx.sfx?.stage?.(stage.key);
@@ -411,24 +439,16 @@ function mountSeatFamily(root, stage, ctx) {
 }
 
 function mountThankfulCard(root, stage, ctx) {
-  const cards = [
-    { en: "Family", ko: "가족" },
-    { en: "Friends", ko: "친구" },
-    { en: "Food", ko: "음식" },
-    { en: "Home", ko: "집" },
-    { en: "Health", ko: "건강" },
-    { en: "School", ko: "학교" },
-  ];
-  const lang = ctx.uiLang === "ko" ? "ko" : "en";
+  const cards = ["thanksFamily", "thanksFriends", "thanksFood", "thanksHome", "thanksHealth", "thanksSchool"];
   root.innerHTML = feastSceneWrap(
     ctx,
     stage,
     `<div class="thanks-stage thanks-stage-lg">
-      <p class="thanks-prompt">I'm thankful for…</p>
+      <p class="thanks-prompt" data-ui="thanksPrompt">${esc(ui(ctx, "thanksPrompt"))}</p>
       <div class="thanks-cards thanks-cards-lg">${cards
         .map(
-          (c, i) =>
-            `<button type="button" class="thanks-card thanks-card-lg" data-i="${i}">${esc(c[lang])}</button>`
+          (key, i) =>
+            `<button type="button" class="thanks-card thanks-card-lg" data-i="${i}" data-ui="${key}">${esc(ui(ctx, key))}</button>`
         )
         .join("")}</div>
     </div>`

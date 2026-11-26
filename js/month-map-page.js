@@ -85,9 +85,10 @@ function renderVideoBlock(month) {
   /* Jay, 2026-11-12: the daily culture videos come first inside step 1,
      and only the days about this month. The #video anchor sits on this block
      so the map's video node lands on the videos, not on the month video. */
+  const daily = String(month.id) === "11" ? "" : renderDailyVideosHtml({ monthId: month.id });
   return `
     <div class="map-video" id="video">
-      ${renderDailyVideosHtml({ monthId: month.id })}
+      ${daily}
       ${monthVideo}
       <button type="button" class="btn btn-glow" id="btnVideoDone">I watched — Next</button>
     </div>`;

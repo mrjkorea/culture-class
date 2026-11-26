@@ -1,407 +1,556 @@
 /**
- * three.js Thanksgiving stages — large playfield + photo backdrops.
+ * Thanksgiving craft play. Each stage is its own 3D action.
+ * No photo backdrop: the props are the picture.
  */
-import { scene3dUrl } from "./assets.js";
 import { createGlStage, THREE } from "./three-runtime.js";
 import {
   buildBush,
   buildDiningTable,
-  buildFieldGround,
-  buildOven,
+  buildHayBale,
   buildPie,
   buildPlate,
-  buildPotatoPile,
   buildTurkey,
+  texMat,
 } from "./turkey-mesh.js";
 
-function hostMarkup(label, { extraClass = "", backdropStyle = "" } = {}) {
-  return `<div class="gl-host scene-3d gl-scene feast-gl ${extraClass}" data-play aria-label="${label}"${backdropStyle}>
+function popClick(gl, object, scaleBump = true) {
+  if (!object) return;
+  const mats = [];
+  object.traverse?.((o) => {
+    if (o.isMesh && o.material?.emissive) mats.push(o.material);
+  });
+  mats.forEach((m) => m.emissive.setHex(0xfff1c9));
+  window.setTimeout(() => mats.forEach((m) => m.emissive.setHex(0x000000)), 160);
+  if (scaleBump && object.scale) {
+    const base = object.scale.clone();
+    object.scale.multiplyScalar(1.16);
+    window.setTimeout(() => object.scale?.copy(base), 160);
+  }
+  if (!gl?.scene) return;
+  const origin = new THREE.Vector3();
+  object.getWorldPosition(origin);
+  const bits = [];
+  for (let i = 0; i < 12; i += 1) {
+    const bit = new THREE.Mesh(
+      new THREE.SphereGeometry(0.04, 6, 4),
+      new THREE.MeshBasicMaterial({ color: i % 2 ? 0xffd56a : 0xfff6e4 })
+    );
+    bit.position.copy(origin);
+    bit.userData.v = new THREE.Vector3((Math.random() - 0.5) * 1.8, 0.9 + Math.random() * 1.3, (Math.random() - 0.5) * 1.8);
+    gl.scene.add(bit);
+    bits.push(bit);
+  }
+  const t0 = performance.now();
+  let last = t0;
+  function tick(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    bits.forEach((bit) => {
+      bit.userData.v.y -= 4.5 * dt;
+      bit.position.addScaledVector(bit.userData.v, dt);
+      bit.scale.setScalar(Math.max(0.04, bit.scale.x - dt * 1.7));
+    });
+    if (now - t0 < 520) requestAnimationFrame(tick);
+    else bits.forEach((bit) => {
+      gl.scene.remove(bit);
+      bit.geometry.dispose();
+      bit.material.dispose();
+    });
+  }
+  requestAnimationFrame(tick);
+}
+
+const FAMILY = [
+  ["Mom", "엄마"],
+  ["Dad", "아빠"],
+  ["Grandma", "할머니"],
+  ["Grandpa", "할아버지"],
+  ["Uncle", "삼촌"],
+  ["Aunt", "이모"],
+  ["Brother", "오빠"],
+  ["Sister", "언니"],
+  ["Cousin", "사촌"],
+  ["Baby", "아기"],
+];
+
+function hostMarkup(label, extraClass) {
+  return `<div class="gl-host scene-3d gl-scene feast-gl ${extraClass}" data-play aria-label="${label}">
     <div class="gl-loading">Loading kitchen…</div>
   </div>`;
 }
 
-function backdropStyle(ctx, sceneKey) {
-  const url = scene3dUrl(ctx?.assetBase, ctx?.manifest, sceneKey);
-  if (!url) return "";
-  const safe = String(url).replace(/'/g, "%27").replace(/"/g, "%22");
-  return ` style="background-image:url('${safe}')"`;
-}
-
-function applyPhotoBackdrop(gl, ctx, sceneKey, fallbackFn) {
-  const photoUrl = scene3dUrl(ctx?.assetBase, ctx?.manifest, sceneKey);
-  if (!photoUrl) {
-    fallbackFn?.();
-    return;
-  }
-  const loader = new THREE.TextureLoader();
-  loader.load(
-    photoUrl,
-    (tex) => {
-      tex.colorSpace = THREE.SRGBColorSpace;
-      gl.scene.background = tex;
-    },
-    undefined,
-    () => fallbackFn?.()
+function begin(root, stage, extraClass, fov = 50) {
+  root.innerHTML = hostMarkup(stage.title, extraClass);
+  const container = root.querySelector(".gl-host");
+  const gl = createGlStage(container, { fov, fog: false });
+  if (!gl) return null;
+  container.querySelector(".gl-loading")?.remove();
+  gl.scene.background = new THREE.Color(0xf4e2c4);
+  const floor = new THREE.Mesh(
+    new THREE.CircleGeometry(8, 24),
+    new THREE.MeshLambertMaterial({ color: 0xe7c98a })
   );
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.y = -0.01;
+  gl.scene.add(floor);
+  return { container, gl };
 }
 
-function findBushIndex(hit) {
-  let o = hit.object;
-  while (o) {
-    if (o.userData?.bushIndex !== undefined) return o.userData.bushIndex;
-    o = o.parent;
-  }
-  return -1;
+function end(container, gl, ...offs) {
+  return {
+    destroy() {
+      offs.forEach((off) => off());
+      gl.dispose();
+    },
+  };
 }
 
-function layoutCamera(gl, span) {
-  gl.camera.position.set(0, span * 0.68, span * 1.05);
-  gl.camera.lookAt(0, 0.35, 0);
+function look(gl, x, y, z, tx, ty, tz) {
+  gl.camera.position.set(x, y, z);
+  gl.camera.lookAt(tx, ty, tz);
   gl.resize();
-  requestAnimationFrame(() => gl.resize());
+}
+
+function wood() {
+  return texMat(0x8b5a2b, "wood");
+}
+
+function nameLabel(text) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 64;
+  const g = canvas.getContext("2d");
+  g.fillStyle = "#fff8e7";
+  g.fillRect(0, 0, 256, 64);
+  g.strokeStyle = "#8b5a2b";
+  g.lineWidth = 6;
+  g.strokeRect(4, 4, 248, 56);
+  g.fillStyle = "#3a2410";
+  g.font = "bold 36px sans-serif";
+  g.textAlign = "center";
+  g.textBaseline = "middle";
+  g.fillText(text, 128, 34);
+  const tex = new THREE.CanvasTexture(canvas);
+  const mesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.62, 0.16),
+    new THREE.MeshBasicMaterial({ map: tex })
+  );
+  mesh.userData.label = true;
+  return mesh;
+}
+
+function familyLabel(pair, lang) {
+  if (lang === "ko") return pair[1];
+  return pair[0];
 }
 
 export function mountHunt3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-hunt",
-    backdropStyle: backdropStyle(ctx, "hunt"),
-  });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 58, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-
+  const view = begin(root, stage, "gl-hunt", 52);
+  if (!view) return null;
+  const { container, gl } = view;
+  const pool = 8;
+  const hideCount = 3;
   const good = new Set();
-  const pool = stage.poolSize || 16;
-  while (good.size < (stage.goodCount || 1)) {
-    good.add(Math.floor(Math.random() * pool));
-  }
-  let found = false;
-  let finished = false;
-
-  applyPhotoBackdrop(gl, ctx, "hunt", () => {
-    const { ground, hay } = buildFieldGround();
-    gl.scene.add(ground, hay);
-  });
-
-  const cols = Math.ceil(Math.sqrt(pool));
-  const rows = Math.ceil(pool / cols);
-  const bushes = [];
-  const pickRoots = [];
-  const spacing = pool > 12 ? 1.05 : 1.2;
-  const bushScale = pool > 12 ? 1.1 : 1.35;
-
+  while (good.size < hideCount) good.add(Math.floor(Math.random() * pool));
+  const hides = [];
+  const cols = 4;
   for (let i = 0; i < pool; i += 1) {
+    const hide = i % 2 === 0 ? buildHayBale(1.15) : buildBush(i + 4, 1.35);
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const px = (col - (cols - 1) / 2) * spacing;
-    const pz = (row - (rows - 1) / 2) * (spacing * 0.92) + 0.4;
-    const bush = buildBush(i + 3, bushScale);
-    bush.position.set(px, 0, pz);
-    bush.userData.bushIndex = i;
-    bush.userData.alive = true;
-    bushes.push(bush);
-    gl.scene.add(bush);
-
+    hide.position.set((col - 1.5) * 1.45, 0, (row - 0.5) * 1.5);
+    hide.userData.index = i;
+    hide.userData.alive = true;
     if (good.has(i)) {
-      const turkey = buildTurkey(i + 99, bushScale * 0.85);
-      turkey.position.set(px, 0, pz + 0.05);
+      const turkey = buildTurkey(i + 20, 0.7);
+      turkey.position.set(0, 0, 0.15);
       turkey.visible = false;
-      turkey.userData.hiddenTurkey = true;
-      turkey.userData.bushIndex = i;
-      gl.scene.add(turkey);
-      bush.userData.turkey = turkey;
+      hide.add(turkey);
+      hide.userData.turkey = turkey;
     }
-
-    const pick = new THREE.Mesh(
-      new THREE.SphereGeometry(0.5 + bushScale * 0.35, 10, 8),
-      new THREE.MeshBasicMaterial({ visible: false })
-    );
-    pick.position.set(px, 0.35 * bushScale, pz);
-    pick.userData.bushIndex = i;
-    pick.userData.alive = true;
-    pickRoots.push(pick);
-    gl.scene.add(pick);
+    hides.push(hide);
+    gl.scene.add(hide);
   }
-
-  const span = Math.max(cols, rows) * spacing * 0.5 + 1.4;
-  layoutCamera(gl, span);
-
-  gl.setFrame((t) => {
-    if (finished) return;
-    gl.camera.position.x = Math.sin(t * 0.12) * 0.45;
-    gl.camera.lookAt(0, 0.35, 0);
-    bushes.forEach((b, i) => {
-      if (!b.userData.alive) return;
-      b.rotation.y = Math.sin(t * 0.6 + i) * 0.03;
-    });
-  });
+  look(gl, 0, 3.4, 4.6, 0, 0.3, 0);
+  let found = 0;
+  let finished = false;
 
   function settle(index) {
-    if (finished) return;
-    const bush = bushes[index];
-    if (!bush?.userData.alive) return;
+    const hide = hides[index];
+    if (!hide?.userData.alive || finished) return;
+    hide.userData.alive = false;
     ctx.sfx?.stage?.(stage.key);
-    if (good.has(index)) {
-      found = true;
-      finished = true;
-      const turkey = bush.userData.turkey;
-      if (turkey) {
-        turkey.visible = true;
-        turkey.position.y = 0.15;
+    if (hide.userData.turkey) {
+      hide.userData.turkey.visible = true;
+      hide.userData.turkey.position.z = 0.55;
+      found += 1;
+      popClick(gl, hide);
+      ctx.onProgress(found, hideCount);
+      if (found >= hideCount) {
+        finished = true;
+        ctx.onComplete();
       }
-      bush.traverse((c) => {
-        if (c.isMesh && c.material?.emissive) {
-          c.material.emissive = new THREE.Color(0xffcc44);
-          c.material.emissiveIntensity = 0.35;
-        }
-      });
-      ctx.onProgress(1, 1);
-      ctx.onComplete();
       return;
     }
-    bush.userData.alive = false;
-    pickRoots[index].userData.alive = false;
-    bush.traverse((c) => {
-      if (c.isMesh && c.material?.color) c.material.color.multiplyScalar(0.65);
-    });
-    bush.rotation.z = 0.25;
+    hide.rotation.z = 0.4;
     ctx.onMiss?.();
   }
 
   function onPointer(e) {
-    if (finished || found || (e.button !== undefined && e.button !== 0)) return;
-    const hits = gl.pick(pickRoots, e.clientX, e.clientY);
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick(hides, e.clientX, e.clientY);
     if (!hits.length) return;
-    const hit = hits.find((h) => h.object.userData?.alive !== false);
-    if (!hit) return;
-    const idx = findBushIndex(hit);
-    if (idx >= 0) settle(idx);
+    let node = hits[0].object;
+    while (node && node.userData.index === undefined) node = node.parent;
+    if (node) settle(node.userData.index);
   }
-
   container.addEventListener("pointerdown", onPointer);
-  return {
-    destroy() {
-      container.removeEventListener("pointerdown", onPointer);
-      gl.dispose();
-    },
-  };
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
 }
 
 export function mountPluck3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-pluck",
-    backdropStyle: backdropStyle(ctx, "pluck"),
-  });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 52, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-  applyPhotoBackdrop(gl, ctx, "pluck");
-
-  const turkey = buildTurkey(7, 2.4, { withFeathers: true });
+  const view = begin(root, stage, "gl-pluck", 46);
+  if (!view) return null;
+  const { container, gl } = view;
+  const turkey = buildTurkey(7, 1.55, { withFeathers: true });
   turkey.position.y = 0.05;
   gl.scene.add(turkey);
-
-  const table = new THREE.Mesh(
-    new THREE.CylinderGeometry(2.4, 2.5, 0.1, 16),
-    new THREE.MeshLambertMaterial({ color: 0xf0ebe0, flatShading: true })
-  );
-  table.position.y = -0.02;
-  gl.scene.add(table);
-
-  gl.camera.position.set(0, 1.85, 3.4);
-  gl.camera.lookAt(0, 0.9, 0);
-  gl.resize();
-
-  const total = stage.clicks || 28;
+  const feathers = turkey.userData.feathers.children.slice();
+  const falling = [];
+  look(gl, 0.55, 1.85, -3.6, 0, 0.9, 0);
+  const total = feathers.length;
   let done = 0;
   let finished = false;
-  const pickMeshes = [];
-  turkey.traverse((c) => {
-    if (c.isMesh) pickMeshes.push(c);
+
+  gl.setFrame(() => {
+    const now = performance.now();
+    falling.forEach((f) => {
+      const dt = Math.min(0.05, (now - (f.userData.last || now)) / 1000);
+      f.userData.last = now;
+      f.userData.vy = (f.userData.vy ?? -1.4) + 11 * dt;
+      f.position.y -= f.userData.vy * dt;
+      f.position.x += (f.userData.vx || 0) * dt;
+      f.position.z += 0.8 * dt;
+      f.rotation.x += 4 * dt;
+      f.rotation.z += 3 * dt;
+      const s = Math.max(0.05, f.scale.x - dt * 0.7);
+      f.scale.setScalar(s);
+      if (s <= 0.06) f.visible = false;
+    });
   });
 
-  function pluckFeather() {
-    const feathers = turkey.userData.feathers;
-    if (feathers && feathers.children.length) {
-      const f = feathers.children[feathers.children.length - 1];
-      f.position.y -= 0.08;
-      f.rotation.x += 0.4;
-      window.setTimeout(() => feathers.remove(f), 400);
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick(feathers, e.clientX, e.clientY);
+    let mesh = null;
+    for (const hit of hits) {
+      let node = hit.object;
+      while (node && !node.userData.feather) node = node.parent;
+      if (node && !node.userData.plucked) {
+        mesh = node;
+        break;
+      }
     }
-  }
-
-  function step() {
-    if (finished) return;
+    if (!mesh) return;
+    mesh.userData.plucked = true;
+    popClick(gl, mesh, false);
+    mesh.userData.vy = -1.4;
+    mesh.userData.vx = Math.sign(mesh.position.x || (Math.random() - 0.5)) * 1.1;
+    mesh.scale.setScalar(1.35);
+    falling.push(mesh);
     done += 1;
-    pluckFeather();
     ctx.sfx?.stage?.(stage.key);
     ctx.onProgress(done, total);
-    turkey.rotation.y += 0.08;
     if (done >= total) {
       finished = true;
       ctx.onComplete();
     }
   }
+  container.addEventListener("pointerdown", onPointer);
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
+}
+
+export function mountStuff3D(root, stage, ctx) {
+  const view = begin(root, stage, "gl-stuff", 46);
+  if (!view) return null;
+  const { container, gl } = view;
+  const turkey = buildTurkey(3, 1.8);
+  turkey.position.set(0.35, 0.1, 0);
+  turkey.rotation.y = -0.6;
+  gl.scene.add(turkey);
+  const cavity = new THREE.Mesh(
+    new THREE.SphereGeometry(0.16, 14, 10),
+    texMat(0x6b3a22, "filling")
+  );
+  cavity.position.set(0.15, 0.95, 0.35);
+  turkey.add(cavity);
+  const stuffing = new THREE.Mesh(
+    new THREE.SphereGeometry(0.08, 12, 8),
+    texMat(0xe6c36a, "potato")
+  );
+  stuffing.position.copy(cavity.position);
+  stuffing.scale.setScalar(0.2);
+  turkey.add(stuffing);
+  const bowl = new THREE.Mesh(
+    new THREE.SphereGeometry(0.28, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2),
+    texMat(0xf7f1e4, "plate", { side: THREE.DoubleSide })
+  );
+  bowl.position.set(-0.85, 0.2, 0.2);
+  gl.scene.add(bowl);
+  const dress = new THREE.Mesh(
+    new THREE.SphereGeometry(0.16, 8, 6),
+    texMat(0xe2b84a, "potato")
+  );
+  dress.position.set(-0.85, 0.28, 0.2);
+  gl.scene.add(dress);
+  const spoon = new THREE.Group();
+  const handle = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.03, 0.03, 0.7, 8),
+    texMat(0xc0c6cc, "steel")
+  );
+  handle.rotation.z = 0.8;
+  const head = new THREE.Mesh(
+    new THREE.SphereGeometry(0.1, 8, 6, 0, Math.PI * 2, 0, Math.PI / 2),
+    texMat(0xd5dbe0, "steel", { side: THREE.DoubleSide })
+  );
+  head.position.set(0.22, -0.22, 0);
+  spoon.add(handle, head);
+  spoon.position.set(-0.7, 0.7, 0.35);
+  gl.scene.add(spoon);
+  look(gl, 0.1, 1.6, 3.1, 0.1, 0.7, 0);
+  const total = 8;
+  let done = 0;
+  let finished = false;
+  let scoopStart = 0;
+
+  gl.setFrame(() => {
+    if (!scoopStart) return;
+    const t = Math.min(1, (performance.now() - scoopStart) / 420);
+    const scoop = t < 0.5 ? t * 2 : (1 - t) * 2;
+    spoon.position.x = -0.7 + scoop * 0.85;
+    spoon.position.y = 0.7 - Math.sin(t * Math.PI) * 0.25;
+    if (t >= 1) scoopStart = 0;
+  });
 
   function onPointer(e) {
-    if (finished || (e.button !== undefined && e.button !== 0)) return;
-    const hits = gl.pick(pickMeshes, e.clientX, e.clientY);
+    if (finished || (scoopStart && performance.now() - scoopStart < 420) || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick([bowl, dress, spoon, turkey], e.clientX, e.clientY);
     if (!hits.length) return;
-    e.preventDefault();
-    step();
+    done += 1;
+    scoopStart = performance.now();
+    popClick(gl, spoon);
+    stuffing.scale.setScalar(0.2 + (done / total) * 1.3);
+    dress.scale.setScalar(Math.max(0.25, 1 - done / total));
+    ctx.sfx?.stage?.(stage.key);
+    ctx.onProgress(done, total);
+    if (done >= total) {
+      finished = true;
+      window.setTimeout(() => ctx.onComplete(), 500);
+    }
   }
-
   container.addEventListener("pointerdown", onPointer);
-  return {
-    destroy() {
-      container.removeEventListener("pointerdown", onPointer);
-      gl.dispose();
-    },
-  };
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
 }
 
 export function mountOven3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-oven",
-    backdropStyle: backdropStyle(ctx, "oven"),
+  const view = begin(root, stage, "gl-oven", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const wall = texMat(0x4a4e55, "oven");
+  const shell = new THREE.Group();
+  function panel(w, h, d, x, y, z) {
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), wall);
+    mesh.position.set(x, y, z);
+    shell.add(mesh);
+    return mesh;
+  }
+  panel(1.7, 0.08, 1.2, 0, 1.28, 0);
+  panel(1.7, 0.1, 1.2, 0, 0.12, 0);
+  panel(0.1, 1.16, 1.2, -0.8, 0.7, 0);
+  panel(0.1, 1.16, 1.2, 0.8, 0.7, 0);
+  panel(1.5, 1.16, 0.08, 0, 0.7, -0.54);
+  const inside = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.45, 1.05),
+    new THREE.MeshBasicMaterial({ color: 0x2a211c })
+  );
+  inside.position.set(0, 0.7, -0.49);
+  shell.add(inside);
+  const doorPivot = new THREE.Group();
+  doorPivot.position.set(0, 0.35, 0.58);
+  const doorMat = texMat(0x2f3338, "steel");
+  function bar(w, h, x, y) {
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.06), doorMat);
+    mesh.position.set(x, y, 0);
+    return mesh;
+  }
+  const frame = [
+    bar(1.22, 0.08, 0, 0.8),
+    bar(1.22, 0.08, 0, 0.04),
+    bar(0.08, 0.76, -0.57, 0.42),
+    bar(0.08, 0.76, 0.57, 0.42),
+  ];
+  const glass = new THREE.Mesh(
+    new THREE.BoxGeometry(1.02, 0.68, 0.02),
+    new THREE.MeshLambertMaterial({
+      color: 0xfff1d2,
+      emissive: 0xff9a3c,
+      emissiveIntensity: 0.12,
+      transparent: true,
+      opacity: 0.18,
+    })
+  );
+  glass.position.set(0, 0.42, 0.02);
+  const grab = new THREE.Mesh(
+    new THREE.BoxGeometry(1.35, 1.05, 0.25),
+    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+  );
+  grab.position.y = 0.42;
+  doorPivot.add(glass, grab, ...frame);
+  doorPivot.rotation.x = -1.15;
+  const turkey = buildTurkey(9, 0.62);
+  turkey.position.set(0, 0.58, 0.08);
+  const roastMats = [];
+  turkey.traverse((o) => {
+    if (o.isMesh && o.material?.color) {
+      o.material = o.material.clone();
+      o.userData.base = o.material.color.clone();
+      roastMats.push(o);
+    }
   });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 50, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-  applyPhotoBackdrop(gl, ctx, "oven");
-
-  const oven = buildOven(1.85);
-  oven.position.y = 0.05;
+  const heat = new THREE.PointLight(0xff7a22, 0, 2.4);
+  heat.position.set(0, 0.75, 0.1);
+  const oven = new THREE.Group();
+  oven.add(shell, doorPivot, turkey, heat);
   gl.scene.add(oven);
-
-  gl.camera.position.set(0, 1.55, 3.1);
-  gl.camera.lookAt(0, 0.75, 0);
-  gl.resize();
-
-  const need = stage.holdRequiredMs || 60000;
-  let accumulated = 0;
+  look(gl, 0, 1.35, 2.8, 0, 0.7, 0);
+  const need = 8000;
+  let held = 0;
   let holding = false;
-  let raf = 0;
-  let last = 0;
-  let lastSec = -1;
+  let holdStart = 0;
   let finished = false;
-  const door = oven.userData.door;
-  const windowMesh = oven.userData.window;
+  const pale = new THREE.Color(0xf0d2b0);
+  const gold = new THREE.Color(0xc4621a);
 
-  const paint = () => {
-    const t = Math.min(1, accumulated / need);
-    const sec = Math.min(60, Math.floor(accumulated / 1000));
-    if (sec !== lastSec) {
-      lastSec = sec;
-      ctx.onProgress(sec, 60);
-    }
-    if (windowMesh?.material) {
-      windowMesh.material.emissiveIntensity = 0.25 + t * 0.85;
-    }
-    if (door) door.rotation.x = holding ? -0.35 * t : -0.08 * t;
-  };
-
-  const tick = (now) => {
-    if (holding && !finished) {
-      const dt = last ? now - last : 0;
-      accumulated += dt;
-      paint();
-      if (accumulated >= need) {
-        stopHold();
-        finished = true;
-        ctx.sfx?.win?.();
-        ctx.onComplete();
-        return;
-      }
-    }
-    last = now;
-    raf = requestAnimationFrame(tick);
-  };
-
-  const stopHold = () => {
-    holding = false;
-    container.classList.remove("is-holding-oven");
-    paint();
-  };
-
-  const startHold = (e) => {
-    if (finished || accumulated >= need) return;
-    if (e?.pointerType === "mouse" && e.button !== 0) return;
-    holding = true;
-    container.classList.add("is-holding-oven");
-    ctx.sfx?.stage?.(stage.key);
-    if (!raf) raf = requestAnimationFrame(tick);
-  };
-
-  function onPointerDown(e) {
-    const hits = gl.pick([door, oven.userData.window, oven], e.clientX, e.clientY);
-    if (!hits.length) return;
-    startHold(e);
+  function paint() {
+    const t = Math.min(1, held / need);
+    doorPivot.rotation.x = holding ? -0.08 : -1.15;
+    roastMats.forEach((o) => {
+      o.material.color.copy(o.userData.base).lerp(gold, t * 0.85);
+      if (t < 0.05) o.material.color.copy(pale).lerp(o.userData.base, 0.35);
+    });
+    glass.material.emissiveIntensity = 0.12 + t * 1.4;
+    heat.intensity = t * 2.4;
+    ctx.onProgress(Math.floor(held / 1000), 8);
   }
 
-  container.addEventListener("pointerdown", onPointerDown);
-  container.addEventListener("pointerup", stopHold);
-  container.addEventListener("pointerleave", stopHold);
-  container.addEventListener("pointercancel", stopHold);
-  raf = requestAnimationFrame(tick);
-  paint();
-
-  return {
-    destroy() {
+  gl.setFrame(() => {
+    if (finished) return;
+    if (holding) held = Math.min(need, performance.now() - holdStart);
+    if (holding && held >= need) {
       holding = false;
-      cancelAnimationFrame(raf);
-      container.removeEventListener("pointerdown", onPointerDown);
-      container.removeEventListener("pointerup", stopHold);
-      container.removeEventListener("pointerleave", stopHold);
-      container.removeEventListener("pointercancel", stopHold);
-      gl.dispose();
-    },
-  };
+      finished = true;
+      paint();
+      ctx.onComplete();
+      return;
+    }
+    paint();
+  });
+
+  function down(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick([glass, grab, shell, ...frame], e.clientX, e.clientY);
+    if (!hits.length) return;
+    holding = true;
+    holdStart = performance.now();
+    popClick(gl, doorPivot);
+    ctx.sfx?.stage?.(stage.key);
+  }
+  function up() {
+    if (finished) return;
+    if (holding) {
+      holding = false;
+      held = 0;
+      paint();
+    }
+  }
+  container.addEventListener("pointerdown", down);
+  container.addEventListener("pointerup", up);
+  container.addEventListener("pointerleave", up);
+  container.addEventListener("pointercancel", up);
+  return end(
+    container,
+    gl,
+    () => container.removeEventListener("pointerdown", down),
+    () => container.removeEventListener("pointerup", up),
+    () => container.removeEventListener("pointerleave", up),
+    () => container.removeEventListener("pointercancel", up)
+  );
 }
 
 export function mountMash3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-mash",
-    backdropStyle: backdropStyle(ctx, "mash"),
-  });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 52, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-  applyPhotoBackdrop(gl, ctx, "mash");
-
-  const pile = buildPotatoPile(12, 1.6);
-  pile.position.y = 0.05;
-  gl.scene.add(pile);
-
-  const bowl = new THREE.Mesh(
-    new THREE.SphereGeometry(0.65, 12, 10, 0, Math.PI * 2, 0, Math.PI / 2),
-    new THREE.MeshLambertMaterial({ color: 0xf5f5f5, flatShading: true, side: THREE.DoubleSide })
+  const view = begin(root, stage, "gl-mash", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const pot = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.55, 0.48, 0.45, 16),
+    texMat(0xd7dde2, "steel")
   );
-  bowl.position.set(0, 0.02, 0);
-  bowl.rotation.x = Math.PI;
-  gl.scene.add(bowl);
-
-  gl.camera.position.set(0, 1.45, 2.85);
-  gl.camera.lookAt(0, 0.45, 0);
-  gl.resize();
-
-  const total = stage.clicks || 32;
+  pot.position.y = 0.28;
+  const spuds = new THREE.Group();
+  for (let i = 0; i < 6; i += 1) {
+    const spud = new THREE.Mesh(
+      new THREE.SphereGeometry(0.16, 8, 6),
+      texMat(0xf3d7a1, "potato")
+    );
+    spud.scale.y = 0.75;
+    spud.position.set(((i % 3) - 1) * 0.22, 0.42, (i < 3 ? -0.08 : 0.1));
+    spuds.add(spud);
+  }
+  const masher = new THREE.Group();
+  const handle = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8),
+    wood()
+  );
+  handle.position.y = 0.7;
+  const plateMat = texMat(0x9aa3ab, "steel");
+  for (let i = 0; i < 5; i += 1) {
+    const bar = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.03, 0.035), plateMat);
+    bar.position.set(0, 0.24, (i - 2) * 0.07);
+    const cross = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.03, 0.32), plateMat);
+    cross.position.set((i - 2) * 0.1, 0.28, 0);
+    masher.add(bar, cross);
+  }
+  const grip = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.08, 0.1), wood());
+  grip.position.y = 1.12;
+  masher.add(handle, grip);
+  masher.position.y = 0.85;
+  gl.scene.add(pot, spuds, masher);
+  look(gl, 0.2, 1.5, 2.4, 0, 0.4, 0);
+  const total = 10;
   let done = 0;
   let finished = false;
-  const pickMeshes = [];
-  pile.traverse((c) => {
-    if (c.isMesh) pickMeshes.push(c);
+  let smash = 0;
+
+  gl.setFrame(() => {
+    if (smash <= 0) {
+      masher.position.y = 0.85;
+      return;
+    }
+    smash -= 0.08;
+    masher.position.y = 0.35 + Math.abs(smash) * 0.7;
   });
 
-  function step() {
-    if (finished) return;
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick([pot, spuds, masher], e.clientX, e.clientY);
+    if (!hits.length) return;
     done += 1;
-    pile.scale.y = Math.max(0.35, 1 - (done / total) * 0.55);
-    pile.rotation.y += 0.12;
+    smash = 1;
+    popClick(gl, masher);
+    const squash = Math.max(0.28, 1 - done / total);
+    spuds.children.forEach((spud) => {
+      spud.scale.y = 0.75 * squash;
+    });
     ctx.sfx?.stage?.(stage.key);
     ctx.onProgress(done, total);
     if (done >= total) {
@@ -409,152 +558,448 @@ export function mountMash3D(root, stage, ctx) {
       ctx.onComplete();
     }
   }
-
-  function onPointer(e) {
-    if (finished || (e.button !== undefined && e.button !== 0)) return;
-    if (!e.target.closest(".gl-host")) return;
-    e.preventDefault();
-    step();
-  }
-
   container.addEventListener("pointerdown", onPointer);
-  return {
-    destroy() {
-      container.removeEventListener("pointerdown", onPointer);
-      gl.dispose();
-    },
-  };
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
+}
+
+export function mountGravy3D(root, stage, ctx) {
+  const view = begin(root, stage, "gl-gravy", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const bowl = new THREE.Mesh(
+    new THREE.SphereGeometry(0.32, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2),
+    new THREE.MeshLambertMaterial({ color: 0xf4efe6, side: THREE.DoubleSide })
+  );
+  bowl.position.y = 0.16;
+  const gravy = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.2, 0.22, 0.08, 12),
+    texMat(0x7a3e12, "gravy")
+  );
+  gravy.position.y = 0.2;
+  gravy.scale.y = 0.05;
+  const stream = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.035, 0.05, 0.7, 8),
+    texMat(0x8a4518, "gravy", { transparent: true, opacity: 0 })
+  );
+  stream.position.set(0, 0.85, 0);
+  const pot = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.16, 0.18, 0.28, 10),
+    texMat(0x5c6570, "steel")
+  );
+  pot.position.set(0, 1.25, 0);
+  gl.scene.add(bowl, gravy, stream, pot);
+  look(gl, 0, 1.7, 2.8, 0, 0.4, 0);
+  let holding = false;
+  let fill = 0;
+  let off = 0;
+  let finished = false;
+  let px = 0;
+  let py = 0;
+  let last = 0;
+  const pourPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+  const pourHit = new THREE.Vector3();
+
+  gl.setFrame((t) => {
+    const nowMs = performance.now();
+    const dt = last ? Math.min(0.25, (nowMs - last) / 1000) : 0;
+    last = nowMs;
+    bowl.position.x = Math.sin(t * 0.4) * 0.8;
+    gravy.position.x = bowl.position.x;
+    if (!holding || finished) {
+      stream.material.opacity = 0;
+      return;
+    }
+    const rect = gl.renderer.domElement.getBoundingClientRect();
+    gl.pointer.x = rect.width ? ((px - rect.left) / rect.width) * 2 - 1 : 0;
+    gl.pointer.y = rect.height ? -((py - rect.top) / rect.height) * 2 + 1 : 0;
+    gl.raycaster.setFromCamera(gl.pointer, gl.camera);
+    if (gl.raycaster.ray.intersectPlane(pourPlane, pourHit)) {
+      stream.position.x = pourHit.x;
+      pot.position.x = pourHit.x;
+    }
+    stream.material.opacity = 0.9;
+    const aimed = Math.abs(stream.position.x - bowl.position.x) < 0.55;
+    if (aimed) {
+      off = 0;
+      fill = Math.min(1, fill + dt * 0.42);
+    } else {
+      off += dt;
+      if (off > 0.2) fill = 0;
+    }
+    gravy.scale.y = 0.05 + fill * 6;
+    gravy.position.y = 0.18 + gravy.scale.y * 0.04;
+    ctx.onProgress(Math.round(fill * 10), 10);
+    if (fill >= 1) {
+      finished = true;
+      holding = false;
+      ctx.onComplete();
+    }
+  });
+
+  function down(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    holding = true;
+    px = e.clientX;
+    py = e.clientY;
+  }
+  function move(e) {
+    px = e.clientX;
+    py = e.clientY;
+  }
+  function up() {
+    holding = false;
+  }
+  container.addEventListener("pointerdown", down);
+  container.addEventListener("pointermove", move);
+  container.addEventListener("pointerup", up);
+  container.addEventListener("pointerleave", up);
+  return end(
+    container,
+    gl,
+    () => container.removeEventListener("pointerdown", down),
+    () => container.removeEventListener("pointermove", move),
+    () => container.removeEventListener("pointerup", up),
+    () => container.removeEventListener("pointerleave", up)
+  );
 }
 
 export function mountPie3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-pie",
-    backdropStyle: backdropStyle(ctx, "pie"),
-  });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 52, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-  applyPhotoBackdrop(gl, ctx, "pie");
-
-  const pie = buildPie(1.75);
-  pie.position.y = 0.08;
+  const view = begin(root, stage, "gl-pie", 46);
+  if (!view) return null;
+  const { container, gl } = view;
+  const pie = buildPie(1.7);
+  pie.position.y = 0.05;
   gl.scene.add(pie);
-
-  gl.camera.position.set(0, 1.35, 2.6);
-  gl.camera.lookAt(0, 0.35, 0);
-  gl.resize();
-
-  const total = stage.clicks || 12;
+  const creamMat = texMat(0xfffaf3, "cream");
+  const spots = [];
+  for (let i = 0; i < 12; i += 1) {
+    const dollop = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 8), creamMat.clone());
+    const a = (i / 12) * Math.PI * 2;
+    const ring = i < 8 ? 0.28 : 0.08;
+    dollop.position.set(Math.cos(a) * ring, 0.32, Math.sin(a) * ring);
+    dollop.scale.setScalar(0.01);
+    pie.add(dollop);
+    spots.push(dollop);
+  }
+  const can = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.08, 0.1, 0.45, 10),
+    texMat(0xf2f2f2, "steel")
+  );
+  can.position.set(0.7, 0.7, 0.3);
+  can.rotation.z = 0.6;
+  gl.scene.add(can);
+  look(gl, 0.3, 1.45, 2.3, 0, 0.25, 0);
   let done = 0;
   let finished = false;
-  const pickMeshes = [];
-  pie.traverse((c) => {
-    if (c.isMesh) pickMeshes.push(c);
-  });
 
-  function step() {
-    if (finished) return;
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick([pie, can], e.clientX, e.clientY);
+    if (!hits.length) return;
+    const dollop = spots[done];
+    if (!dollop) return;
+    dollop.scale.setScalar(1);
     done += 1;
-    pie.rotation.y += 0.35;
-    pie.scale.setScalar(1 + (done / total) * 0.08);
+    popClick(gl, dollop);
+    can.rotation.z = 1.1;
+    window.setTimeout(() => {
+      can.rotation.z = 0.6;
+    }, 160);
     ctx.sfx?.stage?.(stage.key);
-    ctx.onProgress(done, total);
-    if (done >= total) {
+    ctx.onProgress(done, 12);
+    if (done >= 12) {
       finished = true;
       ctx.onComplete();
     }
   }
-
-  function onPointer(e) {
-    if (finished || (e.button !== undefined && e.button !== 0)) return;
-    const hits = gl.pick(pickMeshes, e.clientX, e.clientY);
-    if (!hits.length) return;
-    e.preventDefault();
-    step();
-  }
-
   container.addEventListener("pointerdown", onPointer);
-  return {
-    destroy() {
-      container.removeEventListener("pointerdown", onPointer);
-      gl.dispose();
-    },
-  };
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
 }
 
 export function mountPlates3D(root, stage, ctx) {
-  root.innerHTML = hostMarkup(stage.title, {
-    extraClass: "gl-plates",
-    backdropStyle: backdropStyle(ctx, "plates"),
-  });
-  const container = root.querySelector(".gl-host");
-  const gl = createGlStage(container, { fov: 54, fog: false });
-  if (!gl) return null;
-  container.querySelector(".gl-loading")?.remove();
-  applyPhotoBackdrop(gl, ctx, "plates");
-
-  const table = buildDiningTable(1.1);
+  const view = begin(root, stage, "gl-plates", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const table = buildDiningTable(1.7);
   gl.scene.add(table);
-
-  const total = stage.clicks || 6;
-  const plateSpots = [];
-  for (let i = 0; i < total; i += 1) {
-    const t = (i / Math.max(1, total - 1)) * 0.75 - 0.375;
+  const spots = [];
+  for (let i = 0; i < 10; i += 1) {
+    const side = i < 5 ? -0.42 : 0.42;
+    const along = ((i % 5) - 2) * 0.55;
     const spot = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.28, 0.3, 0.02, 12),
-      new THREE.MeshLambertMaterial({
-        color: 0xffe56a,
-        flatShading: true,
-        transparent: true,
-        opacity: 0.55,
-      })
+      new THREE.RingGeometry(0.08, 0.32, 20),
+      new THREE.MeshBasicMaterial({ color: 0xf0a35a, side: THREE.DoubleSide })
     );
-    spot.position.set(t * 2.2, 0.78, 0);
-    spot.userData.spotIndex = i;
+    spot.rotation.x = -Math.PI / 2;
+    spot.position.set(along * 1.7, 1.28, side * 1.7);
+    spot.userData.index = i;
     spot.userData.open = true;
-    plateSpots.push(spot);
+    spots.push(spot);
     gl.scene.add(spot);
   }
-
-  gl.camera.position.set(0, 2.1, 3.5);
-  gl.camera.lookAt(0, 0.75, 0);
-  gl.resize();
-
+  look(gl, 0, 3.3, 3.4, 0, 0.9, 0);
   let done = 0;
   let finished = false;
 
-  function place(index) {
-    const spot = plateSpots[index];
-    if (!spot?.userData.open || finished) return;
+  function onPointer(e) {
+    if (finished || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick(spots, e.clientX, e.clientY);
+    if (!hits.length) return;
+    const spot = hits[0].object;
+    if (!spot.userData.open) return;
     spot.userData.open = false;
-    const plate = buildPlate(1.15);
-    plate.position.copy(spot.position);
-    plate.position.y += 0.04;
+    const plate = buildPlate(1.05);
+    plate.position.set(spot.position.x, spot.position.y + 0.03, spot.position.z);
     gl.scene.add(plate);
-    spot.material.opacity = 0.15;
+    popClick(gl, plate);
+    spot.material.color.set(0xc8e6c0);
     done += 1;
     ctx.sfx?.stage?.(stage.key);
-    ctx.onProgress(done, total);
-    if (done >= total) {
+    ctx.onProgress(done, 10);
+    if (done >= 10) {
       finished = true;
       ctx.onComplete();
     }
   }
-
-  function onPointer(e) {
-    if (finished || (e.button !== undefined && e.button !== 0)) return;
-    const hits = gl.pick(plateSpots, e.clientX, e.clientY);
-    if (!hits.length) return;
-    const idx = hits[0].object.userData.spotIndex;
-    if (idx !== undefined) place(idx);
-  }
-
   container.addEventListener("pointerdown", onPointer);
-  return {
-    destroy() {
-      container.removeEventListener("pointerdown", onPointer);
-      gl.dispose();
-    },
-  };
+  return end(container, gl, () => container.removeEventListener("pointerdown", onPointer));
+}
+
+export function mountSilver3D(root, stage, ctx) {
+  const view = begin(root, stage, "gl-silver", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const table = buildDiningTable(1.3);
+  gl.scene.add(table);
+  const metal = texMat(0xd5dde4, "steel");
+  const glassMat = new THREE.MeshLambertMaterial({
+    color: 0xd7f3ff,
+    transparent: true,
+    opacity: 0.65,
+  });
+  function fork() {
+    const g = new THREE.Group();
+    const handle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.38, 0.04), metal);
+    handle.position.y = 0.16;
+    for (let i = 0; i < 3; i += 1) {
+      const tine = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.16, 0.02), metal);
+      tine.position.set((i - 1) * 0.035, 0.4, 0);
+      g.add(tine);
+    }
+    g.add(handle, new THREE.Mesh(
+      new THREE.BoxGeometry(0.22, 0.62, 0.16),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+    ));
+    return g;
+  }
+  function spoon() {
+    const g = new THREE.Group();
+    const handle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.4, 0.04), metal);
+    const bowl = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 6), metal);
+    bowl.position.y = 0.28;
+    bowl.scale.y = 0.45;
+    g.add(handle, bowl, new THREE.Mesh(
+      new THREE.BoxGeometry(0.22, 0.62, 0.16),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+    ));
+    return g;
+  }
+  function glassCup() {
+    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.07, 0.28, 12), glassMat);
+    const g = new THREE.Group();
+    g.add(cup, new THREE.Mesh(
+      new THREE.BoxGeometry(0.24, 0.4, 0.24),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+    ));
+    return g;
+  }
+  const items = [
+    { mesh: fork(), kind: "fork" },
+    { mesh: spoon(), kind: "spoon" },
+    { mesh: glassCup(), kind: "glass" },
+  ];
+  const spots = [];
+  items.forEach((item, i) => {
+    item.mesh.position.set(-1.15, 1.15, (i - 1) * 0.45);
+    item.home = item.mesh.position.clone();
+    item.mesh.userData.kind = item.kind;
+    gl.scene.add(item.mesh);
+    const spot = new THREE.Mesh(
+      new THREE.CircleGeometry(0.28, 20),
+      new THREE.MeshBasicMaterial({ color: 0xfff1c9, side: THREE.DoubleSide })
+    );
+    spot.rotation.x = -Math.PI / 2;
+    spot.position.set(0.35 + i * 0.4, 1.02, 0.15);
+    spot.userData.kind = item.kind;
+    spots.push(spot);
+    gl.scene.add(spot);
+  });
+  look(gl, 0, 2.4, 2.8, 0, 0.9, 0);
+  let drag = null;
+  let finished = false;
+  let placed = 0;
+  const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -1.15);
+  const hitPoint = new THREE.Vector3();
+
+  function onDown(e) {
+    if (finished || drag || (e.button !== undefined && e.button !== 0)) return;
+    const hits = gl.pick(items.map((item) => item.mesh), e.clientX, e.clientY);
+    if (!hits.length) return;
+    let node = hits[0].object;
+    while (node && !node.userData.kind) node = node.parent;
+    drag = items.find((item) => item.mesh === node && !item.done);
+  }
+  function onMove(e) {
+    if (!drag) return;
+    const rect = gl.renderer.domElement.getBoundingClientRect();
+    gl.pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    gl.pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    gl.raycaster.setFromCamera(gl.pointer, gl.camera);
+    if (gl.raycaster.ray.intersectPlane(plane, hitPoint)) {
+      drag.mesh.position.x = hitPoint.x;
+      drag.mesh.position.z = hitPoint.z;
+    }
+  }
+  function onUp() {
+    if (!drag) return;
+    const spot = spots.find((s) => s.userData.kind === drag.kind && !s.userData.filled);
+    const close = spot && drag.mesh.position.distanceTo(spot.position) < 0.9;
+    if (close) {
+      drag.mesh.position.set(spot.position.x, 1.12, spot.position.z);
+      drag.done = true;
+      spot.userData.filled = true;
+      spot.material.color.set(0xb7e2b0);
+      placed += 1;
+      ctx.sfx?.stage?.(stage.key);
+      ctx.onProgress(placed, 3);
+      if (placed >= 3) {
+        finished = true;
+        ctx.onComplete();
+      }
+    } else {
+      drag.mesh.position.copy(drag.home);
+    }
+    drag = null;
+  }
+  container.addEventListener("pointerdown", onDown);
+  container.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  return end(
+    container,
+    gl,
+    () => container.removeEventListener("pointerdown", onDown),
+    () => container.removeEventListener("pointermove", onMove),
+    () => window.removeEventListener("pointerup", onUp)
+  );
+}
+
+export function mountSeat3D(root, stage, ctx) {
+  const view = begin(root, stage, "gl-seat", 48);
+  if (!view) return null;
+  const { container, gl } = view;
+  const table = buildDiningTable(1.8);
+  gl.scene.add(table);
+  const lang = ctx.uiLang === "ko" ? "ko" : "en";
+  const chairs = [];
+  FAMILY.forEach((pair, i) => {
+    const side = i < 5 ? -1 : 1;
+    const along = ((i % 5) - 2) * 0.62;
+    const chair = new THREE.Group();
+    const seat = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.08, 0.38), wood());
+    seat.position.y = 0.48;
+    const back = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.42, 0.06), wood());
+    back.position.set(0, 0.72, side * -0.16);
+    chair.add(seat, back);
+    const label = nameLabel(familyLabel(pair, lang));
+    label.position.set(0, 1.05, 0);
+    chair.add(label);
+    chair.position.set(along * 1.8, 0, side * 0.95);
+    chair.userData.name = pair[0];
+    const pick = new THREE.Mesh(
+      new THREE.BoxGeometry(0.55, 1.05, 0.55),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+    );
+    pick.position.y = 0.55;
+    pick.userData.name = pair[0];
+    chair.add(pick);
+    chairs.push(chair);
+    gl.scene.add(chair);
+  });
+  look(gl, 0, 3.6, 4.2, 0, 0.7, 0);
+  const tray = document.createElement("div");
+  tray.className = "name-tray";
+  const order = FAMILY.slice();
+  for (let i = order.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  order.forEach((pair) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "name-chip";
+    chip.textContent = familyLabel(pair, lang);
+    chip.dataset.name = pair[0];
+    tray.append(chip);
+  });
+  container.append(tray);
+  let dragChip = null;
+  let finished = false;
+  let seated = 0;
+  const peopleMat = new THREE.MeshLambertMaterial({ color: 0xf1c7a3 });
+
+  function onDown(e) {
+    const chip = e.target.closest?.(".name-chip");
+    if (!chip || chip.disabled || finished) return;
+    dragChip = chip;
+    chip.classList.add("is-dragging");
+  }
+  function onMove(e) {
+    if (!dragChip) return;
+    dragChip.style.position = "fixed";
+    dragChip.style.left = `${e.clientX - 30}px`;
+    dragChip.style.top = `${e.clientY - 16}px`;
+    dragChip.style.zIndex = "6";
+  }
+  function onUp(e) {
+    if (!dragChip || finished) return;
+    const hits = gl.pick(chairs, e.clientX, e.clientY);
+    let node = hits[0]?.object;
+    while (node && !node.userData.name) node = node.parent;
+    const chip = dragChip;
+    dragChip = null;
+    chip.classList.remove("is-dragging");
+    chip.style.position = "";
+    chip.style.left = "";
+    chip.style.top = "";
+    if (!node || node.userData.filled || node.userData.name !== chip.dataset.name) {
+      chip.classList.add("is-wrong");
+      window.setTimeout(() => chip.classList.remove("is-wrong"), 280);
+      return;
+    }
+    node.userData.filled = true;
+    const person = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, 0.22, 2, 6), peopleMat);
+    person.position.set(0, 0.75, 0);
+    node.add(person);
+    popClick(gl, person);
+    chip.disabled = true;
+    chip.classList.add("is-seated");
+    seated += 1;
+    ctx.sfx?.stage?.(stage.key);
+    ctx.onProgress(seated, 10);
+    if (seated >= 10) {
+      finished = true;
+      ctx.onComplete();
+    }
+  }
+  container.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  return end(
+    container,
+    gl,
+    () => container.removeEventListener("pointerdown", onDown),
+    () => window.removeEventListener("pointermove", onMove),
+    () => window.removeEventListener("pointerup", onUp),
+    () => tray.remove()
+  );
 }

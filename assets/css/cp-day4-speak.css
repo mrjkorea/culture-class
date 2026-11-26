@@ -42,3 +42,18 @@
 .cp-day4-layout .mic.listening {
   background: #dc2626;
 }
+
+.cp-day4-layout .ko,
+.cp-day4-layout .ko-text,
+.cp-day4-layout .part-text,
+.cp-day4-layout .en-muted,
+.cp-day4-layout .english,
+.cp-day4-layout .korean,
+.cp-day4-layout #koreanCue,
+.cp-day4-layout #englishReveal,
+.cp-day4-layout .chips,
+.cp-day4-layout .hint,
+.cp-day4-layout .status,
+.cp-day4-layout h1 {
+  color: #1c1915;
+}

@@ -64,10 +64,10 @@
       "title": "Turkey hunt",
       "titleKo": "칠면조 찾기",
       "type": "turkey_hunt",
-      "poolSize": 16,
-      "goodCount": 1,
+      "poolSize": 8,
+      "goodCount": 3,
       "lines": {
-        "en": ["Find the turkey in the field.", "Tap the right bush.", "Gobble! You found it."],
+        "en": ["Turkeys are hiding. Tap the hay and the bushes.", "Nothing there. Try another spot.", "You found the turkeys."],
         "ko": ["밭에서 칠면조를 찾아요.", "맞는 곳을 눌러요.", "찾았어요!"]
       }
     },
@@ -77,10 +77,10 @@
       "title": "Pluck turkey",
       "titleKo": "털 뽑기",
       "type": "pluck",
-      "clicks": 28,
+      "clicks": 24,
       "midAt": 0.5,
       "lines": {
-        "en": ["Pluck the turkey.", "Feather by feather.", "Ready to stuff."],
+        "en": ["Tap each feather.", "Watch it fall off.", "The turkey is plucked."],
         "ko": ["털을 뽑아요.", "하나씩.", "속 채울 준비."]
       }
     },
@@ -90,10 +90,10 @@
       "title": "Stuff dressing",
       "titleKo": "속 채우기",
       "type": "stuff",
-      "clicks": 20,
+      "clicks": 8,
       "midAt": 0.5,
       "lines": {
-        "en": ["Stuff with dressing.", "Pack it gently.", "Stuffed and ready."],
+        "en": ["Scoop dressing with the spoon.", "Push it into the turkey.", "The turkey is stuffed."],
         "ko": ["속을 채워요.", "부드럽게.", "채웠어요."]
       }
     },
@@ -103,9 +103,9 @@
       "title": "Roast in oven",
       "titleKo": "오븐 굽기",
       "type": "oven_hold",
-      "holdRequiredMs": 60000,
+      "holdRequiredMs": 8000,
       "lines": {
-        "en": ["Hold to roast the turkey.", "Keep the heat steady…", "Golden and done."],
+        "en": ["Hold the oven door shut.", "Let go and it cools back to zero.", "The turkey is roasted."],
         "ko": ["잡고 굽어요.", "열을 유지…", "노릇노릇."]
       }
     },
@@ -115,10 +115,10 @@
       "title": "Mash potatoes",
       "titleKo": "으깨기",
       "type": "mash",
-      "clicks": 32,
+      "clicks": 10,
       "midAt": 0.5,
       "lines": {
-        "en": ["Mash the potatoes.", "Smooth and creamy.", "Mashed potatoes ready."],
+        "en": ["Smash the masher down.", "Again and again.", "The potatoes are mashed."],
         "ko": ["감자를 으깨요.", "부드럽게.", "완성!"]
       }
     },
@@ -128,24 +128,24 @@
       "title": "Pour gravy",
       "titleKo": "그레이비",
       "type": "gravy",
-      "clicks": 16,
+      "clicks": 10,
       "midAt": 0.5,
       "lines": {
-        "en": ["Pour the gravy.", "Slow and steady.", "Gravy is served."],
+        "en": ["Hold the pour over the moving bowl.", "If it drips, start again.", "The bowl is full."],
         "ko": ["그레이비를 부어요.", "천천히.", "완성!"]
       }
     },
     {
       "id": 7,
       "key": "pie",
-      "title": "Bake the pie",
+      "title": "Whipped cream",
       "titleKo": "파이",
       "type": "pie",
       "clicks": 12,
       "midAt": 0.5,
       "lines": {
-        "en": ["Finish the pumpkin pie.", "Bake until set.", "Pie is golden."],
-        "ko": ["호박 파이를 굽어요.", "익을 때까지.", "노릇해요."]
+        "en": ["Spray whipped cream on the pie.", "Cover the whole top.", "The pie is covered."],
+        "ko": ["생크림을 뿌려요.", "위를 덮어요.", "파이가 덮였어요."]
       }
     },
     {
@@ -154,9 +154,9 @@
       "title": "Set plates",
       "titleKo": "접시",
       "type": "set_plates",
-      "clicks": 6,
+      "clicks": 10,
       "lines": {
-        "en": ["Set the plates.", "One for everyone.", "Plates are set."],
+        "en": ["Tap each empty spot.", "Ten plates on the table.", "Every place has a plate."],
         "ko": ["접시를 놓아요.", "모두에게.", "접시 완료."]
       }
     },
@@ -166,9 +166,9 @@
       "title": "Forks & glasses",
       "titleKo": "포크와 컵",
       "type": "set_silver",
-      "clicks": 8,
+      "clicks": 3,
       "lines": {
-        "en": ["Set forks and glasses.", "Don't forget napkins.", "Table is set."],
+        "en": ["Drag the fork, the spoon, and the glass.", "Put each one on its spot.", "The setting is done."],
         "ko": ["포크와 컵.", "냅킨도.", "식탁 준비!"]
       }
     },
@@ -178,9 +178,9 @@
       "title": "Seat family",
       "titleKo": "자리",
       "type": "seat_family",
-      "clicks": 5,
+      "clicks": 10,
       "lines": {
-        "en": ["Seat the family.", "Everyone together.", "We're gathered."],
+        "en": ["Drag each name to the matching chair.", "Ten family names.", "Everyone is seated."],
         "ko": ["가족을 앉혀요.", "함께.", "모였어요."]
       }
     },
