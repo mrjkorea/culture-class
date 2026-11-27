@@ -7,7 +7,7 @@ const V = "20261104-year-fish-voices-bake";
 const AUTH_CSS =
   '  <link rel="stylesheet" href="https://mrjkorea.github.io/mrj-signin/mrj-auth.css?v=20261030-cf-login-1.7.3">\n';
 const SCRIPTS = `  <script src="https://mrjkorea.github.io/mrj-signin/mrj-auth.js?v=20261030-cf-login-1.7.3"></script>
-  <script src="../../js/culture-auth-boot.js?v=${V}" data-mrj-app="culture-class"></script>
+  <script src="../../js/culture-auth-boot.js?v=20261127-login-stay" data-mrj-app="culture-class"></script>
   <script src="../../js/mrj-teacher-unlock.js?v=${V}"></script>
 `;
 

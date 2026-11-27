@@ -1,16 +1,13 @@
 /**
- * Culture Class wrapper around mrj-auth-boot: CoS/guest bypass and fail-soft when ID check hangs.
+ * Culture Class starts the same sign-in door as the other classes.
  * Load mrj-auth.js immediately before this script.
+ * The door stays up until the student finishes. No timer closes it.
  */
 (function () {
   "use strict";
 
   var BOOT_SRC =
     "https://mrjkorea.github.io/mrj-signin/mrj-auth-boot.js?v=20261030-cf-login-1.7.3";
-  var CHECKING_RE = /checking your id/i;
-  var MAX_CHECKING_MS = 4500;
-  /** Culture Class: always show map/lesson UI even if MRJ login doors stay up. */
-  var CLASSROOM_FAILOPEN_MS = 4000;
 
   var params = new URLSearchParams(window.location.search);
   var cosMode = params.get("cos") === "1";
@@ -31,37 +28,22 @@
     } catch (ignore) {}
   }
 
-  function dispatchReady(detail) {
-    if (window.__ccCultureAuthDone) return;
-    window.__ccCultureAuthDone = true;
-    clearAuthWait();
-    if (cosMode) {
-      try {
-        if (!localStorage.getItem("culture-class-display-name")) {
-          localStorage.setItem("culture-class-display-name", "CoS Guest");
-        }
-      } catch (ignore) {}
-    }
-    document.dispatchEvent(
-      new CustomEvent("mrj-auth-ready", {
-        bubbles: true,
-        detail: detail || { guest: guestMode, cos: cosMode },
-      })
-    );
-  }
-
-  document.addEventListener(
-    "mrj-auth-ready",
-    function () {
-      window.__ccCultureAuthDone = true;
-      clearAuthWait();
-    },
-    true
-  );
-
   if (guestMode) {
     var runCos = function () {
-      dispatchReady({ guest: true, cos: cosMode, reason: "cos" });
+      clearAuthWait();
+      if (cosMode) {
+        try {
+          if (!localStorage.getItem("culture-class-display-name")) {
+            localStorage.setItem("culture-class-display-name", "CoS Guest");
+          }
+        } catch (ignore) {}
+      }
+      document.dispatchEvent(
+        new CustomEvent("mrj-auth-ready", {
+          bubbles: true,
+          detail: { guest: true, cos: cosMode, reason: "cos" },
+        })
+      );
     };
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", runCos);
@@ -71,11 +53,13 @@
     return;
   }
 
-  window.setTimeout(function () {
-    if (!window.__ccCultureAuthDone) {
-      dispatchReady({ guest: true, reason: "classroom-failopen" });
-    }
-  }, CLASSROOM_FAILOPEN_MS);
+  document.addEventListener(
+    "mrj-auth-ready",
+    function () {
+      clearAuthWait();
+    },
+    true
+  );
 
   var boot = document.createElement("script");
   boot.src = BOOT_SRC;
@@ -85,39 +69,4 @@
   } else {
     document.head.appendChild(boot);
   }
-
-  var checkingSince = 0;
-  var started = Date.now();
-
-  var watchdog = window.setInterval(function () {
-    if (window.__ccCultureAuthDone) {
-      window.clearInterval(watchdog);
-      return;
-    }
-    var gate = document.getElementById("mrj-auth-gate");
-    if (!gate || gate.hidden) {
-      checkingSince = 0;
-      return;
-    }
-    var text = gate.textContent || "";
-    if (CHECKING_RE.test(text)) {
-      if (!checkingSince) checkingSince = Date.now();
-      if (Date.now() - checkingSince >= MAX_CHECKING_MS) {
-        window.clearInterval(watchdog);
-        dispatchReady({ guest: true, reason: "checking-timeout" });
-      }
-      return;
-    }
-    checkingSince = 0;
-    if (Date.now() - started > 15000 && !window.MRJ_STUDENT) {
-      var doors =
-        text.indexOf("I already have") !== -1 ||
-        text.indexOf("I'm new") !== -1 ||
-        text.indexOf("I already have an ID") !== -1;
-      if (!doors) {
-        window.clearInterval(watchdog);
-        dispatchReady({ guest: true, reason: "gate-timeout" });
-      }
-    }
-  }, 250);
 })();
