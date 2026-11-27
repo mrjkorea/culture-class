@@ -1,10 +1,10 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-family-tags";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-click-place";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
-import { mountStage } from "./scenes.js?v=20261127-family-tags";
+import { mountStage } from "./scenes.js?v=20261127-click-place";
 import { titleArtSvg } from "./thanksgiving-art.js";
-import { createSpeech } from "./speech.js?v=20261127-family-tags";
+import { createSpeech } from "./speech.js?v=20261127-click-place";
 import { createSfx } from "./sfx.js";
-import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-family-tags";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-click-place";
 import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
@@ -82,7 +82,7 @@ function t(key) {
 }
 
 function stageTotal(stage) {
-  if (stage.type === "oven_hold") {
+  if (stage.type === "oven_hold" || stage.type === "thankful_card") {
     const ms = stage.holdRequiredMs || 60000;
     return Math.ceil(ms / 1000);
   }

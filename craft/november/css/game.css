@@ -1136,6 +1136,8 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 }
 .family-spot {
   position: absolute;
+  padding: 0;
+  cursor: pointer;
   width: 15%;
   height: 24%;
   transform: translate(-50%, -50%);
@@ -1143,6 +1145,90 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
   border: 3px dashed rgba(255, 246, 228, 0.95);
   box-shadow: 0 0 0 3px rgba(74, 28, 8, 0.35);
   background: rgba(255, 246, 228, 0.12);
+}
+.place-board {
+  width: min(980px, 100%);
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 28px);
+  padding: 8px;
+}
+.place-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+.place-piece,
+.place-spot {
+  flex: 1;
+  min-height: 120px;
+  border: 4px solid #c45c26;
+  border-radius: 24px;
+  background: #fff6e4;
+  color: #4a1c08;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.place-icon { font-size: clamp(3rem, 8vw, 5rem); line-height: 1; }
+.place-piece.is-picked {
+  background: #ffe08a;
+  outline: 6px solid #e07a2f;
+}
+.place-spot { background: #fff; }
+.place-pile {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  letter-spacing: 0.12em;
+  min-height: 1.4em;
+}
+.place-spot.is-wrong,
+.name-chip.is-wrong,
+.family-spot.is-wrong { background: #ffd0d0; }
+.name-chip.is-picked { outline: 4px solid #e07a2f; background: #ffe08a; }
+.pray-board {
+  width: min(980px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.pray-hold {
+  --p: 0;
+  width: min(320px, 70vw);
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #4a1c08;
+  background:
+    radial-gradient(circle at center, #fff6e4 0 62%, transparent 63%),
+    conic-gradient(#e07a2f calc(var(--p) * 1%), #f3d2b0 0);
+  box-shadow: 0 12px 0 rgba(107, 45, 10, 0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.pray-hold.is-holding { transform: scale(0.98); }
+.pray-face { font-size: 4rem; line-height: 1; }
+.pray-seconds { font-size: 2rem; font-weight: 900; }
+.pray-note {
+  margin: 0;
+  font-weight: 800;
+  text-align: center;
+  color: #4a1c08;
 }
 .family-spot.is-filled {
   border-style: solid;

@@ -168,8 +168,8 @@
       "type": "set_silver",
       "clicks": 30,
       "lines": {
-        "en": ["Drag ten forks, ten spoons, and ten glasses.", "Fill each spot.", "The table is set."],
-        "ko": ["포크, 숟가락, 컵을 열 개씩.", "자리에 놓아요.", "식탁 준비!"]
+        "en": ["Tap a fork, spoon, or glass. Then tap its spot.", "Ten of each.", "The table is set."],
+        "ko": ["포크, 숟가락, 컵을 누르고 자리에 놓아요.", "열 개씩.", "식탁 준비!"]
       }
     },
     {
@@ -180,20 +180,21 @@
       "type": "seat_family",
       "clicks": 10,
       "lines": {
-        "en": ["Drag each name onto a person.", "Ten family names.", "Everyone has a name."],
-        "ko": ["이름을 사람에게 놓아요.", "열 명.", "모두 이름이 있어요."]
+        "en": ["Tap a name, then tap that person's face.", "Only the right face works.", "Everyone has a name."],
+        "ko": ["이름을 누르고 그 얼굴을 눌러요.", "맞는 얼굴만 돼요.", "모두 이름이 있어요."]
       }
     },
     {
       "id": 11,
       "key": "thanks",
-      "title": "Thankful card",
-      "titleKo": "감사 카드",
+      "title": "Close your eyes",
+      "titleKo": "기도",
       "type": "thankful_card",
-      "clicks": 1,
+      "clicks": 60,
+      "holdRequiredMs": 60000,
       "lines": {
-        "en": ["Pick what you're thankful for.", "Share your gratitude.", "Happy Thanksgiving!"],
-        "ko": ["감사한 것을 골라요.", "마음을 나눠요.", "추수감사절!"]
+        "en": ["Close your eyes. Hold hands and pray.", "Think about what you are grateful for.", "Happy Thanksgiving!"],
+        "ko": ["눈을 감고 손을 잡아요.", "감사한 것을 생각해요.", "추수감사절!"]
       }
     }
   ],

@@ -1,7 +1,7 @@
 /**
  * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-family-tags";
+import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-click-place";
 import {
   mountGravy3D,
   mountMash3D,
@@ -9,9 +9,8 @@ import {
   mountPie3D,
   mountPlates3D,
   mountPluck3D,
-  mountSilver3D,
   mountStuff3D,
-} from "./stage3d.js?v=20261127-family-tags";
+} from "./stage3d.js?v=20261127-click-place";
 import {
   diningRoomSvg,
   gravyPotSvg,
@@ -377,71 +376,97 @@ function mountSetPlates(root, stage, ctx) {
 }
 
 function mountSetSilver(root, stage, ctx) {
-  const gl = mountSilver3D(root, stage, ctx);
-  if (gl) return gl;
-  const total = stage.clicks || 8;
-  const items = ["🍴", "🍴", "🥛", "🥛", "🍴", "🥛", "🧻", "🍴"];
-  let n = 0;
-  root.innerHTML = feastSceneWrap(
-    ctx,
-    stage,
-    `<div class="silver-stage silver-stage-lg">
-      ${diningRoomSvg()}
-      <div class="silver-grid silver-grid-lg" id="sg"></div>
-    </div>`
-  );
-  const grid = root.querySelector("#sg");
-  items.forEach((icon, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "silver-btn silver-btn-lg";
-    btn.textContent = i < total ? "?" : "—";
-    if (i >= total) {
-      btn.disabled = true;
+  const need = 10;
+  const kinds = [
+    { kind: "fork", label: "Fork", icon: "🍴" },
+    { kind: "spoon", label: "Spoon", icon: "🥄" },
+    { kind: "glass", label: "Glass", icon: "🥛" },
+  ];
+  root.innerHTML = `<div class="place-board"></div>`;
+  const board = root.querySelector(".place-board");
+  const counts = { fork: 0, spoon: 0, glass: 0 };
+  let picked = "";
+  let placed = 0;
+  let finished = false;
+  const pieces = {};
+  const spots = {};
+
+  kinds.forEach((item) => {
+    const col = document.createElement("section");
+    col.className = "place-col";
+    const piece = document.createElement("button");
+    piece.type = "button";
+    piece.className = "place-piece";
+    piece.dataset.kind = item.kind;
+    piece.innerHTML = `<span class="place-icon">${item.icon}</span><span>${item.label}</span>`;
+    const spot = document.createElement("button");
+    spot.type = "button";
+    spot.className = "place-spot";
+    spot.dataset.kind = item.kind;
+    spot.innerHTML = `<span class="place-count">${item.label} 0/${need}</span><span class="place-pile"></span>`;
+    col.append(piece, spot);
+    board.append(col);
+    pieces[item.kind] = piece;
+    spots[item.kind] = spot;
+  });
+
+  function paint() {
+    kinds.forEach((item) => {
+      const spot = spots[item.kind];
+      spot.querySelector(".place-count").textContent = `${item.label} ${counts[item.kind]}/${need}`;
+      spot.querySelector(".place-pile").textContent = item.icon.repeat(counts[item.kind]);
+      pieces[item.kind].disabled = counts[item.kind] >= need;
+      pieces[item.kind].classList.toggle("is-picked", picked === item.kind);
+    });
+  }
+
+  function onPiece(e) {
+    const btn = e.currentTarget;
+    if (finished || btn.disabled) return;
+    picked = picked === btn.dataset.kind ? "" : btn.dataset.kind;
+    paint();
+  }
+  function onSpot(e) {
+    const spot = e.currentTarget;
+    if (finished || !picked) return;
+    if (spot.dataset.kind !== picked) {
+      spot.classList.add("is-wrong");
+      window.setTimeout(() => spot.classList.remove("is-wrong"), 280);
+      ctx.onMiss?.();
       return;
     }
-    btn.addEventListener("click", () => {
-      if (btn.disabled) return;
-      btn.disabled = true;
-      btn.textContent = icon;
-      n += 1;
-      ctx.onProgress(n, total);
-      ctx.sfx?.stage?.(stage.key);
-      if (n >= total) ctx.onComplete();
-    });
-    grid?.append(btn);
-  });
+    counts[picked] += 1;
+    placed += 1;
+    if (counts[picked] >= need) picked = "";
+    paint();
+    ctx.sfx?.stage?.(stage.key);
+    ctx.onProgress(placed, need * 3);
+    if (placed >= need * 3) {
+      finished = true;
+      ctx.onComplete();
+    }
+  }
+  Object.values(pieces).forEach((btn) => btn.addEventListener("click", onPiece));
+  Object.values(spots).forEach((btn) => btn.addEventListener("click", onSpot));
   return { destroy() {} };
 }
 
 function mountSeatFamily(root, stage, ctx) {
-  const lang = ctx.uiLang === "ko" ? 1 : 0;
-  const names = [
-    ["Mom", "엄마"],
-    ["Dad", "아빠"],
-    ["Grandma", "할머니"],
-    ["Grandpa", "할아버지"],
-    ["Uncle", "삼촌"],
-    ["Aunt", "이모"],
-    ["Brother", "오빠"],
-    ["Sister", "언니"],
-    ["Cousin", "사촌"],
-    ["Baby", "아기"],
-  ];
+  const lang = ctx.uiLang === "ko" ? "ko" : "en";
   const people = [
-    [22, 22],
-    [39, 26],
-    [58, 16],
-    [80, 20],
-    [11, 52],
-    [30, 50],
-    [50, 48],
-    [67, 46],
-    [78, 62],
-    [91, 54],
+    { name: "Uncle", ko: "삼촌", x: 22, y: 22 },
+    { name: "Aunt", ko: "이모", x: 39, y: 26 },
+    { name: "Brother", ko: "오빠", x: 58, y: 16 },
+    { name: "Sister", ko: "언니", x: 80, y: 20 },
+    { name: "Grandma", ko: "할머니", x: 11, y: 52 },
+    { name: "Grandpa", ko: "할아버지", x: 30, y: 50 },
+    { name: "Mom", ko: "엄마", x: 50, y: 48 },
+    { name: "Dad", ko: "아빠", x: 67, y: 46 },
+    { name: "Baby", ko: "아기", x: 78, y: 62 },
+    { name: "Cousin", ko: "사촌", x: 91, y: 54 },
   ];
   const photo = new URL("../assets/family/thanksgiving-family.jpg", import.meta.url);
-  photo.searchParams.set("v", "20261127-family-tags");
+  photo.searchParams.set("v", "20261127-click-place");
   root.innerHTML = `<div class="family-board">
     <div class="family-photo-wrap">
       <img class="family-photo" alt="" src="${esc(photo.href)}" draggable="false">
@@ -450,128 +475,146 @@ function mountSeatFamily(root, stage, ctx) {
   </div>`;
   const wrap = root.querySelector(".family-photo-wrap");
   const tray = root.querySelector(".family-names");
-  const spots = people.map(([x, y], index) => {
+  const spots = people.map((person) => {
     const spot = document.createElement("div");
     spot.className = "family-spot";
-    spot.style.left = `${x}%`;
-    spot.style.top = `${y}%`;
-    spot.dataset.index = String(index);
+    spot.style.left = `${person.x}%`;
+    spot.style.top = `${person.y}%`;
+    spot.dataset.name = person.name;
+    spot.setAttribute("aria-label", lang === "ko" ? person.ko : person.name);
     wrap.append(spot);
     return spot;
   });
-  const order = names.slice();
+  const order = people.slice();
   for (let i = order.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
   }
-  order.forEach((pair) => {
+  order.forEach((person) => {
     const chip = document.createElement("button");
     chip.type = "button";
     chip.className = "name-chip";
-    chip.textContent = pair[lang];
+    chip.dataset.name = person.name;
+    chip.textContent = lang === "ko" ? person.ko : person.name;
     tray.append(chip);
   });
-  let dragChip = null;
+  let picked = null;
   let seated = 0;
   let finished = false;
 
-  function spotAt(x, y) {
-    const open = spots.filter((spot) => {
-      if (spot.dataset.filled) return false;
-      const rect = spot.getBoundingClientRect();
-      return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+  function onName(e) {
+    const chip = e.currentTarget;
+    if (finished || chip.disabled) return;
+    picked = picked === chip ? null : chip;
+    tray.querySelectorAll(".name-chip").forEach((btn) => {
+      btn.classList.toggle("is-picked", btn === picked);
     });
-    open.sort((a, b) => {
-      const ar = a.getBoundingClientRect();
-      const br = b.getBoundingClientRect();
-      const ad = (x - (ar.left + ar.width / 2)) ** 2 + (y - (ar.top + ar.height / 2)) ** 2;
-      const bd = (x - (br.left + br.width / 2)) ** 2 + (y - (br.top + br.height / 2)) ** 2;
-      return ad - bd;
-    });
-    return open[0] || null;
   }
-
-  function onDown(e) {
-    const chip = e.target.closest?.(".name-chip");
-    if (!chip || chip.disabled || finished || !tray.contains(chip)) return;
-    dragChip = chip;
-    chip.classList.add("is-dragging");
-  }
-  function onMove(e) {
-    if (!dragChip) return;
-    dragChip.style.position = "fixed";
-    dragChip.style.left = `${e.clientX - 36}px`;
-    dragChip.style.top = `${e.clientY - 18}px`;
-    dragChip.style.zIndex = "8";
-  }
-  function onUp(e) {
-    if (!dragChip || finished) return;
-    const chip = dragChip;
-    dragChip = null;
-    chip.classList.remove("is-dragging");
-    const spot = spotAt(e.clientX, e.clientY);
-    chip.style.position = "";
-    chip.style.left = "";
-    chip.style.top = "";
-    chip.style.zIndex = "";
-    if (!spot) {
-      chip.classList.add("is-wrong");
-      window.setTimeout(() => chip.classList.remove("is-wrong"), 280);
+  function onFace(e) {
+    const spot = e.currentTarget;
+    if (finished || !picked || spot.dataset.filled) return;
+    if (spot.dataset.name !== picked.dataset.name) {
+      spot.classList.add("is-wrong");
+      picked.classList.add("is-wrong");
+      window.setTimeout(() => {
+        spot.classList.remove("is-wrong");
+        picked?.classList.remove("is-wrong");
+      }, 280);
+      ctx.onMiss?.();
       return;
     }
+    const chip = picked;
+    picked = null;
+    chip.classList.remove("is-picked");
     spot.dataset.filled = "1";
     spot.classList.add("is-filled");
     spot.append(chip);
     chip.disabled = true;
     seated += 1;
     ctx.sfx?.stage?.(stage.key);
-    ctx.onProgress(seated, names.length);
-    if (seated >= names.length) {
+    ctx.onProgress(seated, people.length);
+    if (seated >= people.length) {
       finished = true;
       ctx.onComplete();
     }
   }
-  wrap.addEventListener("pointerdown", onDown);
-  tray.addEventListener("pointerdown", onDown);
-  window.addEventListener("pointermove", onMove);
-  window.addEventListener("pointerup", onUp);
-  return {
-    destroy() {
-      wrap.removeEventListener("pointerdown", onDown);
-      tray.removeEventListener("pointerdown", onDown);
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onUp);
-    },
-  };
+  tray.querySelectorAll(".name-chip").forEach((chip) => chip.addEventListener("click", onName));
+  spots.forEach((spot) => spot.addEventListener("click", onFace));
+  return { destroy() {} };
 }
 
 function mountThankfulCard(root, stage, ctx) {
-  const cards = ["thanksFamily", "thanksFriends", "thanksFood", "thanksHome", "thanksHealth", "thanksSchool"];
-  root.innerHTML = feastSceneWrap(
-    ctx,
-    stage,
-    `<div class="thanks-stage thanks-stage-lg">
-      <p class="thanks-prompt" data-ui="thanksPrompt">${esc(ui(ctx, "thanksPrompt"))}</p>
-      <div class="thanks-cards thanks-cards-lg">${cards
-        .map(
-          (key, i) =>
-            `<button type="button" class="thanks-card thanks-card-lg" data-i="${i}" data-ui="${key}">${esc(ui(ctx, key))}</button>`
-        )
-        .join("")}</div>
-    </div>`
-  );
-  root.querySelectorAll(".thanks-card").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      root.querySelectorAll(".thanks-card").forEach((b) => {
-        b.disabled = true;
-        b.classList.toggle("picked", b === btn);
-      });
-      ctx.onProgress(1, 1);
+  const need = stage.holdRequiredMs || 60000;
+  const note = ctx.uiLang === "ko"
+    ? "눈을 감고 1분 동안 누르세요."
+    : "Close your eyes. Hold for one minute.";
+  root.innerHTML = `<div class="pray-board">
+    <button type="button" class="pray-hold" id="pray-hold">
+      <span class="pray-face" aria-hidden="true">😌</span>
+      <span class="pray-seconds" id="pray-seconds">0:00</span>
+    </button>
+    <p class="pray-note">${esc(note)}</p>
+  </div>`;
+  const btn = root.querySelector("#pray-hold");
+  const label = root.querySelector("#pray-seconds");
+  let holding = false;
+  let finished = false;
+  let t0 = 0;
+  let frame = 0;
+  let shown = -1;
+
+  function paint(ms) {
+    const clamped = Math.max(0, Math.min(need, ms));
+    const sec = Math.floor(clamped / 1000);
+    btn.style.setProperty("--p", String((clamped / need) * 100));
+    if (sec !== shown) {
+      shown = sec;
+      const m = Math.floor(sec / 60);
+      const s = String(sec % 60).padStart(2, "0");
+      label.textContent = `${m}:${s}`;
+      ctx.onProgress(sec, Math.ceil(need / 1000));
+    }
+  }
+  function tick(now) {
+    if (!holding) return;
+    const elapsed = now - t0;
+    paint(elapsed);
+    if (elapsed >= need) {
+      holding = false;
+      finished = true;
       ctx.sfx?.stage?.(stage.key);
       ctx.onComplete();
-    });
-  });
-  return { destroy() {} };
+      return;
+    }
+    frame = requestAnimationFrame(tick);
+  }
+  function down(e) {
+    if (finished || holding || (e.button !== undefined && e.button !== 0)) return;
+    holding = true;
+    t0 = performance.now();
+    btn.classList.add("is-holding");
+    try { btn.setPointerCapture(e.pointerId); } catch { /* ignore */ }
+    frame = requestAnimationFrame(tick);
+  }
+  function up() {
+    if (!holding) return;
+    holding = false;
+    cancelAnimationFrame(frame);
+    btn.classList.remove("is-holding");
+    paint(0);
+  }
+  btn.addEventListener("pointerdown", down);
+  btn.addEventListener("pointerup", up);
+  btn.addEventListener("pointercancel", up);
+  return {
+    destroy() {
+      holding = false;
+      cancelAnimationFrame(frame);
+      btn.removeEventListener("pointerdown", down);
+      btn.removeEventListener("pointerup", up);
+      btn.removeEventListener("pointercancel", up);
+    },
+  };
 }
 
 export function mountStage(root, stage, ctx) {
