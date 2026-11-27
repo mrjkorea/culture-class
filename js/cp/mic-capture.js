@@ -1,5 +1,5 @@
 /** Bump with cp-speak.html script pin so classroom Chrome picks up mic + worker fixes. */
-export const MIC_CAPTURE_BUILD = "20261030-speak-score-failopen";
+export const MIC_CAPTURE_BUILD = "20261127-mic-floor";
 
 const SILENCE_MS = 1200;
 const SILENCE_GRACE_MS = 1600;
@@ -57,6 +57,7 @@ export function startSilenceWatch(stream, ctx, onEnd, endSilence = SILENCE_MS, g
     let quietMs = 0;
     let totalMs = 0;
     let spoke = false;
+    let noise = 0;
     const tick = () => {
       if (!capture) return;
       analyser.getFloatTimeDomainData(buf);
@@ -64,10 +65,13 @@ export function startSilenceWatch(stream, ctx, onEnd, endSilence = SILENCE_MS, g
       for (let i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
       const rms = Math.sqrt(sum / buf.length);
       totalMs += SILENCE_CHECK_MS;
-      if (rms >= SILENCE_RMS) {
+      if (!spoke) noise = noise === 0 ? rms : Math.min(noise, rms);
+      const speakAt = Math.max(SILENCE_RMS, noise * 1.7);
+      const quietAt = Math.max(SILENCE_RMS * 0.5, noise * 1.3);
+      if (rms >= speakAt) {
         spoke = true;
         quietMs = 0;
-      } else if (totalMs > grace && spoke) {
+      } else if (totalMs > grace && spoke && rms <= quietAt) {
         quietMs += SILENCE_CHECK_MS;
       }
       if (quietMs >= endSilence || totalMs >= MAX_RECORD_MS || (!spoke && totalMs >= 12000)) {

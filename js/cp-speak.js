@@ -7,7 +7,7 @@ import {
   cancelMicTake,
   isCapturing,
   micErrorMessage,
-} from "./cp/mic-capture.js?v=20261030-speak-score-failopen";
+} from "./cp/mic-capture.js?v=20261127-mic-floor";
 import {
   craftUrl,
   escapeHtml,
