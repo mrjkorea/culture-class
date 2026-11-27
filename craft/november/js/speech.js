@@ -2,7 +2,7 @@
  * Grandma June host: warm Fish MP3s in assets/audio/grandma/ only.
  */
 
-import { CRAFT_ASSET_V } from "./asset-version.js";
+import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-forest-hunt-2";
 
 export function createSpeech(manifest = {}, assetBase = "") {
   let enabled = true;
