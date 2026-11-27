@@ -195,10 +195,8 @@ function renderTitle() {
     <p class="how">${esc(t("how"))}</p>
     <p class="hint">${esc(t("beatNote"))}</p>
     <form id="nick-form">
-      ${signed
-        ? `<p class="hint signed-as">${esc((t("playingAs") || "Playing as {name}").replace("{name}", signed))}</p>
-      <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>`
-        : `<p class="hint">Sign in with your class ID. There is no name box.</p>`}
+      ${signed ? `<p class="hint signed-as">${esc((t("playingAs") || "Playing as {name}").replace("{name}", signed))}</p>` : ""}
+      <button id="play-btn" class="go" type="submit">${esc(t("play"))}</button>
       <p id="form-error" class="form-error" role="alert"></p>
     </form>
     <h2 class="board-title">${esc(t("board"))}</h2>
@@ -214,13 +212,9 @@ async function onStart(event) {
   event.preventDefault();
   if (starting) return;
   const signed = syncDisplayNameFromAuth();
-  const name = cleanName(signed);
+  const name = cleanName(signed || "Student");
   const error = document.getElementById("form-error");
-  if (!name) {
-    error.textContent = "Sign in with your class ID first.";
-    return;
-  }
-  error.textContent = "";
+  if (error) error.textContent = "";
   starting = true;
   speech.unlock();
   sfx?.unlock?.();
