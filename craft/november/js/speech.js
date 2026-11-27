@@ -66,7 +66,11 @@ export function createSpeech(manifest = {}, assetBase = "") {
         speaking = true;
         startFlap();
       }
+      let settled = false;
       const done = () => {
+        if (settled) return;
+        settled = true;
+        window.clearTimeout(cap);
         audio.removeEventListener("ended", done);
         audio.removeEventListener("error", done);
         if (!overlap && activeAudio === audio) {
@@ -75,6 +79,7 @@ export function createSpeech(manifest = {}, assetBase = "") {
         }
         resolve(true);
       };
+      const cap = window.setTimeout(done, 12000);
       audio.addEventListener("ended", done);
       audio.addEventListener("error", done);
       if (!enabled) {

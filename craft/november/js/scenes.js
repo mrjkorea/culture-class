@@ -1,10 +1,9 @@
 /**
  * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { scene3dUrl } from "./assets.js";
+import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js";
 import {
   mountGravy3D,
-  mountHunt3D,
   mountMash3D,
   mountOven3D,
   mountPie3D,
@@ -56,38 +55,58 @@ function feastSceneWrap(ctx, stage, inner, extraClass = "") {
 }
 
 function mountTurkeyHunt(root, stage, ctx) {
-  const gl = mountHunt3D(root, stage, ctx);
-  if (gl) return gl;
-  const pool = stage.poolSize || 16;
-  const turkeys = new Set([Math.floor(Math.random() * pool)]);
+  const cols = 8;
+  const rows = 5;
+  const winner = Math.floor(Math.random() * cols * rows);
+  const forest = huntForestUrl(ctx.assetBase, ctx.manifest);
+  const turkey = transitionUrl(ctx.assetBase, ctx.manifest, "t01_hunt");
+  const seen = new Set();
   let found = false;
-  root.innerHTML = feastSceneWrap(
-    ctx,
-    stage,
-    `<div class="hunt-field hunt-field-lg">${Array.from(
-      { length: pool },
-      (_, i) => `<button type="button" class="bush-cell" data-i="${i}">🌾</button>`
-    ).join("")}</div>`,
-    "feast-fallback"
-  );
-  root.querySelectorAll(".bush-cell").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (btn.disabled || found) return;
-      const i = Number(btn.dataset.i);
-      ctx.sfx?.stage?.(stage.key);
-      if (turkeys.has(i)) {
-        found = true;
-        btn.textContent = "🦃";
-        btn.disabled = true;
-        ctx.onProgress(1, 1);
-        ctx.onComplete();
-      } else {
-        btn.classList.add("miss-bush");
-        ctx.onMiss?.();
-      }
-    });
-  });
-  return { destroy() {} };
+  root.innerHTML = `<div class="forest-hunt" id="forest-hunt">
+    <img class="forest-bg" alt="" src="${esc(forest)}" draggable="false">
+  </div>`;
+  const field = root.querySelector("#forest-hunt");
+
+  function onPointer(e) {
+    if (found || (e.button !== undefined && e.button !== 0)) return;
+    const rect = field.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    if (x < 0 || y < 0 || x >= 1 || y >= 1) return;
+    const col = Math.min(cols - 1, Math.floor(x * cols));
+    const row = Math.min(rows - 1, Math.floor(y * rows));
+    const i = row * cols + col;
+    if (seen.has(i)) return;
+    seen.add(i);
+    ctx.sfx?.stage?.(stage.key);
+    if (i === winner) {
+      found = true;
+      const pic = document.createElement("img");
+      pic.className = "turkey-found";
+      pic.alt = "";
+      pic.src = turkey;
+      pic.style.left = `${Math.min(78, Math.max(22, x * 100))}%`;
+      pic.style.top = `${Math.min(72, Math.max(28, y * 100))}%`;
+      field.append(pic);
+      ctx.onProgress(1, 1);
+      ctx.onComplete();
+      return;
+    }
+    const dot = document.createElement("span");
+    dot.className = "forest-mark";
+    dot.style.left = `${x * 100}%`;
+    dot.style.top = `${y * 100}%`;
+    field.append(dot);
+    ctx.onMiss?.();
+  }
+
+  field.addEventListener("pointerdown", onPointer);
+  return {
+    destroy() {
+      field.removeEventListener("pointerdown", onPointer);
+    },
+  };
 }
 
 function mountPluck(root, stage, ctx) {

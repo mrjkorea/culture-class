@@ -28,6 +28,14 @@ export function scene3dUrl(assetBase, manifest, key) {
   return new URL(rel, assetBase).href;
 }
 
+export function huntForestUrl(assetBase, manifest) {
+  const rel = manifest?.huntForest;
+  if (!rel || !assetBase) return "";
+  const url = new URL(rel, assetBase);
+  url.searchParams.set("v", CRAFT_ASSET_V);
+  return url.href;
+}
+
 export function transitionVideoUrl(assetBase, manifest, id) {
   const rel = manifest.transitionVideos?.[id];
   if (!rel) return "";

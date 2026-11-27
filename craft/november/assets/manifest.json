@@ -4,6 +4,7 @@
     "closed": "grandma/grandma_talk_closed.jpg",
     "open": "grandma/grandma_talk_open.jpg"
   },
+  "huntForest": "forest/hunt-forest.jpg",
   "scenes3d": {
     "hunt": "transitions/t01_hunt.jpg",
     "pluck": "transitions/t02_pluck.jpg",

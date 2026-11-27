@@ -86,7 +86,10 @@ export function createTransitionStillPlayer(deps) {
     const nextId = ctx.spec.transitions[index + 1]?.id;
     if (nextId) prefetchById(nextId);
 
-    await ensureLoaded(src);
+    await Promise.race([
+      ensureLoaded(src),
+      new Promise((resolve) => window.setTimeout(resolve, 4000)),
+    ]);
 
     const caption = transition?.caption || { en: "", ko: "" };
     const title = ctx.uiLang === "ko" ? caption.ko : caption.en;

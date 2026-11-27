@@ -224,8 +224,8 @@ async function onStart(event) {
   starting = true;
   speech.unlock();
   sfx?.unlock?.();
+  speech.playClip("intro");
   try {
-    await speech.playClip("intro");
     await runGame(name);
   } catch (err) {
     console.error(err);
@@ -371,7 +371,12 @@ function playStageMovie(transition, index) {
     </section>`;
     paintMisses();
     const video = document.getElementById("stage-movie");
+    let settled = false;
+    let cap = 0;
     const finish = () => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(cap);
       video?.removeEventListener("ended", finish);
       video?.removeEventListener("error", finish);
       resolve();
@@ -385,6 +390,7 @@ function playStageMovie(transition, index) {
     video.src = src;
     if (!speech.enabled) video.muted = true;
     video.load();
+    cap = window.setTimeout(finish, 12000);
     video.play().catch(finish);
   });
 }

@@ -64,11 +64,11 @@
       "title": "Turkey hunt",
       "titleKo": "칠면조 찾기",
       "type": "turkey_hunt",
-      "poolSize": 8,
-      "goodCount": 3,
+      "poolSize": 40,
+      "goodCount": 1,
       "lines": {
-        "en": ["Turkeys are hiding. Tap the hay and the bushes.", "Nothing there. Try another spot.", "You found the turkeys."],
-        "ko": ["밭에서 칠면조를 찾아요.", "맞는 곳을 눌러요.", "찾았어요!"]
+        "en": ["A turkey is hiding in the forest. Tap many places.", "Not there. Keep looking.", "You found the turkey."],
+        "ko": ["숲에 칠면조가 숨었어요. 여러 곳을 눌러요.", "없어요. 다시 찾아요.", "칠면조를 찾았어요."]
       }
     },
     {
