@@ -31,7 +31,7 @@ body {
   color: var(--ink);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  touch-action: pan-y;
 }
 
 button,
@@ -126,6 +126,9 @@ input { font: inherit; }
 
 .sky {
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background:
@@ -164,9 +167,21 @@ input { font: inherit; }
   background: rgba(255, 255, 255, 0.18);
 }
 
-.top-title { letter-spacing: 0.01em; }
+.top-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
 
-.top-actions { display: flex; gap: 8px; align-items: center; }
+.top-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+}
 
 .craft-lang-wrap select {
   min-height: 36px;

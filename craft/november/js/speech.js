@@ -2,7 +2,7 @@
  * Grandma June host: warm Fish MP3s in assets/audio/grandma/ only.
  */
 
-import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-forest-hunt-2";
+import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-feast-effort-2";
 
 export function createSpeech(manifest = {}, assetBase = "") {
   let enabled = true;
@@ -117,7 +117,19 @@ export function createSpeech(manifest = {}, assetBase = "") {
       return enabled;
     },
     unlock() {
-      playClip("intro", { overlap: true }).catch(() => {});
+      try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        const ctx = new Ctx();
+        const buf = ctx.createBuffer(1, 1, 22050);
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(ctx.destination);
+        src.start(0);
+        ctx.resume?.();
+      } catch {
+        /* a quiet unlock is enough; the intro plays once after this */
+      }
     },
   };
 }

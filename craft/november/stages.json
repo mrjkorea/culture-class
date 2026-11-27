@@ -141,7 +141,7 @@
       "title": "Whipped cream",
       "titleKo": "파이",
       "type": "pie",
-      "clicks": 60,
+      "clicks": 100,
       "midAt": 0.5,
       "lines": {
         "en": ["Spray whipped cream on the pie.", "Cover the whole top.", "The pie is covered."],

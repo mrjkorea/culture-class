@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js?v=20261127-feast-effort";
+} from "./turkey-mesh.js?v=20261127-feast-effort-2";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;
@@ -567,10 +567,10 @@ export function mountGravy3D(root, stage, ctx) {
   if (!view) return null;
   const { container, gl } = view;
   const bowl = new THREE.Mesh(
-    new THREE.SphereGeometry(0.32, 14, 10, 0, Math.PI * 2, 0, Math.PI / 2),
+    new THREE.SphereGeometry(0.32, 18, 12, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
     new THREE.MeshLambertMaterial({ color: 0xf4efe6, side: THREE.DoubleSide })
   );
-  bowl.position.y = 0.16;
+  bowl.position.y = 0.34;
   const gravy = new THREE.Mesh(
     new THREE.CylinderGeometry(0.2, 0.22, 0.08, 12),
     texMat(0x7a3e12, "gravy")
@@ -671,7 +671,7 @@ export function mountPie3D(root, stage, ctx) {
   pie.position.y = 0.05;
   gl.scene.add(pie);
   const creamMat = texMat(0xfffaf3, "cream");
-  const total = stage.clicks || 60;
+  const total = stage.clicks || 100;
   const spots = [];
   for (let i = 0; i < total; i += 1) {
     const dollop = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 8), creamMat.clone());

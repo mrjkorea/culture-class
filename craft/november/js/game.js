@@ -1,10 +1,10 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-feast-effort";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-feast-effort-2";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
-import { mountStage } from "./scenes.js?v=20261127-feast-effort";
+import { mountStage } from "./scenes.js?v=20261127-feast-effort-2";
 import { titleArtSvg } from "./thanksgiving-art.js";
-import { createSpeech } from "./speech.js?v=20261127-feast-effort";
+import { createSpeech } from "./speech.js?v=20261127-feast-effort-2";
 import { createSfx } from "./sfx.js";
-import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-feast-effort";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-feast-effort-2";
 import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 

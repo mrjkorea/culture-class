@@ -1,7 +1,7 @@
 /**
  * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-feast-effort";
+import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-feast-effort-2";
 import {
   mountGravy3D,
   mountMash3D,
@@ -12,7 +12,7 @@ import {
   mountSeat3D,
   mountSilver3D,
   mountStuff3D,
-} from "./stage3d.js?v=20261127-feast-effort";
+} from "./stage3d.js?v=20261127-feast-effort-2";
 import {
   diningRoomSvg,
   gravyPotSvg,
