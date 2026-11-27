@@ -166,10 +166,10 @@
       "title": "Forks & glasses",
       "titleKo": "포크와 컵",
       "type": "set_silver",
-      "clicks": 3,
+      "clicks": 30,
       "lines": {
-        "en": ["Drag the fork, the spoon, and the glass.", "Put each one on its spot.", "The setting is done."],
-        "ko": ["포크와 컵.", "냅킨도.", "식탁 준비!"]
+        "en": ["Drag ten forks, ten spoons, and ten glasses.", "Fill each spot.", "The table is set."],
+        "ko": ["포크, 숟가락, 컵을 열 개씩.", "자리에 놓아요.", "식탁 준비!"]
       }
     },
     {
@@ -180,8 +180,8 @@
       "type": "seat_family",
       "clicks": 10,
       "lines": {
-        "en": ["Drag each name to the matching chair.", "Ten family names.", "Everyone is seated."],
-        "ko": ["가족을 앉혀요.", "함께.", "모였어요."]
+        "en": ["Drag each name onto a person.", "Ten family names.", "Everyone has a name."],
+        "ko": ["이름을 사람에게 놓아요.", "열 명.", "모두 이름이 있어요."]
       }
     },
     {

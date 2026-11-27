@@ -1,7 +1,7 @@
 /**
  * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-silver-skip-2";
+import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-family-tags";
 import {
   mountGravy3D,
   mountMash3D,
@@ -9,10 +9,9 @@ import {
   mountPie3D,
   mountPlates3D,
   mountPluck3D,
-  mountSeat3D,
   mountSilver3D,
   mountStuff3D,
-} from "./stage3d.js?v=20261127-silver-skip-2";
+} from "./stage3d.js?v=20261127-family-tags";
 import {
   diningRoomSvg,
   gravyPotSvg,
@@ -416,45 +415,134 @@ function mountSetSilver(root, stage, ctx) {
 }
 
 function mountSeatFamily(root, stage, ctx) {
-  const gl = mountSeat3D(root, stage, ctx);
-  if (gl) return gl;
-  const total = stage.clicks || 5;
+  const lang = ctx.uiLang === "ko" ? 1 : 0;
   const names = [
-    ["seatMom", "Mom"],
-    ["seatDad", "Dad"],
-    ["seatGrandma", "Grandma"],
-    ["seatGrandpa", "Grandpa"],
-    ["seatYou", "You"],
+    ["Mom", "엄마"],
+    ["Dad", "아빠"],
+    ["Grandma", "할머니"],
+    ["Grandpa", "할아버지"],
+    ["Uncle", "삼촌"],
+    ["Aunt", "이모"],
+    ["Brother", "오빠"],
+    ["Sister", "언니"],
+    ["Cousin", "사촌"],
+    ["Baby", "아기"],
   ];
-  let n = 0;
-  root.innerHTML = feastSceneWrap(
-    ctx,
-    stage,
-    `<div class="seat-stage seat-stage-lg">
-      ${diningRoomSvg()}
-      <div class="chair-row chair-row-lg" id="chairs"></div>
-    </div>`
-  );
-  const row = root.querySelector("#chairs");
-  names.forEach((name, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "chair-btn chair-btn-lg";
-    const [key, fallback] = name;
-    btn.dataset.ui = key;
-    btn.textContent = ui(ctx, key) || fallback;
-    btn.addEventListener("click", () => {
-      if (btn.disabled || i >= total) return;
-      btn.disabled = true;
-      btn.textContent = `${ui(ctx, key) || fallback} 🪑`;
-      n += 1;
-      ctx.onProgress(n, total);
-      ctx.sfx?.stage?.(stage.key);
-      if (n >= total) ctx.onComplete();
-    });
-    row?.append(btn);
+  const people = [
+    [22, 22],
+    [39, 26],
+    [58, 16],
+    [80, 20],
+    [11, 52],
+    [30, 50],
+    [50, 48],
+    [67, 46],
+    [78, 62],
+    [91, 54],
+  ];
+  const photo = new URL("../assets/family/thanksgiving-family.jpg", import.meta.url);
+  photo.searchParams.set("v", "20261127-family-tags");
+  root.innerHTML = `<div class="family-board">
+    <div class="family-photo-wrap">
+      <img class="family-photo" alt="" src="${esc(photo.href)}" draggable="false">
+    </div>
+    <div class="name-tray family-names"></div>
+  </div>`;
+  const wrap = root.querySelector(".family-photo-wrap");
+  const tray = root.querySelector(".family-names");
+  const spots = people.map(([x, y], index) => {
+    const spot = document.createElement("div");
+    spot.className = "family-spot";
+    spot.style.left = `${x}%`;
+    spot.style.top = `${y}%`;
+    spot.dataset.index = String(index);
+    wrap.append(spot);
+    return spot;
   });
-  return { destroy() {} };
+  const order = names.slice();
+  for (let i = order.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  order.forEach((pair) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "name-chip";
+    chip.textContent = pair[lang];
+    tray.append(chip);
+  });
+  let dragChip = null;
+  let seated = 0;
+  let finished = false;
+
+  function spotAt(x, y) {
+    const open = spots.filter((spot) => {
+      if (spot.dataset.filled) return false;
+      const rect = spot.getBoundingClientRect();
+      return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+    });
+    open.sort((a, b) => {
+      const ar = a.getBoundingClientRect();
+      const br = b.getBoundingClientRect();
+      const ad = (x - (ar.left + ar.width / 2)) ** 2 + (y - (ar.top + ar.height / 2)) ** 2;
+      const bd = (x - (br.left + br.width / 2)) ** 2 + (y - (br.top + br.height / 2)) ** 2;
+      return ad - bd;
+    });
+    return open[0] || null;
+  }
+
+  function onDown(e) {
+    const chip = e.target.closest?.(".name-chip");
+    if (!chip || chip.disabled || finished || !tray.contains(chip)) return;
+    dragChip = chip;
+    chip.classList.add("is-dragging");
+  }
+  function onMove(e) {
+    if (!dragChip) return;
+    dragChip.style.position = "fixed";
+    dragChip.style.left = `${e.clientX - 36}px`;
+    dragChip.style.top = `${e.clientY - 18}px`;
+    dragChip.style.zIndex = "8";
+  }
+  function onUp(e) {
+    if (!dragChip || finished) return;
+    const chip = dragChip;
+    dragChip = null;
+    chip.classList.remove("is-dragging");
+    const spot = spotAt(e.clientX, e.clientY);
+    chip.style.position = "";
+    chip.style.left = "";
+    chip.style.top = "";
+    chip.style.zIndex = "";
+    if (!spot) {
+      chip.classList.add("is-wrong");
+      window.setTimeout(() => chip.classList.remove("is-wrong"), 280);
+      return;
+    }
+    spot.dataset.filled = "1";
+    spot.classList.add("is-filled");
+    spot.append(chip);
+    chip.disabled = true;
+    seated += 1;
+    ctx.sfx?.stage?.(stage.key);
+    ctx.onProgress(seated, names.length);
+    if (seated >= names.length) {
+      finished = true;
+      ctx.onComplete();
+    }
+  }
+  wrap.addEventListener("pointerdown", onDown);
+  tray.addEventListener("pointerdown", onDown);
+  window.addEventListener("pointermove", onMove);
+  window.addEventListener("pointerup", onUp);
+  return {
+    destroy() {
+      wrap.removeEventListener("pointerdown", onDown);
+      tray.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    },
+  };
 }
 
 function mountThankfulCard(root, stage, ctx) {

@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js?v=20261127-silver-skip-2";
+} from "./turkey-mesh.js?v=20261127-family-tags";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;
@@ -886,12 +886,40 @@ export function mountSilver3D(root, stage, ctx) {
   frame();
   const frameObserver = new ResizeObserver(frame);
   frameObserver.observe(container);
+  const need = 10;
+  const counts = { fork: 0, spoon: 0, glass: 0 };
+  const countBar = document.createElement("div");
+  countBar.className = "silver-counts";
+  kinds.forEach((item) => {
+    const bit = document.createElement("span");
+    bit.dataset.kind = item.kind;
+    bit.textContent = `${item.label} 0/${need}`;
+    countBar.append(bit);
+  });
+  container.append(countBar);
   let drag = null;
   let finished = false;
   let placed = 0;
   const dragY = topY + 0.08;
   const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -dragY);
   const hitPoint = new THREE.Vector3();
+
+  function pileSlot(index, n) {
+    const baseX = (index - 1) * 0.62;
+    const col = n % 5;
+    const row = Math.floor(n / 5);
+    return {
+      x: baseX + (col - 2) * 0.11,
+      z: -0.46 + row * 0.18,
+    };
+  }
+
+  function paintCounts() {
+    countBar.querySelectorAll("span").forEach((bit) => {
+      const item = kinds.find((row) => row.kind === bit.dataset.kind);
+      bit.textContent = `${item.label} ${counts[item.kind]}/${need}`;
+    });
+  }
 
   function onDown(e) {
     if (finished || drag || (e.button !== undefined && e.button !== 0)) return;
@@ -918,16 +946,32 @@ export function mountSilver3D(root, stage, ctx) {
   function onUp() {
     if (!drag) return;
     const spot = spots.find((s) => s.userData.kind === drag.kind && !s.userData.filled);
-    const close = spot && drag.mesh.position.distanceTo(spot.position) < 0.55;
+    const close = spot && counts[drag.kind] < need && drag.mesh.position.distanceTo(spot.position) < 0.62;
     if (close) {
-      drag.mesh.position.set(spot.position.x, topY, spot.position.z);
-      drag.done = true;
-      spot.userData.filled = true;
-      spot.material.color.set(0x7dcea0);
+      const n = counts[drag.kind];
+      const copy = drag.mesh.clone(true);
+      const labels = [];
+      copy.traverse((node) => {
+        if (node.userData?.label) labels.push(node);
+      });
+      labels.forEach((node) => node.parent?.remove(node));
+      copy.userData.kind = "";
+      copy.scale.setScalar(0.32);
+      const slot = pileSlot(kinds.indexOf(drag), n);
+      copy.position.set(slot.x, topY, slot.z);
+      gl.scene.add(copy);
+      counts[drag.kind] += 1;
       placed += 1;
+      paintCounts();
+      drag.mesh.position.copy(drag.home);
+      if (counts[drag.kind] >= need) {
+        drag.done = true;
+        drag.mesh.visible = false;
+        spot.material.color.set(0x7dcea0);
+      }
       ctx.sfx?.stage?.(stage.key);
-      ctx.onProgress(placed, 3);
-      if (placed >= 3) {
+      ctx.onProgress(placed, need * 3);
+      if (placed >= need * 3) {
         finished = true;
         ctx.onComplete();
       }
@@ -947,7 +991,8 @@ export function mountSilver3D(root, stage, ctx) {
     () => container.removeEventListener("pointerdown", onDown),
     () => container.removeEventListener("pointermove", onMove),
     () => container.removeEventListener("pointerup", onUp),
-    () => container.removeEventListener("pointercancel", onUp)
+    () => container.removeEventListener("pointercancel", onUp),
+    () => countBar.remove()
   );
 }
 

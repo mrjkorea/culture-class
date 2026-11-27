@@ -1090,6 +1090,78 @@ input:focus { outline: 3px solid var(--violet); border-color: transparent; }
 .name-chip.is-dragging { outline: 3px solid #e07a1f; }
 .name-chip.is-wrong { background: #ffd0d0; }
 .name-chip.is-seated { opacity: 0.45; }
+.silver-counts {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 8px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-around;
+  gap: 6px;
+  pointer-events: none;
+}
+.silver-counts span {
+  background: #fff6e4;
+  color: #4a1c08;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 800;
+}
+.family-board {
+  width: min(980px, 100%);
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.family-photo-wrap {
+  position: relative;
+  width: min(100%, calc((100% - 8px) * 16 / 9));
+  max-height: calc(100% - 76px);
+  aspect-ratio: 16 / 9;
+}
+.family-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #3a2410;
+  pointer-events: none;
+  user-select: none;
+}
+.family-spot {
+  position: absolute;
+  width: 15%;
+  height: 24%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 3px dashed rgba(255, 246, 228, 0.95);
+  box-shadow: 0 0 0 3px rgba(74, 28, 8, 0.35);
+  background: rgba(255, 246, 228, 0.12);
+}
+.family-spot.is-filled {
+  border-style: solid;
+  border-color: #7dcea0;
+  background: transparent;
+  box-shadow: none;
+}
+.family-spot .name-chip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.family-names {
+  position: static;
+  width: 100%;
+}
 .gl-host .gl-stage {
   display: block;
   width: 100% !important;
