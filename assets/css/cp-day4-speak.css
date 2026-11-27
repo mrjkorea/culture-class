@@ -57,3 +57,33 @@
 .cp-day4-layout h1 {
   color: #1c1915;
 }
+
+.cp-day4-layout #englishReveal {
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.cp-day4-layout .word-chip.good,
+.cp-day4-layout .word-chip.green {
+  background: #d3f9d8;
+  color: #2b8a3e;
+  border-color: #2b8a3e;
+}
+
+.cp-day4-layout .word-chip.yellow {
+  background: #fff3bf;
+  color: #e67700;
+  border-color: #e67700;
+}
+
+.cp-day4-layout .word-chip.bad,
+.cp-day4-layout .word-chip.red {
+  background: #ffe3e3;
+  color: #c92a2a;
+  border-color: #c92a2a;
+}
+
+.cp-day4-layout .result.fail .big-score {
+  color: #c92a2a;
+}

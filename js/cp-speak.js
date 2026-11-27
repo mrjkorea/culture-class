@@ -125,9 +125,15 @@ function renderEmpty(message) {
   app.innerHTML = `<p class="placeholder-box">${escapeHtml(message)}</p>`;
 }
 
+function wrongWordNames(page) {
+  return (page?.words || [])
+    .filter((w) => (w.band || bandFor(w.scorePct)) !== "green")
+    .map((w) => w.word)
+    .filter(Boolean);
+}
+
 function englishWordChips(item, result) {
-  const doorFail = result?.doorFail;
-  const rawWords = doorFail ? [] : result?.words || [];
+  const rawWords = result?.words || [];
   if (!rawWords.length) {
     return `<p class="part-text">${escapeHtml(item.english)}</p>`;
   }
@@ -169,13 +175,10 @@ function renderSheet() {
         : i === index
           ? "active"
           : "";
-      const enHtml = res
-        ? englishWordChips(item, res)
-        : `<p class="part-text en-muted">${escapeHtml(item.english)}</p>`;
-      const scoreLine =
-        res && !res.doorFail
-          ? `<span class="tile-saved">${res.pass ? "✓" : "·"} ${res.scorePct}%</span>`
-          : "";
+      const enHtml = res && !res.pass ? englishWordChips(item, res) : "";
+      const scoreLine = res
+        ? `<span class="tile-saved">${res.pass ? "✓" : "·"} ${res.scorePct}%</span>`
+        : "";
       return `
         <article class="row ${status}" data-i="${i}">
           <div class="num">${i + 1}</div>
@@ -222,6 +225,8 @@ function bindSheetNavigation() {
   app.querySelectorAll(".cp-day4-sheet .row").forEach((row) => {
     row.addEventListener("click", () => {
       const i = Number(row.dataset.i);
+      const stuck = rowResults[index] && !rowResults[index].pass;
+      if (stuck) return;
       if (Number.isFinite(i) && i !== index) {
         cancelActiveMicCapture();
         index = i;
@@ -275,8 +280,13 @@ function renderPractice() {
   el("btnHear").addEventListener("click", () => playAudio());
   el("btnSpeak").addEventListener("click", () => toggleMic());
   el("btnNext").addEventListener("click", () => nextItem());
-  el("btnSkip").addEventListener("click", () => nextItem(true));
+  el("btnSkip").addEventListener("click", () => {
+    if (rowResults[index] && !rowResults[index].pass) return;
+    nextItem();
+  });
   bindSheetNavigation();
+  const prior = rowResults[index];
+  if (prior && !prior.pass) paintGrade(prior, pack.items[index].english);
   syncMicButton();
 }
 
@@ -494,7 +504,7 @@ async function gradeBlob(blob, item) {
 
 function normalizePageResult(result) {
   const doorFail = !!(result && result.doorFail);
-  const rawWords = doorFail ? [] : result?.words || [];
+  const rawWords = result?.words || [];
   const words = rawWords.map((w) => {
     const pct = Number(w.scorePct ?? (w.score != null ? w.score * 100 : 0)) || 0;
     return {
@@ -508,39 +518,46 @@ function normalizePageResult(result) {
   return { words, scorePct, pass, doorFail };
 }
 
-function showGradeResult(result, target, itemIndex) {
-  const page = normalizePageResult(result);
-  rowResults[itemIndex] = page;
-  const doorFail = page.doorFail;
-  const score = page.scorePct;
+function paintGrade(page, target) {
   const pass = page.pass;
   const box = el("resultBox");
+  if (!box) return;
   box.hidden = false;
   box.className = "result " + (pass ? "pass" : "fail");
   const graded = el("gradedLine");
   if (graded) {
-    const chipHtml = englishWordChips(pack.items[itemIndex], page);
+    const chipHtml = englishWordChips(pack.items[index], page);
     graded.innerHTML = chipHtml.startsWith("<div")
       ? chipHtml.replace(/^<div class="chips">/, "").replace(/<\/div>\s*$/, "")
       : chipHtml;
   }
-  if (doorFail) {
-    el("resultScore").textContent = "Try again";
-    el("resultDetail").textContent = doorFailText();
+  const wrong = wrongWordNames(page);
+  if (pass) {
+    el("resultScore").textContent = "✓ " + page.scorePct + "%";
+    el("resultDetail").textContent = target ? `“${target}”` : "";
+    el("englishReveal").hidden = false;
+    el("micStatus").textContent = "Passed. Next sentence.";
+    el("btnNext").hidden = false;
+    el("btnSkip").hidden = true;
   } else {
-    el("resultScore").textContent = (pass ? "✓ " : "") + score + "%";
-    const weak = (result.weak || result.missedWords || []).join(", ");
-    el("resultDetail").textContent = weak
-      ? `“${target}” · practice: ${weak}`
-      : `“${target}”`;
+    el("resultScore").textContent = page.scorePct + "%";
+    const hear = page.doorFail ? doorFailText() + " " : "";
+    el("resultDetail").textContent = wrong.length
+      ? `${hear}Wrong: ${wrong.join(", ")}. Speak again.`
+      : `${hear}Speak again.`;
+    el("englishReveal").hidden = false;
+    el("micStatus").textContent = "Read the red words. Tap Speak and say the sentence again.";
+    el("btnNext").hidden = true;
+    el("btnSkip").hidden = true;
   }
-  el("englishReveal").hidden = false;
-  el("micStatus").textContent = pass
-    ? "Passed! Tap Next."
-    : doorFail
-      ? doorFailText()
-      : `Under ${passPct}% — hear English, then Speak again.`;
   el("scoreBadge").textContent = `${passedCount()} / ${pack.items.length}`;
+}
+
+function showGradeResult(result, target, itemIndex) {
+  const page = normalizePageResult(result);
+  rowResults[itemIndex] = page;
+  const pass = page.pass;
+  paintGrade(page, target);
   const sheet = app.querySelector(".cp-day4-sheet");
   if (sheet) {
     sheet.outerHTML = renderSheet();
