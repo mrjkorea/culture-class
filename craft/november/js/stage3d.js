@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js?v=20261127-silver-skip";
+} from "./turkey-mesh.js?v=20261127-silver-skip-2";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;
@@ -868,12 +868,16 @@ export function mountSilver3D(root, stage, ctx) {
   });
   function frame() {
     gl.resize();
-    const narrow = gl.camera.aspect < 0.95;
-    gl.camera.fov = narrow ? 54 : 42;
+    const aspect = Math.max(0.45, gl.camera.aspect || 1);
+    const fov = 46;
+    gl.camera.fov = fov;
+    gl.camera.aspect = aspect;
     gl.camera.updateProjectionMatrix();
-    const dist = narrow ? 4.35 : 3.15;
-    gl.camera.position.set(0, narrow ? 3.15 : 2.2, dist);
-    gl.camera.lookAt(0, 0.85, 0.05);
+    const halfH = Math.tan((fov * Math.PI) / 360);
+    const halfW = halfH * aspect;
+    const dist = Math.max(2.3, 1.2 / halfH, 1.15 / halfW);
+    gl.camera.position.set(0, 1.2 + dist * 0.38, dist * 0.9);
+    gl.camera.lookAt(0, 1.2, 0.05);
     kinds.forEach((item) => {
       item.tag.lookAt(gl.camera.position);
       item.spotTag.lookAt(gl.camera.position);

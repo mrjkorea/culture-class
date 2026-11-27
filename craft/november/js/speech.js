@@ -2,7 +2,7 @@
  * Grandma June host: warm Fish MP3s in assets/audio/grandma/ only.
  */
 
-import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-silver-skip";
+import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-silver-skip-2";
 
 export function createSpeech(manifest = {}, assetBase = "") {
   let enabled = true;
