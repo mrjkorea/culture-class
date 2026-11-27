@@ -1,10 +1,10 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-click-place";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-teacher-pin";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
-import { mountStage } from "./scenes.js?v=20261127-click-place";
+import { mountStage } from "./scenes.js?v=20261127-teacher-pin";
 import { titleArtSvg } from "./thanksgiving-art.js";
-import { createSpeech } from "./speech.js?v=20261127-click-place";
+import { createSpeech } from "./speech.js?v=20261127-teacher-pin";
 import { createSfx } from "./sfx.js";
-import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-click-place";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-teacher-pin";
 import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
@@ -20,6 +20,7 @@ const teacherPin = document.getElementById("teacher-pin");
 const teacherError = document.getElementById("teacher-error");
 const skipBtn = document.getElementById("skip-btn");
 const TEACHER_KEY = "culture-feast-teacher";
+const TEACHER_PIN = "mrj43";
 
 let spec;
 let manifest;
@@ -113,6 +114,7 @@ function grandmaUrls() {
 
 function teacherUnlocked() {
   try {
+    if (window.localStorage.getItem(TEACHER_KEY) === "1") return true;
     if (window.sessionStorage.getItem(TEACHER_KEY) === "1") return true;
   } catch {
     /* ignore */
@@ -125,9 +127,23 @@ function teacherUnlocked() {
   return document.body.classList.contains("mrj-teacher");
 }
 
+function rememberTeacher() {
+  try {
+    window.localStorage.setItem(TEACHER_KEY, "1");
+    window.sessionStorage.setItem(TEACHER_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+  teacherOn = true;
+  paintTeacher();
+}
+
 function paintTeacher() {
   teacherOn = teacherUnlocked();
-  if (teacherBtn) teacherBtn.hidden = teacherOn;
+  if (teacherBtn) {
+    teacherBtn.hidden = false;
+    teacherBtn.textContent = teacherOn ? "Teacher on" : "Teacher";
+  }
   if (teacherForm && teacherOn) teacherForm.hidden = true;
   if (skipBtn) skipBtn.hidden = !(teacherOn && skipAction);
 }
@@ -143,36 +159,35 @@ function clearSkip() {
 }
 
 async function unlockTeacher(pin) {
+  const typed = String(pin || "").trim().toLowerCase();
+  if (typed === TEACHER_PIN) {
+    rememberTeacher();
+    return { ok: true };
+  }
   const auth = window.MRJ_AUTH;
-  if (!auth?.ENDPOINT || !auth.student?.()) {
-    return { ok: false, message: "Sign in on the class page first." };
+  if (auth?.ENDPOINT && auth.student?.()) {
+    try {
+      const res = await fetch(auth.ENDPOINT, {
+        method: "POST",
+        redirect: "follow",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          action: "study_teacher_check",
+          pin: typed,
+          id: auth.student(),
+          token: auth.token?.() || "",
+        }),
+      });
+      const data = await res.json();
+      if (data?.ok) {
+        rememberTeacher();
+        return { ok: true };
+      }
+    } catch {
+      /* the classroom password above is enough */
+    }
   }
-  let data = null;
-  try {
-    const res = await fetch(auth.ENDPOINT, {
-      method: "POST",
-      redirect: "follow",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        action: "study_teacher_check",
-        pin,
-        id: auth.student(),
-        token: auth.token?.() || "",
-      }),
-    });
-    data = await res.json();
-  } catch {
-    data = null;
-  }
-  if (!data?.ok) return { ok: false, message: "That password did not work." };
-  try {
-    window.sessionStorage.setItem(TEACHER_KEY, "1");
-  } catch {
-    /* ignore */
-  }
-  teacherOn = true;
-  paintTeacher();
-  return { ok: true };
+  return { ok: false, message: "That password did not work." };
 }
 
 function wireGrandma() {
@@ -615,6 +630,8 @@ function onLangChange() {
 function bindChrome() {
   paintTeacher();
   teacherBtn?.addEventListener("click", () => {
+    if (teacherOn) return;
+    if (teacherError) teacherError.textContent = "";
     if (teacherForm) teacherForm.hidden = false;
     teacherPin?.focus();
   });

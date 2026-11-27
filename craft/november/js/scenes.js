@@ -1,7 +1,7 @@
 /**
  * November Thanksgiving craft — eleven feast stages (3D + photo backdrops).
  */
-import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-click-place";
+import { huntForestUrl, scene3dUrl, transitionUrl } from "./assets.js?v=20261127-teacher-pin";
 import {
   mountGravy3D,
   mountMash3D,
@@ -10,7 +10,7 @@ import {
   mountPlates3D,
   mountPluck3D,
   mountStuff3D,
-} from "./stage3d.js?v=20261127-click-place";
+} from "./stage3d.js?v=20261127-teacher-pin";
 import {
   diningRoomSvg,
   gravyPotSvg,
@@ -466,7 +466,7 @@ function mountSeatFamily(root, stage, ctx) {
     { name: "Cousin", ko: "사촌", x: 91, y: 54 },
   ];
   const photo = new URL("../assets/family/thanksgiving-family.jpg", import.meta.url);
-  photo.searchParams.set("v", "20261127-click-place");
+  photo.searchParams.set("v", "20261127-teacher-pin");
   root.innerHTML = `<div class="family-board">
     <div class="family-photo-wrap">
       <img class="family-photo" alt="" src="${esc(photo.href)}" draggable="false">

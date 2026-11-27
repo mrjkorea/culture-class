@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js?v=20261127-click-place";
+} from "./turkey-mesh.js?v=20261127-teacher-pin";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;

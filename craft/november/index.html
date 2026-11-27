@@ -39,7 +39,7 @@
   <button type="button" id="teacher-btn">Teacher</button>
   <form id="teacher-form" hidden>
     <label for="teacher-pin">Teacher password</label>
-    <input id="teacher-pin" type="password" autocomplete="off" inputmode="text">
+    <input id="teacher-pin" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text">
     <button type="submit">Unlock</button>
     <p id="teacher-error" role="alert"></p>
   </form>
@@ -58,7 +58,7 @@
     })();
   </script>
   <script type="module">
-    import { CRAFT_ASSET_V } from "./js/asset-version.js?v=20261127-click-place";
+    import { CRAFT_ASSET_V } from "./js/asset-version.js?v=20261127-teacher-pin";
     const css = document.querySelector('link[href*="css/game.css"]') || document.getElementById("craft-game-css");
     if (css) css.href = `css/game.css?v=${CRAFT_ASSET_V}`;
     import(`./js/game.js?v=${CRAFT_ASSET_V}`);
