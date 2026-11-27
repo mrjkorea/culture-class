@@ -110,24 +110,41 @@ export function buildTurkey(seed, scale = 1, { withFeathers = false } = {}) {
 
   if (withFeathers) {
     const feathers = new THREE.Group();
-    const count = 24;
+    const count = 80;
     for (let i = 0; i < count; i += 1) {
       const shade = mats.feather.clone();
-      shade.color.setHSL(0.06 + (i % 5) * 0.015, 0.5, 0.28 + (i % 4) * 0.07);
+      shade.color.setHSL(0.04 + (i % 8) * 0.012, 0.62, 0.18 + (i % 6) * 0.05);
       const f = new THREE.Mesh(featherGeometry(), shade);
-      f.scale.set(0.34 * scale, 0.78 * scale, 1);
-      const spread = -1.35 + (i / (count - 1)) * 2.7;
-      const layer = i % 3;
-      f.position.set(
-        Math.sin(spread) * (0.22 + layer * 0.05) * scale,
-        (0.72 + layer * 0.16) * scale,
-        (-0.32 - layer * 0.06) * scale
-      );
-      f.rotation.z = -spread * 0.95;
-      f.rotation.x = 0.35 + layer * 0.12;
+      const onTail = i < 32;
+      if (onTail) {
+        const col = i % 8;
+        const row = Math.floor(i / 8);
+        const spread = -1.25 + (col / 7) * 2.5;
+        f.scale.set((0.22 + row * 0.04) * scale, (0.48 + row * 0.08) * scale, 1);
+        f.position.set(
+          Math.sin(spread) * (0.26 + row * 0.06) * scale,
+          (0.42 + row * 0.16) * scale,
+          (-0.28 - row * 0.08) * scale
+        );
+        f.rotation.z = -spread * 0.9;
+        f.rotation.x = 0.4 + row * 0.12;
+      } else {
+        const n = i - 32;
+        const ang = (n / 48) * Math.PI * 2;
+        const band = n % 3;
+        f.scale.set(0.2 * scale, 0.38 * scale, 1);
+        f.position.set(
+          Math.cos(ang) * (0.3 + band * 0.04) * scale,
+          (0.38 + band * 0.14) * scale,
+          Math.sin(ang) * 0.26 * scale
+        );
+        f.rotation.y = -ang + Math.PI / 2;
+        f.rotation.z = band % 2 ? 0.35 : -0.35;
+        f.rotation.x = 0.55;
+      }
       f.userData.feather = true;
       const hit = new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 1.15, 0.3),
+        new THREE.BoxGeometry(0.42, 0.9, 0.28),
         new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
       );
       f.add(hit);

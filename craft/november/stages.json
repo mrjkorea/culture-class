@@ -77,7 +77,7 @@
       "title": "Pluck turkey",
       "titleKo": "털 뽑기",
       "type": "pluck",
-      "clicks": 24,
+      "clicks": 80,
       "midAt": 0.5,
       "lines": {
         "en": ["Tap each feather.", "Watch it fall off.", "The turkey is plucked."],
@@ -90,7 +90,7 @@
       "title": "Stuff dressing",
       "titleKo": "속 채우기",
       "type": "stuff",
-      "clicks": 8,
+      "clicks": 80,
       "midAt": 0.5,
       "lines": {
         "en": ["Scoop dressing with the spoon.", "Push it into the turkey.", "The turkey is stuffed."],
@@ -115,7 +115,7 @@
       "title": "Mash potatoes",
       "titleKo": "으깨기",
       "type": "mash",
-      "clicks": 10,
+      "clicks": 80,
       "midAt": 0.5,
       "lines": {
         "en": ["Smash the masher down.", "Again and again.", "The potatoes are mashed."],
@@ -128,7 +128,7 @@
       "title": "Pour gravy",
       "titleKo": "그레이비",
       "type": "gravy",
-      "clicks": 10,
+      "clicks": 20,
       "midAt": 0.5,
       "lines": {
         "en": ["Hold the pour over the moving bowl.", "If it drips, start again.", "The bowl is full."],
@@ -141,7 +141,7 @@
       "title": "Whipped cream",
       "titleKo": "파이",
       "type": "pie",
-      "clicks": 12,
+      "clicks": 60,
       "midAt": 0.5,
       "lines": {
         "en": ["Spray whipped cream on the pie.", "Cover the whole top.", "The pie is covered."],

@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js";
+} from "./turkey-mesh.js?v=20261127-feast-effort";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;
@@ -274,34 +274,34 @@ export function mountStuff3D(root, stage, ctx) {
   const view = begin(root, stage, "gl-stuff", 46);
   if (!view) return null;
   const { container, gl } = view;
-  const turkey = buildTurkey(3, 1.8);
-  turkey.position.set(0.35, 0.1, 0);
-  turkey.rotation.y = -0.6;
+  const turkey = buildTurkey(3, 1.55);
+  turkey.position.set(0.55, 0.05, 0);
+  turkey.rotation.y = -0.4;
   gl.scene.add(turkey);
   const cavity = new THREE.Mesh(
-    new THREE.SphereGeometry(0.16, 14, 10),
-    texMat(0x6b3a22, "filling")
+    new THREE.SphereGeometry(0.28, 18, 14),
+    new THREE.MeshLambertMaterial({ color: 0x1a0c08 })
   );
-  cavity.position.set(0.15, 0.95, 0.35);
+  cavity.position.set(0.02, 0.62, 0.38);
   turkey.add(cavity);
   const stuffing = new THREE.Mesh(
-    new THREE.SphereGeometry(0.08, 12, 8),
+    new THREE.SphereGeometry(0.16, 14, 10),
     texMat(0xe6c36a, "potato")
   );
   stuffing.position.copy(cavity.position);
-  stuffing.scale.setScalar(0.2);
+  stuffing.scale.setScalar(0.15);
   turkey.add(stuffing);
   const bowl = new THREE.Mesh(
-    new THREE.SphereGeometry(0.28, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2),
-    texMat(0xf7f1e4, "plate", { side: THREE.DoubleSide })
+    new THREE.SphereGeometry(0.46, 20, 14, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2),
+    texMat(0xfff8ee, "plate", { side: THREE.DoubleSide })
   );
-  bowl.position.set(-0.85, 0.2, 0.2);
+  bowl.position.set(-1.05, 0.22, 0.15);
   gl.scene.add(bowl);
   const dress = new THREE.Mesh(
-    new THREE.SphereGeometry(0.16, 8, 6),
+    new THREE.SphereGeometry(0.28, 14, 10),
     texMat(0xe2b84a, "potato")
   );
-  dress.position.set(-0.85, 0.28, 0.2);
+  dress.position.set(-1.05, 0.34, 0.15);
   gl.scene.add(dress);
   const spoon = new THREE.Group();
   const handle = new THREE.Mesh(
@@ -315,10 +315,10 @@ export function mountStuff3D(root, stage, ctx) {
   );
   head.position.set(0.22, -0.22, 0);
   spoon.add(handle, head);
-  spoon.position.set(-0.7, 0.7, 0.35);
+  spoon.position.set(-0.85, 0.85, 0.4);
   gl.scene.add(spoon);
-  look(gl, 0.1, 1.6, 3.1, 0.1, 0.7, 0);
-  const total = 8;
+  look(gl, 0, 1.7, 3.6, 0, 0.55, 0);
+  const total = stage.clicks || 80;
   let done = 0;
   let finished = false;
   let scoopStart = 0;
@@ -327,7 +327,7 @@ export function mountStuff3D(root, stage, ctx) {
     if (!scoopStart) return;
     const t = Math.min(1, (performance.now() - scoopStart) / 420);
     const scoop = t < 0.5 ? t * 2 : (1 - t) * 2;
-    spoon.position.x = -0.7 + scoop * 0.85;
+    spoon.position.x = -0.85 + scoop * 1.15;
     spoon.position.y = 0.7 - Math.sin(t * Math.PI) * 0.25;
     if (t >= 1) scoopStart = 0;
   });
@@ -526,7 +526,7 @@ export function mountMash3D(root, stage, ctx) {
   masher.position.y = 0.85;
   gl.scene.add(pot, spuds, masher);
   look(gl, 0.2, 1.5, 2.4, 0, 0.4, 0);
-  const total = 10;
+  const total = stage.clicks || 80;
   let done = 0;
   let finished = false;
   let smash = 0;
@@ -603,7 +603,7 @@ export function mountGravy3D(root, stage, ctx) {
     const nowMs = performance.now();
     const dt = last ? Math.min(0.25, (nowMs - last) / 1000) : 0;
     last = nowMs;
-    bowl.position.x = Math.sin(t * 0.4) * 0.8;
+    bowl.position.x = Math.sin(t * 0.85) * 0.95;
     gravy.position.x = bowl.position.x;
     if (!holding || finished) {
       stream.material.opacity = 0;
@@ -618,17 +618,17 @@ export function mountGravy3D(root, stage, ctx) {
       pot.position.x = pourHit.x;
     }
     stream.material.opacity = 0.9;
-    const aimed = Math.abs(stream.position.x - bowl.position.x) < 0.55;
+    const aimed = Math.abs(stream.position.x - bowl.position.x) < 0.38;
     if (aimed) {
       off = 0;
-      fill = Math.min(1, fill + dt * 0.42);
+      fill = Math.min(1, fill + dt * 0.05);
     } else {
       off += dt;
-      if (off > 0.2) fill = 0;
+      if (off > 0.12) fill = 0;
     }
-    gravy.scale.y = 0.05 + fill * 6;
-    gravy.position.y = 0.18 + gravy.scale.y * 0.04;
-    ctx.onProgress(Math.round(fill * 10), 10);
+    gravy.scale.y = 0.05 + fill * 8;
+    gravy.position.y = 0.18 + gravy.scale.y * 0.035;
+    ctx.onProgress(Math.round(fill * 20), 20);
     if (fill >= 1) {
       finished = true;
       holding = false;
@@ -671,12 +671,14 @@ export function mountPie3D(root, stage, ctx) {
   pie.position.y = 0.05;
   gl.scene.add(pie);
   const creamMat = texMat(0xfffaf3, "cream");
+  const total = stage.clicks || 60;
   const spots = [];
-  for (let i = 0; i < 12; i += 1) {
-    const dollop = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 8), creamMat.clone());
-    const a = (i / 12) * Math.PI * 2;
-    const ring = i < 8 ? 0.28 : 0.08;
-    dollop.position.set(Math.cos(a) * ring, 0.32, Math.sin(a) * ring);
+  for (let i = 0; i < total; i += 1) {
+    const dollop = new THREE.Mesh(new THREE.SphereGeometry(0.07, 10, 8), creamMat.clone());
+    const ringIndex = i % 5;
+    const a = (i / total) * Math.PI * 10 + ringIndex;
+    const ring = 0.06 + (ringIndex / 5) * 0.42;
+    dollop.position.set(Math.cos(a) * ring, 0.3 + (i % 3) * 0.02, Math.sin(a) * ring);
     dollop.scale.setScalar(0.01);
     pie.add(dollop);
     spots.push(dollop);
@@ -706,8 +708,8 @@ export function mountPie3D(root, stage, ctx) {
       can.rotation.z = 0.6;
     }, 160);
     ctx.sfx?.stage?.(stage.key);
-    ctx.onProgress(done, 12);
-    if (done >= 12) {
+    ctx.onProgress(done, total);
+    if (done >= total) {
       finished = true;
       ctx.onComplete();
     }
@@ -720,24 +722,31 @@ export function mountPlates3D(root, stage, ctx) {
   const view = begin(root, stage, "gl-plates", 48);
   if (!view) return null;
   const { container, gl } = view;
-  const table = buildDiningTable(1.7);
+  const tableScale = 1.15;
+  const table = buildDiningTable(tableScale);
   gl.scene.add(table);
+  const topY = 0.72 * tableScale + 0.08 * tableScale * 0.5 + 0.03;
   const spots = [];
   for (let i = 0; i < 10; i += 1) {
-    const side = i < 5 ? -0.42 : 0.42;
-    const along = ((i % 5) - 2) * 0.55;
+    const col = i % 5;
+    const row = i < 5 ? -1 : 1;
     const spot = new THREE.Mesh(
-      new THREE.RingGeometry(0.08, 0.32, 20),
-      new THREE.MeshBasicMaterial({ color: 0xf0a35a, side: THREE.DoubleSide })
+      new THREE.CylinderGeometry(0.16, 0.16, 0.05, 24),
+      new THREE.MeshBasicMaterial({ color: 0xf0a35a })
     );
-    spot.rotation.x = -Math.PI / 2;
-    spot.position.set(along * 1.7, 1.28, side * 1.7);
+    spot.position.set((col - 2) * 0.42, topY, row * 0.36);
+    const hit = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.24, 0.24, 0.4, 12),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
+    );
+    hit.position.y = 0.12;
+    spot.add(hit);
     spot.userData.index = i;
     spot.userData.open = true;
     spots.push(spot);
     gl.scene.add(spot);
   }
-  look(gl, 0, 3.3, 3.4, 0, 0.9, 0);
+  look(gl, 0, 2.35, 2.55, 0, 0.7, 0);
   let done = 0;
   let finished = false;
 
@@ -745,7 +754,9 @@ export function mountPlates3D(root, stage, ctx) {
     if (finished || (e.button !== undefined && e.button !== 0)) return;
     const hits = gl.pick(spots, e.clientX, e.clientY);
     if (!hits.length) return;
-    const spot = hits[0].object;
+    let spot = hits[0].object;
+    while (spot && spot.userData.index === undefined) spot = spot.parent;
+    if (!spot) return;
     if (!spot.userData.open) return;
     spot.userData.open = false;
     const plate = buildPlate(1.05);

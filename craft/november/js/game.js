@@ -1,10 +1,10 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-forest-hunt-2";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-feast-effort";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
-import { mountStage } from "./scenes.js?v=20261127-forest-hunt-2";
+import { mountStage } from "./scenes.js?v=20261127-feast-effort";
 import { titleArtSvg } from "./thanksgiving-art.js";
-import { createSpeech } from "./speech.js?v=20261127-forest-hunt-2";
+import { createSpeech } from "./speech.js?v=20261127-feast-effort";
 import { createSfx } from "./sfx.js";
-import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-forest-hunt-2";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-feast-effort";
 import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
@@ -24,6 +24,7 @@ let uiLang = getLang();
 let stageCtx = null;
 let lineState = null;
 let lineToken = 0;
+let lastClip = "";
 let state = null;
 let reducedMotion = false;
 let stillPlayer;
@@ -90,6 +91,7 @@ function stageClipKey(stage, lineIndex) {
 
 function speakLine(stage, block, lineIndex, opts = {}) {
   const clipKey = opts.clipKey || (stage ? stageClipKey(stage, lineIndex) : "intro");
+  lastClip = clipKey;
   return speech.speak("", { clipKey });
 }
 
@@ -105,6 +107,10 @@ function wireGrandma() {
   const img = document.getElementById("grandma-img");
   const urls = grandmaUrls();
   if (img && urls) speech.setGrandma(img, urls);
+  const btn = document.getElementById("grandma-btn");
+  btn?.addEventListener("click", () => {
+    if (lastClip) speech.playClip(lastClip);
+  });
 }
 
 function paintLang() {
@@ -218,8 +224,9 @@ async function onStart(event) {
   starting = true;
   speech.unlock();
   sfx?.unlock?.();
-  speech.playClip("intro");
   try {
+    await speech.playClip("intro");
+    await new Promise((resolve) => window.setTimeout(resolve, 800));
     await runGame(name);
   } catch (err) {
     console.error(err);
@@ -274,9 +281,9 @@ function stageShell(stage, index) {
       <div class="bar" id="bar"><span id="progress-fill"></span></div>
       <p id="progress-label" class="progress-label"></p>
       <div class="grandma-row">
-        <div class="grandma-host" aria-hidden="true">
+        <button type="button" class="grandma-host" id="grandma-btn" aria-label="Hear that again">
           <img id="grandma-img" alt="" width="72" height="72" decoding="async" />
-        </div>
+        </button>
       </div>
     </div>
     <div id="play" class="play"></div>
