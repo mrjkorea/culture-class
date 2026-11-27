@@ -90,6 +90,7 @@ export function createTransitionStillPlayer(deps) {
       ensureLoaded(src),
       new Promise((resolve) => window.setTimeout(resolve, 4000)),
     ]);
+    if (ctx.isCancelled?.()) return;
 
     const caption = transition?.caption || { en: "", ko: "" };
     const title = ctx.uiLang === "ko" ? caption.ko : caption.en;
@@ -97,6 +98,10 @@ export function createTransitionStillPlayer(deps) {
     const durationMs = (transition.durationSec || 3) * 1000;
 
     return new Promise((resolve) => {
+      if (ctx.isCancelled?.()) {
+        resolve();
+        return;
+      }
       ctx.timer.pause();
       ctx.view.dataset.screen = "still";
       ctx.view.innerHTML = `<section class="reel-screen still-screen" aria-live="polite">
@@ -126,7 +131,11 @@ export function createTransitionStillPlayer(deps) {
         );
       }
 
-      window.setTimeout(resolve, durationMs);
+      const timerId = window.setTimeout(resolve, durationMs);
+      ctx.bindCancel?.(() => {
+        window.clearTimeout(timerId);
+        resolve();
+      });
     });
   }
 

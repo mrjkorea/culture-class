@@ -11,7 +11,7 @@ import {
   buildPlate,
   buildTurkey,
   texMat,
-} from "./turkey-mesh.js?v=20261127-feast-effort-2";
+} from "./turkey-mesh.js?v=20261127-silver-skip";
 
 function popClick(gl, object, scaleBump = true) {
   if (!object) return;
@@ -777,88 +777,128 @@ export function mountPlates3D(root, stage, ctx) {
 }
 
 export function mountSilver3D(root, stage, ctx) {
-  const view = begin(root, stage, "gl-silver", 48);
+  const view = begin(root, stage, "gl-silver", 50);
   if (!view) return null;
   const { container, gl } = view;
-  const table = buildDiningTable(1.3);
+  const tableScale = 1.15;
+  const table = buildDiningTable(tableScale);
   gl.scene.add(table);
-  const metal = texMat(0xd5dde4, "steel");
+  const topY = 0.72 * tableScale + 0.04 * tableScale;
+  const metal = new THREE.MeshLambertMaterial({ color: 0xf4f7fa });
   const glassMat = new THREE.MeshLambertMaterial({
-    color: 0xd7f3ff,
+    color: 0x8ecff5,
     transparent: true,
-    opacity: 0.65,
+    opacity: 0.82,
   });
+  function band(color, y) {
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(0.07, 0.018, 8, 16),
+      new THREE.MeshBasicMaterial({ color })
+    );
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = y;
+    return ring;
+  }
   function fork() {
     const g = new THREE.Group();
-    const handle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.38, 0.04), metal);
-    handle.position.y = 0.16;
-    for (let i = 0; i < 3; i += 1) {
-      const tine = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.16, 0.02), metal);
-      tine.position.set((i - 1) * 0.035, 0.4, 0);
+    const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.62, 12), metal);
+    handle.position.y = 0.34;
+    const neck = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.06, 0.04), metal);
+    neck.position.y = 0.68;
+    g.add(handle, neck, band(0xf0a35a, 0.5));
+    for (let i = 0; i < 4; i += 1) {
+      const tine = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.28, 0.03), metal);
+      tine.position.set((i - 1.5) * 0.05, 0.84, 0);
       g.add(tine);
     }
-    g.add(handle, new THREE.Mesh(
-      new THREE.BoxGeometry(0.22, 0.62, 0.16),
-      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
-    ));
     return g;
   }
   function spoon() {
     const g = new THREE.Group();
-    const handle = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.4, 0.04), metal);
-    const bowl = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 6), metal);
-    bowl.position.y = 0.28;
-    bowl.scale.y = 0.45;
-    g.add(handle, bowl, new THREE.Mesh(
-      new THREE.BoxGeometry(0.22, 0.62, 0.16),
-      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
-    ));
+    const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.048, 0.62, 12), metal);
+    handle.position.y = 0.34;
+    const bowl = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), metal);
+    bowl.scale.set(1, 0.55, 0.72);
+    bowl.position.y = 0.78;
+    g.add(handle, bowl, band(0xe07a2f, 0.5));
     return g;
   }
   function glassCup() {
-    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.07, 0.28, 12), glassMat);
     const g = new THREE.Group();
-    g.add(cup, new THREE.Mesh(
-      new THREE.BoxGeometry(0.24, 0.4, 0.24),
-      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false })
-    ));
+    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.1, 0.46, 20), glassMat);
+    cup.position.y = 0.28;
+    const rim = new THREE.Mesh(
+      new THREE.TorusGeometry(0.13, 0.02, 8, 20),
+      new THREE.MeshBasicMaterial({ color: 0x2f6f9a })
+    );
+    rim.rotation.x = Math.PI / 2;
+    rim.position.y = 0.5;
+    g.add(cup, rim);
     return g;
   }
-  const items = [
-    { mesh: fork(), kind: "fork" },
-    { mesh: spoon(), kind: "spoon" },
-    { mesh: glassCup(), kind: "glass" },
+  const kinds = [
+    { kind: "fork", label: "Fork", color: 0xf0a35a, mesh: fork() },
+    { kind: "spoon", label: "Spoon", color: 0xe07a2f, mesh: spoon() },
+    { kind: "glass", label: "Glass", color: 0x2f6f9a, mesh: glassCup() },
   ];
   const spots = [];
-  items.forEach((item, i) => {
-    item.mesh.position.set(-1.15, 1.15, (i - 1) * 0.45);
+  kinds.forEach((item, i) => {
+    const x = (i - 1) * 0.62;
+    item.mesh.position.set(x, topY, 0.38);
     item.home = item.mesh.position.clone();
     item.mesh.userData.kind = item.kind;
+    const tag = nameLabel(item.label);
+    tag.position.set(0, item.kind === "glass" ? 0.72 : 1.12, 0);
+    tag.scale.setScalar(1.15);
+    item.mesh.add(tag);
+    item.tag = tag;
     gl.scene.add(item.mesh);
     const spot = new THREE.Mesh(
-      new THREE.CircleGeometry(0.28, 20),
-      new THREE.MeshBasicMaterial({ color: 0xfff1c9, side: THREE.DoubleSide })
+      new THREE.RingGeometry(0.16, 0.28, 28),
+      new THREE.MeshBasicMaterial({ color: item.color, side: THREE.DoubleSide })
     );
     spot.rotation.x = -Math.PI / 2;
-    spot.position.set(0.35 + i * 0.4, 1.02, 0.15);
+    spot.position.set(x, topY + 0.03, -0.28);
     spot.userData.kind = item.kind;
+    const spotTag = nameLabel(item.label);
+    spotTag.position.set(x, topY + 0.22, -0.28);
     spots.push(spot);
-    gl.scene.add(spot);
+    gl.scene.add(spot, spotTag);
+    item.spotTag = spotTag;
   });
-  look(gl, 0, 2.4, 2.8, 0, 0.9, 0);
+  function frame() {
+    gl.resize();
+    const narrow = gl.camera.aspect < 0.95;
+    gl.camera.fov = narrow ? 54 : 42;
+    gl.camera.updateProjectionMatrix();
+    const dist = narrow ? 4.35 : 3.15;
+    gl.camera.position.set(0, narrow ? 3.15 : 2.2, dist);
+    gl.camera.lookAt(0, 0.85, 0.05);
+    kinds.forEach((item) => {
+      item.tag.lookAt(gl.camera.position);
+      item.spotTag.lookAt(gl.camera.position);
+    });
+  }
+  frame();
+  const frameObserver = new ResizeObserver(frame);
+  frameObserver.observe(container);
   let drag = null;
   let finished = false;
   let placed = 0;
-  const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -1.15);
+  const dragY = topY + 0.08;
+  const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -dragY);
   const hitPoint = new THREE.Vector3();
 
   function onDown(e) {
     if (finished || drag || (e.button !== undefined && e.button !== 0)) return;
-    const hits = gl.pick(items.map((item) => item.mesh), e.clientX, e.clientY);
+    const hits = gl.pick(kinds.map((item) => item.mesh), e.clientX, e.clientY);
     if (!hits.length) return;
     let node = hits[0].object;
     while (node && !node.userData.kind) node = node.parent;
-    drag = items.find((item) => item.mesh === node && !item.done);
+    drag = kinds.find((item) => item.mesh === node && !item.done);
+    if (!drag) return;
+    drag.mesh.position.y = dragY + 0.12;
+    try { container.setPointerCapture(e.pointerId); } catch { /* ignore */ }
   }
   function onMove(e) {
     if (!drag) return;
@@ -874,12 +914,12 @@ export function mountSilver3D(root, stage, ctx) {
   function onUp() {
     if (!drag) return;
     const spot = spots.find((s) => s.userData.kind === drag.kind && !s.userData.filled);
-    const close = spot && drag.mesh.position.distanceTo(spot.position) < 0.9;
+    const close = spot && drag.mesh.position.distanceTo(spot.position) < 0.55;
     if (close) {
-      drag.mesh.position.set(spot.position.x, 1.12, spot.position.z);
+      drag.mesh.position.set(spot.position.x, topY, spot.position.z);
       drag.done = true;
       spot.userData.filled = true;
-      spot.material.color.set(0xb7e2b0);
+      spot.material.color.set(0x7dcea0);
       placed += 1;
       ctx.sfx?.stage?.(stage.key);
       ctx.onProgress(placed, 3);
@@ -894,13 +934,16 @@ export function mountSilver3D(root, stage, ctx) {
   }
   container.addEventListener("pointerdown", onDown);
   container.addEventListener("pointermove", onMove);
-  window.addEventListener("pointerup", onUp);
+  container.addEventListener("pointerup", onUp);
+  container.addEventListener("pointercancel", onUp);
   return end(
     container,
     gl,
+    () => frameObserver.disconnect(),
     () => container.removeEventListener("pointerdown", onDown),
     () => container.removeEventListener("pointermove", onMove),
-    () => window.removeEventListener("pointerup", onUp)
+    () => container.removeEventListener("pointerup", onUp),
+    () => container.removeEventListener("pointercancel", onUp)
   );
 }
 

@@ -1,10 +1,10 @@
-import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-feast-effort-2";
+import { loadCraft, transitionUrl, transitionVideoUrl } from "./assets.js?v=20261127-silver-skip";
 import { cleanName, formatTime, loadBoard, saveRun } from "./leaderboard.js";
-import { mountStage } from "./scenes.js?v=20261127-feast-effort-2";
+import { mountStage } from "./scenes.js?v=20261127-silver-skip";
 import { titleArtSvg } from "./thanksgiving-art.js";
-import { createSpeech } from "./speech.js?v=20261127-feast-effort-2";
+import { createSpeech } from "./speech.js?v=20261127-silver-skip";
 import { createSfx } from "./sfx.js";
-import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-feast-effort-2";
+import { createTransitionStillPlayer } from "../../shared/transition-still.js?v=20261127-silver-skip";
 import { getLang, mountLangSelect, pickLines, pickLocalized, studentDisplayName, t as i18nT } from "../../../js/i18n.js";
 import { syncDisplayNameFromAuth } from "../../../js/student-signin.js";
 
@@ -14,6 +14,12 @@ const view = document.getElementById("view");
 const backLink = document.getElementById("back-link");
 const langSelect = document.getElementById("lang-select");
 const soundBtn = document.getElementById("sound-btn");
+const teacherBtn = document.getElementById("teacher-btn");
+const teacherForm = document.getElementById("teacher-form");
+const teacherPin = document.getElementById("teacher-pin");
+const teacherError = document.getElementById("teacher-error");
+const skipBtn = document.getElementById("skip-btn");
+const TEACHER_KEY = "culture-feast-teacher";
 
 let spec;
 let manifest;
@@ -26,6 +32,8 @@ let lineState = null;
 let lineToken = 0;
 let lastClip = "";
 let state = null;
+let teacherOn = false;
+let skipAction = null;
 let reducedMotion = false;
 let stillPlayer;
 
@@ -101,6 +109,70 @@ function grandmaUrls() {
     open: new URL(manifest.grandma.open, assetBase).href,
     closed: new URL(manifest.grandma.closed, assetBase).href,
   };
+}
+
+function teacherUnlocked() {
+  try {
+    if (window.sessionStorage.getItem(TEACHER_KEY) === "1") return true;
+  } catch {
+    /* ignore */
+  }
+  try {
+    if (window.MRJ_AUTH?.isTeacher?.()) return true;
+  } catch {
+    /* ignore */
+  }
+  return document.body.classList.contains("mrj-teacher");
+}
+
+function paintTeacher() {
+  teacherOn = teacherUnlocked();
+  if (teacherBtn) teacherBtn.hidden = teacherOn;
+  if (teacherForm && teacherOn) teacherForm.hidden = true;
+  if (skipBtn) skipBtn.hidden = !(teacherOn && skipAction);
+}
+
+function armSkip(fn) {
+  skipAction = fn;
+  paintTeacher();
+}
+
+function clearSkip() {
+  skipAction = null;
+  paintTeacher();
+}
+
+async function unlockTeacher(pin) {
+  const auth = window.MRJ_AUTH;
+  if (!auth?.ENDPOINT || !auth.student?.()) {
+    return { ok: false, message: "Sign in on the class page first." };
+  }
+  let data = null;
+  try {
+    const res = await fetch(auth.ENDPOINT, {
+      method: "POST",
+      redirect: "follow",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        action: "study_teacher_check",
+        pin,
+        id: auth.student(),
+        token: auth.token?.() || "",
+      }),
+    });
+    data = await res.json();
+  } catch {
+    data = null;
+  }
+  if (!data?.ok) return { ok: false, message: "That password did not work." };
+  try {
+    window.sessionStorage.setItem(TEACHER_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+  teacherOn = true;
+  paintTeacher();
+  return { ok: true };
 }
 
 function wireGrandma() {
@@ -225,8 +297,20 @@ async function onStart(event) {
   speech.unlock();
   sfx?.unlock?.();
   try {
-    await speech.playClip("intro");
-    await new Promise((resolve) => window.setTimeout(resolve, 800));
+    await new Promise((resolve) => {
+      let settled = false;
+      const done = () => {
+        if (settled) return;
+        settled = true;
+        clearSkip();
+        resolve();
+      };
+      armSkip(() => {
+        speech.stop();
+        done();
+      });
+      speech.playClip("intro").then(() => window.setTimeout(done, 800));
+    });
     await runGame(name);
   } catch (err) {
     console.error(err);
@@ -255,11 +339,39 @@ async function runGame(name) {
 }
 
 function playTransitionStill(transition, index) {
-  return stillPlayer.play(
-    { view, timer, esc, formatTime, spec, uiLang },
+  const flags = { cancelled: false };
+  let cancelStill = null;
+  const playing = stillPlayer.play(
+    {
+      view,
+      timer,
+      esc,
+      formatTime,
+      spec,
+      uiLang,
+      isCancelled: () => flags.cancelled,
+      bindCancel(fn) {
+        cancelStill = fn;
+      },
+    },
     transition,
     index,
   );
+  return new Promise((resolve) => {
+    let settled = false;
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      clearSkip();
+      resolve();
+    };
+    armSkip(() => {
+      flags.cancelled = true;
+      cancelStill?.();
+      done();
+    });
+    Promise.resolve(playing).then(done, done);
+  });
 }
 
 function stageShell(stage, index) {
@@ -300,6 +412,15 @@ function playStage(stage, index) {
     const play = document.getElementById("play");
     let handle = null;
     let mid = false;
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      clearSkip();
+      handle?.destroy?.();
+      resolve();
+    };
+    armSkip(finish);
     wireGrandma();
     const craft = state.craft;
     const ctx = {
@@ -340,10 +461,7 @@ function playStage(stage, index) {
         sfx?.win?.();
         showLines(stage.lines, 2);
         speakLine(stage, stage.lines, 2).then(() => {
-          window.setTimeout(() => {
-            handle?.destroy?.();
-            resolve();
-          }, 600);
+          window.setTimeout(finish, 600);
         });
       },
     };
@@ -377,11 +495,14 @@ function playStageMovie(transition, index) {
     const finish = () => {
       if (settled) return;
       settled = true;
+      clearSkip();
       window.clearTimeout(cap);
       video?.removeEventListener("ended", finish);
       video?.removeEventListener("error", finish);
+      try { video?.pause(); } catch { /* ignore */ }
       resolve();
     };
+    armSkip(finish);
     if (!video) {
       finish();
       return;
@@ -492,6 +613,28 @@ function onLangChange() {
 }
 
 function bindChrome() {
+  paintTeacher();
+  teacherBtn?.addEventListener("click", () => {
+    if (teacherForm) teacherForm.hidden = false;
+    teacherPin?.focus();
+  });
+  teacherForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const result = await unlockTeacher(teacherPin?.value || "");
+    if (teacherPin) teacherPin.value = "";
+    if (!result.ok) {
+      if (teacherError) teacherError.textContent = result.message;
+      return;
+    }
+    if (teacherError) teacherError.textContent = "";
+  });
+  skipBtn?.addEventListener("click", () => {
+    const fn = skipAction;
+    skipAction = null;
+    fn?.();
+  });
+  document.addEventListener("mrj-teacher", paintTeacher);
+  document.addEventListener("mrj-auth-ready", paintTeacher);
   mountLangSelect(langSelect, onLangChange);
   const langLabel = document.getElementById("lang-label");
   if (langLabel) langLabel.textContent = i18nT("lang_label");

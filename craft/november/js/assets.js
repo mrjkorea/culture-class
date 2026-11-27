@@ -1,6 +1,6 @@
 /** Load stages.json + manifest. Grandma June host audio only. */
 
-import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-feast-effort-2";
+import { CRAFT_ASSET_V } from "./asset-version.js?v=20261127-silver-skip";
 
 async function fetchJson(url) {
   const res = await fetch(url, { cache: "no-store" });
